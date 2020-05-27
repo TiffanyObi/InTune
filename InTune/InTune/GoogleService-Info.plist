@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>279835589426-cm9j0acfv41jjs1fmp6olfs7e2e4nqk7.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.279835589426-cm9j0acfv41jjs1fmp6olfs7e2e4nqk7</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAuTFMUE_gVZFH6LITWEesg5GdvvYDlvBQ</string>
+	<key>GCM_SENDER_ID</key>
+	<string>279835589426</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>org.tiffanyobi.InTune</string>
+	<key>PROJECT_ID</key>
+	<string>intune-ffaa4</string>
+	<key>STORAGE_BUCKET</key>
+	<string>intune-ffaa4.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:279835589426:ios:bd62bd83733fdc593f352b</string>
+	<key>DATABASE_URL</key>
+	<string>https://intune-ffaa4.firebaseio.com</string>
+</dict>
+</plist>
