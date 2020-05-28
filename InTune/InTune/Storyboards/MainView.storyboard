@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1le-8U-xG4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1le-8U-xG4">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -97,10 +97,10 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="qE4-mP-yjA">
-                                        <rect key="frame" x="0.0" y="66" width="128" height="128"/>
+                                        <rect key="frame" x="0.0" y="66" width="128" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="1BY-mb-vQk">
-                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </collectionViewCellContentView>
                                     </collectionViewCell>
@@ -169,7 +169,11 @@
                         <viewLayoutGuide key="safeArea" id="pnv-Hz-RZu"/>
                     </view>
                     <navigationItem key="navigationItem" id="t1I-qF-QgC">
-                        <barButtonItem key="leftBarButtonItem" image="gear" catalog="system" id="kJB-kb-vaT"/>
+                        <barButtonItem key="leftBarButtonItem" image="gear" catalog="system" id="kJB-kb-vaT">
+                            <connections>
+                                <action selector="settingsButtonPressed:" destination="jg0-Mi-I9y" id="edC-kR-hrc"/>
+                            </connections>
+                        </barButtonItem>
                         <rightBarButtonItems>
                             <barButtonItem image="video.badge.plus.fill" catalog="system" id="TqD-UE-TOD"/>
                             <barButtonItem image="photo.on.rectangle" catalog="system" id="ES7-6p-uJh"/>
@@ -226,10 +230,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="gear" catalog="system" width="128" height="119"/>
-        <image name="person.badge.plus" catalog="system" width="128" height="116"/>
-        <image name="person.circle.fill" catalog="system" width="128" height="121"/>
-        <image name="photo.on.rectangle" catalog="system" width="128" height="98"/>
-        <image name="video.badge.plus.fill" catalog="system" width="128" height="80"/>
+        <image name="gear" catalog="system" width="64" height="58"/>
+        <image name="person.badge.plus" catalog="system" width="64" height="58"/>
+        <image name="person.circle.fill" catalog="system" width="64" height="60"/>
+        <image name="photo.on.rectangle" catalog="system" width="64" height="48"/>
+        <image name="video.badge.plus.fill" catalog="system" width="64" height="40"/>
     </resources>
 </document>
