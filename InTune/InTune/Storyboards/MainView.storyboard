@@ -168,7 +168,20 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="pnv-Hz-RZu"/>
                     </view>
-                    <navigationItem key="navigationItem" id="t1I-qF-QgC"/>
+                    <navigationItem key="navigationItem" id="t1I-qF-QgC">
+                        <barButtonItem key="leftBarButtonItem" image="gear" catalog="system" id="kJB-kb-vaT"/>
+                        <rightBarButtonItems>
+                            <barButtonItem image="video.badge.plus.fill" catalog="system" id="TqD-UE-TOD"/>
+                            <barButtonItem image="photo.on.rectangle" catalog="system" id="ES7-6p-uJh"/>
+                        </rightBarButtonItems>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="bioLabel" destination="DHD-Jc-nYt" id="VVl-JE-pqB"/>
+                        <outlet property="nameLabel" destination="a45-Tm-yAT" id="ey5-Pf-sHk"/>
+                        <outlet property="postsCollectionView" destination="GfT-ZA-9Gg" id="r93-Tk-mAl"/>
+                        <outlet property="profImage" destination="6sk-M6-T0Y" id="TXE-ki-4nL"/>
+                        <outlet property="tagsCollection" destination="CVX-XU-ReK" id="c87-E5-jAQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gbC-bX-jNL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -213,7 +226,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="gear" catalog="system" width="128" height="119"/>
         <image name="person.badge.plus" catalog="system" width="128" height="116"/>
         <image name="person.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="photo.on.rectangle" catalog="system" width="128" height="98"/>
+        <image name="video.badge.plus.fill" catalog="system" width="128" height="80"/>
     </resources>
 </document>

@@ -26,11 +26,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         if let _ = Auth.auth().currentUser {
             
-//            UIViewController.showViewController(storyboardName: "MainView", viewControllerID: "ProfileViewController")
-           
+            UIViewController.showViewController(storyboardName: "MainView", viewControllerID: "MainViewTabBarController")
         } else {
-//            UIViewController.showViewController(storyboardName: "LoginView", viewControllerID: "LoginViewController")
-                        UIViewController.showViewController(storyboardName: "MainView", viewControllerID: "MainViewTabBarController")
+            UIViewController.showViewController(storyboardName: "LoginView", viewControllerID: "LoginViewController")
+
         }
         window?.makeKeyAndVisible()
     }
