@@ -27,7 +27,6 @@
 		3E43F475247E909A00CC0584 /* ShowAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F474247E909A00CC0584 /* ShowAlert.swift */; };
 		3E43F477247E90B700CC0584 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F476247E90B700CC0584 /* DateFormatter.swift */; };
 		3E43F479247E90CA00CC0584 /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F478247E90CA00CC0584 /* Navigation.swift */; };
-		3E43F47C247E925A00CC0584 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E43F47B247E925A00CC0584 /* GoogleService-Info.plist */; };
 		3E43F47F247E97FF00CC0584 /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F47E247E97FF00CC0584 /* Artist.swift */; };
 		3E43F481247E981700CC0584 /* Enthusiast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F480247E981700CC0584 /* Enthusiast.swift */; };
 		3E43F483247E983300CC0584 /* FavoriteArtist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F482247E983300CC0584 /* FavoriteArtist.swift */; };
@@ -39,6 +38,8 @@
 		3E43F48F247E9B0700CC0584 /* ExtraView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F48E247E9B0700CC0584 /* ExtraView2.swift */; };
 		3E43F491247E9B2400CC0584 /* ExtraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F490247E9B2400CC0584 /* ExtraController.swift */; };
 		3E43F493247E9B3F00CC0584 /* ExtraController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F492247E9B3F00CC0584 /* ExtraController2.swift */; };
+		801B6C5C247F386B008E4B63 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801B6C5B247F386B008E4B63 /* HeaderView.swift */; };
+		80ED27EF247F304D007B55DE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80ED27EE247F304D007B55DE /* GoogleService-Info.plist */; };
 		F0587CCABB857784317015A3 /* Pods_InTune.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7569B63AC8D4A59DD4C294EF /* Pods_InTune.framework */; };
 		F39A5A5FC5ABFD46741A3AEB /* Pods_InTuneTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34EDB9880DFEB9AE9BDB152F /* Pods_InTuneTests.framework */; };
 /* End PBXBuildFile section */
@@ -80,7 +81,6 @@
 		3E43F474247E909A00CC0584 /* ShowAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowAlert.swift; sourceTree = "<group>"; };
 		3E43F476247E90B700CC0584 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		3E43F478247E90CA00CC0584 /* Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
-		3E43F47B247E925A00CC0584 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3E43F47E247E97FF00CC0584 /* Artist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
 		3E43F480247E981700CC0584 /* Enthusiast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enthusiast.swift; sourceTree = "<group>"; };
 		3E43F482247E983300CC0584 /* FavoriteArtist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteArtist.swift; sourceTree = "<group>"; };
@@ -95,6 +95,8 @@
 		5EDC17E70E02A5BD32363172 /* Pods-InTune.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InTune.debug.xcconfig"; path = "Target Support Files/Pods-InTune/Pods-InTune.debug.xcconfig"; sourceTree = "<group>"; };
 		7569B63AC8D4A59DD4C294EF /* Pods_InTune.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InTune.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7ECE2C0DAA7CB05F80888C31 /* Pods-InTune.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InTune.release.xcconfig"; path = "Target Support Files/Pods-InTune/Pods-InTune.release.xcconfig"; sourceTree = "<group>"; };
+		801B6C5B247F386B008E4B63 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		80ED27EE247F304D007B55DE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9BE6182879AA5607E95E84A9 /* Pods-InTuneTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InTuneTests.debug.xcconfig"; path = "Target Support Files/Pods-InTuneTests/Pods-InTuneTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -158,7 +160,7 @@
 				3E43F464247E850A00CC0584 /* ViewControllers */,
 				3E43F459247E83A600CC0584 /* SupportingFiles */,
 				3E43F445247D7B8D00CC0584 /* Info.plist */,
-				3E43F47B247E925A00CC0584 /* GoogleService-Info.plist */,
+				80ED27EE247F304D007B55DE /* GoogleService-Info.plist */,
 			);
 			path = InTune;
 			sourceTree = "<group>";
@@ -214,6 +216,7 @@
 				3E43F465247E857900CC0584 /* EmptyView.swift */,
 				3E43F48C247E9AF800CC0584 /* ExtraView.swift */,
 				3E43F48E247E9B0700CC0584 /* ExtraView2.swift */,
+				801B6C5B247F386B008E4B63 /* HeaderView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -348,7 +351,7 @@
 			files = (
 				3E43F444247D7B8D00CC0584 /* LaunchScreen.storyboard in Resources */,
 				3E43F46E247E8EA200CC0584 /* MainView.storyboard in Resources */,
-				3E43F47C247E925A00CC0584 /* GoogleService-Info.plist in Resources */,
+				80ED27EF247F304D007B55DE /* GoogleService-Info.plist in Resources */,
 				3E43F441247D7B8D00CC0584 /* Assets.xcassets in Resources */,
 				3E43F470247E8F6400CC0584 /* LoginView.storyboard in Resources */,
 			);
@@ -451,6 +454,7 @@
 				3E43F468247E8DD100CC0584 /* AuthentificationService.swift in Sources */,
 				3E43F485247E985700CC0584 /* FavoriteVideo.swift in Sources */,
 				3E43F477247E90B700CC0584 /* DateFormatter.swift in Sources */,
+				801B6C5C247F386B008E4B63 /* HeaderView.swift in Sources */,
 				3E43F475247E909A00CC0584 /* ShowAlert.swift in Sources */,
 				3E43F487247E999A00CC0584 /* Comment.swift in Sources */,
 				3E43F48D247E9AF800CC0584 /* ExtraView.swift in Sources */,
