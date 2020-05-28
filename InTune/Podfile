@@ -9,6 +9,7 @@ target 'InTune' do
   
 pod 'Firebase/Firestore'
 pod 'Firebase/Auth'
+pod 'Firebase/Storage'
 
   target 'InTuneTests' do
     inherit! :search_paths
