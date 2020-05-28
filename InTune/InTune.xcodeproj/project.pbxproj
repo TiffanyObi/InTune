@@ -38,6 +38,8 @@
 		3E43F48F247E9B0700CC0584 /* ExtraView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F48E247E9B0700CC0584 /* ExtraView2.swift */; };
 		3E43F491247E9B2400CC0584 /* ExtraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F490247E9B2400CC0584 /* ExtraController.swift */; };
 		3E43F493247E9B3F00CC0584 /* ExtraController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F492247E9B3F00CC0584 /* ExtraController2.swift */; };
+		80135C7E248026210038A0CC /* PostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80135C7D248026210038A0CC /* PostCell.xib */; };
+		80135C80248027630038A0CC /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80135C7F248027630038A0CC /* PostCell.swift */; };
 		801B6C5C247F386B008E4B63 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801B6C5B247F386B008E4B63 /* HeaderView.swift */; };
 		80ED27EF247F304D007B55DE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80ED27EE247F304D007B55DE /* GoogleService-Info.plist */; };
 		F0587CCABB857784317015A3 /* Pods_InTune.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7569B63AC8D4A59DD4C294EF /* Pods_InTune.framework */; };
@@ -95,6 +97,8 @@
 		5EDC17E70E02A5BD32363172 /* Pods-InTune.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InTune.debug.xcconfig"; path = "Target Support Files/Pods-InTune/Pods-InTune.debug.xcconfig"; sourceTree = "<group>"; };
 		7569B63AC8D4A59DD4C294EF /* Pods_InTune.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InTune.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7ECE2C0DAA7CB05F80888C31 /* Pods-InTune.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InTune.release.xcconfig"; path = "Target Support Files/Pods-InTune/Pods-InTune.release.xcconfig"; sourceTree = "<group>"; };
+		80135C7D248026210038A0CC /* PostCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostCell.xib; sourceTree = "<group>"; };
+		80135C7F248027630038A0CC /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		801B6C5B247F386B008E4B63 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		80ED27EE247F304D007B55DE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9BE6182879AA5607E95E84A9 /* Pods-InTuneTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InTuneTests.debug.xcconfig"; path = "Target Support Files/Pods-InTuneTests/Pods-InTuneTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -217,6 +221,8 @@
 				3E43F48C247E9AF800CC0584 /* ExtraView.swift */,
 				3E43F48E247E9B0700CC0584 /* ExtraView2.swift */,
 				801B6C5B247F386B008E4B63 /* HeaderView.swift */,
+				80135C7F248027630038A0CC /* PostCell.swift */,
+				80135C7D248026210038A0CC /* PostCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -350,6 +356,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E43F444247D7B8D00CC0584 /* LaunchScreen.storyboard in Resources */,
+				80135C7E248026210038A0CC /* PostCell.xib in Resources */,
 				3E43F46E247E8EA200CC0584 /* MainView.storyboard in Resources */,
 				80ED27EF247F304D007B55DE /* GoogleService-Info.plist in Resources */,
 				3E43F441247D7B8D00CC0584 /* Assets.xcassets in Resources */,
@@ -442,6 +449,7 @@
 				3E43F489247E99B000CC0584 /* Review.swift in Sources */,
 				3E43F48F247E9B0700CC0584 /* ExtraView2.swift in Sources */,
 				3E43F483247E983300CC0584 /* FavoriteArtist.swift in Sources */,
+				80135C80248027630038A0CC /* PostCell.swift in Sources */,
 				3E43F466247E857900CC0584 /* EmptyView.swift in Sources */,
 				3E43F463247E84DA00CC0584 /* MainViewTabBarController.swift in Sources */,
 				3E43F461247E849700CC0584 /* MessengerViewController.swift in Sources */,
