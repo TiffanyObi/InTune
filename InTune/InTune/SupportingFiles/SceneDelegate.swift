@@ -26,11 +26,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         if let _ = Auth.auth().currentUser {
             
-            UIViewController.showViewController(storyboardName: "MainView", viewControllerID: "ProfileViewController")
+//            UIViewController.showViewController(storyboardName: "MainView", viewControllerID: "ProfileViewController")
            
         } else {
-            UIViewController.showViewController(storyboardName: "LoginView", viewControllerID: "LoginViewController")
+//            UIViewController.showViewController(storyboardName: "LoginView", viewControllerID: "LoginViewController")
+                        UIViewController.showViewController(storyboardName: "MainView", viewControllerID: "MainViewTabBarController")
         }
+        window?.makeKeyAndVisible()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
