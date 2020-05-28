@@ -8,7 +8,7 @@ target 'InTune' do
   # Pods for InTune
   
 pod 'Firebase/Analytics'
-
+pod 'Firebase/Firestore'
 pod 'Firebase/Auth'
 
   target 'InTuneTests' do
