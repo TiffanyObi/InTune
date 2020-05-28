@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class ProfileViewController: UIViewController {
     
@@ -22,6 +23,21 @@ class ProfileViewController: UIViewController {
         
     }
     
+    
+    
+    @IBAction func settingsButtonPressed(_ sender: UIBarButtonItem) {
+        
+        do {
+                try Auth.auth().signOut()
+            } catch {
+                self.showAlert(title: "Error Signing Out", message: " \(error.localizedDescription)")
+                
+            }
+            UIViewController.showViewController(storyboardName: "LoginView", viewControllerID: "LoginViewController")
+            
+            print(Auth.auth().currentUser?.email ?? "not current user because youre not logged in or signed up")
+        }
+    }
+    
 
 
-}

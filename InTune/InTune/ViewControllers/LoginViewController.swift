@@ -16,19 +16,12 @@ enum AccountState {
 
 class LoginViewController: UIViewController {
     
-    @IBOutlet weak var emailTextfield: UITextField!
-    
-    
-    @IBOutlet weak var passwordTextfield: UITextField!
-    
-    @IBOutlet weak var loginButton: UIButton!
-    
-    
-    @IBOutlet weak var loginStateLabel: UILabel!
-    
-    @IBOutlet weak var loginStateButton: UIButton!
-    
-    @IBOutlet weak var errorMessageLabel: UILabel!
+    @IBOutlet private var emailTextfield: UITextField!
+    @IBOutlet private var passwordTextfield: UITextField!
+    @IBOutlet private var loginButton: UIButton!
+    @IBOutlet private var loginStateLabel: UILabel!
+    @IBOutlet private var loginStateButton: UIButton!
+    @IBOutlet private var errorMessageLabel: UILabel!
     
     private lazy var tapGesture: UITapGestureRecognizer = {
         let gesture = UITapGestureRecognizer()
@@ -36,11 +29,11 @@ class LoginViewController: UIViewController {
         return gesture
     }()
     private var accountState: AccountState = .existingUser
+    private var authSession = AuthenticationSession()
+    private var dataBaseService = DatabaseService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-      loginView
         setUpTextfieldDelegates()
          clearErrorLabel()
         view.addGestureRecognizer(tapGesture)
@@ -92,19 +85,59 @@ class LoginViewController: UIViewController {
     
     private func continueLoginFlow(email:String,password:String) {
         if accountState == .existingUser {
-            print("existing user \(email) - \(password)")
-          
-        } else {
-            print("new user")
+           authSession.signExistingUser(email: email, password: password) { [weak self] (result) in
+                   switch result {
+                   case .failure(let error):
+                       print(error)
+                       DispatchQueue.main.async {
+                           self?.errorMessageLabel.isHidden = false
+                        self?.errorMessageLabel.text = "Incorrect Login: \(error.localizedDescription)"
+                        self?.errorMessageLabel.textColor = .white
+                       }
+                   case .success:
+                       DispatchQueue.main.async {
+                           //navigate to main view
+                           self?.navigateToMainView()
+                       }
+                   }
+               }
+           } else {
+            
+                authSession.createNewUser(email: email, password: password) { [weak self] (result) in
+                    switch result {
+                    case .failure(let error):
+                        print(error)
+                        DispatchQueue.main.async {
+                            self?.errorMessageLabel.isHidden = false
+                            self?.errorMessageLabel.text = "Error: \(error.localizedDescription)"
+                            self?.errorMessageLabel.textColor = .white
+                        }
+                    case .success(let authDataResult):
+                        print(authDataResult.user.email ?? "user email")
+//                        self?.createDatabaseUser(authDataResult: authDataResult)
+                    }
+                }
+            }
+           
         }
-    }
     
-    private func createDatabaseUser(authDataResult: AuthDataResult) {
-        print("create database user")
-    }
     
+//    private func createDatabaseUser(authDataResult: AuthDataResult) {
+//
+//        dataBaseService.createArtist(artist: <#T##Artist#>, authDataResult: <#T##AuthDataResult#>, completion: <#T##(Result<Bool, Error>) -> ()#>){[weak self] (result) in
+//            switch result {
+//            case .failure(let error):
+//                DispatchQueue.main.async {
+//                    self?.showAlert(title: "Account Error", message: error.localizedDescription)
+//                }
+//            case .success:
+//                self?.navigateToMainView()
+//            }
+//        }
+//    }
+//
     private func navigateToMainView() {
-        UIViewController.showViewController(storyboardName: "MainView", viewControllerID: "ProfileViewController")
+        UIViewController.showViewController(storyboardName: "MainView", viewControllerID: "MainViewTabBarController")
     }
     
     
