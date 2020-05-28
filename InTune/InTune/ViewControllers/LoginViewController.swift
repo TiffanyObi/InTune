@@ -40,6 +40,7 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+      loginView
         setUpTextfieldDelegates()
          clearErrorLabel()
         view.addGestureRecognizer(tapGesture)
