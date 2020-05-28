@@ -7,6 +7,12 @@
 //
 
 import UIKit
+import FirebaseAuth
+
+enum AccountState {
+    case existingUser
+    case newUser
+}
 
 class LoginViewController: UIViewController {
     
@@ -24,11 +30,19 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var errorMessageLabel: UILabel!
     
+    private lazy var tapGesture: UITapGestureRecognizer = {
+        let gesture = UITapGestureRecognizer()
+        gesture.addTarget(self, action: #selector(resignTextfeilds))
+        return gesture
+    }()
+    private var accountState: AccountState = .existingUser
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setUpTextfieldDelegates()
-         errorMessageLabel.isHidden = true
+         clearErrorLabel()
+        view.addGestureRecognizer(tapGesture)
     }
     
     
@@ -36,10 +50,63 @@ class LoginViewController: UIViewController {
         emailTextfield.delegate = self
         passwordTextfield.delegate = self
     }
+   @objc private func resignTextfeilds(){
+        errorMessageLabel.isHidden = true
+        emailTextfield.resignFirstResponder()
+        passwordTextfield.resignFirstResponder()
+    }
     private func clearErrorLabel(){
         
         errorMessageLabel.text = ""
+        errorMessageLabel.isHidden = true
     }
+    
+    @IBAction func loginButtonPressed(_ sender: UIButton) {
+        guard let email = emailTextfield.text,
+            !email.isEmpty,
+            let password = passwordTextfield.text,
+            !password.isEmpty else {
+                showAlert(title: "Missing Fields", message: "Please fill all missing fields")
+                print("missing feilds")
+                return
+        }
+        continueLoginFlow(email: email, password: password)
+    }
+    
+    @IBAction func toggleAccountState(_ sender: UIButton) {
+        // change the account login state
+        accountState = accountState == .existingUser ? .newUser : .existingUser
+        if accountState == .existingUser {
+            loginButton.setTitle("LOGIN", for: .normal)
+            loginStateLabel.text = "Don't have an account?"
+            loginStateButton.setTitle("SIGN UP", for: .normal)
+            
+        } else {
+            loginButton.setTitle("SIGN UP", for: .normal)
+            loginStateLabel.text = "Already have an account ?"
+            loginStateButton.setTitle("LOGIN", for: .normal)
+            
+        }
+    }
+    
+    private func continueLoginFlow(email:String,password:String) {
+        if accountState == .existingUser {
+            print("existing user \(email) - \(password)")
+          
+        } else {
+            print("new user")
+        }
+    }
+    
+    private func createDatabaseUser(authDataResult: AuthDataResult) {
+        print("create database user")
+    }
+    
+    private func navigateToMainView() {
+        UIViewController.showViewController(storyboardName: "MainView", viewControllerID: "ProfileViewController")
+    }
+    
+    
   
 
 }
