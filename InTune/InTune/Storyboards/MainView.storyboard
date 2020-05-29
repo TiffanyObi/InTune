@@ -22,7 +22,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KMg-IJ-omp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-206" y="108"/>
+            <point key="canvasLocation" x="-229" y="115"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="MsV-d3-RPi">
@@ -52,19 +52,19 @@
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="CVX-XU-ReK">
                                 <rect key="frame" x="71.5" y="296" width="322.5" height="44"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" red="0.1664972492" green="0.22969991619999999" blue="0.68202728430000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="HAN-Qb-vGI"/>
                                 </constraints>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="D9U-q4-c0F">
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="D9U-q4-c0F">
                                     <size key="itemSize" width="94" height="35"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="lgu-su-6AC">
-                                        <rect key="frame" x="0.0" y="0.0" width="94" height="35"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="genreTag" id="lgu-su-6AC">
+                                        <rect key="frame" x="0.0" y="4.5" width="94" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="zz7-A0-Je4">
                                             <rect key="frame" x="0.0" y="0.0" width="94" height="35"/>
@@ -96,7 +96,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="16" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="" id="qE4-mP-yjA">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="postCell" id="qE4-mP-yjA" customClass="PostCell" customModule="InTune" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="66" width="128" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="1BY-mb-vQk">
@@ -105,37 +105,49 @@
                                         </collectionViewCellContentView>
                                     </collectionViewCell>
                                 </cells>
-                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="hFK-iG-juF" customClass="HeaderView" customModule="InTune" customModuleProvider="target">
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="artistHeader" id="hFK-iG-juF" customClass="HeaderView" customModule="InTune" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iil-80-qQW">
-                                            <rect key="frame" x="92.5" y="16" width="228.5" height="18"/>
+                                            <rect key="frame" x="38.5" y="16" width="282.5" height="18"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="47D-Lp-nFY">
-                                            <rect key="frame" x="8" y="16" width="76.5" height="18"/>
-                                            <state key="normal" title="Button" image="person.badge.plus" catalog="system"/>
+                                            <rect key="frame" x="8" y="8" width="22.5" height="34"/>
+                                            <state key="normal" image="person.badge.plus" catalog="system"/>
+                                            <connections>
+                                                <action selector="favoriteArtistButtonPressed:" destination="hFK-iG-juF" eventType="touchUpInside" id="MLc-Rt-gNz"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sNn-1V-mHy">
                                             <rect key="frame" x="329" y="8" width="37" height="34"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <state key="normal" title="Chat"/>
+                                            <connections>
+                                                <action selector="chatButtonPressed:" destination="hFK-iG-juF" eventType="touchUpInside" id="dIK-3d-75y"/>
+                                            </connections>
                                         </button>
                                     </subviews>
+                                    <color key="backgroundColor" red="0.89308375630000003" green="0.38342688920000001" blue="0.36983842729999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <constraints>
-                                        <constraint firstItem="47D-Lp-nFY" firstAttribute="top" secondItem="hFK-iG-juF" secondAttribute="topMargin" constant="8" id="0VR-Z6-ck5"/>
+                                        <constraint firstItem="47D-Lp-nFY" firstAttribute="centerY" secondItem="hFK-iG-juF" secondAttribute="centerY" id="3xg-w9-RoM"/>
                                         <constraint firstItem="Iil-80-qQW" firstAttribute="leading" secondItem="47D-Lp-nFY" secondAttribute="trailing" constant="8" id="8pv-2s-eCE"/>
                                         <constraint firstItem="sNn-1V-mHy" firstAttribute="top" secondItem="hFK-iG-juF" secondAttribute="topMargin" id="CgJ-LQ-baq"/>
                                         <constraint firstAttribute="bottom" secondItem="sNn-1V-mHy" secondAttribute="bottom" constant="8" id="Chz-2J-Fha"/>
                                         <constraint firstItem="Iil-80-qQW" firstAttribute="top" secondItem="hFK-iG-juF" secondAttribute="topMargin" constant="8" id="G69-h1-9OO"/>
+                                        <constraint firstItem="sNn-1V-mHy" firstAttribute="centerY" secondItem="hFK-iG-juF" secondAttribute="centerY" id="HNM-Vn-z4U"/>
                                         <constraint firstItem="sNn-1V-mHy" firstAttribute="leading" secondItem="Iil-80-qQW" secondAttribute="trailing" constant="8" id="O8C-ZN-cGD"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="47D-Lp-nFY" secondAttribute="bottom" constant="8" id="VJF-4U-pOC"/>
+                                        <constraint firstItem="47D-Lp-nFY" firstAttribute="top" secondItem="hFK-iG-juF" secondAttribute="topMargin" id="hL0-dK-D3Q"/>
+                                        <constraint firstItem="Iil-80-qQW" firstAttribute="centerY" secondItem="hFK-iG-juF" secondAttribute="centerY" id="rcE-Zz-QWK"/>
                                         <constraint firstItem="47D-Lp-nFY" firstAttribute="leading" secondItem="hFK-iG-juF" secondAttribute="leadingMargin" id="tYs-Vq-Z9t"/>
                                         <constraint firstItem="sNn-1V-mHy" firstAttribute="trailing" secondItem="hFK-iG-juF" secondAttribute="trailingMargin" id="wpE-a7-Qii"/>
                                     </constraints>
+                                    <connections>
+                                        <outlet property="favoriteArtistButton" destination="47D-Lp-nFY" id="77i-y2-2lT"/>
+                                    </connections>
                                 </collectionReusableView>
                             </collectionView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.crop.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="6sk-M6-T0Y">
@@ -208,7 +220,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="kmd-kZ-cZt" kind="relationship" relationship="viewControllers" id="cS3-cg-V6a"/>
-                        <segue destination="dgH-lO-nSv" kind="relationship" relationship="viewControllers" id="Xo5-vp-YQJ"/>
+                        <segue destination="dgH-lO-nSv" kind="relationship" relationship="viewControllers" id="VNW-XS-2sY"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CYU-Ka-4ya" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

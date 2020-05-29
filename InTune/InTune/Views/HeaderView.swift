@@ -10,4 +10,19 @@ import UIKit
 
 class HeaderView: UICollectionReusableView {
         
+    @IBOutlet weak var favoriteArtistButton: UIButton!
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+    }
+    
+    
+    @IBAction func favoriteArtistButtonPressed(_ sender: UIButton) {
+        print("favorite")
+    }
+    
+    @IBAction func chatButtonPressed(_ sender: UIButton) {
+        print("chat")
+    }
 }
