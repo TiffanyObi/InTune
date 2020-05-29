@@ -28,7 +28,7 @@ class StorageService {
     (metadata, error) in
       if let error = error {
         completion(.failure(error))
-      } else if let metadata = metadata {
+      }else if let metadata = metadata {
         photoReference.downloadURL { (url, error) in
           if let error = error {
             completion(.failure(error))

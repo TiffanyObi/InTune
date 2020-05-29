@@ -11,11 +11,11 @@ import FirebaseAuth
 
 class ProfileViewController: UIViewController {
     
-    @IBOutlet weak var profImage: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var bioLabel: UILabel!
-    @IBOutlet weak var tagsCollection: UICollectionView!
-    @IBOutlet weak var postsCollectionView: UICollectionView!
+    @IBOutlet private var profImage: UIImageView!
+    @IBOutlet private var nameLabel: UILabel!
+    @IBOutlet private var bioLabel: UILabel!
+    @IBOutlet private var tagsCollection: UICollectionView!
+    @IBOutlet private var postsCollectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,6 +77,21 @@ extension ProfileViewController: UICollectionViewDelegateFlowLayout, UICollectio
         
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "artistHeader", for: indexPath) as? HeaderView else {
+            fatalError("could not load headerView")
+        }
+        
+        return headerView
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        
+        return CGSize(width: collectionView.bounds.width, height: collectionView.bounds.height * 0.10)
+    }
+    
+    
     
     
 }

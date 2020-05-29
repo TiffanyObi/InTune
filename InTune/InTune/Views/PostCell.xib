@@ -21,16 +21,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" red="0.1095718029" green="0.15116546410000001" blue="0.4488420051" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </imageView>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MMd-fe-BNF">
-                        <rect key="frame" x="162" y="106" width="21" height="22"/>
-                        <state key="normal" image="heart" catalog="system"/>
-                    </button>
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="MMd-fe-BNF" secondAttribute="bottom" constant="8" id="NFi-9a-nIU"/>
                     <constraint firstItem="Coa-R7-9c0" firstAttribute="top" secondItem="5Ky-19-Jf6" secondAttribute="top" id="bCI-PY-Qil"/>
-                    <constraint firstAttribute="trailing" secondItem="MMd-fe-BNF" secondAttribute="trailing" constant="8" id="csJ-8p-lVs"/>
                     <constraint firstAttribute="trailing" secondItem="Coa-R7-9c0" secondAttribute="trailing" id="jhT-KW-gep"/>
                     <constraint firstAttribute="bottom" secondItem="Coa-R7-9c0" secondAttribute="bottom" id="llx-K1-brL"/>
                     <constraint firstItem="Coa-R7-9c0" firstAttribute="leading" secondItem="5Ky-19-Jf6" secondAttribute="leading" id="yAb-27-HSW"/>
@@ -39,13 +33,11 @@
             <size key="customSize" width="191" height="136"/>
             <connections>
                 <outlet property="cellImage" destination="Coa-R7-9c0" id="HdJ-Ew-w0u"/>
-                <outlet property="heartButton" destination="MMd-fe-BNF" id="zZh-sI-1MT"/>
             </connections>
             <point key="canvasLocation" x="445.6521739130435" y="116.51785714285714"/>
         </collectionViewCell>
     </objects>
     <resources>
         <image name="airplayvideo" catalog="system" width="128" height="98"/>
-        <image name="heart" catalog="system" width="128" height="109"/>
     </resources>
 </document>
