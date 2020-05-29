@@ -32,8 +32,8 @@ class ProfileViewController: UIViewController {
         if !UIImagePickerController.isSourceTypeAvailable(.camera) {
             cameraButton.isEnabled = false
         }
-//        tagsCollection.delegate = self
-//        tagsCollection.dataSource = self
+        //        tagsCollection.delegate = self
+        //        tagsCollection.dataSource = self
         postsCollectionView.delegate = self
         postsCollectionView.dataSource = self
         postsCollectionView.register(UINib(nibName: "PostCell", bundle: nil), forCellWithReuseIdentifier: "postCell")
@@ -51,21 +51,27 @@ class ProfileViewController: UIViewController {
     }
     
     private func collectionView() {
-
+        
     }
     
     @IBAction func settingsButtonPressed(_ sender: UIBarButtonItem) {
         
-        do {
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let signOutAction = UIAlertAction(title: "Sign Out", style: .destructive) { (alertAction) in
+            do {
                 try Auth.auth().signOut()
             } catch {
                 self.showAlert(title: "Error Signing Out", message: " \(error.localizedDescription)")
                 
             }
             UIViewController.showViewController(storyboardName: "LoginView", viewControllerID: "LoginViewController")
-            
-            print(Auth.auth().currentUser?.email ?? "not current user because youre not logged in or signed up")
         }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        alertController.addAction(signOutAction)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true)
+        print(Auth.auth().currentUser?.email ?? "not current user because youre not logged in or signed up")
+    }
     
     
     @IBAction func albumButtonPressed(_ sender: UIBarButtonItem) {
@@ -90,16 +96,16 @@ class ProfileViewController: UIViewController {
         print("chat")
     }
     
-    }
+}
 
 
 extension ProfileViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-      let maxSize: CGSize = UIScreen.main.bounds.size
+        let maxSize: CGSize = UIScreen.main.bounds.size
         let itemWidth: CGFloat = maxSize.width * 0.40
-      let itemHeight: CGFloat = maxSize.height * 0.20
-      return CGSize(width: itemWidth, height: itemHeight)
+        let itemHeight: CGFloat = maxSize.height * 0.20
+        return CGSize(width: itemWidth, height: itemHeight)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -120,7 +126,7 @@ extension ProfileViewController: UICollectionViewDelegateFlowLayout, UICollectio
 extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-                
+        
         guard let mediaType = info[UIImagePickerController.InfoKey.mediaType] as? String else  {
             return
         }
