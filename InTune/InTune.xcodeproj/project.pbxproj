@@ -36,15 +36,16 @@
 		3E43F48B247E9A7C00CC0584 /* Posts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F48A247E9A7C00CC0584 /* Posts.swift */; };
 		3E43F48D247E9AF800CC0584 /* ExtraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F48C247E9AF800CC0584 /* ExtraView.swift */; };
 		3E43F48F247E9B0700CC0584 /* ExtraView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F48E247E9B0700CC0584 /* ExtraView2.swift */; };
-		3E43F491247E9B2400CC0584 /* ExtraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F490247E9B2400CC0584 /* ExtraController.swift */; };
+		3E43F491247E9B2400CC0584 /* LikedArtistsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F490247E9B2400CC0584 /* LikedArtistsViewController.swift */; };
 		3E43F493247E9B3F00CC0584 /* ExtraController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F492247E9B3F00CC0584 /* ExtraController2.swift */; };
+		3EE738FE2481A91800C4C9D3 /* FirebaseAuthenticationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE738FD2481A91800C4C9D3 /* FirebaseAuthenticationTests.swift */; };
+		3EE739022481C10B00C4C9D3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3EE739012481C10B00C4C9D3 /* GoogleService-Info.plist */; };
 		80135C7E248026210038A0CC /* PostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80135C7D248026210038A0CC /* PostCell.xib */; };
 		80135C80248027630038A0CC /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80135C7F248027630038A0CC /* PostCell.swift */; };
 		80135C8224805C0F0038A0CC /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80135C8124805C0F0038A0CC /* StorageService.swift */; };
 		80C375B524819DE600152996 /* Designable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C375B424819DE600152996 /* Designable.swift */; };
 		80C375B724819E3F00152996 /* GenreTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C375B624819E3F00152996 /* GenreTag.swift */; };
 		80C375B924819E4F00152996 /* IntrumentTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C375B824819E4F00152996 /* IntrumentTag.swift */; };
-		80ED27EF247F304D007B55DE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80ED27EE247F304D007B55DE /* GoogleService-Info.plist */; };
 		F0587CCABB857784317015A3 /* Pods_InTune.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7569B63AC8D4A59DD4C294EF /* Pods_InTune.framework */; };
 		F39A5A5FC5ABFD46741A3AEB /* Pods_InTuneTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34EDB9880DFEB9AE9BDB152F /* Pods_InTuneTests.framework */; };
 /* End PBXBuildFile section */
@@ -95,8 +96,10 @@
 		3E43F48A247E9A7C00CC0584 /* Posts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Posts.swift; sourceTree = "<group>"; };
 		3E43F48C247E9AF800CC0584 /* ExtraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtraView.swift; sourceTree = "<group>"; };
 		3E43F48E247E9B0700CC0584 /* ExtraView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtraView2.swift; sourceTree = "<group>"; };
-		3E43F490247E9B2400CC0584 /* ExtraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtraController.swift; sourceTree = "<group>"; };
+		3E43F490247E9B2400CC0584 /* LikedArtistsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedArtistsViewController.swift; sourceTree = "<group>"; };
 		3E43F492247E9B3F00CC0584 /* ExtraController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtraController2.swift; sourceTree = "<group>"; };
+		3EE738FD2481A91800C4C9D3 /* FirebaseAuthenticationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthenticationTests.swift; sourceTree = "<group>"; };
+		3EE739012481C10B00C4C9D3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5EDC17E70E02A5BD32363172 /* Pods-InTune.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InTune.debug.xcconfig"; path = "Target Support Files/Pods-InTune/Pods-InTune.debug.xcconfig"; sourceTree = "<group>"; };
 		7569B63AC8D4A59DD4C294EF /* Pods_InTune.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InTune.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7ECE2C0DAA7CB05F80888C31 /* Pods-InTune.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InTune.release.xcconfig"; path = "Target Support Files/Pods-InTune/Pods-InTune.release.xcconfig"; sourceTree = "<group>"; };
@@ -106,7 +109,6 @@
 		80C375B424819DE600152996 /* Designable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Designable.swift; sourceTree = "<group>"; };
 		80C375B624819E3F00152996 /* GenreTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreTag.swift; sourceTree = "<group>"; };
 		80C375B824819E4F00152996 /* IntrumentTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntrumentTag.swift; sourceTree = "<group>"; };
-		80ED27EE247F304D007B55DE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9BE6182879AA5607E95E84A9 /* Pods-InTuneTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InTuneTests.debug.xcconfig"; path = "Target Support Files/Pods-InTuneTests/Pods-InTuneTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -170,7 +172,7 @@
 				3E43F464247E850A00CC0584 /* ViewControllers */,
 				3E43F459247E83A600CC0584 /* SupportingFiles */,
 				3E43F445247D7B8D00CC0584 /* Info.plist */,
-				80ED27EE247F304D007B55DE /* GoogleService-Info.plist */,
+				3EE739012481C10B00C4C9D3 /* GoogleService-Info.plist */,
 			);
 			path = InTune;
 			sourceTree = "<group>";
@@ -179,6 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				3E43F44E247D7B8D00CC0584 /* InTuneTests.swift */,
+				3EE738FD2481A91800C4C9D3 /* FirebaseAuthenticationTests.swift */,
 				3E43F450247D7B8D00CC0584 /* Info.plist */,
 			);
 			path = InTuneTests;
@@ -205,7 +208,7 @@
 				3E43F45E247E846400CC0584 /* ProfileViewController.swift */,
 				3E43F45C247E844B00CC0584 /* GigViewController.swift */,
 				3E43F471247E8FAE00CC0584 /* OnboardingViewController.swift */,
-				3E43F490247E9B2400CC0584 /* ExtraController.swift */,
+				3E43F490247E9B2400CC0584 /* LikedArtistsViewController.swift */,
 				3E43F492247E9B3F00CC0584 /* ExtraController2.swift */,
 			);
 			path = ViewControllers;
@@ -367,9 +370,9 @@
 				3E43F444247D7B8D00CC0584 /* LaunchScreen.storyboard in Resources */,
 				80135C7E248026210038A0CC /* PostCell.xib in Resources */,
 				3E43F46E247E8EA200CC0584 /* MainView.storyboard in Resources */,
-				80ED27EF247F304D007B55DE /* GoogleService-Info.plist in Resources */,
 				3E43F441247D7B8D00CC0584 /* Assets.xcassets in Resources */,
 				3E43F470247E8F6400CC0584 /* LoginView.storyboard in Resources */,
+				3EE739022481C10B00C4C9D3 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -467,7 +470,7 @@
 				3E43F45B247E83DE00CC0584 /* LoginViewController.swift in Sources */,
 				3E43F43C247D7B8600CC0584 /* ExploreViewController.swift in Sources */,
 				80C375B924819E4F00152996 /* IntrumentTag.swift in Sources */,
-				3E43F491247E9B2400CC0584 /* ExtraController.swift in Sources */,
+				3E43F491247E9B2400CC0584 /* LikedArtistsViewController.swift in Sources */,
 				3E43F438247D7B8600CC0584 /* AppDelegate.swift in Sources */,
 				3E43F472247E8FAE00CC0584 /* OnboardingViewController.swift in Sources */,
 				3E43F43A247D7B8600CC0584 /* SceneDelegate.swift in Sources */,
@@ -489,6 +492,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3EE738FE2481A91800C4C9D3 /* FirebaseAuthenticationTests.swift in Sources */,
 				3E43F44F247D7B8D00CC0584 /* InTuneTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
