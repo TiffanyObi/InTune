@@ -126,7 +126,7 @@
                                                     <action selector="favArtistButtonPressed:" destination="jg0-Mi-I9y" eventType="touchUpInside" id="1hv-Qt-WdN"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YWW-US-s2D">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YWW-US-s2D">
                                                 <rect key="frame" x="38.5" y="13" width="282.5" height="18"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <nil key="textColor"/>
@@ -191,14 +191,21 @@
                         <rightBarButtonItems>
                             <barButtonItem image="video.badge.plus.fill" catalog="system" id="TqD-UE-TOD">
                                 <color key="tintColor" red="0.1095718029" green="0.15116546410000001" blue="0.4488420051" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <connections>
+                                    <action selector="cameraButtonPressed:" destination="jg0-Mi-I9y" id="f8k-BU-FgR"/>
+                                </connections>
                             </barButtonItem>
                             <barButtonItem image="photo.on.rectangle" catalog="system" id="ES7-6p-uJh">
                                 <color key="tintColor" red="0.1095718029" green="0.15116546410000001" blue="0.4488420051" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <connections>
+                                    <action selector="albumButtonPressed:" destination="jg0-Mi-I9y" id="c89-e5-bXb"/>
+                                </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="bioLabel" destination="DHD-Jc-nYt" id="VVl-JE-pqB"/>
+                        <outlet property="cameraButton" destination="TqD-UE-TOD" id="9hw-i9-Edf"/>
                         <outlet property="emailLabel" destination="YWW-US-s2D" id="9sa-7r-T9v"/>
                         <outlet property="nameLabel" destination="a45-Tm-yAT" id="ey5-Pf-sHk"/>
                         <outlet property="postsCollectionView" destination="GfT-ZA-9Gg" id="r93-Tk-mAl"/>

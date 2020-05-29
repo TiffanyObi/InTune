@@ -16,26 +16,38 @@ class ProfileViewController: UIViewController {
     @IBOutlet private var bioLabel: UILabel!
     @IBOutlet private var tagsCollection: UICollectionView!
     @IBOutlet private var postsCollectionView: UICollectionView!
-    @IBOutlet weak var emailLabel: UILabel!
+    @IBOutlet private var emailLabel: UILabel!
+    @IBOutlet private var cameraButton: UIBarButtonItem!
     
+    private lazy var imagePickerController: UIImagePickerController = {
+        let mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)
+        let pickerController = UIImagePickerController()
+        pickerController.mediaTypes = mediaTypes ?? ["kUTTypeImage"]
+        pickerController.delegate = self
+        return pickerController
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        if !UIImagePickerController.isSourceTypeAvailable(.camera) {
+            cameraButton.isEnabled = false
+        }
 //        tagsCollection.delegate = self
 //        tagsCollection.dataSource = self
         postsCollectionView.delegate = self
         postsCollectionView.dataSource = self
         postsCollectionView.register(UINib(nibName: "PostCell", bundle: nil), forCellWithReuseIdentifier: "postCell")
+        loadUI()
     }
     
-    private func dummyProf() {
+    private func loadUI() {
+        
         
         guard let user = Auth.auth().currentUser, let email = user.email else {
             return
         }
         
-        nameLabel.text = "\(email)"
+        emailLabel.text = "\(email)"
     }
     
     private func collectionView() {
@@ -56,6 +68,19 @@ class ProfileViewController: UIViewController {
         }
     
     
+    @IBAction func albumButtonPressed(_ sender: UIBarButtonItem) {
+        imagePickerController.sourceType = .photoLibrary
+        present(imagePickerController, animated: true)
+    }
+    
+    
+    @IBAction func cameraButtonPressed(_ sender: UIBarButtonItem) {
+        imagePickerController.sourceType = .camera
+        present(imagePickerController, animated: true)
+        
+    }
+    
+    
     @IBAction func favArtistButtonPressed(_ sender: UIButton) {
         print("favorited")
     }
@@ -66,7 +91,6 @@ class ProfileViewController: UIViewController {
     }
     
     }
-    
 
 
 extension ProfileViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
@@ -77,7 +101,6 @@ extension ProfileViewController: UICollectionViewDelegateFlowLayout, UICollectio
       let itemHeight: CGFloat = maxSize.height * 0.20
       return CGSize(width: itemWidth, height: itemHeight)
     }
-    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 10
@@ -92,4 +115,15 @@ extension ProfileViewController: UICollectionViewDelegateFlowLayout, UICollectio
     }
     
     
+}
+
+extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+                
+        guard let mediaType = info[UIImagePickerController.InfoKey.mediaType] as? String else  {
+            return
+        }
+        
+    }
 }
