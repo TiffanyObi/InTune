@@ -1,5 +1,5 @@
 //
-//  ExtraController.swift
+//  LikedArtistsViewController.swift
 //  InTune
 //
 //  Created by Tiffany Obi on 5/27/20.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ExtraController: UIViewController {
+class LikedArtistsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
