@@ -16,6 +16,8 @@ class ProfileViewController: UIViewController {
     @IBOutlet private var bioLabel: UILabel!
     @IBOutlet private var tagsCollection: UICollectionView!
     @IBOutlet private var postsCollectionView: UICollectionView!
+    @IBOutlet weak var emailLabel: UILabel!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,6 +54,17 @@ class ProfileViewController: UIViewController {
             
             print(Auth.auth().currentUser?.email ?? "not current user because youre not logged in or signed up")
         }
+    
+    
+    @IBAction func favArtistButtonPressed(_ sender: UIButton) {
+        print("favorited")
+    }
+    
+    
+    @IBAction func chatButtonPressed(_ sender: UIButton) {
+        print("chat")
+    }
+    
     }
     
 
@@ -67,7 +80,7 @@ extension ProfileViewController: UICollectionViewDelegateFlowLayout, UICollectio
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return 10
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -77,21 +90,6 @@ extension ProfileViewController: UICollectionViewDelegateFlowLayout, UICollectio
         
         return cell
     }
-    
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "artistHeader", for: indexPath) as? HeaderView else {
-            fatalError("could not load headerView")
-        }
-        
-        return headerView
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        
-        return CGSize(width: collectionView.bounds.width, height: collectionView.bounds.height * 0.10)
-    }
-    
-    
     
     
 }
