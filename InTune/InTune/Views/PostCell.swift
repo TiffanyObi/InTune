@@ -11,6 +11,5 @@ import UIKit
 class PostCell: UICollectionViewCell {
     
     @IBOutlet weak var cellImage: UIImageView!
-    @IBOutlet weak var heartButton: UIButton!
     
 }

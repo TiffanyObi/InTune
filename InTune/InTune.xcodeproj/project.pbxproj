@@ -42,6 +42,9 @@
 		80135C80248027630038A0CC /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80135C7F248027630038A0CC /* PostCell.swift */; };
 		80135C8224805C0F0038A0CC /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80135C8124805C0F0038A0CC /* StorageService.swift */; };
 		801B6C5C247F386B008E4B63 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801B6C5B247F386B008E4B63 /* HeaderView.swift */; };
+		80C375B524819DE600152996 /* Designable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C375B424819DE600152996 /* Designable.swift */; };
+		80C375B724819E3F00152996 /* GenreTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C375B624819E3F00152996 /* GenreTag.swift */; };
+		80C375B924819E4F00152996 /* IntrumentTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C375B824819E4F00152996 /* IntrumentTag.swift */; };
 		80ED27EF247F304D007B55DE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80ED27EE247F304D007B55DE /* GoogleService-Info.plist */; };
 		F0587CCABB857784317015A3 /* Pods_InTune.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7569B63AC8D4A59DD4C294EF /* Pods_InTune.framework */; };
 		F39A5A5FC5ABFD46741A3AEB /* Pods_InTuneTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34EDB9880DFEB9AE9BDB152F /* Pods_InTuneTests.framework */; };
@@ -102,6 +105,9 @@
 		80135C7F248027630038A0CC /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		80135C8124805C0F0038A0CC /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		801B6C5B247F386B008E4B63 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		80C375B424819DE600152996 /* Designable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Designable.swift; sourceTree = "<group>"; };
+		80C375B624819E3F00152996 /* GenreTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreTag.swift; sourceTree = "<group>"; };
+		80C375B824819E4F00152996 /* IntrumentTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntrumentTag.swift; sourceTree = "<group>"; };
 		80ED27EE247F304D007B55DE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9BE6182879AA5607E95E84A9 /* Pods-InTuneTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InTuneTests.debug.xcconfig"; path = "Target Support Files/Pods-InTuneTests/Pods-InTuneTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -225,6 +231,8 @@
 				3E43F48E247E9B0700CC0584 /* ExtraView2.swift */,
 				801B6C5B247F386B008E4B63 /* HeaderView.swift */,
 				80135C7F248027630038A0CC /* PostCell.swift */,
+				80C375B624819E3F00152996 /* GenreTag.swift */,
+				80C375B824819E4F00152996 /* IntrumentTag.swift */,
 				80135C7D248026210038A0CC /* PostCell.xib */,
 			);
 			path = Views;
@@ -245,6 +253,7 @@
 				3E43F474247E909A00CC0584 /* ShowAlert.swift */,
 				3E43F476247E90B700CC0584 /* DateFormatter.swift */,
 				3E43F478247E90CA00CC0584 /* Navigation.swift */,
+				80C375B424819DE600152996 /* Designable.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -451,13 +460,16 @@
 				3E43F493247E9B3F00CC0584 /* ExtraController2.swift in Sources */,
 				3E43F489247E99B000CC0584 /* Review.swift in Sources */,
 				3E43F48F247E9B0700CC0584 /* ExtraView2.swift in Sources */,
+				80C375B724819E3F00152996 /* GenreTag.swift in Sources */,
 				3E43F483247E983300CC0584 /* FavoriteArtist.swift in Sources */,
 				80135C80248027630038A0CC /* PostCell.swift in Sources */,
 				3E43F466247E857900CC0584 /* EmptyView.swift in Sources */,
 				3E43F463247E84DA00CC0584 /* MainViewTabBarController.swift in Sources */,
 				3E43F461247E849700CC0584 /* MessengerViewController.swift in Sources */,
+				80C375B524819DE600152996 /* Designable.swift in Sources */,
 				3E43F45B247E83DE00CC0584 /* LoginViewController.swift in Sources */,
 				3E43F43C247D7B8600CC0584 /* ExploreViewController.swift in Sources */,
+				80C375B924819E4F00152996 /* IntrumentTag.swift in Sources */,
 				3E43F491247E9B2400CC0584 /* ExtraController.swift in Sources */,
 				3E43F438247D7B8600CC0584 /* AppDelegate.swift in Sources */,
 				3E43F472247E8FAE00CC0584 /* OnboardingViewController.swift in Sources */,
