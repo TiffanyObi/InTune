@@ -22,10 +22,13 @@ class MainViewTabBarController: UITabBarController {
         return vc
     }()
     
-    lazy var messengerVC:MessengerViewController = {
-        let vc = MessengerViewController()
-        vc.tabBarItem = UITabBarItem(title: "Chat", image: UIImage(systemName: "message.fill"), tag: 2)
-        return vc
+    lazy var messengerVC:ChatsViewController = {
+        let storyboard = UIStoryboard(name: "MessageView", bundle: nil)
+        guard let viewController = storyboard.instantiateViewController(identifier: "ChatsViewController") as? ChatsViewController else {
+            return ChatsViewController()
+        }
+        viewController.tabBarItem = UITabBarItem(title: "Chat", image: UIImage(systemName: "message.fill"), tag: 2)
+        return viewController
     }()
     
     lazy var profileVC:ProfileViewController = {
