@@ -46,6 +46,11 @@
 		80C375B524819DE600152996 /* Designable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C375B424819DE600152996 /* Designable.swift */; };
 		80C375B724819E3F00152996 /* GenreTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C375B624819E3F00152996 /* GenreTag.swift */; };
 		80C375B924819E4F00152996 /* IntrumentTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C375B824819E4F00152996 /* IntrumentTag.swift */; };
+		BEDF3FC9248533B000D22E2D /* MessageView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEDF3FC8248533B000D22E2D /* MessageView.storyboard */; };
+		BEDF3FCB248533D400D22E2D /* ChatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDF3FCA248533D400D22E2D /* ChatsViewController.swift */; };
+		BEDF3FCD2485349A00D22E2D /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDF3FCC2485349A00D22E2D /* Chat.swift */; };
+		BEDF3FCF248534A600D22E2D /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDF3FCE248534A600D22E2D /* Message.swift */; };
+		BEDF3FD12485354B00D22E2D /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDF3FD02485354B00D22E2D /* ChatViewController.swift */; };
 		F0587CCABB857784317015A3 /* Pods_InTune.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7569B63AC8D4A59DD4C294EF /* Pods_InTune.framework */; };
 		F39A5A5FC5ABFD46741A3AEB /* Pods_InTuneTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34EDB9880DFEB9AE9BDB152F /* Pods_InTuneTests.framework */; };
 /* End PBXBuildFile section */
@@ -110,6 +115,11 @@
 		80C375B624819E3F00152996 /* GenreTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreTag.swift; sourceTree = "<group>"; };
 		80C375B824819E4F00152996 /* IntrumentTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntrumentTag.swift; sourceTree = "<group>"; };
 		9BE6182879AA5607E95E84A9 /* Pods-InTuneTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InTuneTests.debug.xcconfig"; path = "Target Support Files/Pods-InTuneTests/Pods-InTuneTests.debug.xcconfig"; sourceTree = "<group>"; };
+		BEDF3FC8248533B000D22E2D /* MessageView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MessageView.storyboard; sourceTree = "<group>"; };
+		BEDF3FCA248533D400D22E2D /* ChatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsViewController.swift; sourceTree = "<group>"; };
+		BEDF3FCC2485349A00D22E2D /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
+		BEDF3FCE248534A600D22E2D /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		BEDF3FD02485354B00D22E2D /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,6 +220,8 @@
 				3E43F471247E8FAE00CC0584 /* OnboardingViewController.swift */,
 				3E43F490247E9B2400CC0584 /* LikedArtistsViewController.swift */,
 				3E43F492247E9B3F00CC0584 /* ExtraController2.swift */,
+				BEDF3FCA248533D400D22E2D /* ChatsViewController.swift */,
+				BEDF3FD02485354B00D22E2D /* ChatViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -243,6 +255,7 @@
 			children = (
 				3E43F46D247E8EA200CC0584 /* MainView.storyboard */,
 				3E43F46F247E8F6400CC0584 /* LoginView.storyboard */,
+				BEDF3FC8248533B000D22E2D /* MessageView.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -268,6 +281,8 @@
 				3E43F484247E985700CC0584 /* FavoriteVideo.swift */,
 				3E43F486247E999900CC0584 /* Comment.swift */,
 				3E43F488247E99B000CC0584 /* Review.swift */,
+				BEDF3FCC2485349A00D22E2D /* Chat.swift */,
+				BEDF3FCE248534A600D22E2D /* Message.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -369,6 +384,7 @@
 			files = (
 				3E43F444247D7B8D00CC0584 /* LaunchScreen.storyboard in Resources */,
 				80135C7E248026210038A0CC /* PostCell.xib in Resources */,
+				BEDF3FC9248533B000D22E2D /* MessageView.storyboard in Resources */,
 				3E43F46E247E8EA200CC0584 /* MainView.storyboard in Resources */,
 				3E43F441247D7B8D00CC0584 /* Assets.xcassets in Resources */,
 				3E43F470247E8F6400CC0584 /* LoginView.storyboard in Resources */,
@@ -457,9 +473,12 @@
 				3E43F45F247E846400CC0584 /* ProfileViewController.swift in Sources */,
 				3E43F48B247E9A7C00CC0584 /* Posts.swift in Sources */,
 				3E43F481247E981700CC0584 /* Enthusiast.swift in Sources */,
+				BEDF3FD12485354B00D22E2D /* ChatViewController.swift in Sources */,
+				BEDF3FCF248534A600D22E2D /* Message.swift in Sources */,
 				3E43F493247E9B3F00CC0584 /* ExtraController2.swift in Sources */,
 				3E43F489247E99B000CC0584 /* Review.swift in Sources */,
 				3E43F48F247E9B0700CC0584 /* ExtraView2.swift in Sources */,
+				BEDF3FCB248533D400D22E2D /* ChatsViewController.swift in Sources */,
 				80C375B724819E3F00152996 /* GenreTag.swift in Sources */,
 				3E43F483247E983300CC0584 /* FavoriteArtist.swift in Sources */,
 				80135C80248027630038A0CC /* PostCell.swift in Sources */,
@@ -481,6 +500,7 @@
 				3E43F475247E909A00CC0584 /* ShowAlert.swift in Sources */,
 				3E43F487247E999A00CC0584 /* Comment.swift in Sources */,
 				3E43F48D247E9AF800CC0584 /* ExtraView.swift in Sources */,
+				BEDF3FCD2485349A00D22E2D /* Chat.swift in Sources */,
 				3E43F479247E90CA00CC0584 /* Navigation.swift in Sources */,
 				3E43F45D247E844B00CC0584 /* GigViewController.swift in Sources */,
 				3E43F47F247E97FF00CC0584 /* Artist.swift in Sources */,
@@ -641,6 +661,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 26RHXP32FH;
 				INFOPLIST_FILE = InTune/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -660,6 +681,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 26RHXP32FH;
 				INFOPLIST_FILE = InTune/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
