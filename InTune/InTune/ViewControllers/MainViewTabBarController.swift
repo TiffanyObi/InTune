@@ -18,6 +18,7 @@ class MainViewTabBarController: UITabBarController {
     
     lazy var likedArtistsVC:LikedArtistsViewController = {
         let vc = LikedArtistsViewController()
+      
         vc.tabBarItem = UITabBarItem(title: "Liked Artists", image: UIImage(systemName: "bookmark.fill"), tag: 1)
         return vc
     }()
