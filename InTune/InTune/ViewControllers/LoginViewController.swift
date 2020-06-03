@@ -14,6 +14,16 @@ enum AccountState {
     case newUser
 }
 
+struct LoginViewViewModel {
+    var loginButtonTitle: String {
+        return "LOGIN"
+    }
+    
+    func login() {
+        
+    }
+}
+
 class LoginViewController: UIViewController {
     
     @IBOutlet weak var appNameLabel: UILabel!
@@ -32,6 +42,7 @@ class LoginViewController: UIViewController {
     private var accountState: AccountState = .existingUser
     private var authSession = AuthenticationSession()
     private var dataBaseService = DatabaseService()
+    let viewModel = LoginViewViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,7 +91,7 @@ class LoginViewController: UIViewController {
         // change the account login state
         accountState = accountState == .existingUser ? .newUser : .existingUser
         if accountState == .existingUser {
-            loginButton.setTitle("LOGIN", for: .normal)
+            loginButton.setTitle(viewModel.loginButtonTitle, for: .normal)
             loginStateLabel.text = "Don't have an account?"
             loginStateButton.setTitle("SIGN UP", for: .normal)
             

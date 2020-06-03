@@ -41,9 +41,12 @@ class ChatsViewController: UIViewController {
                })
     }
     
+    deinit {
+        listener?.remove()
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
-        listener?.remove()
     }
     
     
