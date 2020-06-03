@@ -7,41 +7,56 @@
 //
 
 import UIKit
+import FirebaseFirestore
+import FirebaseAuth
 
 class ChatsViewController: UIViewController {
     
     
     @IBOutlet weak var tableView: UITableView!
     
-    var users = [Contacts]() {
+    private var listener: ListenerRegistration?
+    
+    private let databaseService = DatabaseService()
+    
+    var users = [Artist]() {
         didSet {
-            tableView.reloadData()
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
     }
     
-    var user1 = Contacts(name: "Tiffany", id: "123456789")
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        listener = Firestore.firestore().collection(DatabaseService.artistsCollection).addSnapshotListener({ (snapshot, error) in
+                   if let error = error {
+                       DispatchQueue.main.async {
+                           self.showAlert(title: "Firestore Error", message: "\(error.localizedDescription)")
+                       }
+                   } else if let snapshot = snapshot {
+                    let artist = snapshot.documents.map { Artist($0.data()) }
+                    self.users = artist
+                   }
+               })
+    }
     
-    var user2 = Contacts(name: "Alex", id: "987654321")
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        listener?.remove()
+    }
     
-    var user3 = Contacts(name: "Mai", id: "1010101010101")
-    
-    var user4 = Contacts(name: "Christian", id: "777777777")
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = "Chats"
         view.backgroundColor = .systemYellow
         tableView.dataSource = self
         tableView.delegate = self
-        loadUsers()
     }
     
-    private func loadUsers() {
-        users.append(user1)
-        users.append(user2)
-        users.append(user3)
-        users.append(user4)
-    }
+  
     
 }
 
@@ -63,7 +78,7 @@ extension ChatsViewController: UITableViewDataSource, UITableViewDelegate {
         let chatVC = ChatViewController()
         let userName = users[indexPath.row]
         chatVC.user2Name = userName.name
-        chatVC.user2UID = userName.id
+        chatVC.user2UID = userName.artistId
         navigationController?.pushViewController(chatVC, animated: true)
     }
 }

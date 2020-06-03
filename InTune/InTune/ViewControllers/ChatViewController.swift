@@ -26,7 +26,7 @@ class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate,
        
        override func viewDidLoad() {
             super.viewDidLoad()
-           self.title = user2Name ?? "Chat"
+            self.title = user2Name
 
             navigationItem.largeTitleDisplayMode = .never
             maintainPositionOnKeyboardFrameChanged = true
@@ -170,7 +170,7 @@ class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate,
        
        
        func currentSender() -> SenderType {
-           return Sender(id: Auth.auth().currentUser!.uid, displayName: Auth.auth().currentUser?.displayName ?? "Name not found")
+        return Sender(senderId: Auth.auth().currentUser!.uid, displayName: Auth.auth().currentUser?.displayName ?? "Name not found")
        }
        
        func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageType {

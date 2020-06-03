@@ -30,6 +30,12 @@ struct Message {
     }
 }
 
+struct Sender: SenderType {
+    var senderId: String
+    
+    var displayName: String
+}
+
 extension Message {
     init?(dictionary: [String: Any]) {
         
@@ -48,7 +54,7 @@ extension Message {
 extension Message: MessageType {
     
     var sender: SenderType {
-        return Sender(id: senderID, displayName: senderName)
+        return Sender(senderId: senderID, displayName: senderName)
     }
     
     var messageId: String {
@@ -62,4 +68,24 @@ extension Message: MessageType {
     var kind: MessageKind {
         return .text(content)
     }
+    
 }
+
+//extension Message: MessageType {
+//
+//    var sender: SenderType {
+//        return Sender(id: senderID, displayName: senderName)
+//    }
+//
+//    var messageId: String {
+//        return id
+//    }
+//
+//    var sentDate: Date {
+//        return created.dateValue()
+//    }
+//
+//    var kind: MessageKind {
+//        return .text(content)
+//    }
+//}

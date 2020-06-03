@@ -28,8 +28,3 @@ extension Chat {
     
 }
 
-
-struct Contacts {
-    let name: String
-    let id: String
-}
