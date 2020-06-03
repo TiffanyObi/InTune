@@ -35,7 +35,6 @@
 		3E43F489247E99B000CC0584 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F488247E99B000CC0584 /* Review.swift */; };
 		3E43F48B247E9A7C00CC0584 /* Posts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F48A247E9A7C00CC0584 /* Posts.swift */; };
 		3E43F48D247E9AF800CC0584 /* ExtraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F48C247E9AF800CC0584 /* ExtraView.swift */; };
-		3E43F48F247E9B0700CC0584 /* ExtraView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F48E247E9B0700CC0584 /* ExtraView2.swift */; };
 		3E43F491247E9B2400CC0584 /* LikedArtistsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F490247E9B2400CC0584 /* LikedArtistsViewController.swift */; };
 		3E43F493247E9B3F00CC0584 /* ExtraController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F492247E9B3F00CC0584 /* ExtraController2.swift */; };
 		3EE738FE2481A91800C4C9D3 /* FirebaseAuthenticationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE738FD2481A91800C4C9D3 /* FirebaseAuthenticationTests.swift */; };
@@ -100,7 +99,6 @@
 		3E43F488247E99B000CC0584 /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		3E43F48A247E9A7C00CC0584 /* Posts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Posts.swift; sourceTree = "<group>"; };
 		3E43F48C247E9AF800CC0584 /* ExtraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtraView.swift; sourceTree = "<group>"; };
-		3E43F48E247E9B0700CC0584 /* ExtraView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtraView2.swift; sourceTree = "<group>"; };
 		3E43F490247E9B2400CC0584 /* LikedArtistsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedArtistsViewController.swift; sourceTree = "<group>"; };
 		3E43F492247E9B3F00CC0584 /* ExtraController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtraController2.swift; sourceTree = "<group>"; };
 		3EE738FD2481A91800C4C9D3 /* FirebaseAuthenticationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthenticationTests.swift; sourceTree = "<group>"; };
@@ -241,7 +239,6 @@
 			children = (
 				3E43F465247E857900CC0584 /* EmptyView.swift */,
 				3E43F48C247E9AF800CC0584 /* ExtraView.swift */,
-				3E43F48E247E9B0700CC0584 /* ExtraView2.swift */,
 				80135C7F248027630038A0CC /* PostCell.swift */,
 				80C375B624819E3F00152996 /* GenreTag.swift */,
 				80C375B824819E4F00152996 /* IntrumentTag.swift */,
@@ -477,7 +474,6 @@
 				BEDF3FCF248534A600D22E2D /* Message.swift in Sources */,
 				3E43F493247E9B3F00CC0584 /* ExtraController2.swift in Sources */,
 				3E43F489247E99B000CC0584 /* Review.swift in Sources */,
-				3E43F48F247E9B0700CC0584 /* ExtraView2.swift in Sources */,
 				BEDF3FCB248533D400D22E2D /* ChatsViewController.swift in Sources */,
 				80C375B724819E3F00152996 /* GenreTag.swift in Sources */,
 				3E43F483247E983300CC0584 /* FavoriteArtist.swift in Sources */,
