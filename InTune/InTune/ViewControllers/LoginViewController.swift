@@ -16,6 +16,7 @@ enum AccountState {
 
 class LoginViewController: UIViewController {
     
+    @IBOutlet weak var appNameLabel: UILabel!
     @IBOutlet private var emailTextfield: UITextField!
     @IBOutlet private var passwordTextfield: UITextField!
     @IBOutlet private var loginButton: UIButton!
@@ -34,11 +35,19 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        pulsatingAnimation()
         setUpTextfieldDelegates()
          clearErrorLabel()
         view.addGestureRecognizer(tapGesture)
+ 
     }
     
+
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(true)
+//        pulsatingAnimation()
+//
+//    }
     
     private func setUpTextfieldDelegates(){
         emailTextfield.delegate = self
@@ -140,7 +149,31 @@ class LoginViewController: UIViewController {
         UIViewController.showViewController(storyboardName: "MainView", viewControllerID: "MainViewTabBarController")
     }
     
-    
+    private func pulsatingAnimation() {
+           UIView.animate(withDuration: 2.0, delay: 0.0, options: [], animations: {
+               // animation block here
+               
+               self.appNameLabel.transform = CGAffineTransform(scaleX: 2.0, y: 2.0)
+               
+           }) { (done) in
+               // code to be executed after animation completes
+               //option1 - you can reset view's values
+               //option2 - creates a next animation
+               
+               UIView.animate(withDuration: 0.7)  {
+                   self.appNameLabel.transform =
+                   CGAffineTransform.identity
+                
+                self.rotationAnimations()
+               }
+           }
+       }
+    private func rotationAnimations(){
+        let duration: Double = 10.0
+        let curveOption: UIView.AnimationOptions = .curveEaseInOut
+        
+        UIView.transition(with: appNameLabel, duration: duration, options: [.transitionFlipFromRight,curveOption], animations: nil, completion: nil)
+    }
   
 
 }
