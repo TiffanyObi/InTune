@@ -131,5 +131,13 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
             return
         }
         
+        switch mediaType {
+        case "public.image":
+            print("image picked")
+        case "public.movie":
+            print("video picked")
+        default:
+            print("default")
+        }
     }
 }
