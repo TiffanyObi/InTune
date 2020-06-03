@@ -15,11 +15,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="music.house" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="b4g-fA-aBl">
-                                <rect key="frame" x="0.0" y="248" width="414" height="370"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qxA-jb-dGO">
                                 <rect key="frame" x="85" y="367" width="44" height="21"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
@@ -72,8 +67,8 @@
                                     <action selector="toggleAccountState:" destination="NSG-vc-g9m" eventType="touchUpInside" id="hYe-bf-Uz6"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="In Tune" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gao-54-PNm">
-                                <rect key="frame" x="40" y="119" width="334" height="103"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="In Tune" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gao-54-PNm">
+                                <rect key="frame" x="0.0" y="64" width="414" height="103"/>
                                 <fontDescription key="fontDescription" name="AcademyEngravedLetPlain" family="Academy Engraved LET" pointSize="87"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -85,21 +80,26 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="music.house" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="b4g-fA-aBl">
+                                <rect key="frame" x="0.0" y="271.5" width="414" height="352"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="wuJ-l4-xXg" firstAttribute="bottom" secondItem="gJF-BD-7s0" secondAttribute="bottom" constant="200" id="0fH-hQ-5qk"/>
-                            <constraint firstItem="wuJ-l4-xXg" firstAttribute="trailing" secondItem="Gao-54-PNm" secondAttribute="trailing" constant="40" id="1T9-YQ-3nX"/>
+                            <constraint firstItem="wuJ-l4-xXg" firstAttribute="trailing" secondItem="Gao-54-PNm" secondAttribute="trailing" id="1T9-YQ-3nX"/>
                             <constraint firstItem="wuJ-l4-xXg" firstAttribute="trailing" secondItem="eGH-3e-uqC" secondAttribute="trailing" constant="8" id="4g7-um-TLW"/>
                             <constraint firstItem="gJF-BD-7s0" firstAttribute="leading" secondItem="wuJ-l4-xXg" secondAttribute="leading" constant="20" id="60G-Ru-OlR"/>
-                            <constraint firstItem="Gao-54-PNm" firstAttribute="leading" secondItem="wuJ-l4-xXg" secondAttribute="leading" constant="40" id="B5d-1S-aXR"/>
+                            <constraint firstItem="Gao-54-PNm" firstAttribute="leading" secondItem="wuJ-l4-xXg" secondAttribute="leading" id="B5d-1S-aXR"/>
                             <constraint firstItem="Vkx-zz-WLv" firstAttribute="leading" secondItem="wuJ-l4-xXg" secondAttribute="leading" constant="110" id="Fib-9B-2wj"/>
                             <constraint firstItem="uhw-gd-gm3" firstAttribute="top" secondItem="Vkx-zz-WLv" secondAttribute="bottom" constant="25" id="Fus-Qs-Cbp"/>
                             <constraint firstItem="Vkx-zz-WLv" firstAttribute="top" secondItem="b3J-4d-dHB" secondAttribute="bottom" constant="40.5" id="MfB-RV-bqq"/>
                             <constraint firstItem="b3J-4d-dHB" firstAttribute="top" secondItem="Gn1-Zh-EqU" secondAttribute="bottom" constant="8" id="RC9-Ha-XdK"/>
                             <constraint firstItem="Gn1-Zh-EqU" firstAttribute="top" secondItem="xee-wn-Q6z" secondAttribute="bottom" constant="30" id="U59-oN-m5Q"/>
                             <constraint firstItem="xee-wn-Q6z" firstAttribute="leading" secondItem="wuJ-l4-xXg" secondAttribute="leading" constant="85" id="UnH-ep-vqY"/>
-                            <constraint firstItem="Gao-54-PNm" firstAttribute="top" secondItem="wuJ-l4-xXg" secondAttribute="top" constant="75" id="cTX-pX-syv"/>
+                            <constraint firstItem="Gao-54-PNm" firstAttribute="top" secondItem="wuJ-l4-xXg" secondAttribute="top" constant="20" id="cTX-pX-syv"/>
                             <constraint firstItem="qxA-jb-dGO" firstAttribute="leading" secondItem="wuJ-l4-xXg" secondAttribute="leading" constant="85" id="d7b-Ml-XZf"/>
                             <constraint firstItem="wuJ-l4-xXg" firstAttribute="trailing" secondItem="xee-wn-Q6z" secondAttribute="trailing" constant="85" id="ehD-rw-bTR"/>
                             <constraint firstItem="qxA-jb-dGO" firstAttribute="top" secondItem="eGH-3e-uqC" secondAttribute="bottom" constant="40" id="gJt-NZ-CaJ"/>
