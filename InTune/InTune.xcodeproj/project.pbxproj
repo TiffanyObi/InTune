@@ -16,7 +16,7 @@
 		3E43F45B247E83DE00CC0584 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F45A247E83DE00CC0584 /* LoginViewController.swift */; };
 		3E43F45D247E844B00CC0584 /* GigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F45C247E844B00CC0584 /* GigViewController.swift */; };
 		3E43F45F247E846400CC0584 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F45E247E846400CC0584 /* ProfileViewController.swift */; };
-		3E43F461247E849700CC0584 /* MessengerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F460247E849700CC0584 /* MessengerViewController.swift */; };
+		3E43F461247E849700CC0584 /* EditProfController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F460247E849700CC0584 /* EditProfController.swift */; };
 		3E43F463247E84DA00CC0584 /* MainViewTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F462247E84DA00CC0584 /* MainViewTabBarController.swift */; };
 		3E43F466247E857900CC0584 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F465247E857900CC0584 /* EmptyView.swift */; };
 		3E43F468247E8DD100CC0584 /* AuthentificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F467247E8DD100CC0584 /* AuthentificationService.swift */; };
@@ -82,7 +82,7 @@
 		3E43F45A247E83DE00CC0584 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		3E43F45C247E844B00CC0584 /* GigViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigViewController.swift; sourceTree = "<group>"; };
 		3E43F45E247E846400CC0584 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		3E43F460247E849700CC0584 /* MessengerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessengerViewController.swift; sourceTree = "<group>"; };
+		3E43F460247E849700CC0584 /* EditProfController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfController.swift; sourceTree = "<group>"; };
 		3E43F462247E84DA00CC0584 /* MainViewTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewTabBarController.swift; sourceTree = "<group>"; };
 		3E43F465247E857900CC0584 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		3E43F467247E8DD100CC0584 /* AuthentificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthentificationService.swift; sourceTree = "<group>"; };
@@ -216,7 +216,7 @@
 				3E43F45A247E83DE00CC0584 /* LoginViewController.swift */,
 				3E43F462247E84DA00CC0584 /* MainViewTabBarController.swift */,
 				3E43F43B247D7B8600CC0584 /* ExploreViewController.swift */,
-				3E43F460247E849700CC0584 /* MessengerViewController.swift */,
+				3E43F460247E849700CC0584 /* EditProfController.swift */,
 				3E43F45E247E846400CC0584 /* ProfileViewController.swift */,
 				3E43F45C247E844B00CC0584 /* GigViewController.swift */,
 				3E43F471247E8FAE00CC0584 /* OnboardingViewController.swift */,
@@ -487,7 +487,7 @@
 				80135C80248027630038A0CC /* PostCell.swift in Sources */,
 				3E43F466247E857900CC0584 /* EmptyView.swift in Sources */,
 				3E43F463247E84DA00CC0584 /* MainViewTabBarController.swift in Sources */,
-				3E43F461247E849700CC0584 /* MessengerViewController.swift in Sources */,
+				3E43F461247E849700CC0584 /* EditProfController.swift in Sources */,
 				80C375B524819DE600152996 /* Designable.swift in Sources */,
 				3E43F45B247E83DE00CC0584 /* LoginViewController.swift in Sources */,
 				3E43F43C247D7B8600CC0584 /* ExploreViewController.swift in Sources */,
