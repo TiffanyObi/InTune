@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MessengerViewController: UIViewController {
+class EditProfController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

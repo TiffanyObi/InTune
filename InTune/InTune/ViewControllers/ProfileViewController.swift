@@ -66,8 +66,12 @@ class ProfileViewController: UIViewController {
             }
             UIViewController.showViewController(storyboardName: "LoginView", viewControllerID: "LoginViewController")
         }
+        let editProfAction = UIAlertAction(title: "Edit Profile", style: .default) { (alertAction) in
+            //display edit vc
+        }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         alertController.addAction(signOutAction)
+        alertController.addAction(editProfAction)
         alertController.addAction(cancelAction)
         present(alertController, animated: true)
         print(Auth.auth().currentUser?.email ?? "not current user because youre not logged in or signed up")
@@ -131,5 +135,13 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
             return
         }
         
+        switch mediaType {
+        case "public.image":
+            print("image picked")
+        case "public.movie":
+            print("video picked")
+        default:
+            print("default")
+        }
     }
 }

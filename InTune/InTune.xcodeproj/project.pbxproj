@@ -16,7 +16,7 @@
 		3E43F45B247E83DE00CC0584 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F45A247E83DE00CC0584 /* LoginViewController.swift */; };
 		3E43F45D247E844B00CC0584 /* GigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F45C247E844B00CC0584 /* GigViewController.swift */; };
 		3E43F45F247E846400CC0584 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F45E247E846400CC0584 /* ProfileViewController.swift */; };
-		3E43F461247E849700CC0584 /* MessengerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F460247E849700CC0584 /* MessengerViewController.swift */; };
+		3E43F461247E849700CC0584 /* EditProfController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F460247E849700CC0584 /* EditProfController.swift */; };
 		3E43F463247E84DA00CC0584 /* MainViewTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F462247E84DA00CC0584 /* MainViewTabBarController.swift */; };
 		3E43F466247E857900CC0584 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F465247E857900CC0584 /* EmptyView.swift */; };
 		3E43F468247E8DD100CC0584 /* AuthentificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F467247E8DD100CC0584 /* AuthentificationService.swift */; };
@@ -39,6 +39,8 @@
 		3E43F493247E9B3F00CC0584 /* ExtraController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F492247E9B3F00CC0584 /* ExtraController2.swift */; };
 		3EE738FE2481A91800C4C9D3 /* FirebaseAuthenticationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE738FD2481A91800C4C9D3 /* FirebaseAuthenticationTests.swift */; };
 		3EE739022481C10B00C4C9D3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3EE739012481C10B00C4C9D3 /* GoogleService-Info.plist */; };
+		800D8998248843C300C3FB67 /* ChatsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 800D8997248843C300C3FB67 /* ChatsCell.xib */; };
+		800D899A248843F500C3FB67 /* ChatsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800D8999248843F500C3FB67 /* ChatsCell.swift */; };
 		80135C7E248026210038A0CC /* PostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80135C7D248026210038A0CC /* PostCell.xib */; };
 		80135C80248027630038A0CC /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80135C7F248027630038A0CC /* PostCell.swift */; };
 		80135C8224805C0F0038A0CC /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80135C8124805C0F0038A0CC /* StorageService.swift */; };
@@ -80,7 +82,7 @@
 		3E43F45A247E83DE00CC0584 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		3E43F45C247E844B00CC0584 /* GigViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigViewController.swift; sourceTree = "<group>"; };
 		3E43F45E247E846400CC0584 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		3E43F460247E849700CC0584 /* MessengerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessengerViewController.swift; sourceTree = "<group>"; };
+		3E43F460247E849700CC0584 /* EditProfController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfController.swift; sourceTree = "<group>"; };
 		3E43F462247E84DA00CC0584 /* MainViewTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewTabBarController.swift; sourceTree = "<group>"; };
 		3E43F465247E857900CC0584 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		3E43F467247E8DD100CC0584 /* AuthentificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthentificationService.swift; sourceTree = "<group>"; };
@@ -106,6 +108,8 @@
 		5EDC17E70E02A5BD32363172 /* Pods-InTune.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InTune.debug.xcconfig"; path = "Target Support Files/Pods-InTune/Pods-InTune.debug.xcconfig"; sourceTree = "<group>"; };
 		7569B63AC8D4A59DD4C294EF /* Pods_InTune.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InTune.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7ECE2C0DAA7CB05F80888C31 /* Pods-InTune.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InTune.release.xcconfig"; path = "Target Support Files/Pods-InTune/Pods-InTune.release.xcconfig"; sourceTree = "<group>"; };
+		800D8997248843C300C3FB67 /* ChatsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatsCell.xib; sourceTree = "<group>"; };
+		800D8999248843F500C3FB67 /* ChatsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsCell.swift; sourceTree = "<group>"; };
 		80135C7D248026210038A0CC /* PostCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostCell.xib; sourceTree = "<group>"; };
 		80135C7F248027630038A0CC /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		80135C8124805C0F0038A0CC /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
@@ -212,7 +216,7 @@
 				3E43F45A247E83DE00CC0584 /* LoginViewController.swift */,
 				3E43F462247E84DA00CC0584 /* MainViewTabBarController.swift */,
 				3E43F43B247D7B8600CC0584 /* ExploreViewController.swift */,
-				3E43F460247E849700CC0584 /* MessengerViewController.swift */,
+				3E43F460247E849700CC0584 /* EditProfController.swift */,
 				3E43F45E247E846400CC0584 /* ProfileViewController.swift */,
 				3E43F45C247E844B00CC0584 /* GigViewController.swift */,
 				3E43F471247E8FAE00CC0584 /* OnboardingViewController.swift */,
@@ -242,7 +246,9 @@
 				80135C7F248027630038A0CC /* PostCell.swift */,
 				80C375B624819E3F00152996 /* GenreTag.swift */,
 				80C375B824819E4F00152996 /* IntrumentTag.swift */,
+				800D8999248843F500C3FB67 /* ChatsCell.swift */,
 				80135C7D248026210038A0CC /* PostCell.xib */,
+				800D8997248843C300C3FB67 /* ChatsCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -380,6 +386,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E43F444247D7B8D00CC0584 /* LaunchScreen.storyboard in Resources */,
+				800D8998248843C300C3FB67 /* ChatsCell.xib in Resources */,
 				80135C7E248026210038A0CC /* PostCell.xib in Resources */,
 				BEDF3FC9248533B000D22E2D /* MessageView.storyboard in Resources */,
 				3E43F46E247E8EA200CC0584 /* MainView.storyboard in Resources */,
@@ -480,7 +487,7 @@
 				80135C80248027630038A0CC /* PostCell.swift in Sources */,
 				3E43F466247E857900CC0584 /* EmptyView.swift in Sources */,
 				3E43F463247E84DA00CC0584 /* MainViewTabBarController.swift in Sources */,
-				3E43F461247E849700CC0584 /* MessengerViewController.swift in Sources */,
+				3E43F461247E849700CC0584 /* EditProfController.swift in Sources */,
 				80C375B524819DE600152996 /* Designable.swift in Sources */,
 				3E43F45B247E83DE00CC0584 /* LoginViewController.swift in Sources */,
 				3E43F43C247D7B8600CC0584 /* ExploreViewController.swift in Sources */,
@@ -488,6 +495,7 @@
 				3E43F491247E9B2400CC0584 /* LikedArtistsViewController.swift in Sources */,
 				3E43F438247D7B8600CC0584 /* AppDelegate.swift in Sources */,
 				3E43F472247E8FAE00CC0584 /* OnboardingViewController.swift in Sources */,
+				800D899A248843F500C3FB67 /* ChatsCell.swift in Sources */,
 				3E43F43A247D7B8600CC0584 /* SceneDelegate.swift in Sources */,
 				80135C8224805C0F0038A0CC /* StorageService.swift in Sources */,
 				3E43F468247E8DD100CC0584 /* AuthentificationService.swift in Sources */,

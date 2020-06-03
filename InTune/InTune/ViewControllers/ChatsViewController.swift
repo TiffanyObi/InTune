@@ -27,6 +27,14 @@ class ChatsViewController: UIViewController {
         }
     }
     
+    var messages = [Message]() {
+        didSet{
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         listener = Firestore.firestore().collection(DatabaseService.artistsCollection).addSnapshotListener({ (snapshot, error) in
@@ -57,6 +65,7 @@ class ChatsViewController: UIViewController {
         view.backgroundColor = .systemYellow
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.register(UINib(nibName: "ChatsCell", bundle: nil), forCellReuseIdentifier: "chatCell")
     }
     
   
@@ -71,9 +80,11 @@ extension ChatsViewController: UITableViewDataSource, UITableViewDelegate {
     
    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "chatCell", for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "chatCell", for: indexPath) as? ChatsCell else {
+            fatalError("could not downcast to ChatsCell")
+        }
         let contact = users[indexPath.row]
-        cell.textLabel?.text = contact.name
+        cell.configureCell(for: contact)
         return cell
     }
     
@@ -83,5 +94,9 @@ extension ChatsViewController: UITableViewDataSource, UITableViewDelegate {
         chatVC.user2Name = userName.name
         chatVC.user2UID = userName.artistId
         navigationController?.pushViewController(chatVC, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 140
     }
 }
