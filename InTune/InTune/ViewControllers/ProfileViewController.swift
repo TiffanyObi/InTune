@@ -85,13 +85,6 @@ class ProfileViewController: UIViewController {
         print(Auth.auth().currentUser?.email ?? "not current user because youre not logged in or signed up")
     }
     
-    
-    @IBAction func albumButtonPressed(_ sender: UIBarButtonItem) {
-        imagePickerController.sourceType = .photoLibrary
-        present(imagePickerController, animated: true)
-    }
-    
-    
     @IBAction func cameraButtonPressed(_ sender: UIBarButtonItem) {
         imagePickerController.sourceType = .camera
         present(imagePickerController, animated: true)
