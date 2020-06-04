@@ -14,25 +14,16 @@ enum AccountState {
     case newUser
 }
 
-struct LoginViewViewModel {
-    var loginButtonTitle: String {
-        return "LOGIN"
-    }
-    
-    func login() {
-        
-    }
-}
 
 class LoginViewController: UIViewController {
     
     @IBOutlet weak var appNameLabel: UILabel!
-    @IBOutlet private var emailTextfield: UITextField!
-    @IBOutlet private var passwordTextfield: UITextField!
+    @IBOutlet public var emailTextfield: UITextField!
+    @IBOutlet public var passwordTextfield: UITextField!
     @IBOutlet private var loginButton: UIButton!
     @IBOutlet private var loginStateLabel: UILabel!
     @IBOutlet private var loginStateButton: UIButton!
-    @IBOutlet private var errorMessageLabel: UILabel!
+    @IBOutlet public var errorMessageLabel: UILabel!
     
     private lazy var tapGesture: UITapGestureRecognizer = {
         let gesture = UITapGestureRecognizer()
@@ -53,13 +44,6 @@ class LoginViewController: UIViewController {
  
     }
     
-
-//    override func viewDidAppear(_ animated: Bool) {
-//        super.viewDidAppear(true)
-//        pulsatingAnimation()
-//
-//    }
-    
     private func setUpTextfieldDelegates(){
         emailTextfield.delegate = self
         passwordTextfield.delegate = self
@@ -71,7 +55,7 @@ class LoginViewController: UIViewController {
     }
     private func clearErrorLabel(){
         
-        errorMessageLabel.text = ""
+        errorMessageLabel.text = viewModel.setErrorLabelToEmpty
         errorMessageLabel.isHidden = true
     }
     
@@ -80,11 +64,11 @@ class LoginViewController: UIViewController {
             !email.isEmpty,
             let password = passwordTextfield.text,
             !password.isEmpty else {
-                showAlert(title: "Missing Fields", message: "Please fill all missing fields")
-                print("missing feilds")
+                showAlert(title: viewModel.missingFields, message: viewModel.missingFieldsMessage)
+                
                 return
         }
-        continueLoginFlow(email: email, password: password)
+        viewModel.loginFlow(email: email, password: password)
     }
     
     @IBAction func toggleAccountState(_ sender: UIButton) {
@@ -92,54 +76,18 @@ class LoginViewController: UIViewController {
         accountState = accountState == .existingUser ? .newUser : .existingUser
         if accountState == .existingUser {
             loginButton.setTitle(viewModel.loginButtonTitle, for: .normal)
-            loginStateLabel.text = "Don't have an account?"
-            loginStateButton.setTitle("SIGN UP", for: .normal)
+            loginStateLabel.text = viewModel.newAccountMessage
+            loginStateButton.setTitle(viewModel.signUpButtonTitle, for: .normal)
             
         } else {
-            loginButton.setTitle("SIGN UP", for: .normal)
-            loginStateLabel.text = "Already have an account ?"
-            loginStateButton.setTitle("LOGIN", for: .normal)
+            loginButton.setTitle(viewModel.signUpButtonTitle, for: .normal)
+            loginStateLabel.text = viewModel.exisistingAccountMessage
+            loginStateButton.setTitle(viewModel.loginButtonTitle, for: .normal)
             
         }
     }
     
-    private func continueLoginFlow(email:String,password:String) {
-        if accountState == .existingUser {
-           authSession.signExistingUser(email: email, password: password) { [weak self] (result) in
-                   switch result {
-                   case .failure(let error):
-                       print(error)
-                       DispatchQueue.main.async {
-                           self?.errorMessageLabel.isHidden = false
-                        self?.errorMessageLabel.text = "Incorrect Login: \(error.localizedDescription)"
-                        self?.errorMessageLabel.textColor = .white
-                       }
-                   case .success:
-                       DispatchQueue.main.async {
-                           //navigate to main view
-                           self?.navigateToMainView()
-                       }
-                   }
-               }
-           } else {
-            
-                authSession.createNewUser(email: email, password: password) { [weak self] (result) in
-                    switch result {
-                    case .failure(let error):
-                        print(error)
-                        DispatchQueue.main.async {
-                            self?.errorMessageLabel.isHidden = false
-                            self?.errorMessageLabel.text = "Error: \(error.localizedDescription)"
-                            self?.errorMessageLabel.textColor = .white
-                        }
-                    case .success(let authDataResult):
-                        print(authDataResult.user.email ?? "user email")
-//                        self?.createDatabaseUser(authDataResult: authDataResult)
-                    }
-                }
-            }
-           
-        }
+
     
     
 //    private func createDatabaseUser(authDataResult: AuthDataResult) {
@@ -156,9 +104,7 @@ class LoginViewController: UIViewController {
 //        }
 //    }
 //
-    private func navigateToMainView() {
-        UIViewController.showViewController(storyboardName: "MainView", viewControllerID: "MainViewTabBarController")
-    }
+
     
     private func pulsatingAnimation() {
            UIView.animate(withDuration: 2.0, delay: 0.0, options: [], animations: {
