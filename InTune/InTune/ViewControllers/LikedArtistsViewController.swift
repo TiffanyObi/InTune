@@ -9,22 +9,46 @@
 import UIKit
 
 class LikedArtistsViewController: UIViewController {
+    
+    private var likedArtistView = LikedArtistView()
 
+    override func loadView() {
+        view = likedArtistView
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .systemGroupedBackground
+       
 
-        // Do any additional setup after loading the view.
     }
     
+    private func setUpCollectionView(){
+        
+        likedArtistView.likedArtistCollectionView.dataSource = self
+        likedArtistView.likedArtistCollectionView.delegate = self
+        likedArtistView.contactsCollectionView.dataSource = self
+        likedArtistView.contactsCollectionView.delegate = self
+        
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
     }
-    */
 
+  
+
+}
+
+extension LikedArtistsViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+   let cell = UICollectionViewCell()
+        return cell
+    }
+    
+    
+}
+
+extension LikedArtistsViewController: UICollectionViewDelegateFlowLayout {
+    
 }
