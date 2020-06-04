@@ -22,7 +22,7 @@ class MainViewTabBarController: UITabBarController {
         return vc
     }()
     
-    lazy var messengerVC:GigViewController = {
+    lazy var gigsVC:GigViewController = {
         let vc = GigViewController()
         vc.tabBarItem = UITabBarItem(title: "Gigs", image: UIImage(systemName: "hand.thumbsup.fill"), tag: 2)
         return vc
@@ -40,7 +40,7 @@ class MainViewTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //loadTopics()
-        let controllers = [exploreVC,likedArtistsVC,messengerVC,profileVC]
+        let controllers = [exploreVC,likedArtistsVC,gigsVC,profileVC]
         viewControllers = controllers.map{UINavigationController(rootViewController: $0)}
     }
     
