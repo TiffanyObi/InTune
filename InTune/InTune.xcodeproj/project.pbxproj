@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3E37999A248963EB00DC0487 /* ArtistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E379999248963EB00DC0487 /* ArtistCell.swift */; };
 		3E43F438247D7B8600CC0584 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F437247D7B8600CC0584 /* AppDelegate.swift */; };
 		3E43F43A247D7B8600CC0584 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F439247D7B8600CC0584 /* SceneDelegate.swift */; };
 		3E43F43C247D7B8600CC0584 /* ExploreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F43B247D7B8600CC0584 /* ExploreViewController.swift */; };
@@ -70,6 +71,7 @@
 /* Begin PBXFileReference section */
 		34EDB9880DFEB9AE9BDB152F /* Pods_InTuneTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InTuneTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		360258238F4D075A6CA65630 /* Pods-InTuneTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InTuneTests.release.xcconfig"; path = "Target Support Files/Pods-InTuneTests/Pods-InTuneTests.release.xcconfig"; sourceTree = "<group>"; };
+		3E379999248963EB00DC0487 /* ArtistCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistCell.swift; sourceTree = "<group>"; };
 		3E43F434247D7B8600CC0584 /* InTune.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InTune.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E43F437247D7B8600CC0584 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3E43F439247D7B8600CC0584 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -252,6 +254,7 @@
 				80135C7D248026210038A0CC /* PostCell.xib */,
 				800D8997248843C300C3FB67 /* ChatsCell.xib */,
 				3EA7E76E24888FD50092C03B /* ArtistCell.xib */,
+				3E379999248963EB00DC0487 /* ArtistCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -480,6 +483,7 @@
 			files = (
 				3E43F45F247E846400CC0584 /* ProfileViewController.swift in Sources */,
 				3E43F48B247E9A7C00CC0584 /* Posts.swift in Sources */,
+				3E37999A248963EB00DC0487 /* ArtistCell.swift in Sources */,
 				3E43F481247E981700CC0584 /* Enthusiast.swift in Sources */,
 				BEDF3FD12485354B00D22E2D /* ChatViewController.swift in Sources */,
 				BEDF3FCF248534A600D22E2D /* Message.swift in Sources */,
