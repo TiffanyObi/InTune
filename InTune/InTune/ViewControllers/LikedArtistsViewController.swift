@@ -11,15 +11,14 @@ import UIKit
 class LikedArtistsViewController: UIViewController {
     
     private var likedArtistView = LikedArtistView()
-
+    
     override func loadView() {
         view = likedArtistView
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemGroupedBackground
-       
-
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Chat", style: .plain, target: self, action: #selector(showMessages))
     }
     
     private func setUpCollectionView(){
@@ -29,11 +28,17 @@ class LikedArtistsViewController: UIViewController {
         likedArtistView.contactsCollectionView.dataSource = self
         likedArtistView.contactsCollectionView.delegate = self
         
-
+        
     }
-
-  
-
+    
+    @objc private func showMessages() {
+        let storyboard = UIStoryboard(name: "MessageView", bundle: nil)
+        let viewController = storyboard.instantiateViewController(identifier: "ChatsViewController") as ChatsViewController
+        navigationController?.show(viewController, sender: self)
+    }
+    
+    
+    
 }
 
 extension LikedArtistsViewController: UICollectionViewDataSource {
@@ -42,7 +47,7 @@ extension LikedArtistsViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-   let cell = UICollectionViewCell()
+        let cell = UICollectionViewCell()
         return cell
     }
     
