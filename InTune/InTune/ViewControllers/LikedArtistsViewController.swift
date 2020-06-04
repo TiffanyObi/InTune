@@ -18,12 +18,12 @@ class LikedArtistsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemGroupedBackground
-<<<<<<< HEAD
+
        setUpCollectionView()
         likedArtistView.likedArtistCollectionView.register(UINib(nibName: "ArtistCell", bundle: nil), forCellWithReuseIdentifier: "artistCell")
-=======
+
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Chat", style: .plain, target: self, action: #selector(showMessages))
->>>>>>> eb1d426e3b522187f6209cdb97c0c3c2d4a59077
+
     }
     
     private func setUpCollectionView(){
@@ -34,12 +34,12 @@ class LikedArtistsViewController: UIViewController {
 //        likedArtistView.contactsCollectionView.delegate = self
         
         
-<<<<<<< HEAD
+
 //        likedArtistView.contactsCollectionView.register(ArtistCell.self, forCellWithReuseIdentifier: "artistCell")
 
-=======
+
         
->>>>>>> eb1d426e3b522187f6209cdb97c0c3c2d4a59077
+
     }
     
     @objc private func showMessages() {
@@ -58,17 +58,17 @@ extension LikedArtistsViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-<<<<<<< HEAD
+
         
         guard let artistCell = collectionView.dequeueReusableCell(withReuseIdentifier:"artistCell", for: indexPath) as? ArtistCell else {
             fatalError("Could not downcast to ArtistCell")
         }
         
         return artistCell
-=======
+
         let cell = UICollectionViewCell()
         return cell
->>>>>>> eb1d426e3b522187f6209cdb97c0c3c2d4a59077
+
     }
     
     
