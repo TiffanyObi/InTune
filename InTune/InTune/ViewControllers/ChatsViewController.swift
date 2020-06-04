@@ -19,6 +19,8 @@ class ChatsViewController: UIViewController {
     
     private let databaseService = DatabaseService()
     
+    var currentUserBucket: Artist!
+    
     var users = [Artist]() {
         didSet {
             DispatchQueue.main.async {
@@ -38,15 +40,20 @@ class ChatsViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         listener = Firestore.firestore().collection(DatabaseService.artistsCollection).addSnapshotListener({ (snapshot, error) in
-                   if let error = error {
-                       DispatchQueue.main.async {
-                           self.showAlert(title: "Firestore Error", message: "\(error.localizedDescription)")
-                       }
-                   } else if let snapshot = snapshot {
-                    let artist = snapshot.documents.map { Artist($0.data()) }
-                    self.users = artist
-                   }
-               })
+            if let error = error {
+                DispatchQueue.main.async {
+                    self.showAlert(title: "Firestore Error", message: "\(error.localizedDescription)")
+                }
+            } else if let snapshot = snapshot {
+                var artist = snapshot.documents.map { Artist($0.data()) }
+                for (index, id) in artist.enumerated() {
+                    if id.artistId == Auth.auth().currentUser?.uid {
+                        artist.remove(at: index)
+                    }
+                }
+                self.users = artist
+            }
+        })
     }
     
     deinit {
@@ -68,17 +75,17 @@ class ChatsViewController: UIViewController {
         tableView.register(UINib(nibName: "ChatsCell", bundle: nil), forCellReuseIdentifier: "chatCell")
     }
     
-  
+    
     
 }
 
 extension ChatsViewController: UITableViewDataSource, UITableViewDelegate {
- 
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return users.count
     }
     
-   
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "chatCell", for: indexPath) as? ChatsCell else {
             fatalError("could not downcast to ChatsCell")

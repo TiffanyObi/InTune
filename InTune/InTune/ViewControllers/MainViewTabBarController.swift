@@ -9,7 +9,7 @@
 import UIKit
 
 class MainViewTabBarController: UITabBarController {
-
+    
     lazy var exploreVC:ExploreViewController = {
         let vc = ExploreViewController()
         vc.tabBarItem = UITabBarItem(title: "Explore", image: UIImage(systemName: "globe"), tag: 0)
@@ -22,13 +22,10 @@ class MainViewTabBarController: UITabBarController {
         return vc
     }()
     
-    lazy var messengerVC:ChatsViewController = {
-        let storyboard = UIStoryboard(name: "MessageView", bundle: nil)
-        guard let viewController = storyboard.instantiateViewController(identifier: "ChatsViewController") as? ChatsViewController else {
-            return ChatsViewController()
-        }
-        viewController.tabBarItem = UITabBarItem(title: "Chat", image: UIImage(systemName: "message.fill"), tag: 2)
-        return viewController
+    lazy var gigsVC:GigViewController = {
+        let vc = GigViewController()
+        vc.tabBarItem = UITabBarItem(title: "Gigs", image: UIImage(systemName: "hand.thumbsup.fill"), tag: 2)
+        return vc
     }()
     
     lazy var profileVC:ProfileViewController = {
@@ -38,16 +35,16 @@ class MainViewTabBarController: UITabBarController {
         viewController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.fill"), tag: 3)
         return viewController
         
-       }()
-
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //loadTopics()
-        let controllers = [exploreVC,likedArtistsVC,messengerVC,profileVC]
+        let controllers = [exploreVC,likedArtistsVC,gigsVC,profileVC]
         viewControllers = controllers.map{UINavigationController(rootViewController: $0)}
     }
     
-
-   
-
+    
+    
+    
 }
