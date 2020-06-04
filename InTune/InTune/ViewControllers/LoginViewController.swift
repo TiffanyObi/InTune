@@ -17,7 +17,7 @@ enum AccountState {
 
 class LoginViewController: UIViewController {
     
-    @IBOutlet weak var appNameLabel: UILabel!
+    @IBOutlet weak var appLogoImageView: UIImageView!
     @IBOutlet public var emailTextfield: UITextField!
     @IBOutlet public var passwordTextfield: UITextField!
     @IBOutlet private var loginButton: UIButton!
@@ -30,8 +30,8 @@ class LoginViewController: UIViewController {
         gesture.addTarget(self, action: #selector(resignTextfeilds))
         return gesture
     }()
-    private var accountState: AccountState = .existingUser
-    private var authSession = AuthenticationSession()
+    public var accountState: AccountState = .existingUser
+    public var authSession = AuthenticationSession()
     private var dataBaseService = DatabaseService()
     let viewModel = LoginViewViewModel()
     
@@ -68,7 +68,7 @@ class LoginViewController: UIViewController {
                 
                 return
         }
-        viewModel.loginFlow(email: email, password: password)
+        viewModel.loginFlow(email: email, password: password, loginVC: self)
     }
     
     @IBAction func toggleAccountState(_ sender: UIButton) {
@@ -110,7 +110,7 @@ class LoginViewController: UIViewController {
            UIView.animate(withDuration: 2.0, delay: 0.0, options: [], animations: {
                // animation block here
                
-               self.appNameLabel.transform = CGAffineTransform(scaleX: 2.0, y: 2.0)
+               self.appLogoImageView.transform = CGAffineTransform(scaleX: 2.0, y: 2.0)
                
            }) { (done) in
                // code to be executed after animation completes
@@ -118,7 +118,7 @@ class LoginViewController: UIViewController {
                //option2 - creates a next animation
                
                UIView.animate(withDuration: 0.7)  {
-                   self.appNameLabel.transform =
+                   self.appLogoImageView.transform =
                    CGAffineTransform.identity
                 
                 self.rotationAnimations()
@@ -129,7 +129,7 @@ class LoginViewController: UIViewController {
         let duration: Double = 10.0
         let curveOption: UIView.AnimationOptions = .curveEaseInOut
         
-        UIView.transition(with: appNameLabel, duration: duration, options: [.transitionFlipFromRight,curveOption], animations: nil, completion: nil)
+        UIView.transition(with: appLogoImageView, duration: duration, options: [.transitionFlipFromRight,curveOption], animations: nil, completion: nil)
     }
   
 

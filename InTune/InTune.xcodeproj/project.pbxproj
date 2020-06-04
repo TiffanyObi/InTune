@@ -30,13 +30,14 @@
 		3E43F47F247E97FF00CC0584 /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F47E247E97FF00CC0584 /* Artist.swift */; };
 		3E43F481247E981700CC0584 /* Enthusiast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F480247E981700CC0584 /* Enthusiast.swift */; };
 		3E43F483247E983300CC0584 /* FavoriteArtist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F482247E983300CC0584 /* FavoriteArtist.swift */; };
-		3E43F485247E985700CC0584 /* FavoriteVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F484247E985700CC0584 /* FavoriteVideo.swift */; };
+		3E43F485247E985700CC0584 /* LoginViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F484247E985700CC0584 /* LoginViewViewModel.swift */; };
 		3E43F487247E999A00CC0584 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F486247E999900CC0584 /* Comment.swift */; };
 		3E43F489247E99B000CC0584 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F488247E99B000CC0584 /* Review.swift */; };
 		3E43F48B247E9A7C00CC0584 /* Posts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F48A247E9A7C00CC0584 /* Posts.swift */; };
-		3E43F48D247E9AF800CC0584 /* ExtraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F48C247E9AF800CC0584 /* ExtraView.swift */; };
+		3E43F48D247E9AF800CC0584 /* LikedArtistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F48C247E9AF800CC0584 /* LikedArtistView.swift */; };
 		3E43F491247E9B2400CC0584 /* LikedArtistsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F490247E9B2400CC0584 /* LikedArtistsViewController.swift */; };
 		3E43F493247E9B3F00CC0584 /* ExtraController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F492247E9B3F00CC0584 /* ExtraController2.swift */; };
+		3EA7E76F24888FD50092C03B /* ArtistCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EA7E76E24888FD50092C03B /* ArtistCell.xib */; };
 		3EE738FE2481A91800C4C9D3 /* FirebaseAuthenticationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE738FD2481A91800C4C9D3 /* FirebaseAuthenticationTests.swift */; };
 		3EE739022481C10B00C4C9D3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3EE739012481C10B00C4C9D3 /* GoogleService-Info.plist */; };
 		800D8998248843C300C3FB67 /* ChatsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 800D8997248843C300C3FB67 /* ChatsCell.xib */; };
@@ -96,13 +97,14 @@
 		3E43F47E247E97FF00CC0584 /* Artist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
 		3E43F480247E981700CC0584 /* Enthusiast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enthusiast.swift; sourceTree = "<group>"; };
 		3E43F482247E983300CC0584 /* FavoriteArtist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteArtist.swift; sourceTree = "<group>"; };
-		3E43F484247E985700CC0584 /* FavoriteVideo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteVideo.swift; sourceTree = "<group>"; };
+		3E43F484247E985700CC0584 /* LoginViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewViewModel.swift; sourceTree = "<group>"; };
 		3E43F486247E999900CC0584 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		3E43F488247E99B000CC0584 /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		3E43F48A247E9A7C00CC0584 /* Posts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Posts.swift; sourceTree = "<group>"; };
-		3E43F48C247E9AF800CC0584 /* ExtraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtraView.swift; sourceTree = "<group>"; };
+		3E43F48C247E9AF800CC0584 /* LikedArtistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedArtistView.swift; sourceTree = "<group>"; };
 		3E43F490247E9B2400CC0584 /* LikedArtistsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedArtistsViewController.swift; sourceTree = "<group>"; };
 		3E43F492247E9B3F00CC0584 /* ExtraController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtraController2.swift; sourceTree = "<group>"; };
+		3EA7E76E24888FD50092C03B /* ArtistCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArtistCell.xib; sourceTree = "<group>"; };
 		3EE738FD2481A91800C4C9D3 /* FirebaseAuthenticationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthenticationTests.swift; sourceTree = "<group>"; };
 		3EE739012481C10B00C4C9D3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5EDC17E70E02A5BD32363172 /* Pods-InTune.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InTune.debug.xcconfig"; path = "Target Support Files/Pods-InTune/Pods-InTune.debug.xcconfig"; sourceTree = "<group>"; };
@@ -242,13 +244,14 @@
 			isa = PBXGroup;
 			children = (
 				3E43F465247E857900CC0584 /* EmptyView.swift */,
-				3E43F48C247E9AF800CC0584 /* ExtraView.swift */,
+				3E43F48C247E9AF800CC0584 /* LikedArtistView.swift */,
 				80135C7F248027630038A0CC /* PostCell.swift */,
 				80C375B624819E3F00152996 /* GenreTag.swift */,
 				80C375B824819E4F00152996 /* IntrumentTag.swift */,
 				800D8999248843F500C3FB67 /* ChatsCell.swift */,
 				80135C7D248026210038A0CC /* PostCell.xib */,
 				800D8997248843C300C3FB67 /* ChatsCell.xib */,
+				3EA7E76E24888FD50092C03B /* ArtistCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -281,7 +284,7 @@
 				3E43F480247E981700CC0584 /* Enthusiast.swift */,
 				3E43F48A247E9A7C00CC0584 /* Posts.swift */,
 				3E43F482247E983300CC0584 /* FavoriteArtist.swift */,
-				3E43F484247E985700CC0584 /* FavoriteVideo.swift */,
+				3E43F484247E985700CC0584 /* LoginViewViewModel.swift */,
 				3E43F486247E999900CC0584 /* Comment.swift */,
 				3E43F488247E99B000CC0584 /* Review.swift */,
 				BEDF3FCC2485349A00D22E2D /* Chat.swift */,
@@ -388,6 +391,7 @@
 				3E43F444247D7B8D00CC0584 /* LaunchScreen.storyboard in Resources */,
 				800D8998248843C300C3FB67 /* ChatsCell.xib in Resources */,
 				80135C7E248026210038A0CC /* PostCell.xib in Resources */,
+				3EA7E76F24888FD50092C03B /* ArtistCell.xib in Resources */,
 				BEDF3FC9248533B000D22E2D /* MessageView.storyboard in Resources */,
 				3E43F46E247E8EA200CC0584 /* MainView.storyboard in Resources */,
 				3E43F441247D7B8D00CC0584 /* Assets.xcassets in Resources */,
@@ -499,11 +503,11 @@
 				3E43F43A247D7B8600CC0584 /* SceneDelegate.swift in Sources */,
 				80135C8224805C0F0038A0CC /* StorageService.swift in Sources */,
 				3E43F468247E8DD100CC0584 /* AuthentificationService.swift in Sources */,
-				3E43F485247E985700CC0584 /* FavoriteVideo.swift in Sources */,
+				3E43F485247E985700CC0584 /* LoginViewViewModel.swift in Sources */,
 				3E43F477247E90B700CC0584 /* DateFormatter.swift in Sources */,
 				3E43F475247E909A00CC0584 /* ShowAlert.swift in Sources */,
 				3E43F487247E999A00CC0584 /* Comment.swift in Sources */,
-				3E43F48D247E9AF800CC0584 /* ExtraView.swift in Sources */,
+				3E43F48D247E9AF800CC0584 /* LikedArtistView.swift in Sources */,
 				BEDF3FCD2485349A00D22E2D /* Chat.swift in Sources */,
 				3E43F479247E90CA00CC0584 /* Navigation.swift in Sources */,
 				3E43F45D247E844B00CC0584 /* GigViewController.swift in Sources */,
