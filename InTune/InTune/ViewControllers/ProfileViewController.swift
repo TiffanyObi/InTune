@@ -18,6 +18,8 @@ class ProfileViewController: UIViewController {
     @IBOutlet private var postsCollectionView: UICollectionView!
     @IBOutlet private var emailLabel: UILabel!
     @IBOutlet private var cameraButton: UIBarButtonItem!
+    @IBOutlet var likeArtistButton: UIButton!
+    @IBOutlet var chatButton: UIButton!
     
     private lazy var imagePickerController: UIImagePickerController = {
         let mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)
@@ -48,6 +50,8 @@ class ProfileViewController: UIViewController {
         }
         
         emailLabel.text = "\(email)"
+        likeArtistButton.isHidden = true
+        chatButton.isHidden = true
     }
     
     private func collectionView() {
@@ -68,6 +72,10 @@ class ProfileViewController: UIViewController {
         }
         let editProfAction = UIAlertAction(title: "Edit Profile", style: .default) { (alertAction) in
             //display edit vc
+             let storyboard = UIStoryboard(name: "MainView", bundle: nil)
+             let editProfVC = storyboard.instantiateViewController(withIdentifier: "EditProfController")
+            self.navigationController?.show(editProfVC, sender: nil)
+            
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         alertController.addAction(signOutAction)
