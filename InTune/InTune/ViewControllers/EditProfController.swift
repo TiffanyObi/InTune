@@ -16,8 +16,8 @@ import UIKit
 class EditProfController: UIViewController {
 
     @IBOutlet private var editImageView: DesignableImageView!
-    @IBOutlet private var usernameText: UITextField!
-    @IBOutlet private var bioText: UITextView!
+    @IBOutlet private var usernameTextField: UITextField!
+    @IBOutlet private var bioTextField: UITextView!
     
     private lazy var imagePickerController: UIImagePickerController = {
         let mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)

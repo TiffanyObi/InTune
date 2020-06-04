@@ -18,8 +18,8 @@ class ProfileViewController: UIViewController {
     @IBOutlet private var postsCollectionView: UICollectionView!
     @IBOutlet private var emailLabel: UILabel!
     @IBOutlet private var cameraButton: UIBarButtonItem!
-    @IBOutlet var likeArtistButton: UIButton!
-    @IBOutlet var chatButton: UIButton!
+    @IBOutlet private var likeArtistButton: UIButton!
+    @IBOutlet private var chatButton: UIButton!
     
     private lazy var imagePickerController: UIImagePickerController = {
         let mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)
