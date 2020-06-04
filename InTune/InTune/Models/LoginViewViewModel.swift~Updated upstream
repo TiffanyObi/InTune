@@ -10,8 +10,8 @@ import UIKit
 
 struct LoginViewViewModel {
     
-//    private var authSession = AuthenticationSession()
-//    private var accountState: AccountState = .existingUser
+    private var authSession = AuthenticationSession()
+    private var accountState: AccountState = .existingUser
     
     var loginButtonTitle: String {
         return "LOGIN"
@@ -36,17 +36,16 @@ struct LoginViewViewModel {
     var setErrorLabelToEmpty:String{
         return ""
     }
-    func loginFlow(email:String,password:String,loginVC:LoginViewController) {
-        
-        if loginVC.accountState == .existingUser {
-            loginVC.authSession.signExistingUser(email: email, password: password) { (result) in
+    func loginFlow(email:String,password:String) {
+        if accountState == .existingUser {
+            authSession.signExistingUser(email: email, password: password) { (result) in
                            switch result {
                            case .failure(let error):
                                print(error)
                                DispatchQueue.main.async {
-                                loginVC.errorMessageLabel.isHidden = false
-                                loginVC.errorMessageLabel.text = "Incorrect Login: \(error.localizedDescription)"
-                                loginVC.errorMessageLabel.textColor = .white
+                                LoginViewController().errorMessageLabel.isHidden = false
+                                LoginViewController().errorMessageLabel.text = "Incorrect Login: \(error.localizedDescription)"
+                                LoginViewController().errorMessageLabel.textColor = .white
                                }
                            case .success:
                                DispatchQueue.main.async {
@@ -57,14 +56,14 @@ struct LoginViewViewModel {
                        }
                    } else {
                     
-            loginVC.authSession.createNewUser(email: email, password: password) { (result) in
+                        authSession.createNewUser(email: email, password: password) { (result) in
                             switch result {
                             case .failure(let error):
                                 print(error)
                                 DispatchQueue.main.async {
-                                    loginVC.errorMessageLabel.isHidden = false
-                                   loginVC.errorMessageLabel.text = "Error: \(error.localizedDescription)"
-                                    loginVC.errorMessageLabel.textColor = .white
+                                    LoginViewController().errorMessageLabel.isHidden = false
+                                    LoginViewController().errorMessageLabel.text = "Error: \(error.localizedDescription)"
+                                    LoginViewController().errorMessageLabel.textColor = .white
                                 }
                             case .success(let authDataResult):
                                 print(authDataResult.user.email ?? "user email")
