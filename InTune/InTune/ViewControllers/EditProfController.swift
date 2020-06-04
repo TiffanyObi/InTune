@@ -8,23 +8,42 @@
 
 import UIKit
 
+/*
+ add password change + email change
+ add tag cv
+ */
+
 class EditProfController: UIViewController {
 
+    @IBOutlet private var editImageView: DesignableImageView!
+    @IBOutlet private var usernameText: UITextField!
+    @IBOutlet private var bioText: UITextView!
+    
+    private lazy var imagePickerController: UIImagePickerController = {
+        let mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)
+        let pickerController = UIImagePickerController()
+        pickerController.mediaTypes = mediaTypes ?? ["kUTTypeImage"]
+        pickerController.delegate = self
+        return pickerController
+    }()
+    
+    public var editSelectedImage: UIImage?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .systemBlue
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    @IBAction func changeProfImagePressed(_ sender: UIButton) {
+        //photo library
+        imagePickerController.sourceType = .photoLibrary
+        present(imagePickerController, animated: true)
     }
-    */
+    
+}
 
+extension EditProfController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    
 }

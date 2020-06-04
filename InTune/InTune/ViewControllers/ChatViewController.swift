@@ -16,9 +16,9 @@ class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate,
 
    var currentUser: User = Auth.auth().currentUser!
     
-    var user2Name = "John"
+    var user2Name: String?
     var user2ImgUrl: String?
-    var user2UID = "123456789"
+    var user2UID: String?
     
     private var docReference: DocumentReference?
     
@@ -90,7 +90,7 @@ class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate,
                               
                               let chat = Chat(dictionary: doc.data())
                               //Get the chat which has user2 id
-                           if (chat?.users.contains(self.user2UID))! {
+                            if (chat?.users.contains(self.user2UID!))! {
                                   
                                   self.docReference = doc.reference
                                   //fetch it's thread collection
@@ -157,7 +157,7 @@ class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate,
        
        func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
 
-                   let message = Message(id: UUID().uuidString, content: text, created: Timestamp(), senderID: currentUser.uid, senderName: "Oscar")
+        let message = Message(id: UUID().uuidString, content: text, created: Timestamp(), senderID: currentUser.uid, senderName: currentUser.email!)
                    
                      //messages.append(message)
                      insertNewMessage(message)
@@ -170,7 +170,7 @@ class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate,
        
        
        func currentSender() -> SenderType {
-        return Sender(senderId: Auth.auth().currentUser!.uid, displayName: Auth.auth().currentUser?.displayName ?? "Name not found")
+        return Sender(senderId: Auth.auth().currentUser?.uid ?? "no user id", displayName: Auth.auth().currentUser?.displayName ?? "Name not found")
        }
        
        func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageType {
