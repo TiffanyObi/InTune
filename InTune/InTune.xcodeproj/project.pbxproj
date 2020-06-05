@@ -38,6 +38,7 @@
 		3E43F48D247E9AF800CC0584 /* LikedArtistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F48C247E9AF800CC0584 /* LikedArtistView.swift */; };
 		3E43F491247E9B2400CC0584 /* LikedArtistsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F490247E9B2400CC0584 /* LikedArtistsViewController.swift */; };
 		3E43F493247E9B3F00CC0584 /* ExtraController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F492247E9B3F00CC0584 /* ExtraController2.swift */; };
+		3E7C53D5248AC614001974DB /* TagsInfoModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7C53D4248AC614001974DB /* TagsInfoModels.swift */; };
 		3EA7E76F24888FD50092C03B /* ArtistCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EA7E76E24888FD50092C03B /* ArtistCell.xib */; };
 		3EE738FE2481A91800C4C9D3 /* FirebaseAuthenticationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE738FD2481A91800C4C9D3 /* FirebaseAuthenticationTests.swift */; };
 		3EE739022481C10B00C4C9D3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3EE739012481C10B00C4C9D3 /* GoogleService-Info.plist */; };
@@ -47,8 +48,7 @@
 		80135C80248027630038A0CC /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80135C7F248027630038A0CC /* PostCell.swift */; };
 		80135C8224805C0F0038A0CC /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80135C8124805C0F0038A0CC /* StorageService.swift */; };
 		80C375B524819DE600152996 /* Designable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C375B424819DE600152996 /* Designable.swift */; };
-		80C375B724819E3F00152996 /* GenreTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C375B624819E3F00152996 /* GenreTag.swift */; };
-		80C375B924819E4F00152996 /* IntrumentTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C375B824819E4F00152996 /* IntrumentTag.swift */; };
+		80C375B724819E3F00152996 /* TagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C375B624819E3F00152996 /* TagCell.swift */; };
 		BEDF3FC9248533B000D22E2D /* MessageView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEDF3FC8248533B000D22E2D /* MessageView.storyboard */; };
 		BEDF3FCB248533D400D22E2D /* ChatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDF3FCA248533D400D22E2D /* ChatsViewController.swift */; };
 		BEDF3FCD2485349A00D22E2D /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDF3FCC2485349A00D22E2D /* Chat.swift */; };
@@ -106,6 +106,7 @@
 		3E43F48C247E9AF800CC0584 /* LikedArtistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedArtistView.swift; sourceTree = "<group>"; };
 		3E43F490247E9B2400CC0584 /* LikedArtistsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedArtistsViewController.swift; sourceTree = "<group>"; };
 		3E43F492247E9B3F00CC0584 /* ExtraController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtraController2.swift; sourceTree = "<group>"; };
+		3E7C53D4248AC614001974DB /* TagsInfoModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsInfoModels.swift; sourceTree = "<group>"; };
 		3EA7E76E24888FD50092C03B /* ArtistCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArtistCell.xib; sourceTree = "<group>"; };
 		3EE738FD2481A91800C4C9D3 /* FirebaseAuthenticationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthenticationTests.swift; sourceTree = "<group>"; };
 		3EE739012481C10B00C4C9D3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -118,8 +119,7 @@
 		80135C7F248027630038A0CC /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		80135C8124805C0F0038A0CC /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		80C375B424819DE600152996 /* Designable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Designable.swift; sourceTree = "<group>"; };
-		80C375B624819E3F00152996 /* GenreTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreTag.swift; sourceTree = "<group>"; };
-		80C375B824819E4F00152996 /* IntrumentTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntrumentTag.swift; sourceTree = "<group>"; };
+		80C375B624819E3F00152996 /* TagCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCell.swift; sourceTree = "<group>"; };
 		9BE6182879AA5607E95E84A9 /* Pods-InTuneTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InTuneTests.debug.xcconfig"; path = "Target Support Files/Pods-InTuneTests/Pods-InTuneTests.debug.xcconfig"; sourceTree = "<group>"; };
 		BEDF3FC8248533B000D22E2D /* MessageView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MessageView.storyboard; sourceTree = "<group>"; };
 		BEDF3FCA248533D400D22E2D /* ChatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsViewController.swift; sourceTree = "<group>"; };
@@ -248,8 +248,7 @@
 				3E43F465247E857900CC0584 /* EmptyView.swift */,
 				3E43F48C247E9AF800CC0584 /* LikedArtistView.swift */,
 				80135C7F248027630038A0CC /* PostCell.swift */,
-				80C375B624819E3F00152996 /* GenreTag.swift */,
-				80C375B824819E4F00152996 /* IntrumentTag.swift */,
+				80C375B624819E3F00152996 /* TagCell.swift */,
 				800D8999248843F500C3FB67 /* ChatsCell.swift */,
 				80135C7D248026210038A0CC /* PostCell.xib */,
 				800D8997248843C300C3FB67 /* ChatsCell.xib */,
@@ -285,6 +284,7 @@
 			children = (
 				3E43F47E247E97FF00CC0584 /* Artist.swift */,
 				3E43F480247E981700CC0584 /* Enthusiast.swift */,
+				3E7C53D4248AC614001974DB /* TagsInfoModels.swift */,
 				3E43F48A247E9A7C00CC0584 /* Posts.swift */,
 				3E43F482247E983300CC0584 /* FavoriteArtist.swift */,
 				3E43F484247E985700CC0584 /* LoginViewViewModel.swift */,
@@ -490,7 +490,7 @@
 				3E43F493247E9B3F00CC0584 /* ExtraController2.swift in Sources */,
 				3E43F489247E99B000CC0584 /* Review.swift in Sources */,
 				BEDF3FCB248533D400D22E2D /* ChatsViewController.swift in Sources */,
-				80C375B724819E3F00152996 /* GenreTag.swift in Sources */,
+				80C375B724819E3F00152996 /* TagCell.swift in Sources */,
 				3E43F483247E983300CC0584 /* FavoriteArtist.swift in Sources */,
 				80135C80248027630038A0CC /* PostCell.swift in Sources */,
 				3E43F466247E857900CC0584 /* EmptyView.swift in Sources */,
@@ -499,7 +499,7 @@
 				80C375B524819DE600152996 /* Designable.swift in Sources */,
 				3E43F45B247E83DE00CC0584 /* LoginViewController.swift in Sources */,
 				3E43F43C247D7B8600CC0584 /* ExploreViewController.swift in Sources */,
-				80C375B924819E4F00152996 /* IntrumentTag.swift in Sources */,
+				3E7C53D5248AC614001974DB /* TagsInfoModels.swift in Sources */,
 				3E43F491247E9B2400CC0584 /* LikedArtistsViewController.swift in Sources */,
 				3E43F438247D7B8600CC0584 /* AppDelegate.swift in Sources */,
 				3E43F472247E8FAE00CC0584 /* OnboardingViewController.swift in Sources */,
