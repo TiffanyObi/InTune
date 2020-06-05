@@ -31,9 +31,6 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if !UIImagePickerController.isSourceTypeAvailable(.camera) {
-            cameraButton.isEnabled = false
-        }
         //        tagsCollection.delegate = self
         //        tagsCollection.dataSource = self
         postsCollectionView.delegate = self

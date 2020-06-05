@@ -11,7 +11,10 @@ import UIKit
 class MainViewTabBarController: UITabBarController {
     
     lazy var exploreVC:ExploreViewController = {
-        let vc = ExploreViewController()
+        let storyboard = UIStoryboard(name: "ExploreView", bundle: nil)
+        guard let vc = storyboard.instantiateViewController(identifier: "ExploreViewController") as? ExploreViewController else {
+            return ExploreViewController()
+        }
         vc.tabBarItem = UITabBarItem(title: "Explore", image: UIImage(systemName: "globe"), tag: 0)
         return vc
     }()
