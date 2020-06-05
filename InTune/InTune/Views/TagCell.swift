@@ -10,5 +10,8 @@ import UIKit
 
 class TagCell: UICollectionViewCell {
     
+    @IBOutlet var tagButton: UIButton!
+    @IBOutlet var profileTagButton: UIButton!
+    
 }
 

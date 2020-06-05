@@ -47,8 +47,12 @@
 		80135C7E248026210038A0CC /* PostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80135C7D248026210038A0CC /* PostCell.xib */; };
 		80135C80248027630038A0CC /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80135C7F248027630038A0CC /* PostCell.swift */; };
 		80135C8224805C0F0038A0CC /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80135C8124805C0F0038A0CC /* StorageService.swift */; };
+		80142DAF248AB85F002C928C /* ExploreView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80142DAE248AB85F002C928C /* ExploreView.storyboard */; };
+		80142DB1248ABB6C002C928C /* ExploreArtistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80142DB0248ABB6C002C928C /* ExploreArtistCell.swift */; };
 		80C375B524819DE600152996 /* Designable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C375B424819DE600152996 /* Designable.swift */; };
 		80C375B724819E3F00152996 /* TagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C375B624819E3F00152996 /* TagCell.swift */; };
+		80D58F7F248AE44F005392A0 /* FeaturedArtist.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80D58F7E248AE44F005392A0 /* FeaturedArtist.xib */; };
+		80D58F81248AE7E8005392A0 /* FeaturedArtistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D58F80248AE7E8005392A0 /* FeaturedArtistCell.swift */; };
 		BEDF3FC9248533B000D22E2D /* MessageView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEDF3FC8248533B000D22E2D /* MessageView.storyboard */; };
 		BEDF3FCB248533D400D22E2D /* ChatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDF3FCA248533D400D22E2D /* ChatsViewController.swift */; };
 		BEDF3FCD2485349A00D22E2D /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDF3FCC2485349A00D22E2D /* Chat.swift */; };
@@ -118,8 +122,12 @@
 		80135C7D248026210038A0CC /* PostCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostCell.xib; sourceTree = "<group>"; };
 		80135C7F248027630038A0CC /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		80135C8124805C0F0038A0CC /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
+		80142DAE248AB85F002C928C /* ExploreView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ExploreView.storyboard; sourceTree = "<group>"; };
+		80142DB0248ABB6C002C928C /* ExploreArtistCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreArtistCell.swift; sourceTree = "<group>"; };
 		80C375B424819DE600152996 /* Designable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Designable.swift; sourceTree = "<group>"; };
 		80C375B624819E3F00152996 /* TagCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCell.swift; sourceTree = "<group>"; };
+		80D58F7E248AE44F005392A0 /* FeaturedArtist.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeaturedArtist.xib; sourceTree = "<group>"; };
+		80D58F80248AE7E8005392A0 /* FeaturedArtistCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedArtistCell.swift; sourceTree = "<group>"; };
 		9BE6182879AA5607E95E84A9 /* Pods-InTuneTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InTuneTests.debug.xcconfig"; path = "Target Support Files/Pods-InTuneTests/Pods-InTuneTests.debug.xcconfig"; sourceTree = "<group>"; };
 		BEDF3FC8248533B000D22E2D /* MessageView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MessageView.storyboard; sourceTree = "<group>"; };
 		BEDF3FCA248533D400D22E2D /* ChatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsViewController.swift; sourceTree = "<group>"; };
@@ -253,7 +261,10 @@
 				80135C7D248026210038A0CC /* PostCell.xib */,
 				800D8997248843C300C3FB67 /* ChatsCell.xib */,
 				3EA7E76E24888FD50092C03B /* ArtistCell.xib */,
+				80D58F80248AE7E8005392A0 /* FeaturedArtistCell.swift */,
+				80D58F7E248AE44F005392A0 /* FeaturedArtist.xib */,
 				3E379999248963EB00DC0487 /* ArtistCell.swift */,
+				80142DB0248ABB6C002C928C /* ExploreArtistCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -264,6 +275,7 @@
 				3E43F46D247E8EA200CC0584 /* MainView.storyboard */,
 				3E43F46F247E8F6400CC0584 /* LoginView.storyboard */,
 				BEDF3FC8248533B000D22E2D /* MessageView.storyboard */,
+				80142DAE248AB85F002C928C /* ExploreView.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -391,6 +403,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80D58F7F248AE44F005392A0 /* FeaturedArtist.xib in Resources */,
 				3E43F444247D7B8D00CC0584 /* LaunchScreen.storyboard in Resources */,
 				800D8998248843C300C3FB67 /* ChatsCell.xib in Resources */,
 				80135C7E248026210038A0CC /* PostCell.xib in Resources */,
@@ -398,6 +411,7 @@
 				BEDF3FC9248533B000D22E2D /* MessageView.storyboard in Resources */,
 				3E43F46E247E8EA200CC0584 /* MainView.storyboard in Resources */,
 				3E43F441247D7B8D00CC0584 /* Assets.xcassets in Resources */,
+				80142DAF248AB85F002C928C /* ExploreView.storyboard in Resources */,
 				3E43F470247E8F6400CC0584 /* LoginView.storyboard in Resources */,
 				3EE739022481C10B00C4C9D3 /* GoogleService-Info.plist in Resources */,
 			);
@@ -505,6 +519,7 @@
 				3E43F472247E8FAE00CC0584 /* OnboardingViewController.swift in Sources */,
 				800D899A248843F500C3FB67 /* ChatsCell.swift in Sources */,
 				3E43F43A247D7B8600CC0584 /* SceneDelegate.swift in Sources */,
+				80142DB1248ABB6C002C928C /* ExploreArtistCell.swift in Sources */,
 				80135C8224805C0F0038A0CC /* StorageService.swift in Sources */,
 				3E43F468247E8DD100CC0584 /* AuthentificationService.swift in Sources */,
 				3E43F485247E985700CC0584 /* LoginViewViewModel.swift in Sources */,
@@ -512,6 +527,7 @@
 				3E43F475247E909A00CC0584 /* ShowAlert.swift in Sources */,
 				3E43F487247E999A00CC0584 /* Comment.swift in Sources */,
 				3E43F48D247E9AF800CC0584 /* LikedArtistView.swift in Sources */,
+				80D58F81248AE7E8005392A0 /* FeaturedArtistCell.swift in Sources */,
 				BEDF3FCD2485349A00D22E2D /* Chat.swift in Sources */,
 				3E43F479247E90CA00CC0584 /* Navigation.swift in Sources */,
 				3E43F45D247E844B00CC0584 /* GigViewController.swift in Sources */,
