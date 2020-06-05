@@ -10,18 +10,8 @@ import UIKit
 
 class TagCell: UICollectionViewCell {
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        commonInit()
-    }
+    @IBOutlet var tagButton: UIButton!
+    @IBOutlet var profileTagButton: UIButton!
     
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        commonInit()
-    }
-    
-    private func commonInit() {
-        
-    }
 }
 
