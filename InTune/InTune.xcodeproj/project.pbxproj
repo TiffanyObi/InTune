@@ -46,6 +46,8 @@
 		80135C7E248026210038A0CC /* PostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80135C7D248026210038A0CC /* PostCell.xib */; };
 		80135C80248027630038A0CC /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80135C7F248027630038A0CC /* PostCell.swift */; };
 		80135C8224805C0F0038A0CC /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80135C8124805C0F0038A0CC /* StorageService.swift */; };
+		80142DAF248AB85F002C928C /* ExploreView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80142DAE248AB85F002C928C /* ExploreView.storyboard */; };
+		80142DB1248ABB6C002C928C /* ExploreArtistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80142DB0248ABB6C002C928C /* ExploreArtistCell.swift */; };
 		80C375B524819DE600152996 /* Designable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C375B424819DE600152996 /* Designable.swift */; };
 		80C375B724819E3F00152996 /* GenreTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C375B624819E3F00152996 /* GenreTag.swift */; };
 		80C375B924819E4F00152996 /* IntrumentTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C375B824819E4F00152996 /* IntrumentTag.swift */; };
@@ -117,6 +119,8 @@
 		80135C7D248026210038A0CC /* PostCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostCell.xib; sourceTree = "<group>"; };
 		80135C7F248027630038A0CC /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		80135C8124805C0F0038A0CC /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
+		80142DAE248AB85F002C928C /* ExploreView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ExploreView.storyboard; sourceTree = "<group>"; };
+		80142DB0248ABB6C002C928C /* ExploreArtistCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreArtistCell.swift; sourceTree = "<group>"; };
 		80C375B424819DE600152996 /* Designable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Designable.swift; sourceTree = "<group>"; };
 		80C375B624819E3F00152996 /* GenreTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreTag.swift; sourceTree = "<group>"; };
 		80C375B824819E4F00152996 /* IntrumentTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntrumentTag.swift; sourceTree = "<group>"; };
@@ -255,6 +259,7 @@
 				800D8997248843C300C3FB67 /* ChatsCell.xib */,
 				3EA7E76E24888FD50092C03B /* ArtistCell.xib */,
 				3E379999248963EB00DC0487 /* ArtistCell.swift */,
+				80142DB0248ABB6C002C928C /* ExploreArtistCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -265,6 +270,7 @@
 				3E43F46D247E8EA200CC0584 /* MainView.storyboard */,
 				3E43F46F247E8F6400CC0584 /* LoginView.storyboard */,
 				BEDF3FC8248533B000D22E2D /* MessageView.storyboard */,
+				80142DAE248AB85F002C928C /* ExploreView.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -398,6 +404,7 @@
 				BEDF3FC9248533B000D22E2D /* MessageView.storyboard in Resources */,
 				3E43F46E247E8EA200CC0584 /* MainView.storyboard in Resources */,
 				3E43F441247D7B8D00CC0584 /* Assets.xcassets in Resources */,
+				80142DAF248AB85F002C928C /* ExploreView.storyboard in Resources */,
 				3E43F470247E8F6400CC0584 /* LoginView.storyboard in Resources */,
 				3EE739022481C10B00C4C9D3 /* GoogleService-Info.plist in Resources */,
 			);
@@ -505,6 +512,7 @@
 				3E43F472247E8FAE00CC0584 /* OnboardingViewController.swift in Sources */,
 				800D899A248843F500C3FB67 /* ChatsCell.swift in Sources */,
 				3E43F43A247D7B8600CC0584 /* SceneDelegate.swift in Sources */,
+				80142DB1248ABB6C002C928C /* ExploreArtistCell.swift in Sources */,
 				80135C8224805C0F0038A0CC /* StorageService.swift in Sources */,
 				3E43F468247E8DD100CC0584 /* AuthentificationService.swift in Sources */,
 				3E43F485247E985700CC0584 /* LoginViewViewModel.swift in Sources */,
