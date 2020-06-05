@@ -11,8 +11,8 @@ import Foundation
 struct Artist {
   let name: String
   let artistId: String
-  let instruments: [String]
-    let tags: [String]
+  var instruments: [String]
+  let tags: [String]
   let city: String
 }
 extension Artist {
@@ -24,3 +24,7 @@ extension Artist {
     self.city = dictionary["city"] as? String ?? "No City selected"
   }
 }
+
+
+
+

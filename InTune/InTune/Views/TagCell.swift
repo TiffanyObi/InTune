@@ -1,5 +1,5 @@
 //
-//  IntrumentTag.swift
+//  TagCell.swift
 //  InTune
 //
 //  Created by Maitree Bain on 5/29/20.
@@ -8,6 +8,7 @@
 
 import UIKit
 
-class IntrumentTag: UICollectionViewCell {
+class TagCell: UICollectionViewCell {
     
 }
+
