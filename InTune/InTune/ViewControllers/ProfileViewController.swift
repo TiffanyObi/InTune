@@ -17,9 +17,9 @@ class ProfileViewController: UIViewController {
     @IBOutlet private var tagsCollection: UICollectionView!
     @IBOutlet private var postsCollectionView: UICollectionView!
     @IBOutlet private var emailLabel: UILabel!
-    @IBOutlet private var cameraButton: UIBarButtonItem!
-    @IBOutlet var likeArtistButton: UIButton!
-    @IBOutlet var chatButton: UIButton!
+    @IBOutlet private var addMediaButton: UIBarButtonItem!
+    @IBOutlet private var likeArtistButton: UIButton!
+    @IBOutlet private var chatButton: UIButton!
     
     private lazy var imagePickerController: UIImagePickerController = {
         let mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)
@@ -31,9 +31,6 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if !UIImagePickerController.isSourceTypeAvailable(.camera) {
-            cameraButton.isEnabled = false
-        }
         //        tagsCollection.delegate = self
         //        tagsCollection.dataSource = self
         postsCollectionView.delegate = self
@@ -85,8 +82,8 @@ class ProfileViewController: UIViewController {
         print(Auth.auth().currentUser?.email ?? "not current user because youre not logged in or signed up")
     }
     
-    @IBAction func cameraButtonPressed(_ sender: UIBarButtonItem) {
-        imagePickerController.sourceType = .camera
+    @IBAction func addMediaButtonPressed(_ sender: UIBarButtonItem) {
+        imagePickerController.sourceType = .photoLibrary
         present(imagePickerController, animated: true)
         
     }
