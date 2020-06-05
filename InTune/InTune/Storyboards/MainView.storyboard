@@ -12,7 +12,7 @@
         <scene sceneID="CP0-OR-hc5">
             <objects>
                 <viewController storyboardIdentifier="EditProfController" modalTransitionStyle="crossDissolve" id="dgH-lO-nSv" customClass="EditProfController" customModule="InTune" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="suh-Lp-W5e">
+                    <view key="view" contentMode="scaleToFill" id="suh-Lp-W5e" customClass="DesignableButton" customModule="InTune" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -57,22 +57,38 @@
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Enter bio here" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="GGU-hN-rOg">
                                 <rect key="frame" x="102.5" y="549" width="271.5" height="112"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="112" id="ohZ-Au-WAy"/>
                                 </constraints>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YQU-ls-SC3">
+                                <rect key="frame" x="147" y="721" width="120" height="44"/>
+                                <color key="backgroundColor" red="0.31240576289999999" green="0.058394156019999997" blue="0.70837960030000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="0r6-Z4-jrf"/>
+                                    <constraint firstAttribute="width" constant="120" id="Pku-cm-cje"/>
+                                </constraints>
+                                <state key="normal" title="Done">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="doneButtonPressed:" destination="dgH-lO-nSv" eventType="touchUpInside" id="RSI-1d-ubR"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="55s-Sr-8JT" firstAttribute="top" secondItem="Sen-vV-TpP" secondAttribute="bottom" constant="20" id="5wh-RH-qzy"/>
                             <constraint firstItem="Sen-vV-TpP" firstAttribute="top" secondItem="S2Y-Xt-HF3" secondAttribute="top" constant="60" id="Ajh-Ca-J6v"/>
                             <constraint firstItem="Sen-vV-TpP" firstAttribute="leading" secondItem="S2Y-Xt-HF3" secondAttribute="leading" constant="120" id="CP1-dM-eSt"/>
+                            <constraint firstItem="YQU-ls-SC3" firstAttribute="centerX" secondItem="suh-Lp-W5e" secondAttribute="centerX" id="E8b-1l-ULi"/>
                             <constraint firstItem="M5u-Ol-Fmr" firstAttribute="leading" secondItem="MWh-l3-GJK" secondAttribute="trailing" constant="8" id="Nve-kI-yJG"/>
                             <constraint firstItem="H6m-31-VSW" firstAttribute="top" secondItem="MWh-l3-GJK" secondAttribute="bottom" constant="90" id="Pad-UJ-gn3"/>
+                            <constraint firstItem="YQU-ls-SC3" firstAttribute="top" secondItem="GGU-hN-rOg" secondAttribute="bottom" constant="60" id="PoT-Uz-kr2"/>
                             <constraint firstItem="55s-Sr-8JT" firstAttribute="centerX" secondItem="suh-Lp-W5e" secondAttribute="centerX" id="Ufl-pB-3fF"/>
                             <constraint firstItem="MWh-l3-GJK" firstAttribute="top" secondItem="55s-Sr-8JT" secondAttribute="bottom" constant="58" id="Vtp-EL-ZlO"/>
                             <constraint firstItem="S2Y-Xt-HF3" firstAttribute="trailing" secondItem="Sen-vV-TpP" secondAttribute="trailing" constant="120" id="ZIz-qi-iaX"/>
@@ -88,7 +104,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Edit" id="Ief-Tm-39z"/>
                     <connections>
-                        <outlet property="bioTextField" destination="GGU-hN-rOg" id="cV1-3T-OJ1"/>
+                        <outlet property="bioTextView" destination="GGU-hN-rOg" id="cV1-3T-OJ1"/>
                         <outlet property="editImageView" destination="Sen-vV-TpP" id="hyJ-So-nxw"/>
                         <outlet property="usernameTextField" destination="M5u-Ol-Fmr" id="mqS-Tc-gFD"/>
                     </connections>
@@ -328,7 +344,6 @@
         <!--Navigation Controller-->
         <scene sceneID="NjK-Jk-0wO">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bfC-GU-dl7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="BdI-hJ-XAK" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iCL-FK-7Id">
@@ -340,6 +355,7 @@
                         <segue destination="dgH-lO-nSv" kind="relationship" relationship="rootViewController" id="zts-Di-LFa"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bfC-GU-dl7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-123.18840579710145" y="127.90178571428571"/>
         </scene>
