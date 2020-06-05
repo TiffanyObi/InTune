@@ -1,5 +1,5 @@
 //
-//  GenreTag.swift
+//  TagCell.swift
 //  InTune
 //
 //  Created by Maitree Bain on 5/29/20.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GenreTag: UICollectionViewCell {
+class TagCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -24,3 +24,4 @@ class GenreTag: UICollectionViewCell {
         
     }
 }
+
