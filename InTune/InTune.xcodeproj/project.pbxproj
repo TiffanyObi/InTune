@@ -53,6 +53,7 @@
 		80C375B724819E3F00152996 /* TagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C375B624819E3F00152996 /* TagCell.swift */; };
 		80D58F7F248AE44F005392A0 /* FeaturedArtist.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80D58F7E248AE44F005392A0 /* FeaturedArtist.xib */; };
 		80D58F81248AE7E8005392A0 /* FeaturedArtistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D58F80248AE7E8005392A0 /* FeaturedArtistCell.swift */; };
+		80E3D260248EC649002F3FA7 /* PostCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E3D25F248EC649002F3FA7 /* PostCollectionViewDelegate.swift */; };
 		BEDF3FC9248533B000D22E2D /* MessageView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEDF3FC8248533B000D22E2D /* MessageView.storyboard */; };
 		BEDF3FCB248533D400D22E2D /* ChatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDF3FCA248533D400D22E2D /* ChatsViewController.swift */; };
 		BEDF3FCD2485349A00D22E2D /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDF3FCC2485349A00D22E2D /* Chat.swift */; };
@@ -128,6 +129,7 @@
 		80C375B624819E3F00152996 /* TagCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCell.swift; sourceTree = "<group>"; };
 		80D58F7E248AE44F005392A0 /* FeaturedArtist.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeaturedArtist.xib; sourceTree = "<group>"; };
 		80D58F80248AE7E8005392A0 /* FeaturedArtistCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedArtistCell.swift; sourceTree = "<group>"; };
+		80E3D25F248EC649002F3FA7 /* PostCollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCollectionViewDelegate.swift; sourceTree = "<group>"; };
 		9BE6182879AA5607E95E84A9 /* Pods-InTuneTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InTuneTests.debug.xcconfig"; path = "Target Support Files/Pods-InTuneTests/Pods-InTuneTests.debug.xcconfig"; sourceTree = "<group>"; };
 		BEDF3FC8248533B000D22E2D /* MessageView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MessageView.storyboard; sourceTree = "<group>"; };
 		BEDF3FCA248533D400D22E2D /* ChatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsViewController.swift; sourceTree = "<group>"; };
@@ -230,6 +232,7 @@
 				3E43F43B247D7B8600CC0584 /* ExploreViewController.swift */,
 				3E43F460247E849700CC0584 /* EditProfController.swift */,
 				3E43F45E247E846400CC0584 /* ProfileViewController.swift */,
+				80E3D25F248EC649002F3FA7 /* PostCollectionViewDelegate.swift */,
 				3E43F45C247E844B00CC0584 /* GigViewController.swift */,
 				3E43F471247E8FAE00CC0584 /* OnboardingViewController.swift */,
 				3E43F490247E9B2400CC0584 /* LikedArtistsViewController.swift */,
@@ -527,6 +530,7 @@
 				3E43F475247E909A00CC0584 /* ShowAlert.swift in Sources */,
 				3E43F487247E999A00CC0584 /* Comment.swift in Sources */,
 				3E43F48D247E9AF800CC0584 /* LikedArtistView.swift in Sources */,
+				80E3D260248EC649002F3FA7 /* PostCollectionViewDelegate.swift in Sources */,
 				80D58F81248AE7E8005392A0 /* FeaturedArtistCell.swift in Sources */,
 				BEDF3FCD2485349A00D22E2D /* Chat.swift in Sources */,
 				3E43F479247E90CA00CC0584 /* Navigation.swift in Sources */,
