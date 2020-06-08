@@ -57,4 +57,30 @@ class TagsCVDelegate: NSObject,UICollectionViewDelegate, UICollectionViewDataSou
     
 }
 
+class FeaturedArtistCVDelegate: NSObject,UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let itemSpacing: CGFloat = 1
+        let maxWidth = CGFloat(80)
+        let numberOfItems: CGFloat = 1
+        let totalSpace: CGFloat = numberOfItems * itemSpacing
+        let itemWidth: CGFloat = (maxWidth - totalSpace) / numberOfItems
+        
+        return CGSize(width: itemWidth, height: 80)
+    }
 
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 6
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "featuredArtist", for: indexPath) as? FeaturedArtistCell else {
+            fatalError("could not conform to FeaturedArtistCell")
+        }
+        
+        return cell
+    }
+    
+    
+}

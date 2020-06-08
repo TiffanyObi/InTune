@@ -16,6 +16,7 @@ class ExploreViewController: UIViewController {
     @IBOutlet private var featuredArtistCV: UICollectionView!
     
     let tabsCVDelegate = TagsCVDelegate()
+    let featuredCVDelegate = FeaturedArtistCVDelegate()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,9 +26,9 @@ class ExploreViewController: UIViewController {
         artistTableView.delegate = self
         artistTableView.dataSource = self
         artistTableView.register(ExploreArtistCell.self, forCellReuseIdentifier: "exploreCell")
-//        featuredArtistCV.register(UINib(nibName: "FeaturedArtist", bundle: nil), forCellWithReuseIdentifier: "featuredArtist")
-//        featuredArtistCV.delegate = self
-//        featuredArtistCV.dataSource = self
+        featuredArtistCV.register(UINib(nibName: "FeaturedArtist", bundle: nil), forCellWithReuseIdentifier: "featuredArtist")
+        featuredArtistCV.delegate = featuredCVDelegate
+        featuredArtistCV.dataSource = featuredCVDelegate
     }
 
 
@@ -35,6 +36,10 @@ class ExploreViewController: UIViewController {
 
 
 extension ExploreViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 120
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 5
     }
