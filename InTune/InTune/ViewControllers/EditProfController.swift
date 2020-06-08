@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAuth
+import Kingfisher
 /*
  add password change + email change
  add tag cv
@@ -55,6 +56,7 @@ class EditProfController: UIViewController {
         }
         
         //set image with kf
+        editImageView.kf.setImage(with: user.photoURL)
         
     }
     
