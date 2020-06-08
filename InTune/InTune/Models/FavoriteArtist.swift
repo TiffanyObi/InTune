@@ -20,7 +20,8 @@ struct FavoritedArtist {
 extension FavoritedArtist{
     
     init(_ dictionary:[String:Any]){
-        self.favoritedArtist = dictionary["favoritedArtist"] as? Artist ?? Artist(name: "no name", artistId: "no ID", instruments: ["no instruments"], tags: ["no tags"], city: "no city")
+        self.favoritedArtist = dictionary["favoritedArtist"] as? Artist ?? Artist(name: "no name", artistId: "no id", instruments: ["no instruments"], tags: ["no tags"], city: "no city", isAnArtist: Bool())
+        
         self.favoritedDate = dictionary["favoritedDate"] as? Timestamp ?? Timestamp(date: Date())
         self.note = dictionary["note"] as? String ?? "no note"
     }
