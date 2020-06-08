@@ -30,11 +30,12 @@ class ProfileViewController: UIViewController {
     }()
     
     let postCVDelegate = PostCollectionViewDelegate()
+    let tagsCVDelegate = TagsCVDelegate()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //        tagsCollection.delegate = self
-        //        tagsCollection.dataSource = self
+        tagsCollection.delegate = tagsCVDelegate
+        tagsCollection.dataSource = tagsCVDelegate
         postsCollectionView.delegate = postCVDelegate
         postsCollectionView.dataSource = postCVDelegate
         postsCollectionView.register(UINib(nibName: "PostCell", bundle: nil), forCellWithReuseIdentifier: "postCell")
@@ -71,8 +72,8 @@ class ProfileViewController: UIViewController {
         }
         let editProfAction = UIAlertAction(title: "Edit Profile", style: .default) { (alertAction) in
             //display edit vc
-             let storyboard = UIStoryboard(name: "MainView", bundle: nil)
-             let editProfVC = storyboard.instantiateViewController(withIdentifier: "EditProfController")
+            let storyboard = UIStoryboard(name: "MainView", bundle: nil)
+            let editProfVC = storyboard.instantiateViewController(withIdentifier: "EditProfController")
             self.navigationController?.show(editProfVC, sender: nil)
             
         }

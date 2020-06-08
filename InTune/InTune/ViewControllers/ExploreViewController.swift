@@ -15,11 +15,13 @@ class ExploreViewController: UIViewController {
     @IBOutlet private var artistTableView: UITableView!
     @IBOutlet private var featuredArtistCV: UICollectionView!
     
+    let tabsCVDelegate = TagsCVDelegate()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tagsCollectionView.delegate = self
-        tagsCollectionView.dataSource = self
+        tagsCollectionView.delegate = tabsCVDelegate
+        tagsCollectionView.dataSource = tabsCVDelegate
         artistTableView.delegate = self
         artistTableView.dataSource = self
         artistTableView.register(ExploreArtistCell.self, forCellReuseIdentifier: "exploreCell")
@@ -29,30 +31,6 @@ class ExploreViewController: UIViewController {
     }
 
 
-}
-
-extension ExploreViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let maxSize: CGSize = UIScreen.main.bounds.size
-        let itemWidth: CGFloat = maxSize.width * 0.20
-        let itemHeight: CGFloat = maxSize.height * 0.20
-        return CGSize(width: itemWidth, height: itemHeight)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "tagCell", for: indexPath) as? TagCell else {
-            fatalError("could not conform to TagCell")
-        }
-        
-        return cell
-    }
-    
-    
 }
 
 
