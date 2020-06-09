@@ -35,13 +35,8 @@ class LoginViewController: UIViewController {
     public var accountState: AccountState = .existingUser
     public var authSession = AuthenticationSession()
     private var dataBaseService = DatabaseService()
+    
     let viewModel = LoginViewViewModel()
-    
-    var userStatus: Bool!
-    
-    var user:Artist?
-    
-  
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,7 +75,7 @@ class LoginViewController: UIViewController {
                 return
         }
         viewModel.loginFlow(email: email, password: password, loginVC: self)
-        
+       
     }
     
     @IBAction func toggleAccountState(_ sender: UIButton) {
@@ -105,19 +100,6 @@ class LoginViewController: UIViewController {
             
         }
     }
-    
-    
-    @IBAction func artistButtonPressed(_ sender: UIButton) {
-      
-    }
-    
-    
-    @IBAction func enthusiastButtonPressed(_ sender: UIButton) {
-     
-    }
-    
-
-
     
     private func pulsatingAnimation() {
            UIView.animate(withDuration: 2.0, delay: 0.0, options: [], animations: {
