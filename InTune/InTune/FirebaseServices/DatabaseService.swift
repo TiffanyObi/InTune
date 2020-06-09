@@ -26,6 +26,34 @@ class DatabaseService {
       }
     }
   }
+    
+    
+    
+    //update function for user experience ( isAnArtist == true )
+    public func updateUserExperience(isAnArtist:Bool, completion: @escaping (Result<Bool,Error>) -> ()){
+        
+        guard let user = Auth.auth().currentUser else { return }
+        
+        db.collection(DatabaseService.artistsCollection).document(user.uid).updateData(["isAnArtist": isAnArtist]) { (error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(true))
+            }
+        }
+        
+    }
+    
+    
+    
+    
+    // update function for user Name
+    
+    
+    //update fucntion for tags. will create a helper function that saves the "tags" to an array then we will update the database with the array.
+    
+    
+    
 //  public func createMedia(imediaName: String, displayName: String, completion: @escaping (Result<String,Error>) ->()) {
 //    guard let user = Auth.auth().currentUser else { return }
 //    let documentRef = db.collection(DatabaseService.itemsCollection).document()
