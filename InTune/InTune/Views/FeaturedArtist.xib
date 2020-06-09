@@ -18,7 +18,7 @@
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Ut1-6f-37U">
                         <rect key="frame" x="0.0" y="0.5" width="214" height="144"/>
-                        <color key="tintColor" red="0.072671605959999996" green="0.096112775220000002" blue="0.38880076139999997" alpha="0.78684182359999999" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="tintColor" red="0.52265780019999997" green="0.87158946699999995" blue="0.86406644870000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </imageView>
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -37,7 +37,7 @@ class OnboardingViewController: UIViewController {
                     print(error.localizedDescription)
                     
                 case .success:
-//                    print(true)
+
                     self?.navigateToDisplayNameAndCityView()
                 }
             }
@@ -50,7 +50,7 @@ class OnboardingViewController: UIViewController {
                     print(error.localizedDescription)
                     
                 case .success:
-//                    print(true)
+
                     self?.navigateToDisplayNameAndCityView()
                 }
             }

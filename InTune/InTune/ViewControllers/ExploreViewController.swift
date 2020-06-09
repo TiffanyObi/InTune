@@ -21,16 +21,29 @@ class ExploreViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tagsCollectionView.delegate = tabsCVDelegate
-        tagsCollectionView.dataSource = tabsCVDelegate
-        artistTableView.delegate = self
-        artistTableView.dataSource = self
+        tagsCollectionView.register(UINib(nibName: "TagCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "tagCell")
         artistTableView.register(ExploreArtistCell.self, forCellReuseIdentifier: "exploreCell")
         featuredArtistCV.register(UINib(nibName: "FeaturedArtist", bundle: nil), forCellWithReuseIdentifier: "featuredArtist")
+        setUpCVs()
+        setUpTV()
+        setUpSegmentedControl()
+    }
+    
+    private func setUpCVs() {
+        tagsCollectionView.delegate = tabsCVDelegate
+        tagsCollectionView.dataSource = tabsCVDelegate
         featuredArtistCV.delegate = featuredCVDelegate
         featuredArtistCV.dataSource = featuredCVDelegate
     }
 
+    private func setUpTV() {
+        artistTableView.delegate = self
+        artistTableView.dataSource = self
+    }
+    
+    private func setUpSegmentedControl() {
+        viewSegmentedControl.selectedSegmentTintColor = #colorLiteral(red: 0.3867273331, green: 0.8825651407, blue: 0.8684034944, alpha: 1)
+    }
 
 }
 
