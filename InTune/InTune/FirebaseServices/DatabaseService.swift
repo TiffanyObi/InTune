@@ -11,14 +11,14 @@ import Firebase
 import FirebaseFirestore
 import FirebaseAuth
 class DatabaseService {
+  
   static let artistsCollection = "artists"
-  static let usersCollection = "users"
     private let db = Firestore.firestore()
   static let shared = DatabaseService()
     
-  public func createArtist(artist: Artist, authDataResult: AuthDataResult, completion: @escaping (Result<Bool,Error>) -> ()){
+  public func createArtist(authDataResult: AuthDataResult, completion: @escaping (Result<Bool,Error>) -> ()){
     guard let email = authDataResult.user.email else {return}
-    db.collection(DatabaseService.artistsCollection).document(authDataResult.user.uid).setData(["name": artist.name, "email": email, "tags": artist.tags, "instruments": artist.instruments, "city": artist.city]){ (error) in
+    db.collection(DatabaseService.artistsCollection).document(authDataResult.user.uid).setData(["email": email, "userId": authDataResult.user.uid, "createdDate": Timestamp()]){ (error) in
       if let error = error {
         completion(.failure(error))
       } else {

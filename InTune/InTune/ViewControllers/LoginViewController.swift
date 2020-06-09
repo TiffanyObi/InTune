@@ -24,7 +24,9 @@ class LoginViewController: UIViewController {
     @IBOutlet private var loginStateLabel: UILabel!
     @IBOutlet private var loginStateButton: UIButton!
     @IBOutlet public var errorMessageLabel: UILabel!
-    
+    @IBOutlet weak var artistButton: UIButton!
+    @IBOutlet weak var enthusiastButton: UIButton!
+    @IBOutlet weak var welcomeLabel: UILabel!
     private lazy var tapGesture: UITapGestureRecognizer = {
         let gesture = UITapGestureRecognizer()
         gesture.addTarget(self, action: #selector(resignTextfeilds))
@@ -34,6 +36,12 @@ class LoginViewController: UIViewController {
     public var authSession = AuthenticationSession()
     private var dataBaseService = DatabaseService()
     let viewModel = LoginViewViewModel()
+    
+    var userStatus: Bool!
+    
+    var user:Artist?
+    
+  
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,6 +65,9 @@ class LoginViewController: UIViewController {
         
         errorMessageLabel.text = viewModel.setErrorLabelToEmpty
         errorMessageLabel.isHidden = true
+        welcomeLabel.isHidden = true
+          artistButton.isHidden = true
+        enthusiastButton.isHidden = true
     }
     
     @IBAction func loginButtonPressed(_ sender: UIButton) {
@@ -69,41 +80,43 @@ class LoginViewController: UIViewController {
                 return
         }
         viewModel.loginFlow(email: email, password: password, loginVC: self)
+        
     }
     
     @IBAction func toggleAccountState(_ sender: UIButton) {
         // change the account login state
         accountState = accountState == .existingUser ? .newUser : .existingUser
+        
         if accountState == .existingUser {
             loginButton.setTitle(viewModel.loginButtonTitle, for: .normal)
             loginStateLabel.text = viewModel.newAccountMessage
             loginStateButton.setTitle(viewModel.signUpButtonTitle, for: .normal)
-            
+            welcomeLabel.isHidden = true
+            artistButton.isHidden = true
+          enthusiastButton.isHidden = true
         } else {
             loginButton.setTitle(viewModel.signUpButtonTitle, for: .normal)
             loginStateLabel.text = viewModel.exisistingAccountMessage
             loginStateButton.setTitle(viewModel.loginButtonTitle, for: .normal)
             
+            welcomeLabel.isHidden = false
+              artistButton.isHidden = false
+            enthusiastButton.isHidden = false
+            
         }
     }
     
+    
+    @IBAction func artistButtonPressed(_ sender: UIButton) {
+      
+    }
+    
+    
+    @IBAction func enthusiastButtonPressed(_ sender: UIButton) {
+     
+    }
+    
 
-    
-    
-//    private func createDatabaseUser(authDataResult: AuthDataResult) {
-//
-//        dataBaseService.createArtist(artist: <#T##Artist#>, authDataResult: <#T##AuthDataResult#>, completion: <#T##(Result<Bool, Error>) -> ()#>){[weak self] (result) in
-//            switch result {
-//            case .failure(let error):
-//                DispatchQueue.main.async {
-//                    self?.showAlert(title: "Account Error", message: error.localizedDescription)
-//                }
-//            case .success:
-//                self?.navigateToMainView()
-//            }
-//        }
-//    }
-//
 
     
     private func pulsatingAnimation() {
