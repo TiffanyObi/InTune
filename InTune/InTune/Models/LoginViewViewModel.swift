@@ -7,12 +7,13 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 struct LoginViewViewModel {
     
 //    private var authSession = AuthenticationSession()
 //    private var accountState: AccountState = .existingUser
-    
+    private var database = DatabaseService()
     var loginButtonTitle: String {
         return "LOGIN"
     }
@@ -69,11 +70,28 @@ struct LoginViewViewModel {
                             case .success(let authDataResult):
                                 print(authDataResult.user.email ?? "user email")
      
+                                self.createDatabaseUser(authDataResult)
+                                self.navigateToMainView()
                             }
                         }
                     }
                    
                 }
+    
+    private func createDatabaseUser(_ authDataResult:AuthDataResult){
+        
+        database.createArtist(authDataResult: authDataResult) { (result) in
+            switch result {
+            case .failure(let error):
+                print(error)
+                
+            case .success:
+             print(true)
+           
+            }
+        }
+        
+    }
         
     private func navigateToMainView() {
         UIViewController.showViewController(storyboardName: "MainView", viewControllerID: "MainViewTabBarController")

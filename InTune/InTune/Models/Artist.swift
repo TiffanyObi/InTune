@@ -7,14 +7,16 @@
 //
 
 import Foundation
+import Firebase
 
 struct Artist {
   let name: String
   let artistId: String
-  var instruments: [String]?
+  let instruments: [String]?
   let tags: [String]
   let city: String
   let isAnArtist:Bool
+  let createdDate: Timestamp
 }
 extension Artist {
   init(_ dictionary: [String: Any]) {
@@ -24,6 +26,7 @@ extension Artist {
     self.tags = dictionary["tags"] as? [String] ?? ["no tags"]
     self.city = dictionary["city"] as? String ?? "No City selected"
     self.isAnArtist = dictionary["isAnArtist"] as? Bool ?? false
+    self.createdDate = dictionary["createdDate"] as? Timestamp ?? Timestamp(date: Date())
   }
 }
 

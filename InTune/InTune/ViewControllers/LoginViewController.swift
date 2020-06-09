@@ -37,7 +37,11 @@ class LoginViewController: UIViewController {
     private var dataBaseService = DatabaseService()
     let viewModel = LoginViewViewModel()
     
-    let user: Artist? = nil
+    var userStatus: Bool!
+    
+    var user:Artist?
+    
+  
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,6 +80,7 @@ class LoginViewController: UIViewController {
                 return
         }
         viewModel.loginFlow(email: email, password: password, loginVC: self)
+        
     }
     
     @IBAction func toggleAccountState(_ sender: UIButton) {
@@ -103,27 +108,15 @@ class LoginViewController: UIViewController {
     
     
     @IBAction func artistButtonPressed(_ sender: UIButton) {
-        
+      
     }
     
     
     @IBAction func enthusiastButtonPressed(_ sender: UIButton) {
+     
     }
     
-//    private func createDatabaseUser(authDataResult: AuthDataResult) {
-//
-//        dataBaseService.createArtist(artist: <#T##Artist#>, authDataResult: <#T##AuthDataResult#>, completion: <#T##(Result<Bool, Error>) -> ()#>){[weak self] (result) in
-//            switch result {
-//            case .failure(let error):
-//                DispatchQueue.main.async {
-//                    self?.showAlert(title: "Account Error", message: error.localizedDescription)
-//                }
-//            case .success:
-//                self?.navigateToMainView()
-//            }
-//        }
-//    }
-//
+
 
     
     private func pulsatingAnimation() {
