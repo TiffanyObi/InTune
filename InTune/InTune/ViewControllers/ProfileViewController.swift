@@ -20,6 +20,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet private var addMediaButton: UIBarButtonItem!
     @IBOutlet private var likeArtistButton: UIButton!
     @IBOutlet private var chatButton: UIButton!
+    @IBOutlet var infoView: DesignableView!
     
     private lazy var imagePickerController: UIImagePickerController = {
         let mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)
@@ -34,8 +35,10 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        infoView.borderColor = #colorLiteral(red: 0.3867273331, green: 0.8825651407, blue: 0.8684034944, alpha: 1)
         tagsCollection.delegate = tagsCVDelegate
         tagsCollection.dataSource = tagsCVDelegate
+        tagsCollection.register(UINib(nibName: "TagCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "tagCell")
         postsCollectionView.delegate = postCVDelegate
         postsCollectionView.dataSource = postCVDelegate
         postsCollectionView.register(UINib(nibName: "PostCell", bundle: nil), forCellWithReuseIdentifier: "postCell")

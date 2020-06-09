@@ -14,6 +14,7 @@ struct LoginViewViewModel {
 //    private var authSession = AuthenticationSession()
 //    private var accountState: AccountState = .existingUser
     private var database = DatabaseService()
+    public var userExperienceView = UserExperienceView()
     var loginButtonTitle: String {
         return "LOGIN"
     }
@@ -48,7 +49,9 @@ struct LoginViewViewModel {
                                 loginVC.errorMessageLabel.isHidden = false
                                 loginVC.errorMessageLabel.text = "Incorrect Login: \(error.localizedDescription)"
                                 loginVC.errorMessageLabel.textColor = .white
+                                
                                }
+        
                            case .success:
                                DispatchQueue.main.async {
                                    //navigate to main view
@@ -71,7 +74,8 @@ struct LoginViewViewModel {
                                 print(authDataResult.user.email ?? "user email")
      
                                 self.createDatabaseUser(authDataResult)
-                                self.navigateToMainView()
+                                self.navigateToOnboardView()
+
                             }
                         }
                     }
@@ -96,5 +100,21 @@ struct LoginViewViewModel {
     private func navigateToMainView() {
         UIViewController.showViewController(storyboardName: "MainView", viewControllerID: "MainViewTabBarController")
     }
+    
+    private func navigateToOnboardView(){
+        UIViewController.showViewController(storyboardName: "OnboardingView", viewControllerID: "OnboardingViewController")
+    }
+    
+//    private func changeToExperienceView(viewController: UIViewController) {
+//        
+//        viewController.view = userExperienceView
+//        userExperienceView.backgroundColor = .systemGroupedBackground
+//
+//
+//    }
+    
+   
+    
+    
     }
 

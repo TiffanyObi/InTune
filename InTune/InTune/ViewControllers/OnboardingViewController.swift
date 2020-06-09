@@ -10,21 +10,58 @@ import UIKit
 
 class OnboardingViewController: UIViewController {
 
+    let userExperienece = UserExperienceView()
+    let displayNameAndLocation = DisplayNameAndLocationView()
+    let database = DatabaseService()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        view = userExperienece
+        view.backgroundColor = .systemGroupedBackground
+     setUpButtonOnExperienceView()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func setUpButtonOnExperienceView(){
+        for button in userExperienece.allButtons {
+            button.addTarget(self, action:#selector(chooseUserExperience), for: .touchUpInside)
+        }
     }
-    */
+    
+    @objc func chooseUserExperience(_ sender: UIButton){
+        
+        switch sender.tag {
+        case 0:
+            database.updateUserExperience(isAnArtist: true) { [weak self](result) in
+                switch result {
+                case .failure(let error):
+                    print(error.localizedDescription)
+                    
+                case .success:
+
+                    self?.navigateToDisplayNameAndCityView()
+                }
+            }
+            
+            
+        case 1:
+            database.updateUserExperience(isAnArtist: false) { [weak self](result) in
+                switch result {
+                case .failure(let error):
+                    print(error.localizedDescription)
+                    
+                case .success:
+
+                    self?.navigateToDisplayNameAndCityView()
+                }
+            }
+        default:
+            print("i'm a guest")
+        }
+    }
+    
+    private func navigateToDisplayNameAndCityView(){
+       view = displayNameAndLocation
+        view.backgroundColor = .red
+    }
 
 }
