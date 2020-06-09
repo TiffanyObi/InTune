@@ -22,7 +22,7 @@ class LikedArtistsViewController: UIViewController {
        setUpCollectionView()
         likedArtistView.likedArtistCollectionView.register(UINib(nibName: "ArtistCell", bundle: nil), forCellWithReuseIdentifier: "artistCell")
 
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "envelope.badge"), style: .plain, target: self, action: #selector(showMessages))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "ellipses.bubble.fill"), style: .plain, target: self, action: #selector(showMessages))
         navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
     }
     
@@ -39,8 +39,6 @@ class LikedArtistsViewController: UIViewController {
         navigationController?.show(viewController, sender: self)
     }
     
-    
-    
 }
 
 extension LikedArtistsViewController: UICollectionViewDataSource {
@@ -49,11 +47,10 @@ extension LikedArtistsViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
-        
         guard let artistCell = collectionView.dequeueReusableCell(withReuseIdentifier:"artistCell", for: indexPath) as? ArtistCell else {
             fatalError("Could not downcast to ArtistCell")
         }
+        
         
         return artistCell
 
@@ -65,7 +62,7 @@ extension LikedArtistsViewController: UICollectionViewDataSource {
 extension LikedArtistsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let maxSize: CGSize = UIScreen.main.bounds.size
-          let itemWidth: CGFloat = maxSize.width
+        let itemWidth: CGFloat = maxSize.width
         let itemHeight: CGFloat = maxSize.height * 0.18
         return CGSize(width: itemWidth, height: itemHeight)
     }
