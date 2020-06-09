@@ -22,23 +22,14 @@ class LikedArtistsViewController: UIViewController {
        setUpCollectionView()
         likedArtistView.likedArtistCollectionView.register(UINib(nibName: "ArtistCell", bundle: nil), forCellWithReuseIdentifier: "artistCell")
 
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Chat", style: .plain, target: self, action: #selector(showMessages))
-
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "envelope.badge"), style: .plain, target: self, action: #selector(showMessages))
+        navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
     }
     
     private func setUpCollectionView(){
         
         likedArtistView.likedArtistCollectionView.dataSource = self
         likedArtistView.likedArtistCollectionView.delegate = self
-//        likedArtistView.contactsCollectionView.dataSource = self
-//        likedArtistView.contactsCollectionView.delegate = self
-        
-        
-
-//        likedArtistView.contactsCollectionView.register(ArtistCell.self, forCellWithReuseIdentifier: "artistCell")
-
-
-        
 
     }
     
@@ -66,19 +57,17 @@ extension LikedArtistsViewController: UICollectionViewDataSource {
         
         return artistCell
 
-        let cell = UICollectionViewCell()
-        return cell
-
     }
-    
     
 }
 
+
 extension LikedArtistsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let maxSize:CGSize = UIScreen.main.bounds.size
-        let itemWidth:CGFloat = maxSize.width * 0.4
-        return CGSize(width: itemWidth, height: collectionView.bounds.size.height * 0.3)
+        let maxSize: CGSize = UIScreen.main.bounds.size
+          let itemWidth: CGFloat = maxSize.width * 0.90
+        let itemHeight: CGFloat = maxSize.height * 0.18
+        return CGSize(width: itemWidth, height: itemHeight)
     }
-    
+
 }

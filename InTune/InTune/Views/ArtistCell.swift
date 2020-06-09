@@ -10,8 +10,11 @@ import UIKit
 
 class ArtistCell: UICollectionViewCell {
     
-    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet var imageView: UIImageView!
+    @IBOutlet var displayNameLabel: UILabel!
+    @IBOutlet var locationLabel: UILabel!
+    @IBOutlet var statusButton: UIButton!
+    @IBOutlet var postStatusLabel: UILabel!
     
-    @IBOutlet weak var displayNameLabel: UILabel!
     
 }
