@@ -73,22 +73,21 @@ class DatabaseService {
 //        db.collection(DatabaseService.artistsCollection).document(user.uid).get
     }
     
-<<<<<<< HEAD
-    //update fucntion for tags. will create a helper function that saves the "tags" to an array then we will update the database with the array.
+//update fucntion for tags. will create a helper function that saves the "tags" to an array then we will update the database with the array.
     
     public func updateUserTags(instruments:[String], genres:[String], completion: @escaping (Result<Bool,Error>) -> () ){
         guard let user = Auth.auth().currentUser else {return}
         
         db.collection(DatabaseService.artistsCollection).document(user.uid).updateData(["instruments":instruments,"tags":genres]) { (error) in
-            
-=======
+        }
+    }
     public func createVideoPosts(post: ArtistPost, completion: @escaping (Result<Bool, Error>) -> ()) {
         
         guard let user = Auth.auth().currentUser else {return}
         
         db.collection(DatabaseService.artistsCollection).document(user.uid).collection(DatabaseService.artistPosts).addDocument(data: ["videos" : post.postURL]) { (error) in
             //add all elements here later
->>>>>>> bbe6ac2fec4e26ad72171fb739ab08a34e19b6bf
+
             if let error = error {
                 completion(.failure(error))
             } else {
@@ -96,16 +95,6 @@ class DatabaseService {
             }
         }
     }
-<<<<<<< HEAD
-    
-    
-    
-    
-    
-    
-    
-    
-=======
->>>>>>> bbe6ac2fec4e26ad72171fb739ab08a34e19b6bf
-    
+
 }
+
