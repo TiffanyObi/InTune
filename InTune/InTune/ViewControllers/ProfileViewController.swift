@@ -22,14 +22,6 @@ class ProfileViewController: UIViewController {
     @IBOutlet private var chatButton: UIButton!
     @IBOutlet var infoView: DesignableView!
     
-    private lazy var imagePickerController: UIImagePickerController = {
-        let mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)
-        let pickerController = UIImagePickerController()
-        pickerController.mediaTypes = mediaTypes ?? ["kUTTypeImage"]
-        pickerController.delegate = self
-        return pickerController
-    }()
-    
     let postCVDelegate = PostCollectionViewDelegate()
     let tagsCVDelegate = TagsCVDelegate()
     
@@ -61,6 +53,11 @@ class ProfileViewController: UIViewController {
         
     }
     
+    
+    @IBAction func postVideoButtonPressed(_ sender: UIBarButtonItem) {
+        
+    }
+    
     @IBAction func settingsButtonPressed(_ sender: UIBarButtonItem) {
         
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
@@ -87,13 +84,6 @@ class ProfileViewController: UIViewController {
         print(Auth.auth().currentUser?.email ?? "not current user because youre not logged in or signed up")
     }
     
-    @IBAction func addMediaButtonPressed(_ sender: UIBarButtonItem) {
-        imagePickerController.sourceType = .photoLibrary
-        present(imagePickerController, animated: true)
-        
-    }
-    
-    
     @IBAction func favArtistButtonPressed(_ sender: UIButton) {
         print("favorited")
     }
@@ -103,24 +93,4 @@ class ProfileViewController: UIViewController {
         print("chat")
     }
     
-}
-
-
-extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        
-        guard let mediaType = info[UIImagePickerController.InfoKey.mediaType] as? String else  {
-            return
-        }
-        
-        switch mediaType {
-        case "public.image":
-            print("image picked")
-        case "public.movie":
-            print("video picked")
-        default:
-            print("default")
-        }
-    }
 }

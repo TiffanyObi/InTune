@@ -299,13 +299,13 @@
                         <barButtonItem key="rightBarButtonItem" image="video.badge.plus.fill" catalog="system" id="TqD-UE-TOD">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
-                                <action selector="addMediaButtonPressed:" destination="jg0-Mi-I9y" id="b8K-AZ-T5r"/>
+                                <action selector="postVideoButtonPressed:" destination="jg0-Mi-I9y" id="JhW-CN-biV"/>
                                 <segue destination="FSs-2j-PIi" kind="presentation" id="APS-FZ-Mn7"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="addMediaButton" destination="TqD-UE-TOD" id="zZs-59-uRL"/>
+                        <outlet property="addMediaButton" destination="TqD-UE-TOD" id="f5d-1L-6pt"/>
                         <outlet property="bioLabel" destination="DHD-Jc-nYt" id="VVl-JE-pqB"/>
                         <outlet property="chatButton" destination="NFh-zL-gVQ" id="CmE-xM-hbc"/>
                         <outlet property="emailLabel" destination="YWW-US-s2D" id="9sa-7r-T9v"/>
@@ -361,7 +361,14 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="createPostButtonPressed:" destination="FSs-2j-PIi" eventType="touchUpInside" id="eWJ-Iu-a0o"/>
+                                    <action selector="postButtonPressed:" destination="FSs-2j-PIi" eventType="touchUpInside" id="RRB-Ct-gv1"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uYI-qP-saV">
+                                <rect key="frame" x="171.5" y="40" width="71" height="30"/>
+                                <state key="normal" title="Add Video"/>
+                                <connections>
+                                    <action selector="addPostButtonPressed:" destination="FSs-2j-PIi" eventType="touchUpInside" id="ccK-ym-sgH"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -372,7 +379,9 @@
                             <constraint firstItem="dAC-V6-Dv7" firstAttribute="leading" secondItem="Pku-Je-f9j" secondAttribute="leading" constant="40" id="MH8-tQ-hiX"/>
                             <constraint firstItem="g0g-3i-ucc" firstAttribute="top" secondItem="dAC-V6-Dv7" secondAttribute="bottom" constant="80" id="OlX-PL-Y4O"/>
                             <constraint firstItem="g0g-3i-ucc" firstAttribute="centerX" secondItem="40B-Fd-4bx" secondAttribute="centerX" id="Q0S-Hy-AmZ"/>
+                            <constraint firstItem="uYI-qP-saV" firstAttribute="centerX" secondItem="40B-Fd-4bx" secondAttribute="centerX" id="WUG-gE-Og2"/>
                             <constraint firstItem="Pku-Je-f9j" firstAttribute="trailing" secondItem="dAC-V6-Dv7" secondAttribute="trailing" constant="40" id="XjH-1h-yBV"/>
+                            <constraint firstItem="uYI-qP-saV" firstAttribute="top" secondItem="Pku-Je-f9j" secondAttribute="top" constant="40" id="aEV-03-Loq"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Pku-Je-f9j"/>
                     </view>
@@ -382,7 +391,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UyS-m9-AwO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1792.753623188406" y="-530.35714285714289"/>
+            <point key="canvasLocation" x="1778" y="-540"/>
         </scene>
         <!--Main View Tab Bar Controller-->
         <scene sceneID="CsY-LM-jPn">

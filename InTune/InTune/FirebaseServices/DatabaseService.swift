@@ -10,9 +10,12 @@ import Foundation
 import Firebase
 import FirebaseFirestore
 import FirebaseAuth
+
+
 class DatabaseService {
   
   static let artistsCollection = "artists"
+    static let artistPosts = "artistPost"
     private let db = Firestore.firestore()
   static let shared = DatabaseService()
     
@@ -53,7 +56,7 @@ class DatabaseService {
         
         guard let user = Auth.auth().currentUser else {return}
         
-        db.collection(DatabaseService.artistsCollection).document(user.uid).updateData(["name":userName, "city":location]) { (error) in
+        db.collection(DatabaseService.artistsCollection).document(user.uid).updateData(["name": userName, "city":location]) { (error) in
             if let error = error {
                 completion(.failure(error))
             } else {
@@ -63,25 +66,25 @@ class DatabaseService {
         
     }
     
+    //fetch artist
+    public func fetchArtist(completion: @escaping (Result<Bool, Error>) -> ()) {
+        guard let user = Auth.auth().currentUser else {return}
+        
+//        db.collection(DatabaseService.artistsCollection).document(user.uid).get
+    }
     
-    //update fucntion for tags. will create a helper function that saves the "tags" to an array then we will update the database with the array.
+    public func createVideoPosts(post: ArtistPost, completion: @escaping (Result<Bool, Error>) -> ()) {
+        
+        guard let user = Auth.auth().currentUser else {return}
+        
+        db.collection(DatabaseService.artistsCollection).document(user.uid).collection(DatabaseService.artistPosts).addDocument(data: ["videos" : post.postURL]) { (error) in
+            //add all elements here later
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(true))
+            }
+        }
+    }
     
-    
-    
-//  public func createMedia(imediaName: String, displayName: String, completion: @escaping (Result<String,Error>) ->()) {
-//    guard let user = Auth.auth().currentUser else { return }
-//    let documentRef = db.collection(DatabaseService.itemsCollection).document()
-//    db.collection(DatabaseService.itemsCollection).document(documentRef.documentID).setData(["itemName" :itemName,
-//                                                 "details":details,
-//                                                 "id":documentRef.documentID,
-//                                                 "listedDate":Timestamp(date: Date()),
-//                                                 "postedBy":displayName,
-//                                                 "postedById":user.uid]) { (error) in
-//                                                  if let error = error {
-//                                                    completion(.failure(error ))
-//                                                  } else {
-//                                                    completion(.success(documentRef.documentID))
-//                                                  }
-//    }
-//  }
 }
