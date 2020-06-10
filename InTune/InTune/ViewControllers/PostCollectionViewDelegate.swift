@@ -61,10 +61,11 @@ class FeaturedArtistCVDelegate: NSObject,UICollectionViewDelegate, UICollectionV
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let itemSpacing: CGFloat = 1
-        let maxWidth = CGFloat(80)
+        let maxSize: CGSize = UIScreen.main.bounds.size
         let numberOfItems: CGFloat = 1
         let totalSpace: CGFloat = numberOfItems * itemSpacing
-        let itemWidth: CGFloat = (maxWidth - totalSpace) / numberOfItems
+        let maxS: CGFloat = maxSize.height * 0.1
+        let itemWidth: CGFloat = (maxS - totalSpace) / numberOfItems
         
         return CGSize(width: itemWidth, height: 80)
     }

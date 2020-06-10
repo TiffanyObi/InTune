@@ -11,7 +11,6 @@ import UIKit
 class ExploreViewController: UIViewController {
 
     @IBOutlet private var tagsCollectionView: UICollectionView!
-    @IBOutlet private var viewSegmentedControl: UISegmentedControl!
     @IBOutlet private var artistTableView: UITableView!
     @IBOutlet private var featuredArtistCV: UICollectionView!
     
@@ -28,7 +27,6 @@ class ExploreViewController: UIViewController {
         featuredArtistCV.register(UINib(nibName: "FeaturedArtist", bundle: nil), forCellWithReuseIdentifier: "featuredArtist")
         setUpCVs()
         setUpTV()
-        setUpSegmentedControl()
     }
     
     private func setUpCVs() {
@@ -41,10 +39,6 @@ class ExploreViewController: UIViewController {
     private func setUpTV() {
         artistTableView.delegate = self
         artistTableView.dataSource = self
-    }
-    
-    private func setUpSegmentedControl() {
-        viewSegmentedControl.selectedSegmentTintColor = #colorLiteral(red: 0.3867273331, green: 0.8825651407, blue: 0.8684034944, alpha: 1)
     }
 
 }
