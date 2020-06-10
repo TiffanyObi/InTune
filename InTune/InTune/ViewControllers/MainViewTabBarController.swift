@@ -26,9 +26,10 @@ class MainViewTabBarController: UITabBarController {
     }()
     
     lazy var gigsVC:GigViewController = {
-        let vc = GigViewController()
-        vc.tabBarItem = UITabBarItem(title: "Gigs", image: UIImage(systemName: "hand.thumbsup.fill"), tag: 2)
-        return vc
+      let storyboard = UIStoryboard(name: "GigsView", bundle: nil)
+         guard let viewController =  storyboard.instantiateViewController(identifier: "GigViewController") as? GigViewController else { return GigViewController()}
+         viewController.tabBarItem = UITabBarItem(title: "Gigs", image: UIImage(systemName: "hand.thumbsup.fill"), tag: 2)
+         return viewController
     }()
     
     lazy var profileVC:ProfileViewController = {

@@ -55,6 +55,11 @@
 		80D58F7F248AE44F005392A0 /* FeaturedArtist.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80D58F7E248AE44F005392A0 /* FeaturedArtist.xib */; };
 		80D58F81248AE7E8005392A0 /* FeaturedArtistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D58F80248AE7E8005392A0 /* FeaturedArtistCell.swift */; };
 		80E3D260248EC649002F3FA7 /* PostCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E3D25F248EC649002F3FA7 /* PostCollectionViewDelegate.swift */; };
+		BE4F5939248FE1D400BDE375 /* GigsView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE4F5938248FE1D400BDE375 /* GigsView.storyboard */; };
+		BE4F593B248FE38600BDE375 /* CreateGigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4F593A248FE38600BDE375 /* CreateGigViewController.swift */; };
+		BE4F5941249122AC00BDE375 /* GigCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4F5940249122AC00BDE375 /* GigCell.swift */; };
+		BE4F5943249122BF00BDE375 /* GigCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE4F5942249122BF00BDE375 /* GigCell.xib */; };
+		BE4F594524912C2000BDE375 /* GigDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE4F594424912C2000BDE375 /* GigDetailViewController.swift */; };
 		BEDF3FC9248533B000D22E2D /* MessageView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEDF3FC8248533B000D22E2D /* MessageView.storyboard */; };
 		BEDF3FCB248533D400D22E2D /* ChatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDF3FCA248533D400D22E2D /* ChatsViewController.swift */; };
 		BEDF3FCD2485349A00D22E2D /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDF3FCC2485349A00D22E2D /* Chat.swift */; };
@@ -133,6 +138,11 @@
 		80D58F80248AE7E8005392A0 /* FeaturedArtistCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedArtistCell.swift; sourceTree = "<group>"; };
 		80E3D25F248EC649002F3FA7 /* PostCollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCollectionViewDelegate.swift; sourceTree = "<group>"; };
 		9BE6182879AA5607E95E84A9 /* Pods-InTuneTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InTuneTests.debug.xcconfig"; path = "Target Support Files/Pods-InTuneTests/Pods-InTuneTests.debug.xcconfig"; sourceTree = "<group>"; };
+		BE4F5938248FE1D400BDE375 /* GigsView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GigsView.storyboard; sourceTree = "<group>"; };
+		BE4F593A248FE38600BDE375 /* CreateGigViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGigViewController.swift; sourceTree = "<group>"; };
+		BE4F5940249122AC00BDE375 /* GigCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigCell.swift; sourceTree = "<group>"; };
+		BE4F5942249122BF00BDE375 /* GigCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GigCell.xib; sourceTree = "<group>"; };
+		BE4F594424912C2000BDE375 /* GigDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigDetailViewController.swift; sourceTree = "<group>"; };
 		BEDF3FC8248533B000D22E2D /* MessageView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MessageView.storyboard; sourceTree = "<group>"; };
 		BEDF3FCA248533D400D22E2D /* ChatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsViewController.swift; sourceTree = "<group>"; };
 		BEDF3FCC2485349A00D22E2D /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
@@ -241,6 +251,8 @@
 				3E43F492247E9B3F00CC0584 /* ExtraController2.swift */,
 				BEDF3FCA248533D400D22E2D /* ChatsViewController.swift */,
 				BEDF3FD02485354B00D22E2D /* ChatViewController.swift */,
+				BE4F593A248FE38600BDE375 /* CreateGigViewController.swift */,
+				BE4F594424912C2000BDE375 /* GigDetailViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -271,6 +283,8 @@
 				80D58F7E248AE44F005392A0 /* FeaturedArtist.xib */,
 				3E379999248963EB00DC0487 /* ArtistCell.swift */,
 				80142DB0248ABB6C002C928C /* ExploreArtistCell.swift */,
+				BE4F5940249122AC00BDE375 /* GigCell.swift */,
+				BE4F5942249122BF00BDE375 /* GigCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -282,6 +296,7 @@
 				3E43F46F247E8F6400CC0584 /* LoginView.storyboard */,
 				BEDF3FC8248533B000D22E2D /* MessageView.storyboard */,
 				80142DAE248AB85F002C928C /* ExploreView.storyboard */,
+				BE4F5938248FE1D400BDE375 /* GigsView.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -416,9 +431,11 @@
 				3EA7E76F24888FD50092C03B /* ArtistCell.xib in Resources */,
 				BEDF3FC9248533B000D22E2D /* MessageView.storyboard in Resources */,
 				3E43F46E247E8EA200CC0584 /* MainView.storyboard in Resources */,
+				BE4F5943249122BF00BDE375 /* GigCell.xib in Resources */,
 				3E43F441247D7B8D00CC0584 /* Assets.xcassets in Resources */,
 				80142DAF248AB85F002C928C /* ExploreView.storyboard in Resources */,
 				3E754302248EF06100383D02 /* TagCollectionViewCell.xib in Resources */,
+				BE4F5939248FE1D400BDE375 /* GigsView.storyboard in Resources */,
 				3E43F470247E8F6400CC0584 /* LoginView.storyboard in Resources */,
 				3EE739022481C10B00C4C9D3 /* GoogleService-Info.plist in Resources */,
 			);
@@ -505,6 +522,7 @@
 				3E43F45F247E846400CC0584 /* ProfileViewController.swift in Sources */,
 				3E43F48B247E9A7C00CC0584 /* Posts.swift in Sources */,
 				3E37999A248963EB00DC0487 /* ArtistCell.swift in Sources */,
+				BE4F594524912C2000BDE375 /* GigDetailViewController.swift in Sources */,
 				3E43F481247E981700CC0584 /* Enthusiast.swift in Sources */,
 				BEDF3FD12485354B00D22E2D /* ChatViewController.swift in Sources */,
 				BEDF3FCF248534A600D22E2D /* Message.swift in Sources */,
@@ -536,10 +554,12 @@
 				3E43F48D247E9AF800CC0584 /* LikedArtistView.swift in Sources */,
 				80E3D260248EC649002F3FA7 /* PostCollectionViewDelegate.swift in Sources */,
 				80D58F81248AE7E8005392A0 /* FeaturedArtistCell.swift in Sources */,
+				BE4F593B248FE38600BDE375 /* CreateGigViewController.swift in Sources */,
 				BEDF3FCD2485349A00D22E2D /* Chat.swift in Sources */,
 				3E43F479247E90CA00CC0584 /* Navigation.swift in Sources */,
 				3E43F45D247E844B00CC0584 /* GigViewController.swift in Sources */,
 				3E43F47F247E97FF00CC0584 /* Artist.swift in Sources */,
+				BE4F5941249122AC00BDE375 /* GigCell.swift in Sources */,
 				3E43F46A247E8DE800CC0584 /* DatabaseService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
