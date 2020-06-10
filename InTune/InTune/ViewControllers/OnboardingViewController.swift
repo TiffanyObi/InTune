@@ -13,11 +13,15 @@ class OnboardingViewController: UIViewController {
     let userExperienece = UserExperienceView()
     let displayNameAndLocation = DisplayNameAndLocationView()
     let tagsSelectionView = TagsSelectionView()
+    
     let database = DatabaseService()
+    
     let states = StatesForPickerView.states
     var displayName = ""
-    
     var userLocation = ""
+    
+    let instruments = [String]()
+    let genres = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +31,10 @@ class OnboardingViewController: UIViewController {
         setUpTextFeildFroDisplayNameView()
         setUoPickerViewForLocationView()
         setUpNextButton()
+        setUpCollectionViews()
     }
+    
+    
     
     func setUpButtonOnExperienceView(){
         for button in userExperienece.allButtons {
@@ -46,6 +53,13 @@ class OnboardingViewController: UIViewController {
     
     func setUpNextButton(){
         displayNameAndLocation.nextButton.addTarget(self, action: #selector(nextButtonPressed), for: .touchUpInside)
+    }
+    
+    func setUpCollectionViews(){
+        tagsSelectionView.instrumentsCollectionView.dataSource = self
+        tagsSelectionView.instrumentsCollectionView.delegate = self
+        tagsSelectionView.genresCollectionView.dataSource = self
+        tagsSelectionView.genresCollectionView.delegate = self
     }
     
     @objc func chooseUserExperience(_ sender: UIButton){
@@ -135,6 +149,20 @@ extension OnboardingViewController: UIPickerViewDataSource, UIPickerViewDelegate
         
     
         userLocation = states[row]
+        
+        
     }
+    
+}
+
+extension OnboardingViewController: UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        <#code#>
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        <#code#>
+    }
+    
     
 }

@@ -20,7 +20,7 @@ class TagCollectionViewCell: UICollectionViewCell {
         
         @IBAction func buttonTapped(_ sender: UIButton) {
             
-            onButtonTapped?(sender.titleLabel?.text ?? "Tag")
+
         }
 }
 

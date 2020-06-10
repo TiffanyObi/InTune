@@ -16,7 +16,7 @@ struct Tags{
     
     
     
-    static let genreList = [""]
+    static let genreList = ["Hip Hop", "Pop","Rhythm & Blues","Alternative","Gospel","Country","Rap","Blues","Classical","Opera","Soca","Reggae","Disco"].sorted()
         
 }
 
