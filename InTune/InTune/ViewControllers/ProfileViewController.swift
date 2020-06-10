@@ -78,7 +78,6 @@ class ProfileViewController: UIViewController {
             let storyboard = UIStoryboard(name: "MainView", bundle: nil)
             let editProfVC = storyboard.instantiateViewController(withIdentifier: "EditProfController")
             self.navigationController?.show(editProfVC, sender: nil)
-            
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         alertController.addAction(signOutAction)
