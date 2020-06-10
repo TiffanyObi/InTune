@@ -12,8 +12,8 @@ class PostCollectionViewDelegate: NSObject,UICollectionViewDelegate, UICollectio
     
      func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let maxSize: CGSize = UIScreen.main.bounds.size
-         let itemWidth: CGFloat = maxSize.width * 0.40
-         let itemHeight: CGFloat = maxSize.height * 0.20
+        let itemWidth: CGFloat = maxSize.width * 0.40
+         let itemHeight: CGFloat = maxSize.height * 0.40
          return CGSize(width: itemWidth, height: itemHeight)
      }
      
@@ -61,10 +61,11 @@ class FeaturedArtistCVDelegate: NSObject,UICollectionViewDelegate, UICollectionV
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let itemSpacing: CGFloat = 1
-        let maxWidth = CGFloat(80)
+        let maxSize: CGSize = UIScreen.main.bounds.size
         let numberOfItems: CGFloat = 1
         let totalSpace: CGFloat = numberOfItems * itemSpacing
-        let itemWidth: CGFloat = (maxWidth - totalSpace) / numberOfItems
+        let maxS: CGFloat = maxSize.height * 0.1
+        let itemWidth: CGFloat = (maxS - totalSpace) / numberOfItems
         
         return CGSize(width: itemWidth, height: 80)
     }

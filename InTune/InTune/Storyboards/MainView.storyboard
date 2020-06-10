@@ -291,20 +291,21 @@
                     </view>
                     <navigationItem key="navigationItem" id="t1I-qF-QgC">
                         <barButtonItem key="leftBarButtonItem" image="gear" catalog="system" id="kJB-kb-vaT">
-                            <color key="tintColor" red="0.31240576289999999" green="0.058394156019999997" blue="0.70837960030000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="settingsButtonPressed:" destination="jg0-Mi-I9y" id="edC-kR-hrc"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="video.badge.plus.fill" catalog="system" id="TqD-UE-TOD">
-                            <color key="tintColor" red="0.52265780021962693" green="0.87158946700507611" blue="0.86406644869189397" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
-                                <action selector="addMediaButtonPressed:" destination="jg0-Mi-I9y" id="b8K-AZ-T5r"/>
+                                <action selector="postVideoButtonPressed:" destination="jg0-Mi-I9y" id="JhW-CN-biV"/>
+                                <segue destination="FSs-2j-PIi" kind="presentation" id="APS-FZ-Mn7"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="addMediaButton" destination="TqD-UE-TOD" id="zZs-59-uRL"/>
+                        <outlet property="addMediaButton" destination="TqD-UE-TOD" id="f5d-1L-6pt"/>
                         <outlet property="bioLabel" destination="DHD-Jc-nYt" id="VVl-JE-pqB"/>
                         <outlet property="chatButton" destination="NFh-zL-gVQ" id="CmE-xM-hbc"/>
                         <outlet property="emailLabel" destination="YWW-US-s2D" id="9sa-7r-T9v"/>
@@ -319,6 +320,78 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gbC-bX-jNL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="702.89855072463774" y="-540.40178571428567"/>
+        </scene>
+        <!--Video Post View Controller-->
+        <scene sceneID="JyV-dX-6DU">
+            <objects>
+                <viewController storyboardIdentifier="VideoPostViewController" id="FSs-2j-PIi" customClass="VideoPostViewController" customModule="InTune" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="40B-Fd-4bx">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="video.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="dAC-V6-Dv7" customClass="DesignableImageView" customModule="InTune" customModuleProvider="target">
+                                <rect key="frame" x="40" y="100.5" width="334" height="285"/>
+                                <color key="backgroundColor" red="0.31240576289999999" green="0.058394156019999997" blue="0.70837960030000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="tintColor" red="0.52265780019999997" green="0.87158946699999995" blue="0.86406644870000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="286" id="aPa-fB-TA4"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g0g-3i-ucc" customClass="DesignableButton" customModule="InTune" customModuleProvider="target">
+                                <rect key="frame" x="147" y="466" width="120" height="44"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="imB-wT-y8g"/>
+                                    <constraint firstAttribute="width" constant="120" id="tW3-er-DTx"/>
+                                </constraints>
+                                <state key="normal" title="Post">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="postButtonPressed:" destination="FSs-2j-PIi" eventType="touchUpInside" id="RRB-Ct-gv1"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uYI-qP-saV">
+                                <rect key="frame" x="171.5" y="40" width="71" height="30"/>
+                                <state key="normal" title="Add Video"/>
+                                <connections>
+                                    <action selector="addPostButtonPressed:" destination="FSs-2j-PIi" eventType="touchUpInside" id="ccK-ym-sgH"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="dAC-V6-Dv7" firstAttribute="centerX" secondItem="40B-Fd-4bx" secondAttribute="centerX" id="2eI-Wm-pgn"/>
+                            <constraint firstItem="dAC-V6-Dv7" firstAttribute="top" secondItem="Pku-Je-f9j" secondAttribute="top" constant="100" id="GC0-bQ-YpA"/>
+                            <constraint firstItem="dAC-V6-Dv7" firstAttribute="leading" secondItem="Pku-Je-f9j" secondAttribute="leading" constant="40" id="MH8-tQ-hiX"/>
+                            <constraint firstItem="g0g-3i-ucc" firstAttribute="top" secondItem="dAC-V6-Dv7" secondAttribute="bottom" constant="80" id="OlX-PL-Y4O"/>
+                            <constraint firstItem="g0g-3i-ucc" firstAttribute="centerX" secondItem="40B-Fd-4bx" secondAttribute="centerX" id="Q0S-Hy-AmZ"/>
+                            <constraint firstItem="uYI-qP-saV" firstAttribute="centerX" secondItem="40B-Fd-4bx" secondAttribute="centerX" id="WUG-gE-Og2"/>
+                            <constraint firstItem="Pku-Je-f9j" firstAttribute="trailing" secondItem="dAC-V6-Dv7" secondAttribute="trailing" constant="40" id="XjH-1h-yBV"/>
+                            <constraint firstItem="uYI-qP-saV" firstAttribute="top" secondItem="Pku-Je-f9j" secondAttribute="top" constant="40" id="aEV-03-Loq"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Pku-Je-f9j"/>
+                    </view>
+                    <connections>
+                        <outlet property="videoView" destination="dAC-V6-Dv7" id="WxM-NA-TSv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UyS-m9-AwO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1778" y="-540"/>
         </scene>
         <!--Main View Tab Bar Controller-->
         <scene sceneID="CsY-LM-jPn">
@@ -381,5 +454,6 @@
         <image name="person.circle.fill" catalog="system" width="128" height="121"/>
         <image name="person.crop.circle" catalog="system" width="128" height="121"/>
         <image name="video.badge.plus.fill" catalog="system" width="128" height="80"/>
+        <image name="video.circle.fill" catalog="system" width="128" height="121"/>
     </resources>
 </document>

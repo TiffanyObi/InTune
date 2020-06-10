@@ -12,6 +12,7 @@ class ExploreArtistCell: UITableViewCell {
     
     public lazy var artistImage: UIImageView = {
         let image = UIImageView()
+        image.tintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         image.image = UIImage(systemName: "person.fill")
         return image
     }()

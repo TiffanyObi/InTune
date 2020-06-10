@@ -31,12 +31,10 @@
 		3E43F47F247E97FF00CC0584 /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F47E247E97FF00CC0584 /* Artist.swift */; };
 		3E43F483247E983300CC0584 /* FavoriteArtist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F482247E983300CC0584 /* FavoriteArtist.swift */; };
 		3E43F485247E985700CC0584 /* LoginViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F484247E985700CC0584 /* LoginViewViewModel.swift */; };
-		3E43F487247E999A00CC0584 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F486247E999900CC0584 /* Comment.swift */; };
-		3E43F489247E99B000CC0584 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F488247E99B000CC0584 /* Review.swift */; };
 		3E43F48B247E9A7C00CC0584 /* Posts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F48A247E9A7C00CC0584 /* Posts.swift */; };
 		3E43F48D247E9AF800CC0584 /* LikedArtistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F48C247E9AF800CC0584 /* LikedArtistView.swift */; };
 		3E43F491247E9B2400CC0584 /* LikedArtistsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F490247E9B2400CC0584 /* LikedArtistsViewController.swift */; };
-		3E43F493247E9B3F00CC0584 /* ExtraController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F492247E9B3F00CC0584 /* ExtraController2.swift */; };
+		3E43F493247E9B3F00CC0584 /* VideoPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F492247E9B3F00CC0584 /* VideoPostViewController.swift */; };
 		3E754302248EF06100383D02 /* TagCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E754301248EF06100383D02 /* TagCollectionViewCell.xib */; };
 		3E754304248FD0C600383D02 /* UserExperienceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E754303248FD0C600383D02 /* UserExperienceView.swift */; };
 		3E75433B2490027500383D02 /* OnboardingView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E75433A2490027500383D02 /* OnboardingView.storyboard */; };
@@ -109,12 +107,10 @@
 		3E43F47E247E97FF00CC0584 /* Artist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
 		3E43F482247E983300CC0584 /* FavoriteArtist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteArtist.swift; sourceTree = "<group>"; };
 		3E43F484247E985700CC0584 /* LoginViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewViewModel.swift; sourceTree = "<group>"; };
-		3E43F486247E999900CC0584 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
-		3E43F488247E99B000CC0584 /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		3E43F48A247E9A7C00CC0584 /* Posts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Posts.swift; sourceTree = "<group>"; };
 		3E43F48C247E9AF800CC0584 /* LikedArtistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedArtistView.swift; sourceTree = "<group>"; };
 		3E43F490247E9B2400CC0584 /* LikedArtistsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedArtistsViewController.swift; sourceTree = "<group>"; };
-		3E43F492247E9B3F00CC0584 /* ExtraController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtraController2.swift; sourceTree = "<group>"; };
+		3E43F492247E9B3F00CC0584 /* VideoPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPostViewController.swift; sourceTree = "<group>"; };
 		3E754301248EF06100383D02 /* TagCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TagCollectionViewCell.xib; sourceTree = "<group>"; };
 		3E754303248FD0C600383D02 /* UserExperienceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserExperienceView.swift; sourceTree = "<group>"; };
 		3E75433A2490027500383D02 /* OnboardingView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OnboardingView.storyboard; sourceTree = "<group>"; };
@@ -246,7 +242,7 @@
 				3E43F45C247E844B00CC0584 /* GigViewController.swift */,
 				3E43F471247E8FAE00CC0584 /* OnboardingViewController.swift */,
 				3E43F490247E9B2400CC0584 /* LikedArtistsViewController.swift */,
-				3E43F492247E9B3F00CC0584 /* ExtraController2.swift */,
+				3E43F492247E9B3F00CC0584 /* VideoPostViewController.swift */,
 				BEDF3FCA248533D400D22E2D /* ChatsViewController.swift */,
 				BEDF3FD02485354B00D22E2D /* ChatViewController.swift */,
 			);
@@ -318,8 +314,6 @@
 				3E43F48A247E9A7C00CC0584 /* Posts.swift */,
 				3E43F482247E983300CC0584 /* FavoriteArtist.swift */,
 				3E43F484247E985700CC0584 /* LoginViewViewModel.swift */,
-				3E43F486247E999900CC0584 /* Comment.swift */,
-				3E43F488247E99B000CC0584 /* Review.swift */,
 				BEDF3FCC2485349A00D22E2D /* Chat.swift */,
 				BEDF3FCE248534A600D22E2D /* Message.swift */,
 			);
@@ -520,8 +514,7 @@
 				3E37999A248963EB00DC0487 /* ArtistCell.swift in Sources */,
 				BEDF3FD12485354B00D22E2D /* ChatViewController.swift in Sources */,
 				BEDF3FCF248534A600D22E2D /* Message.swift in Sources */,
-				3E43F493247E9B3F00CC0584 /* ExtraController2.swift in Sources */,
-				3E43F489247E99B000CC0584 /* Review.swift in Sources */,
+				3E43F493247E9B3F00CC0584 /* VideoPostViewController.swift in Sources */,
 				BEDF3FCB248533D400D22E2D /* ChatsViewController.swift in Sources */,
 				80C375B724819E3F00152996 /* TagCollectionViewCell.swift in Sources */,
 				3E43F483247E983300CC0584 /* FavoriteArtist.swift in Sources */,
@@ -545,7 +538,6 @@
 				3E43F485247E985700CC0584 /* LoginViewViewModel.swift in Sources */,
 				3E43F477247E90B700CC0584 /* DateFormatter.swift in Sources */,
 				3E43F475247E909A00CC0584 /* ShowAlert.swift in Sources */,
-				3E43F487247E999A00CC0584 /* Comment.swift in Sources */,
 				3E43F48D247E9AF800CC0584 /* LikedArtistView.swift in Sources */,
 				80E3D260248EC649002F3FA7 /* PostCollectionViewDelegate.swift in Sources */,
 				80D58F81248AE7E8005392A0 /* FeaturedArtistCell.swift in Sources */,

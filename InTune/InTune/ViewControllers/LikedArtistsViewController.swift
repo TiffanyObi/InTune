@@ -17,28 +17,19 @@ class LikedArtistsViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemGroupedBackground
+        view.backgroundColor = .white
 
        setUpCollectionView()
         likedArtistView.likedArtistCollectionView.register(UINib(nibName: "ArtistCell", bundle: nil), forCellWithReuseIdentifier: "artistCell")
 
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Chat", style: .plain, target: self, action: #selector(showMessages))
-
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "ellipses.bubble.fill"), style: .plain, target: self, action: #selector(showMessages))
+        navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
     }
     
     private func setUpCollectionView(){
         
         likedArtistView.likedArtistCollectionView.dataSource = self
         likedArtistView.likedArtistCollectionView.delegate = self
-//        likedArtistView.contactsCollectionView.dataSource = self
-//        likedArtistView.contactsCollectionView.delegate = self
-        
-        
-
-//        likedArtistView.contactsCollectionView.register(ArtistCell.self, forCellWithReuseIdentifier: "artistCell")
-
-
-        
 
     }
     
@@ -48,8 +39,6 @@ class LikedArtistsViewController: UIViewController {
         navigationController?.show(viewController, sender: self)
     }
     
-    
-    
 }
 
 extension LikedArtistsViewController: UICollectionViewDataSource {
@@ -58,27 +47,24 @@ extension LikedArtistsViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
-        
         guard let artistCell = collectionView.dequeueReusableCell(withReuseIdentifier:"artistCell", for: indexPath) as? ArtistCell else {
             fatalError("Could not downcast to ArtistCell")
         }
         
+        
         return artistCell
 
-        let cell = UICollectionViewCell()
-        return cell
-
     }
-    
     
 }
 
+
 extension LikedArtistsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let maxSize:CGSize = UIScreen.main.bounds.size
-        let itemWidth:CGFloat = maxSize.width * 0.4
-        return CGSize(width: itemWidth, height: collectionView.bounds.size.height * 0.3)
+        let maxSize: CGSize = UIScreen.main.bounds.size
+        let itemWidth: CGFloat = maxSize.width
+        let itemHeight: CGFloat = maxSize.height * 0.18
+        return CGSize(width: itemWidth, height: itemHeight)
     }
-    
+
 }

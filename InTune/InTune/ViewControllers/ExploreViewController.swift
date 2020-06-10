@@ -11,12 +11,13 @@ import UIKit
 class ExploreViewController: UIViewController {
 
     @IBOutlet private var tagsCollectionView: UICollectionView!
-    @IBOutlet private var viewSegmentedControl: UISegmentedControl!
     @IBOutlet private var artistTableView: UITableView!
     @IBOutlet private var featuredArtistCV: UICollectionView!
     
     let tabsCVDelegate = TagsCVDelegate()
     let featuredCVDelegate = FeaturedArtistCVDelegate()
+    
+    let height: CGFloat = 120
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +27,6 @@ class ExploreViewController: UIViewController {
         featuredArtistCV.register(UINib(nibName: "FeaturedArtist", bundle: nil), forCellWithReuseIdentifier: "featuredArtist")
         setUpCVs()
         setUpTV()
-        setUpSegmentedControl()
     }
     
     private func setUpCVs() {
@@ -40,10 +40,6 @@ class ExploreViewController: UIViewController {
         artistTableView.delegate = self
         artistTableView.dataSource = self
     }
-    
-    private func setUpSegmentedControl() {
-        viewSegmentedControl.selectedSegmentTintColor = #colorLiteral(red: 0.3867273331, green: 0.8825651407, blue: 0.8684034944, alpha: 1)
-    }
 
 }
 
@@ -51,7 +47,7 @@ class ExploreViewController: UIViewController {
 extension ExploreViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 120
+        return height
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 5
