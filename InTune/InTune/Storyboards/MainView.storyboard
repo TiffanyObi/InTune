@@ -291,13 +291,13 @@
                     </view>
                     <navigationItem key="navigationItem" id="t1I-qF-QgC">
                         <barButtonItem key="leftBarButtonItem" image="gear" catalog="system" id="kJB-kb-vaT">
-                            <color key="tintColor" red="0.31240576289999999" green="0.058394156019999997" blue="0.70837960030000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="settingsButtonPressed:" destination="jg0-Mi-I9y" id="edC-kR-hrc"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="video.badge.plus.fill" catalog="system" id="TqD-UE-TOD">
-                            <color key="tintColor" red="0.52265780021962693" green="0.87158946700507611" blue="0.86406644869189397" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="addMediaButtonPressed:" destination="jg0-Mi-I9y" id="b8K-AZ-T5r"/>
                             </connections>
