@@ -24,9 +24,7 @@ class LoginViewController: UIViewController {
     @IBOutlet private var loginStateLabel: UILabel!
     @IBOutlet private var loginStateButton: UIButton!
     @IBOutlet public var errorMessageLabel: UILabel!
-    @IBOutlet weak var artistButton: UIButton!
-    @IBOutlet weak var enthusiastButton: UIButton!
-    @IBOutlet weak var welcomeLabel: UILabel!
+  
     private lazy var tapGesture: UITapGestureRecognizer = {
         let gesture = UITapGestureRecognizer()
         gesture.addTarget(self, action: #selector(resignTextfeilds))
@@ -60,9 +58,7 @@ class LoginViewController: UIViewController {
         
         errorMessageLabel.text = viewModel.setErrorLabelToEmpty
         errorMessageLabel.isHidden = true
-        welcomeLabel.isHidden = true
-          artistButton.isHidden = true
-        enthusiastButton.isHidden = true
+
     }
     
     @IBAction func loginButtonPressed(_ sender: UIButton) {
@@ -75,7 +71,6 @@ class LoginViewController: UIViewController {
                 return
         }
         viewModel.loginFlow(email: email, password: password, loginVC: self)
-       
     }
     
     @IBAction func toggleAccountState(_ sender: UIButton) {
@@ -86,21 +81,12 @@ class LoginViewController: UIViewController {
             loginButton.setTitle(viewModel.loginButtonTitle, for: .normal)
             loginStateLabel.text = viewModel.newAccountMessage
             loginStateButton.setTitle(viewModel.signUpButtonTitle, for: .normal)
-            welcomeLabel.isHidden = true
-            artistButton.isHidden = true
-          enthusiastButton.isHidden = true
         } else {
             loginButton.setTitle(viewModel.signUpButtonTitle, for: .normal)
             loginStateLabel.text = viewModel.exisistingAccountMessage
             loginStateButton.setTitle(viewModel.loginButtonTitle, for: .normal)
-            
-            welcomeLabel.isHidden = false
-              artistButton.isHidden = false
-            enthusiastButton.isHidden = false
-            
         }
     }
-    
     private func pulsatingAnimation() {
            UIView.animate(withDuration: 2.0, delay: 0.0, options: [], animations: {
                // animation block here
@@ -108,10 +94,6 @@ class LoginViewController: UIViewController {
                self.appLogoImageView.transform = CGAffineTransform(scaleX: 2.0, y: 2.0)
                
            }) { (done) in
-               // code to be executed after animation completes
-               //option1 - you can reset view's values
-               //option2 - creates a next animation
-               
                UIView.animate(withDuration: 0.7)  {
                    self.appLogoImageView.transform =
                    CGAffineTransform.identity
@@ -126,8 +108,6 @@ class LoginViewController: UIViewController {
         
         UIView.transition(with: appLogoImageView, duration: duration, options: [.transitionFlipFromRight,curveOption], animations: nil, completion: nil)
     }
-  
-
 }
 
 extension LoginViewController: UITextFieldDelegate {

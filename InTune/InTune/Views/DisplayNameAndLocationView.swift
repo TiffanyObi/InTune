@@ -122,7 +122,7 @@ class DisplayNameAndLocationView: UIView {
         
         NSLayoutConstraint.activate([
             nextButton.topAnchor.constraint(equalTo: locationPickerView.bottomAnchor, constant: 50),
-            nextButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 75),
+            nextButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 100),
             nextButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -100),
             nextButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.10)
         

@@ -23,8 +23,8 @@ class OnboardingViewController: UIViewController {
     var instruments = [String]()
     var genres = [String]()
     
-    var selectedInstruments = [String]()
-    var selectedGenres = [String]()
+    var selectedInstruments = Set<String>()
+    var selectedGenres = Set<String>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,14 +32,13 @@ class OnboardingViewController: UIViewController {
         view.backgroundColor = .systemGroupedBackground
      setUpButtonOnExperienceView()
         setUpTextFeildFroDisplayNameView()
-        setUoPickerViewForLocationView()
+        setUpPickerViewForLocationView()
         setUpNextButton()
         setUpCollectionViews()
         loadCollectionViews()
+        setUpDoneButton()
     }
-    
-    
-    
+
     func setUpButtonOnExperienceView(){
         for button in userExperienece.allButtons {
             button.addTarget(self, action:#selector(chooseUserExperience), for: .touchUpInside)
@@ -50,7 +49,7 @@ class OnboardingViewController: UIViewController {
         displayNameAndLocation.displayNameTextfield.delegate = self
     }
     
-   func setUoPickerViewForLocationView(){
+   func setUpPickerViewForLocationView(){
     displayNameAndLocation.locationPickerView.dataSource = self
     displayNameAndLocation.locationPickerView.delegate = self
     }
@@ -68,31 +67,31 @@ class OnboardingViewController: UIViewController {
         tagsSelectionView.instrumentsCollectionView.register(UINib(nibName: "TagCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "tagCell")
         
         tagsSelectionView.genresCollectionView.register(UINib(nibName: "TagCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "tagCell")
-        
+    }
+    private func loadCollectionViews(){
+        instruments = Tags.instrumentList
+        genres = Tags.genreList
+    }
+    func setUpDoneButton(){
+        tagsSelectionView.doneButton.addTarget(self, action: #selector(doneButtonPressed), for: .touchUpInside)
     }
     
     @objc func chooseUserExperience(_ sender: UIButton){
-        
         switch sender.tag {
         case 0:
             database.updateUserExperience(isAnArtist: true) { [weak self](result) in
                 switch result {
                 case .failure(let error):
                     print(error.localizedDescription)
-                    
                 case .success:
-
                     self?.navigateToDisplayNameAndCityView()
                 }
             }
-            
-            
         case 1:
             database.updateUserExperience(isAnArtist: false) { [weak self](result) in
                 switch result {
                 case .failure(let error):
                     print(error.localizedDescription)
-                    
                 case .success:
 
                     self?.navigateToDisplayNameAndCityView()
@@ -102,13 +101,10 @@ class OnboardingViewController: UIViewController {
             print("i'm a guest")
         }
     }
-    
     private func navigateToDisplayNameAndCityView(){
        view = displayNameAndLocation
         view.backgroundColor = .systemGroupedBackground
     }
-    
-    
     @objc private func nextButtonPressed(){
         database.updateUserDisplayNameAndLocation(userName: displayName, location: userLocation) { [weak self](result) in
             switch result {
@@ -121,28 +117,38 @@ class OnboardingViewController: UIViewController {
             }
         }
     }
-    
     private func navigateToTagsSelectionView(){
         view = tagsSelectionView
-        view.backgroundColor = .purple
+        view.backgroundColor = .systemGroupedBackground
+    }
+    @objc private func doneButtonPressed(){
+        
+        guard !selectedInstruments.isEmpty,!selectedGenres.isEmpty else { return }
+        
+        let instruments1 = Array(selectedInstruments)
+        let genres1 = Array(selectedGenres)
+        
+        database.updateUserTags(instruments: instruments1, genres: genres1) { [weak self](result) in
+            switch result {
+            case.failure(let error):
+                print(error.localizedDescription)
+            case.success:
+                print(true)
+                self?.navigateToProfileView()
+            }
+        }
     }
     
-    private func loadCollectionViews(){
-        instruments = Tags.instrumentList
-        genres = Tags.genreList
+    private func navigateToProfileView(){
+        UIViewController.showViewController(storyboardName: "MainView", viewControllerID: "MainViewTabBarController")
     }
 }
 
 extension OnboardingViewController: UITextFieldDelegate {
-
     func textFieldDidChangeSelection(_ textField: UITextField) {
         guard !(textField.text?.isEmpty ?? true) else {return}
-        
         displayName = textField.text ?? "no display name"
     }
-    
-    
-    
 }
 
 extension OnboardingViewController: UIPickerViewDataSource, UIPickerViewDelegate {
@@ -150,7 +156,6 @@ extension OnboardingViewController: UIPickerViewDataSource, UIPickerViewDelegate
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
-    
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
        
         return states.count
@@ -160,11 +165,7 @@ extension OnboardingViewController: UIPickerViewDataSource, UIPickerViewDelegate
         return states[row]
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
-    
         userLocation = states[row]
-        
-        
     }
     
 }
@@ -206,6 +207,35 @@ extension OnboardingViewController: UICollectionViewDataSource,UICollectionViewD
         }
         
         return TagCollectionViewCell()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let maxSize: CGSize = UIScreen.main.bounds.size
+        let itemWidth: CGFloat = maxSize.width * 0.25
+        let itemHeight: CGFloat = maxSize.height * 0.10
+        return CGSize(width: itemWidth, height: itemHeight)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == tagsSelectionView.instrumentsCollectionView {
+            guard let tagCell = collectionView.dequeueReusableCell(withReuseIdentifier: "tagCell", for: indexPath) as? TagCollectionViewCell else { fatalError("could not downcast to TagCollectionViewCell")
+            }
+            
+            let selectedInstrument = instruments[indexPath.row]
+            tagCell.isHighlighted = true
+            selectedInstruments.insert(selectedInstrument)
+            print(selectedInstruments)
+        }
+        
+        if collectionView == tagsSelectionView.genresCollectionView {
+            guard let tagCell = collectionView.dequeueReusableCell(withReuseIdentifier: "tagCell", for: indexPath) as? TagCollectionViewCell else { fatalError("could not downcast to TagCollectionViewCell")
+            }
+            
+            let selectedGenre = genres[indexPath.row]
+            tagCell.isHighlighted = true
+            selectedGenres.insert(selectedGenre)
+            print(selectedGenres)
+        }
     }
     
 }
