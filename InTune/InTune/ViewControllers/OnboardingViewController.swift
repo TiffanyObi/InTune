@@ -20,8 +20,11 @@ class OnboardingViewController: UIViewController {
     var displayName = ""
     var userLocation = ""
     
-    let instruments = [String]()
-    let genres = [String]()
+    var instruments = [String]()
+    var genres = [String]()
+    
+    var selectedInstruments = [String]()
+    var selectedGenres = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +35,7 @@ class OnboardingViewController: UIViewController {
         setUoPickerViewForLocationView()
         setUpNextButton()
         setUpCollectionViews()
+        loadCollectionViews()
     }
     
     
@@ -60,6 +64,11 @@ class OnboardingViewController: UIViewController {
         tagsSelectionView.instrumentsCollectionView.delegate = self
         tagsSelectionView.genresCollectionView.dataSource = self
         tagsSelectionView.genresCollectionView.delegate = self
+        
+        tagsSelectionView.instrumentsCollectionView.register(UINib(nibName: "TagCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "tagCell")
+        
+        tagsSelectionView.genresCollectionView.register(UINib(nibName: "TagCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "tagCell")
+        
     }
     
     @objc func chooseUserExperience(_ sender: UIButton){
@@ -117,6 +126,11 @@ class OnboardingViewController: UIViewController {
         view = tagsSelectionView
         view.backgroundColor = .purple
     }
+    
+    private func loadCollectionViews(){
+        instruments = Tags.instrumentList
+        genres = Tags.genreList
+    }
 }
 
 extension OnboardingViewController: UITextFieldDelegate {
@@ -157,12 +171,41 @@ extension OnboardingViewController: UIPickerViewDataSource, UIPickerViewDelegate
 
 extension OnboardingViewController: UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        <#code#>
+        
+        if collectionView == tagsSelectionView.instrumentsCollectionView {
+            return instruments.count
+        }
+        
+        if collectionView == tagsSelectionView.genresCollectionView{
+            return genres.count
+        }
+        
+        return 2
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        <#code#>
+        
+        if collectionView == tagsSelectionView.instrumentsCollectionView {
+            
+        guard let tagCell = collectionView.dequeueReusableCell(withReuseIdentifier: "tagCell", for: indexPath) as? TagCollectionViewCell else {
+            fatalError("could not downcast to TagCollectionViewCell")
+        }
+            let instrument = instruments[indexPath.row]
+            tagCell.tagTitle.text = instrument
+            
+            return tagCell
+            
     }
-    
+        if collectionView == tagsSelectionView.genresCollectionView{
+            guard let tagCell = collectionView.dequeueReusableCell(withReuseIdentifier: "tagCell", for: indexPath) as? TagCollectionViewCell else { fatalError("could not downcast to TagCollectionViewCell")
+            }
+            
+            let genre = genres[indexPath.row]
+            tagCell.tagTitle.text = genre
+            return tagCell
+        }
+        
+        return TagCollectionViewCell()
+    }
     
 }
