@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import FirebaseAuth
 import FirebaseStorage
-
+import FirebaseFirestore
 
 class StorageService {
   private let storageRef = Storage.storage().reference()
@@ -41,14 +42,35 @@ class StorageService {
   }
 }
 
-
-
-
-
-
-
-
-
+func uploadVid(){
+    let queryPath = Bundle.main.path(forResource: "Video1", ofType: "mp4")
+    guard let path = queryPath else {
+        print("fail")
+        return
+    }
+    guard let videoData = FileManager.default.contents(atPath: path) else {
+        print("failed data is nil")
+        return
+    }
+    let storageRef = FirebaseStorage.Storage.storage().reference()
+    let videoRef = storageRef.child("Videos/xyz")
+    let metadata = StorageMetadata()
+    metadata.contentType = "video/mp4"
+    videoRef.putData(videoData, metadata: metadata) { (metadata, error) in
+        if let error = error{
+            print("fail: \(error)")
+        } else if let _ = metadata{
+            print("video uploaded!")
+            //                print(metadata.path)
+            videoRef.downloadURL { (url, error) in
+                //                    testing
+                Firestore.firestore().collection("randomArtists").document(UUID().uuidString).setData(["artistName" : "Christian",
+                                                                                                       "videoUrl": url!.absoluteString]) { error in
+                }
+            }
+        }
+    }
+}
 
 
 
