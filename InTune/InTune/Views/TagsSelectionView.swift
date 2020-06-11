@@ -14,7 +14,7 @@ class TagsSelectionView: UIView {
         let label = UILabel()
         label.numberOfLines = 0
         label.text = "Which Instruments Do You Play?"
-        label.font = UIFont(name: "Didot", size: 20.0)
+        label.font = UIFont(name: "Didot", size: 25.0)
         label.backgroundColor = .white
         label.textAlignment = .center
         return label
@@ -22,7 +22,7 @@ class TagsSelectionView: UIView {
     
     public lazy var instrumentsCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
+        layout.scrollDirection = .vertical
         let cv = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         cv.backgroundColor = .systemGroupedBackground
         return cv
@@ -31,7 +31,7 @@ class TagsSelectionView: UIView {
         let label = UILabel()
         label.numberOfLines = 0
         label.text = "Which Genres Do You Favor?"
-        label.font = UIFont(name: "Didot", size: 20.0)
+        label.font = UIFont(name: "Didot", size: 25.0)
         label.backgroundColor = .white
         label.textAlignment = .center
         return label
@@ -39,7 +39,7 @@ class TagsSelectionView: UIView {
     
     public lazy var genresCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
+        layout.scrollDirection = .vertical
         let cv = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         cv.backgroundColor = .systemGroupedBackground
         return cv
@@ -48,8 +48,8 @@ class TagsSelectionView: UIView {
     public lazy var doneButton: UIButton = {
         let button = UIButton()
         button.setTitle("D O N E", for: .normal)
-        button.backgroundColor = .purple
-        button.tintColor = .white
+        button.backgroundColor = .systemTeal
+        button.titleLabel?.textColor = .white
         return button
     }()
     
@@ -68,6 +68,7 @@ class TagsSelectionView: UIView {
             setUpInstrumentCollectionView()
             setUpGenresLabel()
             setUpGenreCollectionView()
+            setUpDoneButton()
         }
     func setUpInstrumentsLabel(){
         addSubview(instrumentsLabel)
@@ -89,7 +90,7 @@ class TagsSelectionView: UIView {
             instrumentsCollectionView.topAnchor.constraint(equalTo: instrumentsLabel.bottomAnchor, constant: 20),
             instrumentsCollectionView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 20),
             instrumentsCollectionView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -20),
-            instrumentsCollectionView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.25)
+            instrumentsCollectionView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.35)
         
         ])
     }
@@ -121,5 +122,17 @@ class TagsSelectionView: UIView {
         ])
     }
     
-    
+    func setUpDoneButton(){
+        addSubview(doneButton)
+        doneButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            doneButton.topAnchor.constraint(equalTo: genresCollectionView.bottomAnchor, constant: 20),
+            doneButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 100),
+            doneButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -100),
+            doneButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.10)
+        
+        
+        ])
+    }
 }

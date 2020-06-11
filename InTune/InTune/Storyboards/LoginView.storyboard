@@ -40,13 +40,13 @@
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't have an account? " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gJF-BD-7s0">
-                                <rect key="frame" x="100" y="602" width="214" height="21.5"/>
+                                <rect key="frame" x="100" y="577" width="214" height="21.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="18"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vkx-zz-WLv">
-                                <rect key="frame" x="110" y="537" width="194" height="45"/>
+                                <rect key="frame" x="110" y="512" width="194" height="45"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                 <state key="normal" title="LOGIN">
@@ -71,7 +71,7 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uhw-gd-gm3">
-                                <rect key="frame" x="160" y="631.5" width="94" height="36"/>
+                                <rect key="frame" x="160" y="606.5" width="94" height="36"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <state key="normal" title="SIGN UP">
@@ -81,49 +81,20 @@
                                     <action selector="toggleAccountState:" destination="NSG-vc-g9m" eventType="touchUpInside" id="hYe-bf-Uz6"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome! We'd love to know more about you!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="upn-Lx-MFb">
-                                <rect key="frame" x="20" y="470" width="374" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EfD-WH-UFk">
-                                <rect key="frame" x="30" y="498.5" width="143" height="30.5"/>
-                                <color key="tintColor" red="0.38496607542037964" green="0.067388556897640228" blue="0.84022039175033569" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="I'm an Aspiring Artist"/>
-                                <connections>
-                                    <action selector="artistButtonPressed:" destination="NSG-vc-g9m" eventType="touchUpInside" id="Obo-KT-c76"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Lh-4m-sMt">
-                                <rect key="frame" x="267" y="498.5" width="117" height="30.5"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="tintColor" red="0.38496607542037964" green="0.067388556897640228" blue="0.84022039175033569" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="I'm an Enthusiast"/>
-                                <connections>
-                                    <action selector="enthusiastButtonPressed:" destination="NSG-vc-g9m" eventType="touchUpInside" id="pD3-0v-yF8"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="xee-wn-Q6z" firstAttribute="top" secondItem="qxA-jb-dGO" secondAttribute="bottom" constant="9" id="0Ou-h2-HNU"/>
-                            <constraint firstItem="wuJ-l4-xXg" firstAttribute="trailing" secondItem="3Lh-4m-sMt" secondAttribute="trailing" constant="30" id="232-xN-Vek"/>
                             <constraint firstItem="b4g-fA-aBl" firstAttribute="leading" secondItem="wuJ-l4-xXg" secondAttribute="leading" constant="120" id="4dl-no-0HX"/>
                             <constraint firstItem="uhw-gd-gm3" firstAttribute="leading" secondItem="wuJ-l4-xXg" secondAttribute="leading" constant="160" id="54u-l2-9ga"/>
-                            <constraint firstItem="Vkx-zz-WLv" firstAttribute="top" secondItem="3Lh-4m-sMt" secondAttribute="bottom" constant="8" id="5PV-mK-thd"/>
-                            <constraint firstItem="EfD-WH-UFk" firstAttribute="leading" secondItem="wuJ-l4-xXg" secondAttribute="leading" constant="30" id="8fp-uF-iGn"/>
                             <constraint firstItem="uhw-gd-gm3" firstAttribute="top" secondItem="gJF-BD-7s0" secondAttribute="bottom" constant="8" id="Giq-hx-Taa"/>
-                            <constraint firstItem="Vkx-zz-WLv" firstAttribute="top" secondItem="EfD-WH-UFk" secondAttribute="bottom" constant="8" id="J1b-Od-223"/>
                             <constraint firstItem="xee-wn-Q6z" firstAttribute="leading" secondItem="wuJ-l4-xXg" secondAttribute="leading" constant="85" id="JU8-OD-wZh"/>
                             <constraint firstItem="Gn1-Zh-EqU" firstAttribute="leading" secondItem="wuJ-l4-xXg" secondAttribute="leading" constant="85" id="LyB-hr-TeN"/>
                             <constraint firstItem="wuJ-l4-xXg" firstAttribute="trailing" secondItem="gJF-BD-7s0" secondAttribute="trailing" constant="100" id="OS2-Pt-JkS"/>
                             <constraint firstItem="b4g-fA-aBl" firstAttribute="top" secondItem="wuJ-l4-xXg" secondAttribute="top" constant="50" id="OTQ-yT-Y73"/>
                             <constraint firstItem="eGH-3e-uqC" firstAttribute="leading" secondItem="wuJ-l4-xXg" secondAttribute="leading" constant="8" id="Ovf-sL-s80"/>
                             <constraint firstItem="b3J-4d-dHB" firstAttribute="leading" secondItem="wuJ-l4-xXg" secondAttribute="leading" constant="85" id="RvQ-YM-DLS"/>
-                            <constraint firstItem="wuJ-l4-xXg" firstAttribute="trailing" secondItem="upn-Lx-MFb" secondAttribute="trailing" constant="20" id="VGT-cj-RJP"/>
                             <constraint firstItem="wuJ-l4-xXg" firstAttribute="trailing" secondItem="Vkx-zz-WLv" secondAttribute="trailing" constant="110" id="Wss-6U-ILD"/>
-                            <constraint firstItem="upn-Lx-MFb" firstAttribute="top" secondItem="b3J-4d-dHB" secondAttribute="bottom" constant="8" id="apD-w6-2Lv"/>
                             <constraint firstItem="wuJ-l4-xXg" firstAttribute="trailing" secondItem="b3J-4d-dHB" secondAttribute="trailing" constant="85" id="asv-p4-nNB"/>
                             <constraint firstItem="gJF-BD-7s0" firstAttribute="top" secondItem="Vkx-zz-WLv" secondAttribute="bottom" constant="20" id="eEM-ow-NkS"/>
                             <constraint firstItem="wuJ-l4-xXg" firstAttribute="trailing" secondItem="xee-wn-Q6z" secondAttribute="trailing" constant="85" id="gul-so-DWp"/>
@@ -131,30 +102,24 @@
                             <constraint firstItem="wuJ-l4-xXg" firstAttribute="trailing" secondItem="eGH-3e-uqC" secondAttribute="trailing" constant="8" id="hxo-P7-qMz"/>
                             <constraint firstItem="Vkx-zz-WLv" firstAttribute="leading" secondItem="wuJ-l4-xXg" secondAttribute="leading" constant="110" id="iZO-tG-z4J"/>
                             <constraint firstItem="wuJ-l4-xXg" firstAttribute="trailing" secondItem="b4g-fA-aBl" secondAttribute="trailing" constant="120" id="isx-t3-IIE"/>
-                            <constraint firstItem="Vkx-zz-WLv" firstAttribute="top" secondItem="b3J-4d-dHB" secondAttribute="bottom" constant="75" id="mF0-TS-fv2"/>
-                            <constraint firstItem="EfD-WH-UFk" firstAttribute="top" secondItem="upn-Lx-MFb" secondAttribute="bottom" constant="8" id="nUH-iY-ABp"/>
+                            <constraint firstItem="Vkx-zz-WLv" firstAttribute="top" secondItem="b3J-4d-dHB" secondAttribute="bottom" constant="50" id="mF0-TS-fv2"/>
                             <constraint firstItem="b3J-4d-dHB" firstAttribute="top" secondItem="Gn1-Zh-EqU" secondAttribute="bottom" constant="8" id="ndq-4N-XgO"/>
-                            <constraint firstItem="upn-Lx-MFb" firstAttribute="leading" secondItem="wuJ-l4-xXg" secondAttribute="leading" constant="20" id="oFq-vV-iFc"/>
                             <constraint firstItem="qxA-jb-dGO" firstAttribute="top" secondItem="eGH-3e-uqC" secondAttribute="bottom" constant="20" id="ojV-ff-DNN"/>
                             <constraint firstItem="eGH-3e-uqC" firstAttribute="top" secondItem="b4g-fA-aBl" secondAttribute="bottom" constant="8" id="p3V-ey-qgC"/>
                             <constraint firstItem="wuJ-l4-xXg" firstAttribute="trailing" secondItem="uhw-gd-gm3" secondAttribute="trailing" constant="160" id="pw6-QA-28h"/>
                             <constraint firstItem="Gn1-Zh-EqU" firstAttribute="top" secondItem="xee-wn-Q6z" secondAttribute="bottom" constant="15" id="rA8-xY-rYK"/>
-                            <constraint firstItem="3Lh-4m-sMt" firstAttribute="top" secondItem="upn-Lx-MFb" secondAttribute="bottom" constant="8" id="u3a-VR-vkP"/>
                             <constraint firstItem="gJF-BD-7s0" firstAttribute="leading" secondItem="wuJ-l4-xXg" secondAttribute="leading" constant="100" id="uAM-Wa-0d3"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="wuJ-l4-xXg"/>
                     </view>
                     <connections>
                         <outlet property="appLogoImageView" destination="b4g-fA-aBl" id="iQd-xm-exR"/>
-                        <outlet property="artistButton" destination="EfD-WH-UFk" id="RSk-6o-zLG"/>
                         <outlet property="emailTextfield" destination="xee-wn-Q6z" id="nb7-Dd-nze"/>
-                        <outlet property="enthusiastButton" destination="3Lh-4m-sMt" id="e8g-CJ-E72"/>
                         <outlet property="errorMessageLabel" destination="eGH-3e-uqC" id="lF3-Re-h5Z"/>
                         <outlet property="loginButton" destination="Vkx-zz-WLv" id="4e3-1F-BdH"/>
                         <outlet property="loginStateButton" destination="uhw-gd-gm3" id="tVY-hf-eE6"/>
                         <outlet property="loginStateLabel" destination="gJF-BD-7s0" id="zMZ-hr-BEN"/>
                         <outlet property="passwordTextfield" destination="b3J-4d-dHB" id="vIm-Us-f0j"/>
-                        <outlet property="welcomeLabel" destination="upn-Lx-MFb" id="qU6-bh-N18"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mX6-Px-O6F" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
