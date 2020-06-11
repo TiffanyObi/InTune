@@ -10,17 +10,9 @@ import UIKit
 
 class TagCollectionViewCell: UICollectionViewCell {
     
-        @IBOutlet weak var tagButton: UIButton!
         
+    @IBOutlet weak var tagTitle: UILabel!
+    
         
-        
-        public var onButtonTapped: ((_ title:String) -> Void)?
-        
-        
-        
-        @IBAction func buttonTapped(_ sender: UIButton) {
-            
-            onButtonTapped?(sender.titleLabel?.text ?? "Tag")
-        }
 }
 

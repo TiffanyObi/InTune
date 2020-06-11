@@ -54,7 +54,7 @@ class EditProfController: UIViewController {
         guard let user = Auth.auth().currentUser else {
             return
         }
-        
+        usernameTextField.text = "\(user.displayName ?? "")"
         //set image with kf
         editImageView.kf.setImage(with: user.photoURL)
         

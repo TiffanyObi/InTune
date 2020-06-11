@@ -11,7 +11,7 @@ import FirebaseAuth
 
 class ProfileViewController: UIViewController {
     
-    @IBOutlet private var profImage: UIImageView!
+    @IBOutlet var profImage: UIImageView!
     @IBOutlet private var nameLabel: UILabel!
     @IBOutlet private var bioLabel: UILabel!
     @IBOutlet private var tagsCollection: UICollectionView!
@@ -39,14 +39,22 @@ class ProfileViewController: UIViewController {
     
     private func loadUI() {
         
-        
         guard let user = Auth.auth().currentUser, let email = user.email else {
             return
         }
+        profImage.contentMode = .scaleAspectFill
+        profImage.layer.cornerRadius = 60
+          profImage.kf.setImage(with: user.photoURL)
+          nameLabel.text = "\(user.displayName ?? "")"
         
         emailLabel.text = "\(email)"
         likeArtistButton.isHidden = true
         chatButton.isHidden = true
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        loadUI()
     }
     
     private func collectionView() {
