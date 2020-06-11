@@ -81,6 +81,7 @@ class DatabaseService {
         db.collection(DatabaseService.artistsCollection).document(user.uid).updateData(["instruments":instruments,"tags":genres]) { (error) in
         }
     }
+    
     public func createVideoPosts(post: ArtistPost, completion: @escaping (Result<Bool, Error>) -> ()) {
         
         guard let user = Auth.auth().currentUser else {return}

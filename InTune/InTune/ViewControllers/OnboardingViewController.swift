@@ -121,6 +121,7 @@ class OnboardingViewController: UIViewController {
         view = tagsSelectionView
         view.backgroundColor = .systemGroupedBackground
     }
+    
     @objc private func doneButtonPressed(){
         
         guard !selectedInstruments.isEmpty,!selectedGenres.isEmpty else { return }
@@ -133,14 +134,14 @@ class OnboardingViewController: UIViewController {
             case.failure(let error):
                 print(error.localizedDescription)
             case.success:
-                print(true)
+                print("doing to database")
                 self?.navigateToProfileView()
             }
         }
     }
     
     private func navigateToProfileView(){
-        UIViewController.showViewController(storyboardName: "MainView", viewControllerID: "MainViewTabBarController")
+         UIViewController.showViewController(storyboardName: "MainView", viewControllerID: "MainViewTabBarController")
     }
 }
 
