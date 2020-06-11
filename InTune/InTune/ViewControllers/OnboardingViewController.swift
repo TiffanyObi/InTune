@@ -194,7 +194,8 @@ extension OnboardingViewController: UICollectionViewDataSource,UICollectionViewD
         }
             let instrument = instruments[indexPath.row]
             tagCell.tagTitle.text = instrument
-            tagCell.tagTitle.textColor = .purple
+            tagCell.layer.cornerRadius = 10
+            
             return tagCell
             
     }
@@ -203,8 +204,9 @@ extension OnboardingViewController: UICollectionViewDataSource,UICollectionViewD
             }
             
             let genre = genres[indexPath.row]
-            tagCell.tagTitle.textColor = .purple
+            tagCell.layer.cornerRadius = 10
             tagCell.tagTitle.text = genre
+            
             return tagCell
         }
         
