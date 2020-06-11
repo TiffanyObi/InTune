@@ -15,11 +15,15 @@ import FirebaseAuth
 class DatabaseService {
   
   static let artistsCollection = "artists"
+    //rename to users
     static let artistPosts = "artistPost"
     static let favCollection = "favoriteArtists"
+    static let gigPosts = "gigPosts"
+    
     private let db = Firestore.firestore()
   static let shared = DatabaseService()
     
+    //rename this to users
   public func createArtist(authDataResult: AuthDataResult, completion: @escaping (Result<Bool,Error>) -> ()){
     guard let email = authDataResult.user.email else {return}
     db.collection(DatabaseService.artistsCollection).document(authDataResult.user.uid).setData(["email": email, "userId": authDataResult.user.uid, "createdDate": Timestamp()]){ (error) in
@@ -119,6 +123,30 @@ class DatabaseService {
     }
     public func isArtistInFav(for artist: Artist, completion: @escaping (Result<Bool, Error>) -> ()) {
         guard let user = Auth.auth().currentUser else { return }
+    }
+    
+    //should rename to user
+    public func createGigPost(for user: Artist, gigPost: GigsPost, completion: @escaping (Result<Bool, Error>) ->()) {
+        
+        guard let currentUser = Auth.auth().currentUser else { return }
+        
+        db.collection(DatabaseService.artistsCollection).document(currentUser.uid).collection(DatabaseService.gigPosts).addDocument(data:
+            ["user": user,
+             "gigId": UUID().uuidString,
+             "title": gigPost.title,
+             "descript": gigPost.descript,
+             "photoURL": gigPost.photoURL,
+             "price": gigPost.price,
+             "eventDate": gigPost.eventDate,
+             "createdDate": Timestamp()
+        ]) { (error) in
+            
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(true))
+            }
+        }
     }
 
 }
