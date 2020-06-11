@@ -9,6 +9,7 @@
 import Foundation
 import Firebase
 
+//renamed to user
 struct Artist {
   let name: String
   let artistId: String
