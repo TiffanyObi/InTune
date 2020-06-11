@@ -39,22 +39,29 @@ class VideoPostViewController: UIViewController {
         
     }
     @IBAction func postButtonPressed(_ sender: UIButton) {
-        //thumbnail updates to Profile vc cell
-        guard let user = Auth.auth().currentUser, let url = vidURL else { return }
-        let urlString = url.absoluteString
-        
-        let post = ArtistPost(artistName: "", artistId: user.uid, postId: "1234", postedDate: Timestamp(date: Date()), postURL: urlString)
-        
-        db.createVideoPosts(post: post) { (result) in
-            
-            switch result {
-            case .failure(let error):
-                print("could not post media: \(error.localizedDescription)")
-            case .success:
-                print("posted media")
-            }
-        }
+     //thumbnail updates to Profile vc cell
+     guard let user = Auth.auth().currentUser, let url = vidURL else { return }
+     let urlString = url.absoluteString
+     // we have the video url
+     // 1. convert url to Data
+     guard let videoData = try? Data(contentsOf: url) else {
+      return
+     }
+      
+     let post = ArtistPost(artistName: "", artistId: user.uid, postId: "1234", postedDate: Timestamp(date: Date()), postURL: urlString)
+     db.createVideoPosts(post: post) { (result) in
+      switch result {
+      case .failure(let error):
+       print("could not post media: \(error.localizedDescription)")
+      case .success:
+       // 2. update Data to Firebase Storage
+        StorageService().uploadVideoData(videoData) { (result) in
+        // TODO: handle cases
+       }
+      }
+     }
     }
+
 }
 
 extension VideoPostViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
