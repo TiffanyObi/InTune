@@ -51,6 +51,8 @@ class TagsCVDelegate: NSObject,UICollectionViewDelegate, UICollectionViewDataSou
             fatalError("could not conform to TagCell")
         }
         
+        cell.layer.cornerRadius = 10
+        
         return cell
     }
     
