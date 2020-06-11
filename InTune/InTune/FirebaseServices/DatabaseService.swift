@@ -16,6 +16,7 @@ class DatabaseService {
   
   static let artistsCollection = "artists"
     static let artistPosts = "artistPost"
+    static let favCollection = "favoriteArtists"
     private let db = Firestore.firestore()
   static let shared = DatabaseService()
     
@@ -86,5 +87,17 @@ class DatabaseService {
             }
         }
     }
-    
+    public func createFavoriteArtist(artist: Artist,completion: @escaping (Result<Bool, Error>) -> ()) {
+        guard let user = Auth.auth().currentUser else { return }
+        db.collection(DatabaseService.artistsCollection).document(user.uid).collection(DatabaseService.favCollection).addDocument(data: ["favoritedArtist": artist, "favoritedDate": Timestamp()]) { (error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(true))
+            }
+        }
+    }
+    public func isArtistInFav(for artist: Artist, completion: @escaping (Result<Bool, Error>) -> ()) {
+        guard let user = Auth.auth().currentUser else { return }
+    }
 }

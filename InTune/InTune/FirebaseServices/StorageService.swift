@@ -12,69 +12,66 @@ import FirebaseStorage
 import FirebaseFirestore
 
 class StorageService {
-  private let storageRef = Storage.storage().reference()
-  public func uploadPhoto(userId: String? = nil, itemId: String? = nil, image: UIImage, completion: @escaping (Result<URL, Error>) -> ()) {
-    guard let imageData = image.jpegData(compressionQuality: 1.0) else {
-      return
-    }
-    var photoReference: StorageReference!
-    if let userId = userId {
-      photoReference = storageRef.child("UserProfilePhotos/\(userId).jpg")
-    } else if let itemId = itemId {
-      photoReference = storageRef.child("ItemsPhotos/\(itemId).jpg")
-    }
-    let metadata = StorageMetadata()
-    metadata.contentType = "image/jpg"
-    let _ = photoReference.putData(imageData, metadata: metadata) {
-    (metadata, error) in
-      if let error = error {
-        completion(.failure(error))
-      }else if let metadata = metadata {
-        photoReference.downloadURL { (url, error) in
-          if let error = error {
-            completion(.failure(error))
-          } else if let url = url {
-            completion(.success(url))
-          }
+    private let storageRef = Storage.storage().reference()
+    public func uploadPhoto(userId: String? = nil, itemId: String? = nil, image: UIImage, completion: @escaping (Result<URL, Error>) -> ()) {
+        guard let imageData = image.jpegData(compressionQuality: 1.0) else {
+            return
         }
-      }
-    }
-  }
-}
-
-func uploadVid(){
-    let queryPath = Bundle.main.path(forResource: "Video1", ofType: "mp4")
-    guard let path = queryPath else {
-        print("fail")
-        return
-    }
-    guard let videoData = FileManager.default.contents(atPath: path) else {
-        print("failed data is nil")
-        return
-    }
-    let storageRef = FirebaseStorage.Storage.storage().reference()
-    let videoRef = storageRef.child("Videos/xyz")
-    let metadata = StorageMetadata()
-    metadata.contentType = "video/mp4"
-    videoRef.putData(videoData, metadata: metadata) { (metadata, error) in
-        if let error = error{
-            print("fail: \(error)")
-        } else if let _ = metadata{
-            print("video uploaded!")
-            //                print(metadata.path)
-            videoRef.downloadURL { (url, error) in
-                //                    testing
-                Firestore.firestore().collection("randomArtists").document(UUID().uuidString).setData(["artistName" : "Christian",
-                                                                                                       "videoUrl": url!.absoluteString]) { error in
+        var photoReference: StorageReference!
+        if let userId = userId {
+            photoReference = storageRef.child("UserProfilePhotos/\(userId).jpg")
+        } else if let itemId = itemId {
+            photoReference = storageRef.child("ItemsPhotos/\(itemId).jpg")
+        }
+        let metadata = StorageMetadata()
+        metadata.contentType = "image/jpg"
+        let _ = photoReference.putData(imageData, metadata: metadata) {
+            (metadata, error) in
+            if let error = error {
+                completion(.failure(error))
+            }else if let metadata = metadata {
+                photoReference.downloadURL { (url, error) in
+                    if let error = error {
+                        completion(.failure(error))
+                    } else if let url = url {
+                        completion(.success(url))
+                    }
                 }
             }
         }
     }
+func uploadVideoData(_ videoData: Data, completion: @escaping (Result<Bool, Error>) -> ()){
+ guard let user = Auth.auth().currentUser else {
+  return
+ }
+ let storageRef = FirebaseStorage.Storage.storage().reference()
+ let videoRef = storageRef.child("Videos/\(user.uid)/\(UUID().uuidString)")
+ let metadata = StorageMetadata()
+ metadata.contentType = "video/mp4"
+ videoRef.putData(videoData, metadata: metadata) { (metadata, error) in
+  if let error = error{
+   completion(.failure(error))
+  } else if let _ = metadata{
+   print("video uploaded!")
+   videoRef.downloadURL { (url, error) in
+    // 1
+    // attach video url to the artists subcollection called "videos"
+    let documentRef = Firestore.firestore().collection("artists")
+     .document(user.uid)
+     .collection("videos")
+     .document()
+    Firestore.firestore().collection("artists")
+     .document(user.uid)
+     .collection("videos")
+     .document(documentRef.documentID)
+     .setData(["artistName" : "AXP Films",
+          "videoUrl": url!.absoluteString]) { error in
+           if let error = error {
+            print("error: \(error)")
+     }
+    }
+   }
+  }
+ }
 }
-
-
-
-
-
-
-
+}
