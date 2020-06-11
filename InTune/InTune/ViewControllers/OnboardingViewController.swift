@@ -140,7 +140,7 @@ class OnboardingViewController: UIViewController {
         }
     }
     
-    private func navigateToProfileView(){
+    func navigateToProfileView(){
          UIViewController.showViewController(storyboardName: "MainView", viewControllerID: "MainViewTabBarController")
     }
 }

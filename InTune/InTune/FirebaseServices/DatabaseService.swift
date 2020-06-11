@@ -79,6 +79,11 @@ class DatabaseService {
         guard let user = Auth.auth().currentUser else {return}
         
         db.collection(DatabaseService.artistsCollection).document(user.uid).updateData(["instruments":instruments,"tags":genres]) { (error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(true))
+            }
         }
     }
     
