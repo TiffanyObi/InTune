@@ -313,7 +313,7 @@
                         <outlet property="likeArtistButton" destination="9FA-EY-5l1" id="Wff-HS-b9x"/>
                         <outlet property="nameLabel" destination="a45-Tm-yAT" id="ey5-Pf-sHk"/>
                         <outlet property="postsCollectionView" destination="GfT-ZA-9Gg" id="r93-Tk-mAl"/>
-                        <outlet property="profImage" destination="6sk-M6-T0Y" id="TXE-ki-4nL"/>
+                        <outlet property="profImage" destination="6sk-M6-T0Y" id="YAC-iJ-BDo"/>
                         <outlet property="tagsCollection" destination="CVX-XU-ReK" id="c87-E5-jAQ"/>
                     </connections>
                 </viewController>
