@@ -194,7 +194,7 @@ extension OnboardingViewController: UICollectionViewDataSource,UICollectionViewD
         }
             let instrument = instruments[indexPath.row]
             tagCell.tagTitle.text = instrument
-            
+            tagCell.tagTitle.textColor = .purple
             return tagCell
             
     }
@@ -203,6 +203,7 @@ extension OnboardingViewController: UICollectionViewDataSource,UICollectionViewD
             }
             
             let genre = genres[indexPath.row]
+            tagCell.tagTitle.textColor = .purple
             tagCell.tagTitle.text = genre
             return tagCell
         }
@@ -223,7 +224,7 @@ extension OnboardingViewController: UICollectionViewDataSource,UICollectionViewD
             }
             
             let selectedInstrument = instruments[indexPath.row]
-            tagCell.isHighlighted = true
+            tagCell.tagTitle.isHighlighted = true
             selectedInstruments.insert(selectedInstrument)
             print(selectedInstruments)
         }
@@ -233,7 +234,7 @@ extension OnboardingViewController: UICollectionViewDataSource,UICollectionViewD
             }
             
             let selectedGenre = genres[indexPath.row]
-            tagCell.isHighlighted = true
+            tagCell.tagTitle.isHighlighted = true
             selectedGenres.insert(selectedGenre)
             print(selectedGenres)
         }

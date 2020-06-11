@@ -21,7 +21,7 @@ class UserExperienceView: UIView {
     
     private (set) lazy var artistButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Aspiring Artist", for: .normal)
+        button.setTitle("   Aspiring Artist   ", for: .normal)
         button.backgroundColor = .purple
         button.tag = 0
         return button
@@ -29,7 +29,7 @@ class UserExperienceView: UIView {
     
     private (set) lazy var enthusiastButton: UIButton = {
         let button = UIButton()
-         button.setTitle("A Supportive Enthusiast", for: .normal)
+         button.setTitle("  A Supportive Enthusiast  ", for: .normal)
         button.backgroundColor = .purple
         button.tag = 1
         return button
@@ -38,7 +38,15 @@ class UserExperienceView: UIView {
             let buttons = [artistButton,enthusiastButton]
             return buttons
         }()
-    
+    private lazy var buttonStack : UIStackView = {
+        let stack = UIStackView()
+        stack.alignment = .center
+        stack.axis = .vertical
+        stack.distribution = .equalCentering
+        stack.spacing = 2
+        
+        return stack
+    }()
         override init(frame: CGRect) {
             super.init(frame:UIScreen.main.bounds)
             commomInit()
@@ -51,8 +59,9 @@ class UserExperienceView: UIView {
         
         private func commomInit() {
             setUpWelcomeLabelConstraints()
-            setUpArtistButtonConstraints()
-            setUpEnthusiastButtonConstraints()
+            setUpButtonStackView()
+//            setUpArtistButtonConstraints()
+//            setUpEnthusiastButtonConstraints()
         }
     
     func setUpWelcomeLabelConstraints(){
@@ -67,29 +76,18 @@ class UserExperienceView: UIView {
         
     }
     
-    func setUpArtistButtonConstraints(){
-        addSubview(artistButton)
-        artistButton.translatesAutoresizingMaskIntoConstraints = false
+    func setUpButtonStackView(){
+        addSubview(buttonStack)
+        buttonStack.addArrangedSubview(artistButton)
+        buttonStack.addArrangedSubview(enthusiastButton)
+        buttonStack.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            artistButton.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor, constant: 50),
-            artistButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 40),
-            artistButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -40),
-            artistButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.3)
-            
+            buttonStack.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor, constant: 100),
+            buttonStack.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 8),
+            buttonStack.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -8),
+            buttonStack.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.25)
         ])
-    }
-    
-    func setUpEnthusiastButtonConstraints(){
-        addSubview(enthusiastButton)
-        enthusiastButton.translatesAutoresizingMaskIntoConstraints = false
         
-        NSLayoutConstraint.activate([
-            enthusiastButton.topAnchor.constraint(equalTo: artistButton.bottomAnchor, constant: 50),
-            enthusiastButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 40),
-            enthusiastButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -40),
-            enthusiastButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.3)
-            
-        ])
     }
 }
