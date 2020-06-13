@@ -13,6 +13,22 @@ class TagCollectionViewCell: UICollectionViewCell {
         
     @IBOutlet weak var tagTitle: UILabel!
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
         
+        self.layer.cornerRadius = 10
+    }
+    
+    func configureCell(_ tag:String) {
+        
+        
+        if Tags.instrumentList.contains(tag){
+            tagTitle.text = tag
+            tagTitle.backgroundColor = .purple
+        } else if Tags.genreList.contains(tag){
+        tagTitle.text = tag
+            tagTitle.backgroundColor = .systemTeal
+    }
 }
 
+}

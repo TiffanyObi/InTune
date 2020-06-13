@@ -27,15 +27,15 @@ class ProfileViewController: UIViewController {
     
     let db = DatabaseService()
     
-    var artists = [Artist]() {
-        didSet{
-            print(artists.count)
+  
+    
+    var singleArtist: Artist? {
+        didSet {
+            tagsCollection.reloadData()
         }
     }
     
-    var singleArtist: Artist?
-    
-    var tags = [String]()
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,8 +43,8 @@ class ProfileViewController: UIViewController {
         loadUI()
       
         infoView.borderColor = #colorLiteral(red: 0.3867273331, green: 0.8825651407, blue: 0.8684034944, alpha: 1)
-        tagsCollection.delegate = tagsCVDelegate
-        tagsCollection.dataSource = tagsCVDelegate
+        tagsCollection.delegate = self
+        tagsCollection.dataSource = self
         tagsCollection.register(UINib(nibName: "TagCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "tagCell")
         postsCollectionView.delegate = postCVDelegate
         postsCollectionView.dataSource = postCVDelegate
@@ -68,7 +68,6 @@ class ProfileViewController: UIViewController {
                 DispatchQueue.main.async {
                     self?.singleArtist = artist1
                     self?.nameLabel.text = artist1.name
-                    self?.tags = artist1.tags
                 }
              
             }
@@ -82,17 +81,10 @@ class ProfileViewController: UIViewController {
                  } else {
                    profImage.kf.setImage(with: user.photoURL)
         }
-//        nameLabel.text = singleArtist?.name
-        
-        
-        
+
         emailLabel.text = user.email
         likeArtistButton.isHidden = true
         chatButton.isHidden = true
-        
-//        tags = singleArtist?.instruments ?? [""]
-//        tags.append(contentsOf: singleArtist?.tags ?? [""])
-//        print(tags)
     }
     
     
@@ -160,4 +152,31 @@ class ProfileViewController: UIViewController {
         print("chat")
     }
     
+}
+
+extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let maxSize: CGSize = UIScreen.main.bounds.size
+        let itemWidth: CGFloat = maxSize.width * 0.20
+        let itemHeight: CGFloat = maxSize.height * 0.30
+        return CGSize(width: itemWidth, height: itemHeight)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        return singleArtist?.tags.count ?? 3
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "tagCell", for: indexPath) as? TagCollectionViewCell else {
+            fatalError("could not conform to TagCell")
+        }
+        
+       
+        let tag = singleArtist?.tags[indexPath.row]
+       
+        cell.configureCell(tag ?? "no tags")
+        return cell
+}
 }

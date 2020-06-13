@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1le-8U-xG4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1le-8U-xG4">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -177,32 +177,7 @@
                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
-                                        <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="tagCell" id="lgu-su-6AC" customClass="TagCollectionViewCell" customModule="InTune" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="4.5" width="94" height="35"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="zz7-A0-Je4">
-                                                    <rect key="frame" x="0.0" y="0.0" width="94" height="35"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uyu-8h-NCU">
-                                                            <rect key="frame" x="0.0" y="0.0" width="94" height="35"/>
-                                                            <state key="normal" title="Tag">
-                                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            </state>
-                                                        </button>
-                                                    </subviews>
-                                                    <constraints>
-                                                        <constraint firstAttribute="trailing" secondItem="uyu-8h-NCU" secondAttribute="trailing" id="PbG-0C-KSC"/>
-                                                        <constraint firstItem="uyu-8h-NCU" firstAttribute="leading" secondItem="zz7-A0-Je4" secondAttribute="leading" id="RWj-Mg-ZbG"/>
-                                                        <constraint firstItem="uyu-8h-NCU" firstAttribute="top" secondItem="zz7-A0-Je4" secondAttribute="top" id="d2h-Ui-R67"/>
-                                                        <constraint firstAttribute="bottom" secondItem="uyu-8h-NCU" secondAttribute="bottom" id="kW8-0A-9ev"/>
-                                                    </constraints>
-                                                </collectionViewCellContentView>
-                                                <color key="tintColor" red="0.31240576289999999" green="0.058394156019999997" blue="0.70837960030000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                <size key="customSize" width="94" height="35"/>
-                                            </collectionViewCell>
-                                        </cells>
+                                        <cells/>
                                     </collectionView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WzN-fK-OSW" customClass="DesignableView" customModule="InTune" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="52" width="374" height="52"/>
@@ -441,11 +416,11 @@
         </scene>
     </scenes>
     <resources>
-        <image name="gear" catalog="system" width="128" height="119"/>
-        <image name="person.badge.plus" catalog="system" width="128" height="116"/>
-        <image name="person.circle.fill" catalog="system" width="128" height="121"/>
-        <image name="person.crop.circle" catalog="system" width="128" height="121"/>
-        <image name="video.badge.plus.fill" catalog="system" width="128" height="80"/>
-        <image name="video.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="gear" catalog="system" width="64" height="58"/>
+        <image name="person.badge.plus" catalog="system" width="64" height="58"/>
+        <image name="person.circle.fill" catalog="system" width="64" height="60"/>
+        <image name="person.crop.circle" catalog="system" width="64" height="60"/>
+        <image name="video.badge.plus.fill" catalog="system" width="64" height="40"/>
+        <image name="video.circle.fill" catalog="system" width="64" height="60"/>
     </resources>
 </document>

@@ -90,7 +90,11 @@ class DatabaseService {
     public func updateUserTags(instruments:[String], genres:[String], completion: @escaping (Result<Bool,Error>) -> () ){
         guard let user = Auth.auth().currentUser else {return}
         
-        db.collection(DatabaseService.artistsCollection).document(user.uid).updateData(["instruments":instruments,"tags":genres]) { (error) in
+        var tags = [String]()
+        tags.append(contentsOf: instruments)
+        tags.append(contentsOf: genres)
+        
+        db.collection(DatabaseService.artistsCollection).document(user.uid).updateData(["tags":tags]) { (error) in
             if let error = error {
                 completion(.failure(error))
             } else {
