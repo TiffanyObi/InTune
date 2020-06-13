@@ -172,7 +172,9 @@ class ProfileViewController: UIViewController {
     
     @IBAction func chatButtonPressed(_ sender: UIButton) {
         print("chat")
-        
+        let chatVC = ChatViewController()
+        chatVC.artist = expArtist
+        navigationController?.pushViewController(chatVC, animated: true)
     }
     
 }
