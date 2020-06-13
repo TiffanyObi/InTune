@@ -13,6 +13,7 @@ import Firebase
 struct Artist {
   let name: String
   let artistId: String
+    //add email
 //  let instruments: [String]?
   let tags: [String]
   let city: String
