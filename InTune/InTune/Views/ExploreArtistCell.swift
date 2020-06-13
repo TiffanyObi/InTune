@@ -83,5 +83,11 @@ class ExploreArtistCell: UITableViewCell {
         ])
     }
     
+    public func configureCell(artist:Artist){
+        nameLabel.text = artist.name
+        locationLabel.text = artist.city
+        
+        
+    }
     
 }

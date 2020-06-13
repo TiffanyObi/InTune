@@ -175,7 +175,8 @@ extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDel
         
        
         let tag = singleArtist?.tags[indexPath.row]
-       
+//        cell.clipsToBounds = true
+//        cell.layer.cornerRadius = 10
         cell.configureCell(tag ?? "no tags")
         return cell
 }

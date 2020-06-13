@@ -15,8 +15,8 @@ class TagCollectionViewCell: UICollectionViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
-        self.layer.cornerRadius = 10
+         
+      
     }
     
     func configureCell(_ tag:String) {

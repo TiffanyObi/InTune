@@ -82,6 +82,18 @@ class DatabaseService {
                 }
         
             }
+    
+    public func getArtists(completion:@escaping (Result<[Artist], Error>) -> ()) {
+        db.collection(DatabaseService.artistsCollection).getDocuments { (snapshot, error) in
+            if let error = error {
+                completion(.failure(error))
+            } else if let snapshot = snapshot {
+                let artists = snapshot.documents.map { Artist($0.data())}
+                completion(.success(artists))
+            }
+            
+        }
+    }
         
     
     
@@ -158,5 +170,7 @@ class DatabaseService {
         }
     }
 
+    
+    
 }
 
