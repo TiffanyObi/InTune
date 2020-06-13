@@ -18,6 +18,7 @@ struct Artist {
   let city: String
   let isAnArtist:Bool
   let createdDate: Timestamp
+
 }
 extension Artist {
   init(_ dictionary: [String: Any]) {
@@ -28,6 +29,7 @@ extension Artist {
     self.city = dictionary["city"] as? String ?? "No City selected"
     self.isAnArtist = dictionary["isAnArtist"] as? Bool ?? false
     self.createdDate = dictionary["createdDate"] as? Timestamp ?? Timestamp(date: Date())
+    
   }
 }
 

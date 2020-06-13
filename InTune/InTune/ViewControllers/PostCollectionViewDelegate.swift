@@ -43,6 +43,7 @@ class TagsCVDelegate: NSObject,UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
         return 10
     }
     
@@ -52,7 +53,7 @@ class TagsCVDelegate: NSObject,UICollectionViewDelegate, UICollectionViewDataSou
         }
         
         cell.layer.cornerRadius = 10
-        
+         
         return cell
     }
     

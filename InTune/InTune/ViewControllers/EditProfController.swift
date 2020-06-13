@@ -35,14 +35,36 @@ class EditProfController: UIViewController {
     }
     
     private let storageService = StorageService()
-    
+    let db = DatabaseService()
+    var artist = [Artist]() {
+        didSet {
+             guard let artist = artist.first else {return}
+            self.usernameTextField.text = artist.name
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
         usernameTextField.delegate = self
         updateUI()
+        getArtist()
     }
     
+    func getArtist(){
+        guard let user = Auth.auth().currentUser else {
+            return
+        }
+       
+        db.fetchArtist(userID: user.uid) { [weak self](result) in
+            switch result {
+            case.failure(let error):
+                print(error.localizedDescription)
+                
+            case.success(let artist1):
+                self?.artist = artist1
+            }
+        }
+    }
     
     @IBAction func changeProfImagePressed(_ sender: UIButton) {
         //photo library

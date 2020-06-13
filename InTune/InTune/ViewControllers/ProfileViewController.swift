@@ -14,7 +14,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet var profImage: UIImageView!
     @IBOutlet private var nameLabel: UILabel!
     @IBOutlet private var bioLabel: UILabel!
-    @IBOutlet private var tagsCollection: UICollectionView!
+    @IBOutlet public var tagsCollection: UICollectionView!
     @IBOutlet private var postsCollectionView: UICollectionView!
     @IBOutlet private var emailLabel: UILabel!
     @IBOutlet private var addMediaButton: UIBarButtonItem!
@@ -25,8 +25,20 @@ class ProfileViewController: UIViewController {
     let postCVDelegate = PostCollectionViewDelegate()
     let tagsCVDelegate = TagsCVDelegate()
     
+    let db = DatabaseService()
+    
+    var artist = [Artist]() {
+        didSet {
+             guard let artist = artist.first else {return}
+            self.nameLabel.text = artist.name
+        }
+    }
+    
+    var tags = [String]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        getArtist()
         infoView.borderColor = #colorLiteral(red: 0.3867273331, green: 0.8825651407, blue: 0.8684034944, alpha: 1)
         tagsCollection.delegate = tagsCVDelegate
         tagsCollection.dataSource = tagsCVDelegate
@@ -35,6 +47,7 @@ class ProfileViewController: UIViewController {
         postsCollectionView.dataSource = postCVDelegate
         postsCollectionView.register(UINib(nibName: "PostCell", bundle: nil), forCellWithReuseIdentifier: "postCell")
         loadUI()
+        
     }
     
     private func loadUI() {
@@ -44,12 +57,40 @@ class ProfileViewController: UIViewController {
         }
         profImage.contentMode = .scaleAspectFill
         profImage.layer.cornerRadius = 60
-          profImage.kf.setImage(with: user.photoURL)
-          nameLabel.text = "\(user.displayName ?? "")"
+          if user.photoURL == nil  {
+                     profImage.image = UIImage(systemName: "person.fill")
+                 } else {
+                   profImage.kf.setImage(with: user.photoURL)
+                 }
+                 
+        guard let artist = artist.first else {return}
+        nameLabel.text = artist.name
+        
+        
         
         emailLabel.text = "\(email)"
         likeArtistButton.isHidden = true
         chatButton.isHidden = true
+        
+        tags = artist.instruments ?? [""]
+        tags.append(contentsOf: artist.tags)
+    }
+    
+    
+    func getArtist(){
+        guard let user = Auth.auth().currentUser else {
+            return
+        }
+       
+        db.fetchArtist(userID: user.uid) { [weak self](result) in
+            switch result {
+            case.failure(let error):
+                print(error.localizedDescription)
+                
+            case.success(let artist1):
+                self?.artist = artist1
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -57,9 +98,7 @@ class ProfileViewController: UIViewController {
         loadUI()
     }
     
-    private func collectionView() {
-        
-    }
+   
     
     
     @IBAction func postVideoButtonPressed(_ sender: UIBarButtonItem) {
