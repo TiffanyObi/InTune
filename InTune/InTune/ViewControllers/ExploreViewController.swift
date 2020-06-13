@@ -17,11 +17,20 @@ class ExploreViewController: UIViewController {
     let tabsCVDelegate = TagsCVDelegate()
     let featuredCVDelegate = FeaturedArtistCVDelegate()
     
+    let db = DatabaseService()
+    
+    var artists = [Artist](){
+        didSet{
+            DispatchQueue.main.async {
+                self.artistTableView.reloadData()
+            }
+        }
+    }
     let height: CGFloat = 120
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        fetchArtists()
         tagsCollectionView.register(UINib(nibName: "TagCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "tagCell")
         artistTableView.register(ExploreArtistCell.self, forCellReuseIdentifier: "exploreCell")
         featuredArtistCV.register(UINib(nibName: "FeaturedArtist", bundle: nil), forCellWithReuseIdentifier: "featuredArtist")
@@ -40,6 +49,20 @@ class ExploreViewController: UIViewController {
         artistTableView.delegate = self
         artistTableView.dataSource = self
     }
+    
+    func fetchArtists(){
+        db.getArtists { [weak self] (result) in
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+                
+            case.success(let artists1):
+                self?.artists = artists1
+                
+                print(self?.artists.count ?? 0)
+            }
+        }
+    }
 
 }
 
@@ -50,7 +73,7 @@ extension ExploreViewController: UITableViewDataSource, UITableViewDelegate {
         return height
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return artists.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -58,6 +81,8 @@ extension ExploreViewController: UITableViewDataSource, UITableViewDelegate {
             fatalError("could not conform to ExploreArtistCell")
         }
         
+        let artist = artists[indexPath.row]
+        cell.configureCell(artist: artist)
         return cell
     }
     
