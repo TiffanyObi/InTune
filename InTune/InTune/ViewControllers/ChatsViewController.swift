@@ -98,8 +98,8 @@ extension ChatsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let chatVC = ChatViewController()
         let userName = users[indexPath.row]
-        chatVC.user2Name = userName.name
-        chatVC.user2UID = userName.artistId
+//        chatVC.user2Name = userName.name
+//        chatVC.user2UID = userName.artistId
         navigationController?.pushViewController(chatVC, animated: true)
     }
     

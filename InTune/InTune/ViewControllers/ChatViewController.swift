@@ -16,17 +16,21 @@ class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate,
 
    var currentUser: User = Auth.auth().currentUser!
     
-    var user2Name: String?
+//    var user2Name: String?
     var user2ImgUrl: String?
-    var user2UID: String?
+//    var user2UID: String?
+    
+    var artist: Artist?
     
     private var docReference: DocumentReference?
     
     var messages: [Message] = []
+    
+    private var chatsCollection = "chats"
        
        override func viewDidLoad() {
             super.viewDidLoad()
-            self.title = user2Name
+        self.title = artist?.name
 
             navigationItem.largeTitleDisplayMode = .never
             maintainPositionOnKeyboardFrameChanged = true
@@ -45,12 +49,12 @@ class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate,
        
        
       func createNewChat() {
-          let users = [self.currentUser.uid, self.user2UID]
+        let users = [self.currentUser.uid, self.artist?.artistId]
            let data: [String: Any] = [
                "users":users
            ]
            
-           let db = Firestore.firestore().collection("Chats")
+           let db = Firestore.firestore().collection(chatsCollection)
            db.addDocument(data: data) { (error) in
                if let error = error {
                    print("Unable to create chat! \(error)")
@@ -64,7 +68,7 @@ class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate,
        func loadChat() {
               
               //Fetch all the chats which has current user in it
-              let db = Firestore.firestore().collection("Chats")
+              let db = Firestore.firestore().collection(chatsCollection)
                       .whereField("users", arrayContains: Auth.auth().currentUser?.uid ?? "Not Found User 1")
               
               
@@ -90,7 +94,7 @@ class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate,
                               
                               let chat = Chat(dictionary: doc.data())
                               //Get the chat which has user2 id
-                            if (chat?.users.contains(self.user2UID!))! {
+                            if (chat?.users.contains(self.artist?.artistId ?? ""))! {
                                   
                                   self.docReference = doc.reference
                                   //fetch it's thread collection

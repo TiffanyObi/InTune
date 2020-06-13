@@ -9,6 +9,11 @@
 import UIKit
 import FirebaseAuth
 
+enum Segue {
+    case explore
+    case prof
+}
+
 class ProfileViewController: UIViewController {
     
     @IBOutlet var profImage: UIImageView!
@@ -18,8 +23,10 @@ class ProfileViewController: UIViewController {
     @IBOutlet private var postsCollectionView: UICollectionView!
     @IBOutlet private var emailLabel: UILabel!
     @IBOutlet private var addMediaButton: UIBarButtonItem!
-    @IBOutlet private var likeArtistButton: UIButton!
-    @IBOutlet private var chatButton: UIButton!
+    @IBOutlet var likeArtistButton: UIButton!
+    @IBOutlet var chatButton: UIButton!
+    @IBOutlet var postVidButton: UIBarButtonItem!
+    @IBOutlet var settingsButton: UIBarButtonItem!
     @IBOutlet var infoView: DesignableView!
     
     let postCVDelegate = PostCollectionViewDelegate()
@@ -27,21 +34,19 @@ class ProfileViewController: UIViewController {
     
     let db = DatabaseService()
     
-  
-    
     var singleArtist: Artist? {
         didSet {
             tagsCollection.reloadData()
         }
     }
     
-   
+    var expArtist: Artist?
+    
+    var state: Segue = .prof
     
     override func viewDidLoad() {
         super.viewDidLoad()
         getArtist()
-        loadUI()
-      
         infoView.borderColor = #colorLiteral(red: 0.3867273331, green: 0.8825651407, blue: 0.8684034944, alpha: 1)
         tagsCollection.delegate = self
         tagsCollection.dataSource = self
@@ -87,6 +92,19 @@ class ProfileViewController: UIViewController {
         chatButton.isHidden = true
     }
     
+    func loadExpUI() {
+        likeArtistButton.isHidden = false
+        chatButton.isHidden = false
+        navigationItem.leftBarButtonItem = .none
+        navigationItem.rightBarButtonItem = .none
+        guard let artist = expArtist else { print("no expArtist")
+            return
+        }
+        nameLabel.text = artist.name
+        emailLabel.text = artist.artistId
+        
+    }
+    
     
     func getArtist(){
        
@@ -107,7 +125,11 @@ class ProfileViewController: UIViewController {
    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        if state == .prof{
         loadUI()
+        } else {
+            loadExpUI()
+        }
     }
     
    
@@ -150,6 +172,9 @@ class ProfileViewController: UIViewController {
     
     @IBAction func chatButtonPressed(_ sender: UIButton) {
         print("chat")
+        let chatVC = ChatViewController()
+        chatVC.artist = expArtist
+        navigationController?.pushViewController(chatVC, animated: true)
     }
     
 }

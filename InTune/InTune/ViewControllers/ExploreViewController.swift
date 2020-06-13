@@ -86,5 +86,15 @@ extension ExploreViewController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let storyBoard = UIStoryboard(name: "MainView", bundle:  nil)
+        guard let profVC = storyBoard.instantiateViewController(identifier: "ProfileViewController") as? ProfileViewController else {
+            fatalError("could not load ProfileViewController")
+        }
+        let artist = artists[indexPath.row]
+        profVC.expArtist = artist
+        profVC.state = .explore
+        navigationController?.pushViewController(profVC, animated: true)
+    }
     
 }
