@@ -27,18 +27,21 @@ class ProfileViewController: UIViewController {
     
     let db = DatabaseService()
     
-    var artist = [Artist]() {
-        didSet {
-             guard let artist = artist.first else {return}
-            self.nameLabel.text = artist.name
+    var artists = [Artist]() {
+        didSet{
+            print(artists.count)
         }
     }
+    
+    var singleArtist: Artist?
     
     var tags = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         getArtist()
+        loadUI()
+      
         infoView.borderColor = #colorLiteral(red: 0.3867273331, green: 0.8825651407, blue: 0.8684034944, alpha: 1)
         tagsCollection.delegate = tagsCVDelegate
         tagsCollection.dataSource = tagsCVDelegate
@@ -46,53 +49,70 @@ class ProfileViewController: UIViewController {
         postsCollectionView.delegate = postCVDelegate
         postsCollectionView.dataSource = postCVDelegate
         postsCollectionView.register(UINib(nibName: "PostCell", bundle: nil), forCellWithReuseIdentifier: "postCell")
-        loadUI()
+
         
     }
     
     private func loadUI() {
         
-        guard let user = Auth.auth().currentUser, let email = user.email else {
-            return
-        }
-        profImage.contentMode = .scaleAspectFill
-        profImage.layer.cornerRadius = 60
-          if user.photoURL == nil  {
-                     profImage.image = UIImage(systemName: "person.fill")
-                 } else {
-                   profImage.kf.setImage(with: user.photoURL)
-                 }
-                 
-        guard let artist = artist.first else {return}
-        nameLabel.text = artist.name
-        
-        
-        
-        emailLabel.text = "\(email)"
-        likeArtistButton.isHidden = true
-        chatButton.isHidden = true
-        
-        tags = artist.instruments ?? [""]
-        tags.append(contentsOf: artist.tags)
-    }
-    
-    
-    func getArtist(){
         guard let user = Auth.auth().currentUser else {
             return
         }
-       
-        db.fetchArtist(userID: user.uid) { [weak self](result) in
+        
+        db.fetchArtist(userID: user.uid){ [weak self](result) in
             switch result {
             case.failure(let error):
                 print(error.localizedDescription)
                 
             case.success(let artist1):
-                self?.artist = artist1
+                DispatchQueue.main.async {
+                    self?.singleArtist = artist1
+                    self?.nameLabel.text = artist1.name
+                    self?.tags = artist1.tags
+                }
+             
+            }
+        }
+        
+        profImage.contentMode = .scaleAspectFill
+        profImage.layer.cornerRadius = 60
+        
+          if user.photoURL == nil  {
+                     profImage.image = UIImage(systemName: "person.fill")
+                 } else {
+                   profImage.kf.setImage(with: user.photoURL)
+        }
+//        nameLabel.text = singleArtist?.name
+        
+        
+        
+        emailLabel.text = user.email
+        likeArtistButton.isHidden = true
+        chatButton.isHidden = true
+        
+//        tags = singleArtist?.instruments ?? [""]
+//        tags.append(contentsOf: singleArtist?.tags ?? [""])
+//        print(tags)
+    }
+    
+    
+    func getArtist(){
+       
+        guard let userID = Auth.auth().currentUser?.uid else {
+            return
+        }
+        db.fetchArtist(userID: userID){ [weak self](result) in
+            switch result {
+            case.failure(let error):
+                print(error.localizedDescription)
+                
+            case.success(let artist1):
+                self?.singleArtist = artist1
             }
         }
     }
     
+   
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         loadUI()

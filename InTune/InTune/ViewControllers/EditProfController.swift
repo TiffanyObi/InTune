@@ -36,12 +36,9 @@ class EditProfController: UIViewController {
     
     private let storageService = StorageService()
     let db = DatabaseService()
-    var artist = [Artist]() {
-        didSet {
-             guard let artist = artist.first else {return}
-            self.usernameTextField.text = artist.name
-        }
-    }
+    
+    var artist: Artist?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -51,17 +48,18 @@ class EditProfController: UIViewController {
     }
     
     func getArtist(){
-        guard let user = Auth.auth().currentUser else {
-            return
-        }
-       
-        db.fetchArtist(userID: user.uid) { [weak self](result) in
+        
+        guard let userID = Auth.auth().currentUser?.uid else {return}
+    
+        db.fetchArtist(userID: userID) { [weak self](result) in
             switch result {
             case.failure(let error):
                 print(error.localizedDescription)
                 
             case.success(let artist1):
                 self?.artist = artist1
+                self?.usernameTextField.text = artist1.name
+                
             }
         }
     }
@@ -76,13 +74,20 @@ class EditProfController: UIViewController {
         guard let user = Auth.auth().currentUser else {
             return
         }
+        
+        if user.photoURL == nil  {
+                     editImageView.image = UIImage(systemName: "person.fill")
+                 } else {
+                   editImageView.kf.setImage(with: user.photoURL)
+        }
+        
         usernameTextField.text = "\(user.displayName ?? "")"
-        //set image with kf
-        editImageView.kf.setImage(with: user.photoURL)
+
         
     }
     
     func updateInfo() {
+        
 
         guard let userName = usernameTextField.text, !userName.isEmpty, let selectedImage = editImageView.image, let bioText = bioTextView.text else {
             showAlert(title: "Error editing", message: "Please check all fields")

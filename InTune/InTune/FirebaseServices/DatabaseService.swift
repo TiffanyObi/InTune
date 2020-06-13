@@ -69,17 +69,14 @@ class DatabaseService {
     }
     
     //fetch artist
-    public func fetchArtist(userID:String, completion: @escaping (Result<[Artist], Error>) -> ()) {
-        guard let user = Auth.auth().currentUser,
-            user.uid == userID
-            else {return}
-        
-        
-        db.collection(DatabaseService.artistsCollection).whereField("artistId", isEqualTo: userID).getDocuments { (snapshot, error) in
+    public func fetchArtist(userID:String ,completion: @escaping (Result<Artist, Error>) -> ()) {
+       
+        db.collection(DatabaseService.artistsCollection).document(userID).getDocument { (snapshot, error) in
                     if let error = error {
                         completion(.failure(error))
                     } else if let snapshot = snapshot {
-                        let artist = snapshot.documents.map {Artist($0.data())}
+                        guard let data = snapshot.data() else {return}
+                        let artist = Artist(data)
                         completion(.success(artist))
                     }
                 }
@@ -128,6 +125,7 @@ class DatabaseService {
             }
         }
     }
+    
     public func isArtistInFav(for artist: Artist, completion: @escaping (Result<Bool, Error>) -> ()) {
         guard let user = Auth.auth().currentUser else { return }
     }

@@ -8,27 +8,33 @@
 
 import UIKit
 
+enum ViewControllerStates{
+    case explore(tags: Int)
+    case profile(tags: Int)
+    case gigs(tags: Int)
+}
+
 class PostCollectionViewDelegate: NSObject,UICollectionViewDelegate, UICollectionViewDataSource {
     
-     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let maxSize: CGSize = UIScreen.main.bounds.size
         let itemWidth: CGFloat = maxSize.width * 0.40
-         let itemHeight: CGFloat = maxSize.height * 0.40
-         return CGSize(width: itemWidth, height: itemHeight)
-     }
-     
-     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-         return 10
-     }
-     
-     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "postCell", for: indexPath) as? PostCell else {
-             fatalError("could not conform to postCell")
-         }
-         
-         return cell
-     }
-     
+        let itemHeight: CGFloat = maxSize.height * 0.40
+        return CGSize(width: itemWidth, height: itemHeight)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "postCell", for: indexPath) as? PostCell else {
+            fatalError("could not conform to postCell")
+        }
+        
+        return cell
+    }
+    
     
     
 }
@@ -53,7 +59,7 @@ class TagsCVDelegate: NSObject,UICollectionViewDelegate, UICollectionViewDataSou
         }
         
         cell.layer.cornerRadius = 10
-         
+        
         return cell
     }
     
@@ -72,7 +78,7 @@ class FeaturedArtistCVDelegate: NSObject,UICollectionViewDelegate, UICollectionV
         
         return CGSize(width: itemWidth, height: 80)
     }
-
+    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 6
