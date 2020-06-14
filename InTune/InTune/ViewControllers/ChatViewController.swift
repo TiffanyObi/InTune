@@ -22,6 +22,8 @@ class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate,
     
     var artist: Artist?
     
+    private let databaseService = DatabaseService()
+    
     private var docReference: DocumentReference?
     
     var messages: [Message] = []
@@ -46,6 +48,28 @@ class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate,
 
             
         }
+    
+    func addToThread() {
+        databaseService.createThread(artist: artist!) { (result) in
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success:
+                print("succesfully updated database")
+            }
+        }
+    }
+    
+    func addToThread2() {
+        databaseService.createThread2(sender: artist!, artist: currentUser) { (result) in
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success:
+                print("success")
+            }
+        }
+    }
        
        
       func createNewChat() {
@@ -61,6 +85,8 @@ class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate,
                    return
                } else {
                    self.loadChat()
+                   self.addToThread()
+                   self.addToThread2()
                }
            }
       }
@@ -94,7 +120,7 @@ class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate,
                               
                               let chat = Chat(dictionary: doc.data())
                               //Get the chat which has user2 id
-                            if (chat?.users.contains(self.artist?.artistId ?? ""))! {
+                            if ((chat?.users.contains(self.artist?.artistId ?? ""))!) {
                                   
                                   self.docReference = doc.reference
                                   //fetch it's thread collection
@@ -116,6 +142,8 @@ class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate,
                                       self.messagesCollectionView.scrollToBottom(animated: true)
                                   }
                                   })
+//                                  self.addToThread()
+//                                  self.addToThread2()
                                   return
                               } //end of if
                           } //end of for
