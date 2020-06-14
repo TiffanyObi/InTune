@@ -20,8 +20,6 @@ struct Artist {
   let createdDate: Timestamp
   let photoURL:String?
 
-    
-
 }
 extension Artist {
   init(_ dictionary: [String: Any]) {

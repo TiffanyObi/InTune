@@ -12,6 +12,12 @@ class GigViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
+    var gigs = [GigsPost]() {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,13 +34,15 @@ class GigViewController: UIViewController {
 
 extension GigViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
+        return gigs.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "gigCell", for: indexPath) as? GigCell else {
             fatalError("could not get cell")
         }
+        let gig = gigs[indexPath.row]
+        
         return cell
     }
 }

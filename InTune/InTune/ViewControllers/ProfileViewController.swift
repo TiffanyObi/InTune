@@ -202,7 +202,7 @@ extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDel
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return singleArtist?.tags.count ?? 3
+        return singleArtist?.tags?.count ?? 3
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -210,17 +210,14 @@ extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDel
             fatalError("could not conform to TagCell")
         }
         
-    
-        
-        if state == .prof {
+if state == .prof {
             let tag = singleArtist?.tags[indexPath.row]
              cell.configureCell(tag ?? "no tags")
         } else if state == .explore {
             let tag = expArtist?.tags[indexPath.row]
              cell.configureCell(tag ?? "no tags")
         }
-        
-        
+
         return cell
 }
 }
