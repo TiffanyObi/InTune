@@ -21,7 +21,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet private var bioLabel: UILabel!
     @IBOutlet public var tagsCollection: UICollectionView!
     @IBOutlet private var postsCollectionView: UICollectionView!
-    @IBOutlet private var emailLabel: UILabel!
+    @IBOutlet private var locationLabel: UILabel!
     @IBOutlet private var addMediaButton: UIBarButtonItem!
     @IBOutlet var likeArtistButton: UIButton!
     @IBOutlet var chatButton: UIButton!
@@ -87,7 +87,7 @@ class ProfileViewController: UIViewController {
                    profImage.kf.setImage(with: user.photoURL)
         }
 
-        emailLabel.text = user.email
+        locationLabel.text = user.email
         likeArtistButton.isHidden = true
         chatButton.isHidden = true
     }
@@ -101,7 +101,7 @@ class ProfileViewController: UIViewController {
             return
         }
         nameLabel.text = artist.name
-        emailLabel.text = artist.artistId
+        locationLabel.text = artist.city
         
     }
     
@@ -210,11 +210,14 @@ extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDel
             fatalError("could not conform to TagCell")
         }
         
-       
-        let tag = singleArtist?.tags?[indexPath.row]
-//        cell.clipsToBounds = true
-//        cell.layer.cornerRadius = 10
-        cell.configureCell(tag ?? "no tags")
+if state == .prof {
+            let tag = singleArtist?.tags[indexPath.row]
+             cell.configureCell(tag ?? "no tags")
+        } else if state == .explore {
+            let tag = expArtist?.tags[indexPath.row]
+             cell.configureCell(tag ?? "no tags")
+        }
+
         return cell
 }
 }
