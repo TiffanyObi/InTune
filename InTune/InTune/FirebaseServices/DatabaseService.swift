@@ -47,9 +47,9 @@ class DatabaseService {
         }
     }
     
-    public func createThread2(sender: Artist, artist: User, completion: @escaping (Result<Bool, Error>)->()) {
+    public func createThread2(sender: Artist, artist: Artist, completion: @escaping (Result<Bool, Error>)->()) {
          let artistId = sender.artistId
-        db.collection(DatabaseService.artistsCollection).document(artistId).collection(DatabaseService.threadCollection).document(Auth.auth().currentUser!.uid).setData(["name" : artist.email!, "artistId": artist.uid]) { (error) in
+        db.collection(DatabaseService.artistsCollection).document(artistId).collection(DatabaseService.threadCollection).document(Auth.auth().currentUser!.uid).setData(["name" : artist.name, "artistId": artist.artistId]) { (error) in
                if let error = error {
                    completion(.failure(error))
                } else {
@@ -79,7 +79,9 @@ class DatabaseService {
     
     public func updateUserDisplayNameAndLocation(userName:String, location:String, completion: @escaping (Result<Bool,Error>) -> ()){
         
+        
         guard let user = Auth.auth().currentUser else {return}
+        user.createProfileChangeRequest().displayName = userName
         
         db.collection(DatabaseService.artistsCollection).document(user.uid).updateData(["name": userName, "city":location]) { (error) in
             if let error = error {

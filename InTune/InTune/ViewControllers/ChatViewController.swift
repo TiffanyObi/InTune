@@ -14,7 +14,11 @@ import FirebaseFirestore
 
 class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate, MessagesDataSource, MessagesLayoutDelegate, MessagesDisplayDelegate {
 
-   var currentUser: User = Auth.auth().currentUser!
+//   var currentUser: User = Auth.auth().currentUser!
+    
+    var currentUser: Artist?
+    
+    
     
 //    var user2Name: String?
     var user2ImgUrl: String?
@@ -32,6 +36,7 @@ class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate,
        
        override func viewDidLoad() {
             super.viewDidLoad()
+        updateCurrentArtist()
         self.title = artist?.name
 
             navigationItem.largeTitleDisplayMode = .never
@@ -49,6 +54,18 @@ class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate,
             
         }
     
+    func updateCurrentArtist() {
+        guard let currentUser = Auth.auth().currentUser else {return}
+        databaseService.fetchArtist(userID: currentUser.uid) { (result) in
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success(let artist):
+                self.currentUser = artist
+            }
+        }
+    }
+    
     func addToThread() {
         databaseService.createThread(artist: artist!) { (result) in
             switch result {
@@ -61,7 +78,7 @@ class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate,
     }
     
     func addToThread2() {
-        databaseService.createThread2(sender: artist!, artist: currentUser) { (result) in
+        databaseService.createThread2(sender: artist!, artist: currentUser!) { (result) in
             switch result {
             case .failure(let error):
                 print(error.localizedDescription)
@@ -73,7 +90,7 @@ class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate,
        
        
       func createNewChat() {
-        let users = [self.currentUser.uid, self.artist?.artistId]
+        let users = [self.currentUser?.artistId, self.artist?.artistId]
            let data: [String: Any] = [
                "users":users
            ]
@@ -120,7 +137,8 @@ class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate,
                               
                               let chat = Chat(dictionary: doc.data())
                               //Get the chat which has user2 id
-                            if ((chat?.users.contains(self.artist?.artistId ?? ""))!) {
+//                            if ((chat?.users.contains(self.artist?.artistId ?? ""))!) {
+                            if chat?.users.contains(self.artist?.artistId ?? "") ?? false {
                                   
                                   self.docReference = doc.reference
                                   //fetch it's thread collection
@@ -189,7 +207,7 @@ class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate,
        
        func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
 
-        let message = Message(id: UUID().uuidString, content: text, created: Timestamp(), senderID: currentUser.uid, senderName: currentUser.email!)
+        let message = Message(id: UUID().uuidString, content: text, created: Timestamp(), senderID: currentUser!.artistId, senderName: (currentUser?.name)!)
                    
                      //messages.append(message)
                      insertNewMessage(message)
