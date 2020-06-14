@@ -19,6 +19,7 @@ class DatabaseService {
     static let artistPosts = "artistPost"
     static let favCollection = "favoriteArtists"
     static let gigPosts = "gigPosts"
+    static let threadCollection = "thread"
     
     private let db = Firestore.firestore()
   static let shared = DatabaseService()
@@ -34,6 +35,28 @@ class DatabaseService {
       }
     }
   }
+    
+    public func createThread(artist: Artist, completion: @escaping (Result<Bool, Error>)->()) {
+        guard let artistId = Auth.auth().currentUser?.uid else {return}
+        db.collection(DatabaseService.artistsCollection).document(artistId).collection(DatabaseService.threadCollection).document(artist.artistId).setData(["name" : artist.name, "artistId": artist.artistId]) { (error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(true))
+            }
+        }
+    }
+    
+    public func createThread2(sender: Artist, artist: User, completion: @escaping (Result<Bool, Error>)->()) {
+         let artistId = sender.artistId
+        db.collection(DatabaseService.artistsCollection).document(artistId).collection(DatabaseService.threadCollection).document(Auth.auth().currentUser!.uid).setData(["name" : artist.email!, "artistId": artist.uid]) { (error) in
+               if let error = error {
+                   completion(.failure(error))
+               } else {
+                   completion(.success(true))
+               }
+           }
+       }
     
     
     
