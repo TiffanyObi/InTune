@@ -327,10 +327,10 @@
 			isa = PBXGroup;
 			children = (
 				3E43F47E247E97FF00CC0584 /* Artist.swift */,
+				3E43F482247E983300CC0584 /* FavoriteArtist.swift */,
 				3E7C53D4248AC614001974DB /* TagsInfoModels.swift */,
 				3E75433E2490711300383D02 /* StatesForPickerView.swift */,
 				3E43F48A247E9A7C00CC0584 /* Posts.swift */,
-				3E43F482247E983300CC0584 /* FavoriteArtist.swift */,
 				3E43F484247E985700CC0584 /* LoginViewViewModel.swift */,
 				BEDF3FCC2485349A00D22E2D /* Chat.swift */,
 				BEDF3FCE248534A600D22E2D /* Message.swift */,

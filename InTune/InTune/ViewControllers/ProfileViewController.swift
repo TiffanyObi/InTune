@@ -167,6 +167,18 @@ class ProfileViewController: UIViewController {
     
     @IBAction func favArtistButtonPressed(_ sender: UIButton) {
         print("favorited")
+        
+        guard let expArtist1 = expArtist else { return}
+        
+        db.createFavoriteArtist(artist: expArtist1) { (result) in
+            switch result {
+            case.failure(let error):
+                print(error.localizedDescription)
+                
+            case .success:
+                print(true)
+            }
+        }
     }
     
     

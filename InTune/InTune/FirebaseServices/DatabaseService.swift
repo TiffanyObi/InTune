@@ -156,7 +156,7 @@ class DatabaseService {
     }
     public func createFavoriteArtist(artist: Artist,completion: @escaping (Result<Bool, Error>) -> ()) {
         guard let user = Auth.auth().currentUser else { return }
-        db.collection(DatabaseService.artistsCollection).document(user.uid).collection(DatabaseService.favCollection).addDocument(data: ["favoritedArtist": artist, "favoritedDate": Timestamp()]) { (error) in
+        db.collection(DatabaseService.artistsCollection).document(user.uid).collection(DatabaseService.favCollection).addDocument(data: ["favArtistName": artist.name, "favArtistLocation": artist.city,"favArtistID":artist.artistId,"favArtistTag":artist.tags,"favoritedDate": Timestamp()]) { (error) in
             if let error = error {
                 completion(.failure(error))
             } else {
