@@ -15,10 +15,10 @@ struct Artist {
   let artistId: String
     //add email
 //  let instruments: [String]?
-  let tags: [String]
-  let city: String
-  let isAnArtist:Bool
-  let createdDate: Timestamp
+  let tags: [String]?
+  let city: String?
+  let isAnArtist:Bool?
+  let createdDate: Timestamp?
 
 }
 extension Artist {
