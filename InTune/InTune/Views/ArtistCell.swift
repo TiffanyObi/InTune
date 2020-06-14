@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ArtistCell: UICollectionViewCell {
     
@@ -16,5 +17,13 @@ class ArtistCell: UICollectionViewCell {
     @IBOutlet var statusButton: UIButton!
     @IBOutlet var postStatusLabel: UILabel!
     
+    
+    public func configureFavArtistCell(favArtist:FavoritedArtist){
+        imageView.image = UIImage(systemName: "photo.fill")
+        
+        displayNameLabel.text = favArtist.favArtistName
+        locationLabel.text = favArtist.favArtistLocation
+        
+    }
     
 }

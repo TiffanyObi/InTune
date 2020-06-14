@@ -21,7 +21,7 @@ class LikedArtistView: UIView {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         let cv = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
-        cv.backgroundColor = .systemGray2
+        cv.backgroundColor = .white
         return cv
     }()
     

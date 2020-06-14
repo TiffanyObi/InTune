@@ -165,6 +165,22 @@ class DatabaseService {
         }
     }
     
+//    public func getFavArtists(completion: @escaping (Result<[FavoritedArtist],Error>) ->()){
+//        guard let user = Auth.auth().currentUser else { return }
+//
+//        db.collection(DatabaseService.artistsCollection).document(user.uid).collection(DatabaseService.favCollection).getDocuments { (snapshot, error) in
+//            if let error = error {
+//                print(error.localizedDescription)
+//            } else if let snapshot
+//        }
+//        
+//                        
+//                    }
+//                })
+//
+//
+//    }
+    
     public func isArtistInFav(for artist: Artist, completion: @escaping (Result<Bool, Error>) -> ()) {
         guard let user = Auth.auth().currentUser else { return }
     }
