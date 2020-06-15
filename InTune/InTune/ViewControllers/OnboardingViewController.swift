@@ -26,6 +26,12 @@ class OnboardingViewController: UIViewController {
     var selectedInstruments = Set<String>()
     var selectedGenres = Set<String>()
     
+    private lazy var tapGesture: UITapGestureRecognizer = {
+        let gesture = UITapGestureRecognizer()
+        gesture.addTarget(self, action: #selector(resignTextfeilds))
+        return gesture
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view = userExperienece
@@ -37,8 +43,13 @@ class OnboardingViewController: UIViewController {
         setUpCollectionViews()
         loadCollectionViews()
         setUpDoneButton()
+        view.addGestureRecognizer(tapGesture)
     }
 
+    @objc private func resignTextfeilds(){
+        displayNameAndLocation.displayNameTextfield.resignFirstResponder()
+       }
+    
     func setUpButtonOnExperienceView(){
         for button in userExperienece.allButtons {
             button.addTarget(self, action:#selector(chooseUserExperience), for: .touchUpInside)
@@ -149,6 +160,12 @@ extension OnboardingViewController: UITextFieldDelegate {
     func textFieldDidChangeSelection(_ textField: UITextField) {
         guard !(textField.text?.isEmpty ?? true) else {return}
         displayName = textField.text ?? "no display name"
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        
+        return true
     }
 }
 
