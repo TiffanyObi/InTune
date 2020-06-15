@@ -50,13 +50,13 @@ class LoginViewController: UIViewController {
         passwordTextfield.delegate = self
     }
    @objc private func resignTextfeilds(){
-        errorMessageLabel.isHidden = true
+        clearErrorLabel()
         emailTextfield.resignFirstResponder()
         passwordTextfield.resignFirstResponder()
     }
     private func clearErrorLabel(){
         
-        errorMessageLabel.text = viewModel.setErrorLabelToEmpty
+        errorMessageLabel.text =  "                 "
         errorMessageLabel.isHidden = true
 
     }
