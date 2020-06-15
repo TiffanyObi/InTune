@@ -54,7 +54,7 @@
                                     <constraint firstAttribute="width" constant="80" id="uaN-dh-Zeb"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Wa-a1-Y5o">
                                 <rect key="frame" x="80" y="418" width="72" height="34"/>
@@ -62,11 +62,14 @@
                                     <constraint firstAttribute="width" constant="72" id="1kM-Vn-s3p"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pBQ-FX-35u">
                                 <rect key="frame" x="182.5" y="720.5" width="49" height="30"/>
                                 <state key="normal" title="Submit"/>
+                                <connections>
+                                    <action selector="submitButtonPressed:" destination="unz-oA-dNm" eventType="touchUpInside" id="0KZ-8k-TF7"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -100,10 +103,10 @@
                     </view>
                     <connections>
                         <outlet property="dateTextField" destination="3Wa-a1-Y5o" id="Di2-X2-jai"/>
-                        <outlet property="descriptionTextField" destination="mIh-Qb-Fze" id="hbJ-nE-R39"/>
+                        <outlet property="descriptionTextView" destination="mIh-Qb-Fze" id="hbJ-nE-R39"/>
                         <outlet property="gigImageView" destination="uwT-Cd-xON" id="Cax-e7-qi1"/>
                         <outlet property="priceTextField" destination="eeX-lh-MD3" id="sDD-4A-4uE"/>
-                        <outlet property="textField" destination="wde-Q7-Iqo" id="q15-ah-dt2"/>
+                        <outlet property="titleTextField" destination="wde-Q7-Iqo" id="q15-ah-dt2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k6J-Or-TcW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
