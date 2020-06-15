@@ -35,29 +35,7 @@
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="tagCell" id="XQs-2e-24O" customClass="TagCollectionViewCell" customModule="InTune" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="4.5" width="94" height="35"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="1JW-e8-tac">
-                                            <rect key="frame" x="0.0" y="0.0" width="94" height="35"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZIk-Wr-cr9">
-                                                    <rect key="frame" x="0.0" y="0.0" width="94" height="35"/>
-                                                    <state key="normal" title="Tag"/>
-                                                </button>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="ZIk-Wr-cr9" secondAttribute="bottom" id="413-jh-tij"/>
-                                                <constraint firstAttribute="trailing" secondItem="ZIk-Wr-cr9" secondAttribute="trailing" id="Zgc-fA-sNo"/>
-                                                <constraint firstItem="ZIk-Wr-cr9" firstAttribute="top" secondItem="1JW-e8-tac" secondAttribute="top" id="f8H-rf-BUj"/>
-                                                <constraint firstItem="ZIk-Wr-cr9" firstAttribute="leading" secondItem="1JW-e8-tac" secondAttribute="leading" id="x3I-Kr-SJh"/>
-                                            </constraints>
-                                        </collectionViewCellContentView>
-                                        <size key="customSize" width="94" height="35"/>
-                                    </collectionViewCell>
-                                </cells>
+                                <cells/>
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artists" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jaF-bE-8Ot">
                                 <rect key="frame" x="174.5" y="168" width="65" height="26.5"/>

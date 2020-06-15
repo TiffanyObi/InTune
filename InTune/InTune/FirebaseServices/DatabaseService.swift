@@ -131,7 +131,7 @@ class DatabaseService {
         tags.append(contentsOf: instruments)
         tags.append(contentsOf: genres)
         
-        db.collection(DatabaseService.artistsCollection).document(user.uid).updateData(["tags":tags]) { (error) in
+        db.collection(DatabaseService.artistsCollection).document(user.uid).updateData(["tags":tags,"preferences":tags]) { (error) in
             if let error = error {
                 completion(.failure(error))
             } else {
