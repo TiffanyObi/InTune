@@ -7,10 +7,14 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseFirestore
 
 class GigViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    
+    var listener: ListenerRegistration?
     
     var gigs = [GigsPost]() {
         didSet {
@@ -25,6 +29,14 @@ class GigViewController: UIViewController {
         tableView.delegate = self
         tableView.register(UINib(nibName: "GigCell", bundle: nil), forCellReuseIdentifier: "gigCell")
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+          
+
+          
+    
     }
     
 

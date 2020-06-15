@@ -22,6 +22,8 @@ class CreateGigViewController: UIViewController {
     
     let databaseService = DatabaseService()
     
+    var currentUser: Artist?
+    
     private var selectedImage: UIImage? {
         didSet {
             gigImageView.image = selectedImage
@@ -64,6 +66,19 @@ class CreateGigViewController: UIViewController {
         priceTextField.delegate = self
         descriptionTextView.delegate = self
         addGestures()
+        updateCurrentArtist()
+    }
+    
+    func updateCurrentArtist() {
+        guard let currentUser = Auth.auth().currentUser else {return}
+        databaseService.fetchArtist(userID: currentUser.uid) { (result) in
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success(let artist):
+                self.currentUser = artist
+            }
+        }
     }
     
     private func addGestures() {
@@ -106,15 +121,19 @@ class CreateGigViewController: UIViewController {
                 return
         }
         
-        guard let displayName = Auth.auth().currentUser?.displayName else {
-            showAlert(title: "Inconplete Profile", message: "Please complete your profile")
-            return
+        databaseService.createGig(artist: currentUser!, title: title, description: description, photoURL: nil, price: price, eventDate: date, createdDate: Timestamp()) { (result) in
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success:
+                DispatchQueue.main.async {
+                    print("Succesfully uploaded gig")
+                    self.dismiss(animated: true)
+                }
+                
+            }
         }
-        
-        
-        
-        
-        self.dismiss(animated: true)
+
     }
     
     
