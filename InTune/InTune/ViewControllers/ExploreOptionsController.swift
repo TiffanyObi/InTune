@@ -8,6 +8,11 @@
 
 import UIKit
 
+protocol UpdateUsertPref:AnyObject {
+    func didUpdatePreferences(_ tags: [String], _ exploreVC:ExploreOptionsController)
+}
+
+
 class ExploreOptionsController: UIViewController {
     
     
@@ -19,8 +24,17 @@ class ExploreOptionsController: UIViewController {
     var instruments = [String]()
     var genres = [String]()
     
-    var selectedInstruments = Set<String>()
-    var selectedGenres = Set<String>()
+//    var selectedInstruments = Set<String>()
+//    var selectedGenres = Set<String>()
+    
+    var selectedTags = Set<String>()
+
+    
+    let db = DatabaseService()
+    
+//     private var tagsObserver: NSKeyValueObservation?
+    
+    weak var prefDelegate: UpdateUsertPref?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +58,36 @@ class ExploreOptionsController: UIViewController {
         instruments = Tags.instrumentList
         genres = Tags.genreList
     }
-
+    
+    
+    @IBAction func saveButtonPressed(_ sender: UIButton) {
+        
+        guard !selectedTags.isEmpty else {return}
+        
+        db.updateUserPreferences(Array(selectedTags)) { [weak self] (result) in
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+                
+            case.success:
+                print(true)
+                
+                self?.prefDelegate?.didUpdatePreferences(Array(self?.selectedTags ?? [""]), self ?? ExploreOptionsController())
+                
+                self?.dismiss(animated: true)
+                
+            }
+        }
+        
+    }
+//    private func configureTagsObservation(){
+//        tagsObserver = self.observe(\.selectedTags, options: [.old,.new], changeHandler: { [weak self](tags, change) in
+//            guard let tags = change.newValue else { return }
+//
+//        })
+//    }
+    
+    
 }
 
 extension ExploreOptionsController: UICollectionViewDelegateFlowLayout,UICollectionViewDataSource {
@@ -93,26 +136,25 @@ extension ExploreOptionsController: UICollectionViewDelegateFlowLayout,UICollect
         let itemHeight: CGFloat = maxSize.height * 0.10
         return CGSize(width: itemWidth, height: itemHeight)
     }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == instrumentsCollectionView {
-            guard let tagCell = collectionView.dequeueReusableCell(withReuseIdentifier: "tagCell", for: indexPath) as? TagCollectionViewCell else { fatalError("could not downcast to TagCollectionViewCell")
-            }
             
             let selectedInstrument = instruments[indexPath.row]
-            tagCell.tagTitle.isHighlighted = true
-            selectedInstruments.insert(selectedInstrument)
-            print(selectedInstruments)
+          
+            selectedTags.insert(selectedInstrument)
+            print(selectedTags)
+            
         }
         
         if collectionView == genresCollectionView {
-            guard let tagCell = collectionView.dequeueReusableCell(withReuseIdentifier: "tagCell", for: indexPath) as? TagCollectionViewCell else { fatalError("could not downcast to TagCollectionViewCell")
-            }
             
             let selectedGenre = genres[indexPath.row]
-            tagCell.tagTitle.isHighlighted = true
-            selectedGenres.insert(selectedGenre)
-            print(selectedGenres)
+            selectedTags.insert(selectedGenre)
+            
+            print(selectedTags)
         }
     }
+
     
 }

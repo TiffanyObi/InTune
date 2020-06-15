@@ -154,7 +154,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ah1-k4-emZ">
-                                <rect key="frame" x="20" y="162" width="374" height="240"/>
+                                <rect key="frame" x="20" y="153.5" width="374" height="240"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="240" id="cl6-wg-qIK"/>
@@ -168,19 +168,19 @@
                                 <cells/>
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Instruments" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uzy-fc-SpC">
-                                <rect key="frame" x="20" y="100" width="190.5" height="42"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="35"/>
+                                <rect key="frame" x="20" y="100" width="153" height="33.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="28"/>
                                 <color key="textColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genres" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cy9-Uo-gez">
-                                <rect key="frame" x="20" y="437" width="129.5" height="48"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="40"/>
+                                <rect key="frame" x="20" y="409.5" width="91.5" height="33.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="28"/>
                                 <color key="textColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="b4g-MS-Df0">
-                                <rect key="frame" x="20" y="505" width="374" height="240"/>
+                                <rect key="frame" x="20" y="463" width="374" height="240"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="240" id="2FS-1s-qC1"/>
@@ -199,6 +199,20 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gkA-Xx-SUE">
+                                <rect key="frame" x="177" y="723" width="60" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="bax-Lj-vF6"/>
+                                    <constraint firstAttribute="height" constant="44" id="oMv-U1-htm"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                <state key="normal" title="S A V E ">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="saveButtonPressed:" destination="sbL-JO-zxD" eventType="touchUpInside" id="v1q-vS-DA0"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -209,8 +223,10 @@
                             <constraint firstItem="ah1-k4-emZ" firstAttribute="leading" secondItem="Tmx-DZ-p4G" secondAttribute="leading" constant="20" id="E9O-4n-ird"/>
                             <constraint firstItem="b4g-MS-Df0" firstAttribute="top" secondItem="Cy9-Uo-gez" secondAttribute="bottom" constant="20" id="RTI-hm-Ah9"/>
                             <constraint firstItem="uzy-fc-SpC" firstAttribute="leading" secondItem="Tmx-DZ-p4G" secondAttribute="leading" constant="20" id="T4c-Ov-T1N"/>
-                            <constraint firstItem="Cy9-Uo-gez" firstAttribute="top" secondItem="ah1-k4-emZ" secondAttribute="bottom" constant="35" id="a2P-MQ-9ez"/>
+                            <constraint firstItem="gkA-Xx-SUE" firstAttribute="top" secondItem="b4g-MS-Df0" secondAttribute="bottom" constant="20" id="TgQ-eR-2pG"/>
+                            <constraint firstItem="Cy9-Uo-gez" firstAttribute="top" secondItem="ah1-k4-emZ" secondAttribute="bottom" constant="16" id="a2P-MQ-9ez"/>
                             <constraint firstItem="Tmx-DZ-p4G" firstAttribute="trailing" secondItem="ah1-k4-emZ" secondAttribute="trailing" constant="20" id="eCz-gn-s0c"/>
+                            <constraint firstItem="gkA-Xx-SUE" firstAttribute="centerX" secondItem="3Cl-mk-UTW" secondAttribute="centerX" id="eDo-xa-dbp"/>
                             <constraint firstItem="Tmx-DZ-p4G" firstAttribute="trailing" secondItem="b4g-MS-Df0" secondAttribute="trailing" constant="20" id="h1g-ss-HKu"/>
                             <constraint firstItem="uzy-fc-SpC" firstAttribute="top" secondItem="Tmx-DZ-p4G" secondAttribute="top" constant="100" id="kn2-th-ccB"/>
                             <constraint firstItem="Tmx-DZ-p4G" firstAttribute="trailing" secondItem="hdw-Cq-F06" secondAttribute="trailing" constant="20" id="uwm-dT-vOf"/>
