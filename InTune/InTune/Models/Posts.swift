@@ -37,7 +37,7 @@ extension ArtistPost {
 
 //for gigs
 struct GigsPost {
-    let user: Artist
+//    let user: Artist  This might/does not work since we tried it in favorites model
     //based on bool
     let gigId: String
     let title: String
@@ -45,13 +45,12 @@ struct GigsPost {
     let photoURL: String
     let price: Int
     let eventDate: String
-    let createdDate: Timestamp
+    let createdDate: Timestamp?
 }
 
 extension GigsPost {
     init?(_ dictionary: [String: Any]) {
-        guard let user = dictionary["user"] as? Artist,
-        let gigId = dictionary["gigId"] as? String,
+        guard let gigId = dictionary["gigId"] as? String,
         let title = dictionary["title"] as? String,
         let descript = dictionary["descript"] as? String,
         let photoURL = dictionary["photoURL"] as? String,
@@ -60,7 +59,6 @@ extension GigsPost {
             let createDate = dictionary["createdDate"] as? Timestamp else {
                 return nil
         }
-        self.user = user
         self.gigId = gigId
         self.title = title
         self.descript = descript
