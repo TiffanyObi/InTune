@@ -20,7 +20,7 @@ class ExploreViewController: UIViewController {
     let featuredCVDelegate = FeaturedArtistCVDelegate()
     
     let db = DatabaseService()
-//    var listener: ListenerRegistration?
+    var listener: ListenerRegistration?
     
     var artists = [Artist](){
         didSet{
@@ -62,22 +62,23 @@ class ExploreViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         
-//        guard let currentUser1 = currentUser else { return }
+        guard let currentUser1 = currentUser else { return }
         
-//        listener = Firestore.firestore().collection(DatabaseService.artistsCollection).document(currentUser1.artistId).addSnapshotListener({ [weak self](snapshot, error) in
-//            if let error = error {
-//
-//                DispatchQueue.main.async {
-//                    self?.showAlert(title: "Firestore Error (Cannot Retrieve Data)", message: "\(error.localizedDescription)")
-//                }
-//            } else if let snapshot = snapshot {
-//                guard let data = snapshot.data() else {return}
-//                let artist = Artist(data)
-//                self?.tags = artist.preferences ?? ["no tags"]
-//            }
-//        })
-//    }
+        listener = Firestore.firestore().collection(DatabaseService.artistsCollection).document(currentUser1.artistId).addSnapshotListener({ [weak self](snapshot, error) in
+            if let error = error {
+
+                DispatchQueue.main.async {
+                    self?.showAlert(title: "Firestore Error (Cannot Retrieve Data)", message: "\(error.localizedDescription)")
+                }
+            } else if let snapshot = snapshot {
+                guard let data = snapshot.data() else {return}
+                let artist = Artist(data)
+                self?.tags = artist.preferences ?? ["no tags"]
+            }
+        })
     }
+
+
     private func setUpCVs() {
         tagsCollectionView.delegate = self
         tagsCollectionView.dataSource = self
@@ -113,7 +114,7 @@ class ExploreViewController: UIViewController {
                 
             case.success(let currentUser1):
                 self?.currentUser = currentUser1
-                self?.tags = currentUser1.preferences ?? ["no tags"]
+                self?.tags = currentUser1.preferences ?? ["no tags","no tags"]
                 
             }
         }
@@ -157,24 +158,18 @@ extension ExploreViewController: UITableViewDataSource, UITableViewDelegate {
 extension ExploreViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        if currentUser?.preferences == nil {
-            return currentUser?.tags.count ?? 0
-        } else {
-            return currentUser?.preferences?.count ?? 0
-        }
+        return currentUser?.preferences?.count ?? 2
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let tagCell = collectionView.dequeueReusableCell(withReuseIdentifier: "tagCell", for: indexPath) as? TagCollectionViewCell else {
             fatalError("could not downcast to TagCollectionViewCell")
         }
-        if currentUser?.preferences == nil {
-            let tag = currentUser?.tags[indexPath.row] ?? "no tag"
+      
+        let tag = currentUser?.preferences?[indexPath.row] ?? "no tag"
             tagCell.configureCell(tag)
-        } else {
-            let tag = tags[indexPath.row]
-            tagCell.configureCell(tag)
-        }
+        
+
         return tagCell
     }
     
