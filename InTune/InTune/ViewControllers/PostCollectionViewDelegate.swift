@@ -69,14 +69,16 @@ class TagsCVDelegate: NSObject,UICollectionViewDelegate, UICollectionViewDataSou
 class FeaturedArtistCVDelegate: NSObject,UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let itemSpacing: CGFloat = 1
+   //     let itemSpacing: CGFloat = 1
+    //    let maxSize: CGSize = UIScreen.main.bounds.size
+     //   let numberOfItems: CGFloat = 1
+     //   let totalSpace: CGFloat = numberOfItems * itemSpacing
+       // let maxS: CGFloat = maxSize.height * 0.1
+      //  let itemWidth: CGFloat = (maxS - totalSpace) / numberOfItems
         let maxSize: CGSize = UIScreen.main.bounds.size
-        let numberOfItems: CGFloat = 1
-        let totalSpace: CGFloat = numberOfItems * itemSpacing
-        let maxS: CGFloat = maxSize.height * 0.1
-        let itemWidth: CGFloat = (maxS - totalSpace) / numberOfItems
-        
-        return CGSize(width: itemWidth, height: 80)
+        let itemWidth: CGFloat = maxSize.width * 0.60
+        let itemHeight: CGFloat = maxSize.height * 0.60
+        return CGSize(width: itemWidth, height: itemHeight)
     }
     
     

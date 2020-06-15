@@ -76,7 +76,7 @@ class TagsSelectionView: UIView {
         
         NSLayoutConstraint.activate([
             
-            instrumentsLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 25),
+            instrumentsLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16),
             instrumentsLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 20),
             instrumentsLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -20)
             
@@ -87,10 +87,10 @@ class TagsSelectionView: UIView {
         addSubview(instrumentsCollectionView)
         instrumentsCollectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            instrumentsCollectionView.topAnchor.constraint(equalTo: instrumentsLabel.bottomAnchor, constant: 20),
+            instrumentsCollectionView.topAnchor.constraint(equalTo: instrumentsLabel.bottomAnchor, constant: 16),
             instrumentsCollectionView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 20),
             instrumentsCollectionView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -20),
-            instrumentsCollectionView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.35)
+            instrumentsCollectionView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.30)
         
         ])
     }
@@ -101,7 +101,7 @@ class TagsSelectionView: UIView {
         
         NSLayoutConstraint.activate([
             
-            genresLabel.topAnchor.constraint(equalTo: instrumentsCollectionView.bottomAnchor, constant: 40),
+            genresLabel.topAnchor.constraint(equalTo: instrumentsCollectionView.bottomAnchor, constant: 32),
             genresLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 20),
             genresLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -20)
             
@@ -114,10 +114,10 @@ class TagsSelectionView: UIView {
         addSubview(genresCollectionView)
         genresCollectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            genresCollectionView.topAnchor.constraint(equalTo: genresLabel.bottomAnchor, constant: 20),
+            genresCollectionView.topAnchor.constraint(equalTo: genresLabel.bottomAnchor, constant: 16),
             genresCollectionView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 20),
             genresCollectionView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -20),
-            genresCollectionView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.25)
+            genresCollectionView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.20)
         
         ])
     }
@@ -127,7 +127,7 @@ class TagsSelectionView: UIView {
         doneButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            doneButton.topAnchor.constraint(equalTo: genresCollectionView.bottomAnchor, constant: 20),
+            doneButton.topAnchor.constraint(equalTo: genresCollectionView.bottomAnchor, constant: 24),
             doneButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 100),
             doneButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -100),
             doneButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.10)

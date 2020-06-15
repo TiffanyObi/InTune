@@ -86,7 +86,7 @@ class DisplayNameAndLocationView: UIView {
         displayNameTextfield.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            displayNameTextfield.topAnchor.constraint(equalTo: displayNameLabel.bottomAnchor, constant: 40),
+            displayNameTextfield.topAnchor.constraint(equalTo: displayNameLabel.bottomAnchor, constant: 16),
             displayNameTextfield.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 40),
             displayNameTextfield.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -40),
             displayNameTextfield.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.05)
@@ -98,7 +98,7 @@ class DisplayNameAndLocationView: UIView {
         locationLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            locationLabel.topAnchor.constraint(equalTo: displayNameTextfield.bottomAnchor, constant: 100),
+            locationLabel.topAnchor.constraint(equalTo: displayNameTextfield.bottomAnchor, constant: 40),
             locationLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 20),
             locationLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -20)
         ])
@@ -109,8 +109,8 @@ class DisplayNameAndLocationView: UIView {
         locationPickerView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            locationPickerView.topAnchor.constraint(equalTo: locationLabel.bottomAnchor, constant: 40),
-            locationPickerView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 10),
+            locationPickerView.topAnchor.constraint(equalTo: locationLabel.bottomAnchor, constant: 16),
+            locationPickerView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 20),
             locationPickerView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -20),
             locationPickerView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.35)
         ])
@@ -121,12 +121,10 @@ class DisplayNameAndLocationView: UIView {
         nextButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            nextButton.topAnchor.constraint(equalTo: locationPickerView.bottomAnchor, constant: 50),
+            nextButton.topAnchor.constraint(equalTo: locationPickerView.bottomAnchor, constant: 16),
             nextButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 100),
             nextButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -100),
             nextButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.10)
-        
-        
         ])
     }
     
