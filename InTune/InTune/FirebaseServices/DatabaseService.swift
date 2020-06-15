@@ -167,26 +167,23 @@ class DatabaseService {
         }
     }
     
-//    public func getFavArtists(completion: @escaping (Result<[FavoritedArtist],Error>) ->()){
-//        guard let user = Auth.auth().currentUser else { return }
-//
-//        db.collection(DatabaseService.artistsCollection).document(user.uid).collection(DatabaseService.favCollection).getDocuments { (snapshot, error) in
-//            if let error = error {
-//                print(error.localizedDescription)
-//            } else if let snapshot
-//        }
-//        
-//                        
-//                    }
-//                })
-//
-//
-//    }
-    
     public func isArtistInFav(for artist: Artist, completion: @escaping (Result<Bool, Error>) -> ()) {
         guard let user = Auth.auth().currentUser else { return }
     }
     
+    
+    public func updateUserPreferences(_ preferences:[String], completion:
+        @escaping (Result<Bool,Error>) -> ()) {
+        guard let user = Auth.auth().currentUser else { return }
+        
+        db.collection(DatabaseService.artistsCollection).document(user.uid).updateData(["preferences": preferences]) { (error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(true))
+            }
+        }
+    }
     //should rename to user
     public func createGigPost(for user: Artist, gigPost: GigsPost, completion: @escaping (Result<Bool, Error>) ->()) {
         

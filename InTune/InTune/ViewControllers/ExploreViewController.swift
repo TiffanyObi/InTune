@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseFirestore
 
 class ExploreViewController: UIViewController {
-
+    
     @IBOutlet private var tagsCollectionView: UICollectionView!
     @IBOutlet private var artistTableView: UITableView!
     @IBOutlet private var featuredArtistCV: UICollectionView!
@@ -18,6 +20,7 @@ class ExploreViewController: UIViewController {
     let featuredCVDelegate = FeaturedArtistCVDelegate()
     
     let db = DatabaseService()
+//    var listener: ListenerRegistration?
     
     var artists = [Artist](){
         didSet{
@@ -26,11 +29,29 @@ class ExploreViewController: UIViewController {
             }
         }
     }
+    var currentUser: Artist?
+    
+    var tags = [String]() {
+        didSet {
+            DispatchQueue.main.async {
+                self.tagsCollectionView.reloadData()
+            }
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+            guard let expEdit = segue.destination as? ExploreOptionsController else {
+                fatalError("could not segue to ExploreOptionsController ")
+            }
+        expEdit.prefDelegate = self
+        }
+    
     let height: CGFloat = 120
     
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchArtists()
+        getCurrentUserPref()
         tagsCollectionView.register(UINib(nibName: "TagCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "tagCell")
         artistTableView.register(ExploreArtistCell.self, forCellReuseIdentifier: "exploreCell")
         featuredArtistCV.register(UINib(nibName: "FeaturedArtist", bundle: nil), forCellWithReuseIdentifier: "featuredArtist")
@@ -38,13 +59,32 @@ class ExploreViewController: UIViewController {
         setUpTV()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        
+//        guard let currentUser1 = currentUser else { return }
+        
+//        listener = Firestore.firestore().collection(DatabaseService.artistsCollection).document(currentUser1.artistId).addSnapshotListener({ [weak self](snapshot, error) in
+//            if let error = error {
+//
+//                DispatchQueue.main.async {
+//                    self?.showAlert(title: "Firestore Error (Cannot Retrieve Data)", message: "\(error.localizedDescription)")
+//                }
+//            } else if let snapshot = snapshot {
+//                guard let data = snapshot.data() else {return}
+//                let artist = Artist(data)
+//                self?.tags = artist.preferences ?? ["no tags"]
+//            }
+//        })
+//    }
+    }
     private func setUpCVs() {
-        tagsCollectionView.delegate = tabsCVDelegate
-        tagsCollectionView.dataSource = tabsCVDelegate
+        tagsCollectionView.delegate = self
+        tagsCollectionView.dataSource = self
         featuredArtistCV.delegate = featuredCVDelegate
         featuredArtistCV.dataSource = featuredCVDelegate
     }
-
+    
     private func setUpTV() {
         artistTableView.delegate = self
         artistTableView.dataSource = self
@@ -58,12 +98,27 @@ class ExploreViewController: UIViewController {
                 
             case.success(let artists1):
                 self?.artists = artists1
-                
                 print(self?.artists.count ?? 0)
             }
         }
     }
-
+    
+    func getCurrentUserPref(){
+        guard let user = Auth.auth().currentUser else {return}
+        
+        db.fetchArtist(userID: user.uid) { [weak self](result) in
+            switch result {
+            case.failure(let error):
+                print(error.localizedDescription)
+                
+            case.success(let currentUser1):
+                self?.currentUser = currentUser1
+                self?.tags = currentUser1.preferences ?? ["no tags"]
+                
+            }
+        }
+    }
+    
 }
 
 
@@ -96,5 +151,47 @@ extension ExploreViewController: UITableViewDataSource, UITableViewDelegate {
         profVC.state = .explore
         navigationController?.pushViewController(profVC, animated: true)
     }
+    
+}
+
+extension ExploreViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        if currentUser?.preferences == nil {
+            return currentUser?.tags.count ?? 0
+        } else {
+            return currentUser?.preferences?.count ?? 0
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let tagCell = collectionView.dequeueReusableCell(withReuseIdentifier: "tagCell", for: indexPath) as? TagCollectionViewCell else {
+            fatalError("could not downcast to TagCollectionViewCell")
+        }
+        if currentUser?.preferences == nil {
+            let tag = currentUser?.tags[indexPath.row] ?? "no tag"
+            tagCell.configureCell(tag)
+        } else {
+            let tag = tags[indexPath.row]
+            tagCell.configureCell(tag)
+        }
+        return tagCell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let maxSize: CGSize = UIScreen.main.bounds.size
+        let itemWidth: CGFloat = maxSize.width * 0.20
+        let itemHeight: CGFloat = maxSize.height * 0.30
+        return CGSize(width: itemWidth, height: itemHeight)
+    }
+}
+
+extension ExploreViewController: UpdateUsertPref {
+    func didUpdatePreferences(_ tags: [String], _ exploreVC: ExploreOptionsController) {
+        getCurrentUserPref()
+        tagsCollectionView.reloadData()
+        artistTableView.reloadData()
+    }
+    
     
 }
