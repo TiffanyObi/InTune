@@ -184,6 +184,20 @@ class DatabaseService {
             }
         }
     }
+    
+    public func createGig(artist: Artist, title: String, description: String, photoURL: String?, price: String, eventDate: String, createdDate: Timestamp, completion: @escaping (Result<Bool, Error>)-> ()) {
+        
+        db.collection(DatabaseService.gigPosts).document().setData(["title" : title, "artistName": artist.name, "artistId": artist.artistId, "descript": description, "photoURl": photoURL ?? "no photoURL", "price": price, "eventDate": eventDate, "createdDate": Timestamp()]) { (error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(true))
+            }
+        }
+        
+    }
+    
+    
     //should rename to user
     public func createGigPost(for user: Artist, gigPost: GigsPost, completion: @escaping (Result<Bool, Error>) ->()) {
         

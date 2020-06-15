@@ -39,6 +39,8 @@ extension ArtistPost {
 struct GigsPost {
 //    let user: Artist  This might/does not work since we tried it in favorites model
     //based on bool
+    let artistName: String
+    let artistId: String
     let gigId: String
     let title: String
     let descript: String
@@ -51,6 +53,8 @@ struct GigsPost {
 extension GigsPost {
     init?(_ dictionary: [String: Any]) {
         guard let gigId = dictionary["gigId"] as? String,
+        let artistName = dictionary["artistName"] as? String,
+        let artistId = dictionary["artistId"] as? String,
         let title = dictionary["title"] as? String,
         let descript = dictionary["descript"] as? String,
         let photoURL = dictionary["photoURL"] as? String,
@@ -59,7 +63,10 @@ extension GigsPost {
             let createDate = dictionary["createdDate"] as? Timestamp else {
                 return nil
         }
+    
         self.gigId = gigId
+        self.artistName = artistName
+        self.artistId = artistId
         self.title = title
         self.descript = descript
         self.photoURL = photoURL
