@@ -42,6 +42,18 @@ class ProfileViewController: UIViewController {
     
     var expArtist: Artist?
     
+    var isArtistFavorite = false {
+        didSet {
+            if isArtistFavorite {
+                print("fav artist")
+            } else {
+                print("not faved artist")
+            }
+        }
+    }
+    
+    var favArtist: FavoritedArtist?
+    
     var state: Segue = .prof
     
     override func viewDidLoad() {
@@ -166,19 +178,47 @@ class ProfileViewController: UIViewController {
     }
     
     @IBAction func favArtistButtonPressed(_ sender: UIButton) {
-        print("favorited")
+        guard let expArtist = expArtist else { return }
+        guard let favArtist = favArtist else { return }
         
-        guard let expArtist1 = expArtist else { return}
-        
-        db.createFavoriteArtist(artist: expArtist1) { (result) in
+        if isArtistFavorite {
+          db.deleteFavArtist(for: favArtist) { (result) in
+            switch result {
+            case .failure(let error):
+              print("could not delete from fav: \(error)")
+            case .success:
+              sender.setImage(UIImage(systemName: "person.crop.circle.fill.badge.plus"), for: .normal)
+              print("deleted from fav")
+              self.isArtistFavorite = false
+            }
+          }
+        } else {
+          db.createFavoriteArtist(artist: expArtist) { (result) in
             switch result {
             case.failure(let error):
-                print(error.localizedDescription)
-                
+              print(error.localizedDescription)
             case .success:
-                print(true)
+              print(true)
+              sender.setImage(UIImage(systemName: "person.crop.circle.badge.minus"), for: .normal)
+              self.isArtistFavorite = true
             }
+          }
+          db.isArtistInFav(for: favArtist) { [weak self] (result) in
+            switch result {
+            case .failure(let error):
+              print("try again: \(error.localizedDescription)")
+            case .success(let status):
+              if status {
+                self?.isArtistFavorite = true
+              } else {
+                self?.isArtistFavorite = false
+              }
+            }
+          }
         }
+        
+        
+        
     }
     
     
