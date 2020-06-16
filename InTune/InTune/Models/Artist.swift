@@ -20,6 +20,7 @@ struct Artist {
   let createdDate: Timestamp
   let photoURL:String?
   let preferences:[String]?
+//  let isFavorite: Bool?
 
 }
 extension Artist {
@@ -34,6 +35,7 @@ extension Artist {
     self.email = dictionary["email"] as? String ?? "no email"
     self.photoURL = dictionary["photoURL"] as? String ?? "no URL"
     self.preferences = dictionary["preferences"] as? [String] ?? [""]
+//    self.isFavorite = dictionary["isFavorite"] as? Bool ?? false
   }
 }
 

@@ -27,7 +27,7 @@ class DatabaseService {
     //rename this to users
   public func createArtist(authDataResult: AuthDataResult, completion: @escaping (Result<Bool,Error>) -> ()){
     guard let email = authDataResult.user.email else {return}
-    db.collection(DatabaseService.artistsCollection).document(authDataResult.user.uid).setData(["email": email, "artistId": authDataResult.user.uid, "createdDate": Timestamp()]){ (error) in
+    db.collection(DatabaseService.artistsCollection).document(authDataResult.user.uid).setData(["email": email, "artistId": authDataResult.user.uid, "createdDate": Timestamp(),"isFavorite":false]){ (error) in
       if let error = error {
         completion(.failure(error))
       } else {
@@ -113,7 +113,7 @@ class DatabaseService {
             if let error = error {
                 completion(.failure(error))
             } else if let snapshot = snapshot {
-                let artists = snapshot.documents.map { Artist($0.data())}
+                let artists = snapshot.documents.compactMap { Artist($0.data())}
                 completion(.success(artists))
             }
             
@@ -156,9 +156,15 @@ class DatabaseService {
             }
         }
     }
-    public func createFavoriteArtist(artist: Artist,completion: @escaping (Result<Bool, Error>) -> ()) {
+    
+    // user  1
+            // fav
+    //ys
+    
+    public func createFavArtist(artist:Artist, completion: @escaping (Result <Bool,Error>) -> ()){
         guard let user = Auth.auth().currentUser else { return }
-        db.collection(DatabaseService.artistsCollection).document(user.uid).collection(DatabaseService.favCollection).addDocument(data: ["favArtistName": artist.name, "favArtistLocation": artist.city,"favArtistID":artist.artistId,"favArtistTag":artist.tags,"favoritedDate": Timestamp()]) { (error) in
+        
+        db.collection(DatabaseService.artistsCollection).document(user.uid).collection(DatabaseService.favCollection).document(artist.artistId).setData(["favArtistName":artist.name,"favArtistID":artist.artistId, "favArtistLocation":artist.city,"favArtistTag":artist.tags, "favoritedDate":Timestamp(date: Date())]){ (error) in
             if let error = error {
                 completion(.failure(error))
             } else {
@@ -167,10 +173,25 @@ class DatabaseService {
         }
     }
     
-    public func isArtistInFav(for artist: FavoritedArtist, completion: @escaping (Result<Bool, Error>) -> ()) {
+    
+    
+//    public func updateArtistFavoriteStatus(artist: Artist, isFavorite:Bool,completion: @escaping (Result<Bool, Error>) -> ()) {
+//        guard let user = Auth.auth().currentUser else { return }
+//        db.collection(DatabaseService.artistsCollection).document(user.uid).collection(DatabaseService.favCollection)
+//            .updateData(["isFavorite":isFavorite]) { (error) in
+//            if let error = error {
+//                completion(.failure(error))
+//            } else {
+//                completion(.success(true))
+//            }
+//        }
+//    
+        
+    
+    public func isArtistInFav(for artist: Artist, completion: @escaping (Result<Bool, Error>) -> ()) {
         guard let user = Auth.auth().currentUser else { return }
         
-        db.collection(DatabaseService.artistsCollection).document(user.uid).collection(DatabaseService.favCollection).whereField("artistId", isEqualTo: artist.favArtistID).getDocuments { (snapshot, error) in
+        db.collection(DatabaseService.artistsCollection).document(user.uid).collection(DatabaseService.favCollection).whereField("favArtistID", isEqualTo: artist.artistId).getDocuments { (snapshot, error) in
             
             if let error = error {
                 completion(.failure(error))
@@ -185,10 +206,25 @@ class DatabaseService {
         }
     }
     
-    public func deleteFavArtist(for artist: FavoritedArtist, completion: @escaping (Result<Bool, Error>) -> ()) {
+    public func fetchFavArtist(completion:@escaping (Result<[FavoritedArtist],Error>) -> ()){
+        guard let user = Auth.auth().currentUser else {return}
+        
+        db.collection(DatabaseService.artistsCollection).document(user.uid).collection(DatabaseService.favCollection).getDocuments{ (snapshot, error) in
+            if let error = error {
+                completion(.failure(error))
+            } else if let snapshot = snapshot{
+                let favs = snapshot.documents.compactMap {
+                    FavoritedArtist($0.data())
+                }
+                completion(.success(favs.sorted(by: { $0.favoritedDate.seconds < $1.favoritedDate.seconds })))
+            }
+        }
+    }
+    
+    public func deleteFavArtist(for artist: Artist, completion: @escaping (Result<Bool, Error>) -> ()) {
         guard let user = Auth.auth().currentUser else { return }
         
-        db.collection(DatabaseService.artistsCollection).document(user.uid).collection(DatabaseService.favCollection).document(artist.favArtistID).delete { (error) in
+        db.collection(DatabaseService.artistsCollection).document(user.uid).collection(DatabaseService.favCollection).document(artist.artistId).delete { (error) in
             
             if let error = error {
                 completion(.failure(error))
