@@ -20,14 +20,13 @@ struct Artist {
   let createdDate: Timestamp
   let photoURL:String?
   let preferences:[String]?
-//  let isFavorite: Bool?
+  let isReported: Bool
 
 }
 extension Artist {
   init(_ dictionary: [String: Any]) {
     self.name = dictionary["name"] as? String ?? "No Artist"
     self.artistId = dictionary["artistId"] as? String ?? "UUID().uuidString"
-//    self.instruments = dictionary["instruments"] as? [String] ?? ["no instrument"]
     self.tags = dictionary["tags"] as? [String] ?? ["no tags"]
     self.city = dictionary["city"] as? String ?? "No City selected"
     self.isAnArtist = dictionary["isAnArtist"] as? Bool ?? false
@@ -35,7 +34,7 @@ extension Artist {
     self.email = dictionary["email"] as? String ?? "no email"
     self.photoURL = dictionary["photoURL"] as? String ?? "no URL"
     self.preferences = dictionary["preferences"] as? [String] ?? [""]
-//    self.isFavorite = dictionary["isFavorite"] as? Bool ?? false
+    self.isReported = dictionary["isReported"] as? Bool ?? false
   }
 }
 
