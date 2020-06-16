@@ -211,6 +211,7 @@ extension OnboardingViewController: UICollectionViewDataSource,UICollectionViewD
         }
             let instrument = instruments[indexPath.row]
             tagCell.tagTitle.text = instrument
+           
             tagCell.layer.cornerRadius = 10
             
             return tagCell
@@ -244,6 +245,7 @@ extension OnboardingViewController: UICollectionViewDataSource,UICollectionViewD
             
             let selectedInstrument = instruments[indexPath.row]
             tagCell.tagTitle.isHighlighted = true
+            
             selectedInstruments.insert(selectedInstrument)
             print(selectedInstruments)
         }
@@ -254,6 +256,7 @@ extension OnboardingViewController: UICollectionViewDataSource,UICollectionViewD
             
             let selectedGenre = genres[indexPath.row]
             tagCell.tagTitle.isHighlighted = true
+           
             selectedGenres.insert(selectedGenre)
             print(selectedGenres)
         }
