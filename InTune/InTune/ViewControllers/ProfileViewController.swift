@@ -40,39 +40,21 @@ class ProfileViewController: UIViewController {
             tagsCollection.reloadData()
         }
     }
-    
     var expArtist: Artist?
     
     var isArtistFavorite = false {
         didSet {
             if isArtistFavorite {
                 likeArtistButton.setImage(UIImage(systemName: "person.crop.circle.fill.badge.minus"), for: .normal)
-                print("fav artist")
             } else {
-                
                 likeArtistButton.setImage(UIImage(systemName: "person.crop.circle.badge.plus"), for: .normal)
-                print("not faved artist")
-            }
-        }
-    }
-    
-    var favArtist: FavoritedArtist? {
-        didSet {
-            print(favArtist?.favArtistName ?? "no name")
-        }
-    }
-    
-    var favArtists = [FavoritedArtist]() {
-        didSet{
-            for artist in favArtists {
-                if artist.favArtistID == expArtist?.artistId {
-                    self.favArtist = artist
-                }
             }
         }
     }
     
     var state: Segue = .prof
+    
+ 
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,11 +66,9 @@ class ProfileViewController: UIViewController {
         postsCollectionView.delegate = postCVDelegate
         postsCollectionView.dataSource = postCVDelegate
         postsCollectionView.register(UINib(nibName: "PostCell", bundle: nil), forCellWithReuseIdentifier: "postCell")
-        
     }
     
     private func loadUI() {
-        
         guard let user = Auth.auth().currentUser else {
             return
         }
@@ -97,25 +77,28 @@ class ProfileViewController: UIViewController {
             switch result {
             case.failure(let error):
                 print(error.localizedDescription)
-                
             case.success(let artist1):
                 DispatchQueue.main.async {
                     self?.singleArtist = artist1
                     self?.nameLabel.text = artist1.name
                 }
-             
             }
         }
         
+        guard let singleArtist = singleArtist else {return}
+        if singleArtist.isReported {
+                let emptyView = EmptyView(message: "Your account has been reported !")
+            
+            postsCollectionView.backgroundView = emptyView
+            
+        }
         profImage.contentMode = .scaleAspectFill
         profImage.layer.cornerRadius = 60
-        
-          if user.photoURL == nil  {
-                     profImage.image = UIImage(systemName: "person.fill")
-                 } else {
-                   profImage.kf.setImage(with: user.photoURL)
+        if user.photoURL == nil  {
+            profImage.image = UIImage(systemName: "person.fill")
+        } else {
+            profImage.kf.setImage(with: user.photoURL)
         }
-
         locationLabel.text = user.email
         likeArtistButton.isHidden = true
         chatButton.isHidden = true
@@ -125,21 +108,22 @@ class ProfileViewController: UIViewController {
         likeArtistButton.isHidden = false
         chatButton.isHidden = false
         navigationItem.leftBarButtonItem = .none
-        navigationItem.rightBarButtonItem = .none
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "exclamationmark.octagon.fill"), style: .plain, target: self, action: #selector(reportArtist(_:)))
         guard let artist = expArtist else { print("no expArtist")
             return
         }
-         fetchFav()
+        if artist.isReported {
+            let emptyView = EmptyView(message: "This user has been reported !")
+            postsCollectionView.backgroundView = emptyView
+        }
         isArtistInFav(artist: artist)
-        
         nameLabel.text = artist.name
         locationLabel.text = artist.city
         
     }
     
-    
     func getArtist(){
-       
+        
         guard let userID = Auth.auth().currentUser?.uid else {
             return
         }
@@ -154,18 +138,28 @@ class ProfileViewController: UIViewController {
         }
     }
     
-   
+    @objc func reportArtist(_ sender: UIBarButtonItem){
+        guard let artist = expArtist else {
+            print("no artist")
+            return
+        }
+        db.reportArtist(for: artist) { (result) in
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case.success:
+                print(true)
+            }
+        }
+    }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         if state == .prof{
-        loadUI()
+            loadUI()
         } else {
             loadExpUI()
         }
     }
-    
-   
-    
     
     @IBAction func postVideoButtonPressed(_ sender: UIBarButtonItem) {
         
@@ -179,7 +173,6 @@ class ProfileViewController: UIViewController {
                 try Auth.auth().signOut()
             } catch {
                 self.showAlert(title: "Error Signing Out", message: " \(error.localizedDescription)")
-                
             }
             UIViewController.showViewController(storyboardName: "LoginView", viewControllerID: "LoginViewController")
         }
@@ -201,103 +194,74 @@ class ProfileViewController: UIViewController {
         guard let expArtist = expArtist else { return }
         
         if isArtistFavorite {
-              
-//            fetchFav()
-         isArtistInFav(artist: expArtist)
-//
-//
+            isArtistInFav(artist: expArtist)
             db.deleteFavArtist(for: expArtist) { [weak self] (result) in
-            switch result {
-            case .failure(let error):
-              print("could not delete from fav: \(error)")
-            case .success:
-              sender.setImage(UIImage(systemName: "person.crop.circle.fill.badge.plus"), for: .normal)
-              print("deleted from fav")
-              self?.isArtistFavorite = false
+                switch result {
+                case .failure(let error):
+                    print("could not delete from fav: \(error)")
+                case .success:
+                    sender.setImage(UIImage(systemName: "person.crop.circle.fill.badge.plus"), for: .normal)
+                    self?.isArtistFavorite = false
+                }
             }
-          }
         } else {
             db.createFavArtist(artist: expArtist) { [weak self] (result) in
-            switch result {
-            case.failure(let error):
-              print(error.localizedDescription)
-            case .success:
-              print(true)
-              print("Should be fetching a fav artist")
-              sender.setImage(UIImage(systemName: "person.crop.circle.badge.minus"), for: .normal)
-              self?.isArtistFavorite = true
-            }
-          }
-        }
-        
-    }
-    
-    private func fetchFav(){
-        db.fetchFavArtist() { [weak self] (result) in
-            switch result {
-            case .failure(let error):
-                print(error.localizedDescription)
-            case .success(let favArtists):
-                self?.favArtists = favArtists
+                switch result {
+                case.failure(let error):
+                    print(error.localizedDescription)
+                case .success:
+                    sender.setImage(UIImage(systemName: "person.crop.circle.badge.minus"), for: .normal)
+                    self?.isArtistFavorite = true
+                }
             }
         }
     }
-    
     private func isArtistInFav(artist:Artist){
         db.isArtistInFav(for: artist) {[weak self] (result) in
-              switch result {
-              case .failure(let error):
+            switch result {
+            case .failure(let error):
                 print("try again: \(error.localizedDescription)")
-              case .success(let status):
+            case .success(let status):
                 if status {
-                  self?.isArtistFavorite = true
+                    self?.isArtistFavorite = true
                 } else {
                     
-                  self?.isArtistFavorite = false
+                    self?.isArtistFavorite = false
                 }
-              }
+            }
         }
     }
-    
     @IBAction func chatButtonPressed(_ sender: UIButton) {
-        print("chat")
         let chatVC = ChatViewController()
         chatVC.artist = expArtist
         navigationController?.pushViewController(chatVC, animated: true)
     }
-    
 }
-
 extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let maxSize: CGSize = UIScreen.main.bounds.size
         let itemWidth: CGFloat = maxSize.width * 0.20
         let itemHeight: CGFloat = maxSize.height * 0.30
         return CGSize(width: itemWidth, height: itemHeight)
     }
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if state == .prof {
-        return singleArtist?.tags.count ?? 3
+            return singleArtist?.tags.count ?? 3
         } else {
             return expArtist?.tags.count ?? 2
         }
-        }
-    
+    }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "tagCell", for: indexPath) as? TagCollectionViewCell else {
             fatalError("could not conform to TagCell")
         }
-        
-if state == .prof {
+        if state == .prof {
             let tag = singleArtist?.tags[indexPath.row]
-             cell.configureCell(tag ?? "no tags")
+            cell.configureCell(tag ?? "no tags")
         } else if state == .explore {
             let tag = expArtist?.tags[indexPath.row]
-             cell.configureCell(tag ?? "no tags")
+            cell.configureCell(tag ?? "no tags")
         }
-
         return cell
-}
+    }
 }
