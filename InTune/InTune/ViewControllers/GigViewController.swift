@@ -22,7 +22,7 @@ class GigViewController: UIViewController {
         }
     }
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
@@ -33,20 +33,32 @@ class GigViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-          
-
-          
-    
+        listener = Firestore.firestore().collection(DatabaseService.gigPosts).addSnapshotListener({ (snapshot, error) in
+                  if let error = error {
+                      DispatchQueue.main.async {
+                          self.showAlert(title: "Firestore Error", message: "\(error.localizedDescription)")
+                      }
+                  } else if let snapshot = snapshot {
+                      let gig = snapshot.documents.map { GigsPost($0.data()) }
+                      self.gigs = gig
+                  }
+              })
+        
     }
     
-
-
-
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        listener?.remove()
+    }
+    
+    
+    
+    
 }
 
 extension GigViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return gigs.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -54,6 +66,7 @@ extension GigViewController: UITableViewDataSource {
             fatalError("could not get cell")
         }
 //        let gig = gigs[indexPath.row]
+        
         
         return cell
     }
