@@ -13,10 +13,18 @@ class TagCollectionViewCell: UICollectionViewCell {
         
     @IBOutlet weak var tagTitle: UILabel!
     
+    @IBOutlet weak var checkButton: UIButton!
+    
     override func layoutSubviews() {
         super.layoutSubviews()
          
       
+    }
+    
+    
+    @IBAction func checkButtonPressed(_ sender: UIButton) {
+        checkButton.setImage(UIImage(systemName: "checkmark.rectangle.fill"), for: .normal)
+//        checkButton.imageView?.tintColor = .purple
     }
     
     func configureCell(_ tag:String) {
