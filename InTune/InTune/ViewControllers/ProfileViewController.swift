@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAuth
+import Firebase
 
 enum Segue {
     case explore
@@ -45,14 +46,31 @@ class ProfileViewController: UIViewController {
     var isArtistFavorite = false {
         didSet {
             if isArtistFavorite {
+                likeArtistButton.setImage(UIImage(systemName: "person.crop.circle.fill.badge.minus"), for: .normal)
                 print("fav artist")
             } else {
+                
+                likeArtistButton.setImage(UIImage(systemName: "person.crop.circle.badge.plus"), for: .normal)
                 print("not faved artist")
             }
         }
     }
     
-    var favArtist: FavoritedArtist?
+    var favArtist: FavoritedArtist? {
+        didSet {
+            print(favArtist?.favArtistName ?? "no name")
+        }
+    }
+    
+    var favArtists = [FavoritedArtist]() {
+        didSet{
+            for artist in favArtists {
+                if artist.favArtistID == expArtist?.artistId {
+                    self.favArtist = artist
+                }
+            }
+        }
+    }
     
     var state: Segue = .prof
     
@@ -66,7 +84,6 @@ class ProfileViewController: UIViewController {
         postsCollectionView.delegate = postCVDelegate
         postsCollectionView.dataSource = postCVDelegate
         postsCollectionView.register(UINib(nibName: "PostCell", bundle: nil), forCellWithReuseIdentifier: "postCell")
-
         
     }
     
@@ -112,6 +129,9 @@ class ProfileViewController: UIViewController {
         guard let artist = expArtist else { print("no expArtist")
             return
         }
+         fetchFav()
+        isArtistInFav(artist: artist)
+        
         nameLabel.text = artist.name
         locationLabel.text = artist.city
         
@@ -179,48 +199,65 @@ class ProfileViewController: UIViewController {
     
     @IBAction func favArtistButtonPressed(_ sender: UIButton) {
         guard let expArtist = expArtist else { return }
-        guard let favArtist = favArtist else { return }
         
         if isArtistFavorite {
-          db.deleteFavArtist(for: favArtist) { (result) in
+              
+//            fetchFav()
+         isArtistInFav(artist: expArtist)
+//
+//
+            db.deleteFavArtist(for: expArtist) { [weak self] (result) in
             switch result {
             case .failure(let error):
               print("could not delete from fav: \(error)")
             case .success:
               sender.setImage(UIImage(systemName: "person.crop.circle.fill.badge.plus"), for: .normal)
               print("deleted from fav")
-              self.isArtistFavorite = false
+              self?.isArtistFavorite = false
             }
           }
         } else {
-          db.createFavoriteArtist(artist: expArtist) { (result) in
+            db.createFavArtist(artist: expArtist) { [weak self] (result) in
             switch result {
             case.failure(let error):
               print(error.localizedDescription)
             case .success:
               print(true)
+              print("Should be fetching a fav artist")
               sender.setImage(UIImage(systemName: "person.crop.circle.badge.minus"), for: .normal)
-              self.isArtistFavorite = true
-            }
-          }
-          db.isArtistInFav(for: favArtist) { [weak self] (result) in
-            switch result {
-            case .failure(let error):
-              print("try again: \(error.localizedDescription)")
-            case .success(let status):
-              if status {
-                self?.isArtistFavorite = true
-              } else {
-                self?.isArtistFavorite = false
-              }
+              self?.isArtistFavorite = true
             }
           }
         }
         
-        
-        
     }
     
+    private func fetchFav(){
+        db.fetchFavArtist() { [weak self] (result) in
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success(let favArtists):
+                self?.favArtists = favArtists
+            }
+        }
+    }
+    
+    private func isArtistInFav(artist:Artist){
+        db.isArtistInFav(for: artist) {[weak self] (result) in
+              switch result {
+              case .failure(let error):
+                print("try again: \(error.localizedDescription)")
+              case .success(let status):
+                if status {
+                  self?.isArtistFavorite = true
+                } else {
+                    
+                  self?.isArtistFavorite = false
+                }
+              }
+        }
+    }
     
     @IBAction func chatButtonPressed(_ sender: UIButton) {
         print("chat")
@@ -241,9 +278,12 @@ extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDel
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
+        if state == .prof {
         return singleArtist?.tags.count ?? 3
-    }
+        } else {
+            return expArtist?.tags.count ?? 2
+        }
+        }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "tagCell", for: indexPath) as? TagCollectionViewCell else {
