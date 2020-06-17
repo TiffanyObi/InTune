@@ -315,9 +315,15 @@ extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDel
             if state == .prof {
                 let video = videos[indexPath.row]
                 print(video.urlString ?? "")
+                if let urlString = video.urlString {
+                cell.configureCell(vidURL: urlString)
+                }
             } else if state == .explore {
                 let video = videos[indexPath.row]
                 print(video.urlString ?? "")
+                if let urlString = video.urlString {
+                cell.configureCell(vidURL: urlString)
+                }
             }
             
             return cell
