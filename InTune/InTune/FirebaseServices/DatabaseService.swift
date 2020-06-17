@@ -242,30 +242,6 @@ class DatabaseService {
         
     }
     
-    
-    //should rename to user
-//    public func createGigPost(for user: Artist, gigPost: GigsPost, completion: @escaping (Result<Bool, Error>) ->()) {
-//
-//        guard let currentUser = Auth.auth().currentUser else { return }
-//
-//        db.collection(DatabaseService.artistsCollection).document(currentUser.uid).collection(DatabaseService.gigPosts).addDocument(data:
-//            ["user": user,
-//             "gigId": UUID().uuidString,
-//             "title": gigPost.title,
-//             "descript": gigPost.descript,
-//             "photoUR": gigPost.imageURL,
-//             "price": gigPost.price,
-//             "eventDate": gigPost.eventDate,
-//             "createdDate": Timestamp()
-//        ]) { (error) in
-//
-//            if let error = error {
-//                completion(.failure(error))
-//            } else {
-//                completion(.success(true))
-//            }
-//        }
-//    }
 
     public func reportArtist(for artist: Artist, completion: @escaping (Result<Bool, Error>) -> ()) {
         db.collection(DatabaseService.artistsCollection).document(artist.artistId).updateData(["isReported":true]){ (error) in

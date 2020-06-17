@@ -344,8 +344,8 @@ extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDel
            if collectionView == postsCollectionView {
               
                    let maxSize: CGSize = UIScreen.main.bounds.size
-                   let itemWidth: CGFloat = maxSize.width * 0.40
-                   let itemHeight: CGFloat = maxSize.height * 0.40
+                   let itemWidth: CGFloat = maxSize.width * 0.55
+                   let itemHeight: CGFloat = maxSize.height * 0.25
                    return CGSize(width: itemWidth, height: itemHeight)
                }
             return CGSize(width: 0.5, height: 0.5)
