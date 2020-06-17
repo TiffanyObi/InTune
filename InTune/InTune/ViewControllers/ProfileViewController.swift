@@ -57,6 +57,9 @@ class ProfileViewController: UIViewController {
     var videos = [Video](){
         didSet{
             postsCollectionView.reloadData()
+            if videos.count > 0 {
+            postsCollectionView.backgroundView = nil
+            }
         }
     }
  
@@ -64,6 +67,9 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         getArtist()
+      
+        loadUI()
+        
         infoView.borderColor = #colorLiteral(red: 0.3867273331, green: 0.8825651407, blue: 0.8684034944, alpha: 1)
         tagsCollection.delegate = self
         tagsCollection.dataSource = self
@@ -91,13 +97,9 @@ class ProfileViewController: UIViewController {
         }
         
         guard let singleArtist = singleArtist else {return}
-        if singleArtist.isReported {
-                let emptyView = EmptyView(message: "Your account has been reported !")
-            
-            postsCollectionView.backgroundView = emptyView
-            
-        }
+       
         getVideos(artist: singleArtist)
+        setUpEmptyViewForUser()
         profImage.contentMode = .scaleAspectFill
         profImage.layer.cornerRadius = 60
         if user.photoURL == nil  {
@@ -111,6 +113,7 @@ class ProfileViewController: UIViewController {
     }
     
     func loadExpUI() {
+        
         likeArtistButton.isHidden = false
         chatButton.isHidden = false
         navigationItem.leftBarButtonItem = .none
@@ -118,18 +121,24 @@ class ProfileViewController: UIViewController {
         guard let artist = expArtist else { print("no expArtist")
             return
         }
-        if artist.isReported {
-            likeArtistButton.isHidden = true
-            chatButton.isHidden = true
-            let emptyView = EmptyView(message: "This user has been reported !")
-            postsCollectionView.backgroundView = emptyView
-        }
+        
         getVideos(artist: artist)
+        setUpEmptyViewFromExp()
         isArtistInFav(artist: artist)
         nameLabel.text = artist.name
         locationLabel.text = artist.city
         
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+       
+        if state == .prof{
+            loadUI()
+        } else {
+           loadExpUI()
+        }
+}
     
     func getArtist(){
 
@@ -158,6 +167,36 @@ class ProfileViewController: UIViewController {
       }
     }
     
+    func setUpEmptyViewForUser(){
+         guard let singleArtist = singleArtist else {return}
+        if singleArtist.isReported {
+                       let emptyView = EmptyView(message: "Your account has been reported !")
+                   
+                   postsCollectionView.backgroundView = emptyView
+                   
+               } else if videos.count == 0 {
+            postsCollectionView.backgroundView = EmptyView(message: "Add New Videos !")
+        } else {
+             postsCollectionView.backgroundView = nil
+        }
+    }
+    
+    func setUpEmptyViewFromExp(){
+        guard let artist = expArtist else { print("no expArtist")
+            return
+        }
+        if artist.isReported {
+            likeArtistButton.isHidden = true
+            chatButton.isHidden = true
+            navigationItem.rightBarButtonItem = .none
+            let emptyView = EmptyView(message: "This user has been reported !")
+            postsCollectionView.backgroundView = emptyView
+        } else if videos.count == 0 {
+            postsCollectionView.backgroundView = EmptyView(message: "No Posts Available")
+        } else {
+            postsCollectionView.backgroundView = nil
+    }
+}
     @objc func reportArtist(_ sender: UIBarButtonItem){
         guard let artist = expArtist else {
             navigationItem.rightBarButtonItem?.isEnabled = false
@@ -172,14 +211,7 @@ class ProfileViewController: UIViewController {
             }
         }
     }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        if state == .prof{
-            loadUI()
-        } else {
-            loadExpUI()
-        }
-    }
+    
     
     @IBAction func postVideoButtonPressed(_ sender: UIBarButtonItem) {
         
