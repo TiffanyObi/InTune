@@ -16,7 +16,6 @@ class ExploreViewController: UIViewController {
     @IBOutlet private var artistTableView: UITableView!
     @IBOutlet private var featuredArtistCV: UICollectionView!
     
-    let tabsCVDelegate = TagsCVDelegate()
     let featuredCVDelegate = FeaturedArtistCVDelegate()
     
     let db = DatabaseService()

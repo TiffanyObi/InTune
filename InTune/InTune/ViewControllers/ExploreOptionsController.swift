@@ -29,7 +29,8 @@ class ExploreOptionsController: UIViewController {
     
     var selectedTags = Set<String>()
 
-    
+    var instrumentIndex: Int?
+    var genreIndex: Int?
     let db = DatabaseService()
     
 //     private var tagsObserver: NSKeyValueObservation?
@@ -81,14 +82,6 @@ class ExploreOptionsController: UIViewController {
         
     }
     
-//    private func configureTagsObservation(){
-//        tagsObserver = self.observe(\.selectedTags, options: [.old,.new], changeHandler: { [weak self](tags, change) in
-//            guard let tags = change.newValue else { return }
-//
-//        })
-//    }
-    
-    
 }
 
 extension ExploreOptionsController: UICollectionViewDelegateFlowLayout,UICollectionViewDataSource {
@@ -111,8 +104,11 @@ extension ExploreOptionsController: UICollectionViewDelegateFlowLayout,UICollect
                 fatalError("could not downcast to TagCollectionViewCell")
             }
                 let instrument = instruments[indexPath.row]
-                    tagCell.tagTitle.backgroundColor = .purple
+                tagCell.tagTitle.backgroundColor = .purple
+                tagCell.tagsDelegate = self
+                    
                 tagCell.tagTitle.text = instrument
+                    tagCell.instrument = instrument
                 tagCell.tagTitle.textColor = .white
                 return tagCell
                 
@@ -123,8 +119,11 @@ extension ExploreOptionsController: UICollectionViewDelegateFlowLayout,UICollect
                 
                 let genre = genres[indexPath.row]
                 tagCell.tagTitle.backgroundColor = .systemTeal
+                tagCell.tagsDelegate = self
+                tagCell.genre = genre
                 tagCell.tagTitle.textColor = .white
                 tagCell.tagTitle.text = genre
+                
                 return tagCell
             }
             
@@ -138,24 +137,42 @@ extension ExploreOptionsController: UICollectionViewDelegateFlowLayout,UICollect
         return CGSize(width: itemWidth, height: itemHeight)
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if collectionView == instrumentsCollectionView {
-            
-            let selectedInstrument = instruments[indexPath.row]
-          
-            selectedTags.insert(selectedInstrument)
-            print(selectedTags)
-            
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        if collectionView == instrumentsCollectionView {
+//
+//            let selectedInstrument = instruments[indexPath.row]
+//            instrumentIndex = indexPath.row
+//            selectedTags.insert(selectedInstrument)
+//            print(selectedTags)
+//
+//        }
+//
+//        if collectionView == genresCollectionView {
+//
+//            let selectedGenre = genres[indexPath.row]
+//            genreIndex = indexPath.row
+//            selectedTags.insert(selectedGenre)
+//
+//            print(selectedTags)
+//        }
+//    }
+
+    
+}
+
+extension ExploreOptionsController: TagsCVDelegate {
+    func updateUserPreferences(_ isPicked: Bool, _ cell: TagCollectionViewCell, instrument: String, genre: String) {
+        
+        if !instrument.isEmpty {
+            selectedTags.insert(instrument)
+        }
+        if !genre.isEmpty {
+            selectedTags.insert(genre)
         }
         
-        if collectionView == genresCollectionView {
-            
-            let selectedGenre = genres[indexPath.row]
-            selectedTags.insert(selectedGenre)
-            
-            print(selectedTags)
-        }
+        print(selectedTags)
     }
-
+  
+    
     
 }
