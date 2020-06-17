@@ -44,7 +44,7 @@ struct GigsPost {
     let gigId: String
     let title: String
     let descript: String
-    let photoURL: String
+    let imageURL: String
     let price: Int
     let eventDate: String
     let createdDate: Timestamp?
@@ -57,7 +57,7 @@ extension GigsPost {
         self.gigId = dictionary["gigId"] as? String ?? "no gigID"
         self.title = dictionary["title"] as? String ?? "no title"
         self.descript = dictionary["descript"] as? String ?? "no description"
-        self.photoURL = dictionary["photoURL"] as? String ?? "no photoURL"
+        self.imageURL = dictionary["imageURL"] as? String ?? "no imageURL"
         self.price = dictionary["price"] as? Int ?? 0
         self.eventDate = dictionary["eventDate"] as? String ?? "no event date"
         self.createdDate = dictionary["createdDate"] as? Timestamp ?? Timestamp()

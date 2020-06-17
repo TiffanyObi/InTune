@@ -65,9 +65,8 @@ extension GigViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "gigCell", for: indexPath) as? GigCell else {
             fatalError("could not get cell")
         }
-//        let gig = gigs[indexPath.row]
-        
-        
+        let gig = gigs[indexPath.row]
+        cell.configureGig(for: gig)
         return cell
     }
 }
