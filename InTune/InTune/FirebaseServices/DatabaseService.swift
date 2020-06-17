@@ -20,6 +20,7 @@ class DatabaseService {
     static let favCollection = "favoriteArtists"
     static let gigPosts = "gigPosts"
     static let threadCollection = "thread"
+    static let artVideos = "videos"
     static let reportCollection = "reported"
     
     private let db = Firestore.firestore()
@@ -143,25 +144,32 @@ class DatabaseService {
         }
     }
     
-    public func createVideoPosts(post: ArtistPost, completion: @escaping (Result<Bool, Error>) -> ()) {
-        
-        guard let user = Auth.auth().currentUser else {return}
-        
-        db.collection(DatabaseService.artistsCollection).document(user.uid).collection(DatabaseService.artistPosts).addDocument(data: ["videos" : post.postURL]) { (error) in
-            //add all elements here later
-
-            if let error = error {
-                completion(.failure(error))
-            } else {
-                completion(.success(true))
-            }
+    public func createVideoPosts(post: Video, completion: @escaping (Result<Bool, Error>) -> ()) {
+      guard let user = Auth.auth().currentUser else {return}
+      db.collection(DatabaseService.artistsCollection).document(user.uid).collection(DatabaseService.artVideos).document().setData(["videos": post.urlString ?? "no string"]) { (error) in
+        if let error = error {
+          completion(.failure(error))
+        } else {
+          completion(.success(true))
         }
+      }
     }
     
-    // user  1
-            // fav
-    //ys
+    public func getVideo(artist:Artist,completion: @escaping (Result<[Video], Error>) -> ()){
+        db.collection(DatabaseService.artistsCollection).document(artist.artistId).collection(DatabaseService.artVideos).getDocuments { (snapshot, error) in
+        if let error = error{
+          completion(.failure(error))
+        } else if let snapshot = snapshot{
+          let videoDocuments = snapshot.documents.map{$0.data()}
+          var videos = [Video]()
+          videos = videoDocuments.compactMap {Video($0)}
+          print(videos)
+          completion(.success(videos))
+        }
+      }
+    }
     
+   
     public func createFavArtist(artist:Artist, completion: @escaping (Result <Bool,Error>) -> ()){
         guard let user = Auth.auth().currentUser else { return }
         
