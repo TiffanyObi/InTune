@@ -80,6 +80,7 @@ class ExploreOptionsController: UIViewController {
         }
         
     }
+    
 //    private func configureTagsObservation(){
 //        tagsObserver = self.observe(\.selectedTags, options: [.old,.new], changeHandler: { [weak self](tags, change) in
 //            guard let tags = change.newValue else { return }
@@ -121,7 +122,7 @@ extension ExploreOptionsController: UICollectionViewDelegateFlowLayout,UICollect
                 }
                 
                 let genre = genres[indexPath.row]
-                tagCell.tagTitle.backgroundColor = .purple
+                tagCell.tagTitle.backgroundColor = .systemTeal
                 tagCell.tagTitle.textColor = .white
                 tagCell.tagTitle.text = genre
                 return tagCell

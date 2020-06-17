@@ -16,20 +16,23 @@
                 <rect key="frame" x="0.0" y="0.0" width="214" height="145"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Ut1-6f-37U">
-                        <rect key="frame" x="10" y="10.5" width="214" height="124"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Ut1-6f-37U">
+                        <rect key="frame" x="10" y="10.5" width="194" height="124"/>
                         <color key="tintColor" red="0.52265780019999997" green="0.87158946699999995" blue="0.86406644870000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </imageView>
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="Ut1-6f-37U" secondAttribute="trailing" constant="-10" id="KSi-Lu-HuS"/>
+                    <constraint firstAttribute="trailing" secondItem="Ut1-6f-37U" secondAttribute="trailing" constant="10" id="KSi-Lu-HuS"/>
                     <constraint firstItem="Ut1-6f-37U" firstAttribute="leading" secondItem="kRb-tZ-fpC" secondAttribute="leading" constant="10" id="TuD-UN-ZZp"/>
                     <constraint firstAttribute="bottom" secondItem="Ut1-6f-37U" secondAttribute="bottom" constant="10" id="ZBh-8Z-Xau"/>
                     <constraint firstItem="Ut1-6f-37U" firstAttribute="top" secondItem="kRb-tZ-fpC" secondAttribute="top" constant="10" id="g56-6I-JN6"/>
                 </constraints>
             </collectionViewCellContentView>
             <size key="customSize" width="214" height="145"/>
+            <connections>
+                <outlet property="imageView" destination="Ut1-6f-37U" id="vFE-xE-brg"/>
+            </connections>
             <point key="canvasLocation" x="253.62318840579712" y="150.33482142857142"/>
         </collectionViewCell>
     </objects>

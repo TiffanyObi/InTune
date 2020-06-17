@@ -51,8 +51,9 @@ class VideoPostViewController: UIViewController {
                 // 2. update Data to Firebase Storage
                 StorageService().uploadVideoData(videoData) { (result) in
                     // TODO: handle cases
-                    self.dismiss(animated: true, completion: nil)
+//                    self.dismiss(animated: true, completion: nil)
                 }
+                self.dismiss(animated: true, completion: nil)
             }
         }
     }

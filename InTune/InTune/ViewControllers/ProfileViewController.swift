@@ -119,6 +119,8 @@ class ProfileViewController: UIViewController {
             return
         }
         if artist.isReported {
+            likeArtistButton.isHidden = true
+            chatButton.isHidden = true
             let emptyView = EmptyView(message: "This user has been reported !")
             postsCollectionView.backgroundView = emptyView
         }
@@ -158,7 +160,7 @@ class ProfileViewController: UIViewController {
     
     @objc func reportArtist(_ sender: UIBarButtonItem){
         guard let artist = expArtist else {
-            print("no artist")
+            navigationItem.rightBarButtonItem?.isEnabled = false
             return
         }
         db.reportArtist(for: artist) { (result) in
@@ -273,14 +275,22 @@ extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDel
         
         if collectionView == postsCollectionView {
             if state == .prof {
+                if singleArtist?.isReported ?? true {
+                    return 0
+                } else {
                 return videos.count
-            } else {
+            }
+        }else {
+                if expArtist?.isReported ?? true {
+                    return 0
+                } else {
                 return videos.count 
             }
         }
-        
-        return 0
+
     }
+        return 0
+}
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         

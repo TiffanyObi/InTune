@@ -29,7 +29,10 @@ class ExploreViewController: UIViewController {
             }
         }
     }
+    
+    
     var currentUser: Artist?
+    var featuredArtistPlaceHolderImages = ["singer","tatMan","tLuke","trio","violinist"]
     
     var tags = [String]() {
         didSet {
@@ -83,7 +86,7 @@ class ExploreViewController: UIViewController {
         tagsCollectionView.delegate = self
         tagsCollectionView.dataSource = self
         featuredArtistCV.delegate = featuredCVDelegate
-        featuredArtistCV.dataSource = featuredCVDelegate
+        featuredArtistCV.dataSource = self
     }
     
     private func setUpTV() {
@@ -159,21 +162,46 @@ extension ExploreViewController: UITableViewDataSource, UITableViewDelegate {
 extension ExploreViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
+        if collectionView == tagsCollectionView {
+        
         return currentUser?.preferences?.count ?? 2
+    }
+        
+        if collectionView == featuredArtistCV {
+            return featuredArtistPlaceHolderImages.count
+        }
+        
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        if collectionView == tagsCollectionView {
+        
         guard let tagCell = collectionView.dequeueReusableCell(withReuseIdentifier: "tagCell", for: indexPath) as? TagCollectionViewCell else {
             fatalError("could not downcast to TagCollectionViewCell")
         }
       
         let tag = currentUser?.preferences?[indexPath.row] ?? "no tag"
-            tagCell.configureCell(tag)
+             tagCell.configureCell(tag)
         
 
         return tagCell
     }
-    
+        if collectionView == featuredArtistCV {
+            guard let featureCell = collectionView.dequeueReusableCell(withReuseIdentifier: "featuredArtist", for: indexPath) as? FeaturedArtistCell else {
+                fatalError("could not downcast to FeaturedArtistCell")
+            }
+            let placeHolder = featuredArtistPlaceHolderImages[indexPath.row]
+            
+            featureCell.configureCell(placeHolderImage: placeHolder)
+            featureCell.imageView.layer.cornerRadius = 30
+            
+            return featureCell
+        }
+        
+        return UICollectionViewCell()
+    }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let maxSize: CGSize = UIScreen.main.bounds.size
         let itemWidth: CGFloat = maxSize.width * 0.20
@@ -187,7 +215,22 @@ extension ExploreViewController: UpdateUsertPref {
         getCurrentUserPref()
         tagsCollectionView.reloadData()
         artistTableView.reloadData()
+        
+        db.getArtists { (result) in
+            switch result {
+            case .failure(let error):
+                print(error)
+                
+            case .success(let filteredArtist):
+                for pref in self.currentUser?.preferences ?? ["none"] {
+                    
+                self.artists = filteredArtist.filter{ $0.tags.contains(pref) }
+                }
+            }
+        }
+
     }
-    
-    
 }
+    
+    
+
