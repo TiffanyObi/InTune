@@ -118,6 +118,7 @@ class ProfileViewController: UIViewController {
         chatButton.isHidden = false
         navigationItem.leftBarButtonItem = .none
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "exclamationmark.octagon.fill"), style: .plain, target: self, action: #selector(reportArtist(_:)))
+        navigationItem.rightBarButtonItem?.tintColor = .systemRed
         guard let artist = expArtist else { print("no expArtist")
             return
         }
@@ -199,17 +200,24 @@ class ProfileViewController: UIViewController {
 }
     @objc func reportArtist(_ sender: UIBarButtonItem){
         guard let artist = expArtist else {
-            navigationItem.rightBarButtonItem?.isEnabled = false
-            return
+          navigationItem.rightBarButtonItem?.isEnabled = false
+          return
         }
-        db.reportArtist(for: artist) { (result) in
-            switch result {
-            case .failure(let error):
-                print(error.localizedDescription)
-            case.success:
-                print(true)
-            }
+        let actionSheet = UIAlertController(title: "Report", message: "Are you sure you want to report this user?", preferredStyle: .actionSheet)
+        let reportAction = UIAlertAction(title: "Report User", style: .destructive) { (alertAction) in
+          self.db.reportArtist(for: artist) { (result) in
+                switch result {
+                case .failure(let error):
+                  print(error.localizedDescription)
+                case.success:
+                  print(true)
+                }
+              }
         }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        actionSheet.addAction(reportAction)
+        actionSheet.addAction(cancelAction)
+        present(actionSheet, animated: true)
     }
     
     
