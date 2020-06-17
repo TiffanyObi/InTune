@@ -11,6 +11,7 @@ pod 'Firebase/Firestore'
 pod 'Firebase/Auth'
 pod 'Firebase/Storage'
 pod 'MessageKit'
+pod 'Kingfisher'
 
   target 'InTuneTests' do
     inherit! :search_paths

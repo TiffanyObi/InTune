@@ -7,24 +7,77 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseFirestore
 
 class GigViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    
+    @IBOutlet weak var tableView: UITableView!
+    
+    var listener: ListenerRegistration?
+    
+    var gigs = [GigsPost]() {
+        didSet {
+            tableView.reloadData()
+        }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(UINib(nibName: "GigCell", bundle: nil), forCellReuseIdentifier: "gigCell")
+        
     }
-    */
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        listener = Firestore.firestore().collection(DatabaseService.gigPosts).addSnapshotListener({ (snapshot, error) in
+                  if let error = error {
+                      DispatchQueue.main.async {
+                          self.showAlert(title: "Firestore Error", message: "\(error.localizedDescription)")
+                      }
+                  } else if let snapshot = snapshot {
+                      let gig = snapshot.documents.map { GigsPost($0.data()) }
+                      self.gigs = gig
+                  }
+              })
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        listener?.remove()
+    }
+    
+    
+    
+    
+}
 
+extension GigViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return gigs.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "gigCell", for: indexPath) as? GigCell else {
+            fatalError("could not get cell")
+        }
+        let gig = gigs[indexPath.row]
+        cell.configureGig(for: gig)
+        return cell
+    }
+}
+
+extension GigViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 200
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let detailVC = GigsDetailViewController()
+        navigationController?.pushViewController(detailVC, animated: true)
+    }
 }

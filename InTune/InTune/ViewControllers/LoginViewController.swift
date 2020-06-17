@@ -24,7 +24,7 @@ class LoginViewController: UIViewController {
     @IBOutlet private var loginStateLabel: UILabel!
     @IBOutlet private var loginStateButton: UIButton!
     @IBOutlet public var errorMessageLabel: UILabel!
-    
+  
     private lazy var tapGesture: UITapGestureRecognizer = {
         let gesture = UITapGestureRecognizer()
         gesture.addTarget(self, action: #selector(resignTextfeilds))
@@ -33,6 +33,7 @@ class LoginViewController: UIViewController {
     public var accountState: AccountState = .existingUser
     public var authSession = AuthenticationSession()
     private var dataBaseService = DatabaseService()
+    
     let viewModel = LoginViewViewModel()
     
     override func viewDidLoad() {
@@ -49,14 +50,15 @@ class LoginViewController: UIViewController {
         passwordTextfield.delegate = self
     }
    @objc private func resignTextfeilds(){
-        errorMessageLabel.isHidden = true
+        clearErrorLabel()
         emailTextfield.resignFirstResponder()
         passwordTextfield.resignFirstResponder()
     }
     private func clearErrorLabel(){
         
-        errorMessageLabel.text = viewModel.setErrorLabelToEmpty
+        errorMessageLabel.text =  "                 "
         errorMessageLabel.isHidden = true
+
     }
     
     @IBAction func loginButtonPressed(_ sender: UIButton) {
@@ -74,38 +76,17 @@ class LoginViewController: UIViewController {
     @IBAction func toggleAccountState(_ sender: UIButton) {
         // change the account login state
         accountState = accountState == .existingUser ? .newUser : .existingUser
+        
         if accountState == .existingUser {
             loginButton.setTitle(viewModel.loginButtonTitle, for: .normal)
             loginStateLabel.text = viewModel.newAccountMessage
             loginStateButton.setTitle(viewModel.signUpButtonTitle, for: .normal)
-            
         } else {
             loginButton.setTitle(viewModel.signUpButtonTitle, for: .normal)
             loginStateLabel.text = viewModel.exisistingAccountMessage
             loginStateButton.setTitle(viewModel.loginButtonTitle, for: .normal)
-            
         }
     }
-    
-
-    
-    
-//    private func createDatabaseUser(authDataResult: AuthDataResult) {
-//
-//        dataBaseService.createArtist(artist: <#T##Artist#>, authDataResult: <#T##AuthDataResult#>, completion: <#T##(Result<Bool, Error>) -> ()#>){[weak self] (result) in
-//            switch result {
-//            case .failure(let error):
-//                DispatchQueue.main.async {
-//                    self?.showAlert(title: "Account Error", message: error.localizedDescription)
-//                }
-//            case .success:
-//                self?.navigateToMainView()
-//            }
-//        }
-//    }
-//
-
-    
     private func pulsatingAnimation() {
            UIView.animate(withDuration: 2.0, delay: 0.0, options: [], animations: {
                // animation block here
@@ -113,10 +94,6 @@ class LoginViewController: UIViewController {
                self.appLogoImageView.transform = CGAffineTransform(scaleX: 2.0, y: 2.0)
                
            }) { (done) in
-               // code to be executed after animation completes
-               //option1 - you can reset view's values
-               //option2 - creates a next animation
-               
                UIView.animate(withDuration: 0.7)  {
                    self.appLogoImageView.transform =
                    CGAffineTransform.identity
@@ -131,8 +108,6 @@ class LoginViewController: UIViewController {
         
         UIView.transition(with: appLogoImageView, duration: duration, options: [.transitionFlipFromRight,curveOption], animations: nil, completion: nil)
     }
-  
-
 }
 
 extension LoginViewController: UITextFieldDelegate {

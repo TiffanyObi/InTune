@@ -14,19 +14,30 @@ import FirebaseFirestore
 
 class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate, MessagesDataSource, MessagesLayoutDelegate, MessagesDisplayDelegate {
 
-   var currentUser: User = Auth.auth().currentUser!
+//   var currentUser: User = Auth.auth().currentUser!
     
-    var user2Name = "John"
+    var currentUser: Artist?
+    
+    
+    
+//    var user2Name: String?
     var user2ImgUrl: String?
-    var user2UID = "123456789"
+//    var user2UID: String?
+    
+    var artist: Artist?
+    
+    private let databaseService = DatabaseService()
     
     private var docReference: DocumentReference?
     
     var messages: [Message] = []
+    
+    private var chatsCollection = "chats"
        
        override func viewDidLoad() {
             super.viewDidLoad()
-            self.title = user2Name
+        updateCurrentArtist()
+        self.title = artist?.name
 
             navigationItem.largeTitleDisplayMode = .never
             maintainPositionOnKeyboardFrameChanged = true
@@ -42,21 +53,57 @@ class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate,
 
             
         }
+    
+    func updateCurrentArtist() {
+        guard let currentUser = Auth.auth().currentUser else {return}
+        databaseService.fetchArtist(userID: currentUser.uid) { (result) in
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success(let artist):
+                self.currentUser = artist
+            }
+        }
+    }
+    
+    func addToThread() {
+        databaseService.createThread(artist: artist!) { (result) in
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success:
+                print("succesfully updated database")
+            }
+        }
+    }
+    
+    func addToThread2() {
+        databaseService.createThread2(sender: artist!, artist: currentUser!) { (result) in
+            switch result {
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success:
+                print("success")
+            }
+        }
+    }
        
        
       func createNewChat() {
-          let users = [self.currentUser.uid, self.user2UID]
+        let users = [self.currentUser?.artistId, self.artist?.artistId]
            let data: [String: Any] = [
                "users":users
            ]
            
-           let db = Firestore.firestore().collection("Chats")
+           let db = Firestore.firestore().collection(chatsCollection)
            db.addDocument(data: data) { (error) in
                if let error = error {
                    print("Unable to create chat! \(error)")
                    return
                } else {
                    self.loadChat()
+                   self.addToThread()
+                   self.addToThread2()
                }
            }
       }
@@ -64,7 +111,7 @@ class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate,
        func loadChat() {
               
               //Fetch all the chats which has current user in it
-              let db = Firestore.firestore().collection("Chats")
+              let db = Firestore.firestore().collection(chatsCollection)
                       .whereField("users", arrayContains: Auth.auth().currentUser?.uid ?? "Not Found User 1")
               
               
@@ -90,7 +137,8 @@ class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate,
                               
                               let chat = Chat(dictionary: doc.data())
                               //Get the chat which has user2 id
-                           if (chat?.users.contains(self.user2UID))! {
+//                            if ((chat?.users.contains(self.artist?.artistId ?? ""))!) {
+                            if chat?.users.contains(self.artist?.artistId ?? "") ?? false {
                                   
                                   self.docReference = doc.reference
                                   //fetch it's thread collection
@@ -112,6 +160,8 @@ class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate,
                                       self.messagesCollectionView.scrollToBottom(animated: true)
                                   }
                                   })
+//                                  self.addToThread()
+//                                  self.addToThread2()
                                   return
                               } //end of if
                           } //end of for
@@ -157,7 +207,7 @@ class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate,
        
        func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
 
-                   let message = Message(id: UUID().uuidString, content: text, created: Timestamp(), senderID: currentUser.uid, senderName: "Oscar")
+        let message = Message(id: UUID().uuidString, content: text, created: Timestamp(), senderID: currentUser!.artistId, senderName: (currentUser?.name)!)
                    
                      //messages.append(message)
                      insertNewMessage(message)
@@ -170,7 +220,7 @@ class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate,
        
        
        func currentSender() -> SenderType {
-        return Sender(senderId: Auth.auth().currentUser!.uid, displayName: Auth.auth().currentUser?.displayName ?? "Name not found")
+        return Sender(senderId: Auth.auth().currentUser?.uid ?? "no user id", displayName: Auth.auth().currentUser?.displayName ?? "Name not found")
        }
        
        func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageType {
