@@ -211,7 +211,8 @@ extension OnboardingViewController: UICollectionViewDataSource,UICollectionViewD
         }
             let instrument = instruments[indexPath.row]
             tagCell.tagTitle.text = instrument
-           
+            tagCell.tagsDelegate = self
+            tagCell.instrument = instrument
             tagCell.layer.cornerRadius = 10
             
             return tagCell
@@ -223,6 +224,8 @@ extension OnboardingViewController: UICollectionViewDataSource,UICollectionViewD
             
             let genre = genres[indexPath.row]
             tagCell.layer.cornerRadius = 10
+            tagCell.tagsDelegate = self
+            tagCell.genre = genre
             tagCell.tagTitle.text = genre
             
             return tagCell
@@ -238,28 +241,20 @@ extension OnboardingViewController: UICollectionViewDataSource,UICollectionViewD
         return CGSize(width: itemWidth, height: itemHeight)
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if collectionView == tagsSelectionView.instrumentsCollectionView {
-            guard let tagCell = collectionView.dequeueReusableCell(withReuseIdentifier: "tagCell", for: indexPath) as? TagCollectionViewCell else { fatalError("could not downcast to TagCollectionViewCell")
-            }
-            
-            let selectedInstrument = instruments[indexPath.row]
-            tagCell.tagTitle.isHighlighted = true
-            
-            selectedInstruments.insert(selectedInstrument)
-            print(selectedInstruments)
+}
+
+extension OnboardingViewController: TagsCVDelegate {
+    func updateUserPreferences(_ isPicked: Bool, _ cell: TagCollectionViewCell, instrument: String, genre: String) {
+        if !instrument.isEmpty {
+            selectedInstruments.insert(instrument)
         }
         
-        if collectionView == tagsSelectionView.genresCollectionView {
-            guard let tagCell = collectionView.dequeueReusableCell(withReuseIdentifier: "tagCell", for: indexPath) as? TagCollectionViewCell else { fatalError("could not downcast to TagCollectionViewCell")
-            }
-            
-            let selectedGenre = genres[indexPath.row]
-            tagCell.tagTitle.isHighlighted = true
-           
-            selectedGenres.insert(selectedGenre)
-            print(selectedGenres)
+        if !genre.isEmpty {
+            selectedGenres.insert(genre)
         }
+        
+        
     }
+    
     
 }
