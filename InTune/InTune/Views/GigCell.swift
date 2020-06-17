@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class GigCell: UITableViewCell {
     
@@ -15,5 +16,15 @@ class GigCell: UITableViewCell {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
+    
+    
+    public func configureGig(for gig: GigsPost) {
+        gigImageView.kf.setImage(with: URL(string: gig.imageURL))
+        titleLabel.text = gig.title
+        dateLabel.text = gig.eventDate
+        priceLabel.text = gig.price.description
+        
+        
+    }
     
 }

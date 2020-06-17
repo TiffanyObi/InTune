@@ -10,6 +10,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseFirestore
 
+
 class CreateGigViewController: UIViewController {
     
     
@@ -21,6 +22,8 @@ class CreateGigViewController: UIViewController {
     
     
     let databaseService = DatabaseService()
+    
+    private let storageService = StorageService()
     
     var currentUser: Artist?
     
@@ -44,18 +47,6 @@ class CreateGigViewController: UIViewController {
     }()
     
     
-    
-    
-    
-    //    let user: Artist
-    //    //based on bool
-    //    let gigId: String
-    //    let title: String
-    //    let descript: String
-    //    let photoURL: String
-    //    let price: Int
-    //    let eventDate: String
-    //    let createdDate: Timestamp
     
     
     override func viewDidLoad() {
@@ -116,26 +107,57 @@ class CreateGigViewController: UIViewController {
             let price = priceTextField.text,
             !price.isEmpty,
             let description = descriptionTextView.text,
-            !description.isEmpty else {
+            !description.isEmpty,
+            let selectedImage = selectedImage else {
                 print("missing fields")
                 return
         }
         
-        databaseService.createGig(artist: currentUser!, title: title, description: description, photoURL: nil, price: price, eventDate: date, createdDate: Timestamp()) { (result) in
+        let resizedImage = UIImage.resizeImage(originalImage: selectedImage, rect: gigImageView.bounds)
+        
+        
+        
+        databaseService.createGig(artist: currentUser!, title: title, description: description, price: Int(price) ?? 0, eventDate: date, createdDate: Timestamp()) { (result) in
             switch result {
             case .failure(let error):
                 print(error.localizedDescription)
-            case .success:
-                DispatchQueue.main.async {
-                    print("Succesfully uploaded gig")
-                    self.dismiss(animated: true)
-                }
-                
+            case .success(let documentId):
+                self.uploadPhoto(photo: resizedImage, documentId: documentId)
             }
         }
 
     }
     
+    
+    private func uploadPhoto(photo: UIImage, documentId: String) {
+        storageService.uploadPhoto(itemId: documentId, image: photo) { (result) in
+            switch result {
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    self.showAlert(title: "Error uploading photo", message: "\(error.localizedDescription)")
+                }
+            case .success(let url):
+                self.updateItemImageURL(url, documentsId: documentId)
+            }
+        }
+    }
+    
+    
+    private func updateItemImageURL(_ url: URL, documentsId: String) {
+        // update an existing document on firestore
+        Firestore.firestore().collection(DatabaseService.gigPosts).document(documentsId).updateData(["imageURL" : url.absoluteString]) { (error) in
+            if let error = error {
+                DispatchQueue.main.async {
+                    self.showAlert(title: "Fail to update item", message: "\(error.localizedDescription)")
+                }
+            } else {
+                print("all went well with the update")
+                DispatchQueue.main.async {
+                    self.showAlert(title: "succesfully uploaded photo", message: nil)
+                }
+            }
+        }
+    }
     
     
     
@@ -165,3 +187,4 @@ extension CreateGigViewController: UIImagePickerControllerDelegate, UINavigation
     }
     
 }
+
