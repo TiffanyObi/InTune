@@ -41,7 +41,7 @@ class VideoPostViewController: UIViewController {
         guard let videoData = try? Data(contentsOf: url) else {
             return
         }
-        let post = ArtistPost(artistName: "", artistId: user.uid, postId: "1234", postedDate: Timestamp(date: Date()), postURL: urlString)
+//        let post = ArtistPost(artistName: "", artistId: user.uid, postId: "1234", postedDate: Timestamp(date: Date()), postURL: urlString)
         let vid = Video(title: "", urlString: urlString)
         db.createVideoPosts(post: vid) { (result) in
             switch result {

@@ -112,6 +112,15 @@ class EditProfController: UIViewController {
                 let request = Auth.auth().currentUser?.createProfileChangeRequest()
                 request?.displayName = userName
                 request?.photoURL = url
+                //update pic url
+                self?.db.updateUserPhoto(user, photoURL: url.absoluteString, completion: { (result) in
+                    switch result {
+                    case.failure(let error):
+                        print(error.localizedDescription)
+                    case.success:
+                        print(true)
+                    }
+                })
                 request?.commitChanges(completion: { (error) in
                     
                     if let error = error {
