@@ -21,7 +21,7 @@ struct Artist {
   let photoURL:String?
   let preferences:[String]?
   let isReported: Bool
-  let videos: [String]? // videos cannot be retrieved liked this. because firebase wont read the model . must refactor
+//  let videos: [Video]? // videos cannot be retrieved liked this. because firebase wont read the model . must refactor
 }
 extension Artist {
   init(_ dictionary: [String: Any]) {
@@ -35,7 +35,7 @@ extension Artist {
     self.photoURL = dictionary["photoURL"] as? String ?? "no URL"
     self.preferences = dictionary["preferences"] as? [String] ?? [""]
     self.isReported = dictionary["isReported"] as? Bool ?? false
-    self.videos = dictionary["videos"] as? [String] ?? ["no video urls"]
+//    self.videos = dictionary["videos"] as? [String] ?? ["no video urls"]
   }
 }
 

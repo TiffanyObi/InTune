@@ -130,7 +130,7 @@ class ProfileViewController: UIViewController {
     }
     
     func getArtist(){
-        
+
         guard let userID = Auth.auth().currentUser?.uid else {
             return
         }
@@ -273,9 +273,9 @@ extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDel
         
         if collectionView == postsCollectionView {
             if state == .prof {
-                return singleArtist?.videos?.count ?? 3
+                return videos.count
             } else {
-                return expArtist?.videos?.count ?? 2
+                return videos.count 
             }
         }
         
@@ -302,14 +302,12 @@ extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDel
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "postCell", for: indexPath) as? PostCell else {
                 fatalError("could not conform to TagCell")
                 }
-                
             if state == .prof {
-                let video = singleArtist?.videos?[indexPath.row]
-    
-//                print(video?.title ?? "no video to print")
+                let video = videos[indexPath.row]
+                print(video.urlString ?? "")
             } else if state == .explore {
-                let video = expArtist?.videos?[indexPath.row]
-//                print(video?.title ?? "no video to print")
+                let video = videos[indexPath.row]
+                print(video.urlString ?? "")
             }
             
             return cell
