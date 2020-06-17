@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1le-8U-xG4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1le-8U-xG4">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -330,14 +330,14 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="postButtonPressed:" destination="FSs-2j-PIi" eventType="touchUpInside" id="RRB-Ct-gv1"/>
+                                    <action selector="postButtonPressed:" destination="FSs-2j-PIi" eventType="touchUpInside" id="iY2-ia-RyN"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uYI-qP-saV">
                                 <rect key="frame" x="171.5" y="40" width="71" height="30"/>
                                 <state key="normal" title="Add Video"/>
                                 <connections>
-                                    <action selector="addPostButtonPressed:" destination="FSs-2j-PIi" eventType="touchUpInside" id="ccK-ym-sgH"/>
+                                    <action selector="addPostButtonPressed:" destination="FSs-2j-PIi" eventType="touchUpInside" id="vYv-ea-2de"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -355,7 +355,7 @@
                         <viewLayoutGuide key="safeArea" id="Pku-Je-f9j"/>
                     </view>
                     <connections>
-                        <outlet property="videoView" destination="dAC-V6-Dv7" id="WxM-NA-TSv"/>
+                        <outlet property="videoView" destination="dAC-V6-Dv7" id="UbS-AV-Rqg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UyS-m9-AwO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -418,11 +418,11 @@
         </scene>
     </scenes>
     <resources>
-        <image name="gear" catalog="system" width="128" height="119"/>
-        <image name="person.circle.fill" catalog="system" width="128" height="121"/>
-        <image name="person.crop.circle" catalog="system" width="128" height="121"/>
-        <image name="person.crop.circle.fill.badge.plus" catalog="system" width="128" height="101"/>
-        <image name="video.badge.plus.fill" catalog="system" width="128" height="80"/>
-        <image name="video.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="gear" catalog="system" width="64" height="58"/>
+        <image name="person.circle.fill" catalog="system" width="64" height="60"/>
+        <image name="person.crop.circle" catalog="system" width="64" height="60"/>
+        <image name="person.crop.circle.fill.badge.plus" catalog="system" width="64" height="50"/>
+        <image name="video.badge.plus.fill" catalog="system" width="64" height="40"/>
+        <image name="video.circle.fill" catalog="system" width="64" height="60"/>
     </resources>
 </document>

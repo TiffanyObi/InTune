@@ -9,6 +9,8 @@
 import UIKit
 import FirebaseAuth
 import Firebase
+import AVKit
+import FirebaseFirestore
 
 enum Segue {
     case explore
@@ -30,8 +32,6 @@ class ProfileViewController: UIViewController {
     @IBOutlet var settingsButton: UIBarButtonItem!
     @IBOutlet var infoView: DesignableView!
     
-    let postCVDelegate = PostCollectionViewDelegate()
-    let tagsCVDelegate = TagsCVDelegate()
     
     let db = DatabaseService()
     
@@ -54,6 +54,11 @@ class ProfileViewController: UIViewController {
     
     var state: Segue = .prof
     
+    var videos = [Video](){
+        didSet{
+            postsCollectionView.reloadData()
+        }
+    }
  
     
     override func viewDidLoad() {
@@ -63,8 +68,8 @@ class ProfileViewController: UIViewController {
         tagsCollection.delegate = self
         tagsCollection.dataSource = self
         tagsCollection.register(UINib(nibName: "TagCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "tagCell")
-        postsCollectionView.delegate = postCVDelegate
-        postsCollectionView.dataSource = postCVDelegate
+        postsCollectionView.delegate = self
+        postsCollectionView.dataSource = self
         postsCollectionView.register(UINib(nibName: "PostCell", bundle: nil), forCellWithReuseIdentifier: "postCell")
     }
     
@@ -92,6 +97,7 @@ class ProfileViewController: UIViewController {
             postsCollectionView.backgroundView = emptyView
             
         }
+        getVideos(artist: singleArtist)
         profImage.contentMode = .scaleAspectFill
         profImage.layer.cornerRadius = 60
         if user.photoURL == nil  {
@@ -116,6 +122,7 @@ class ProfileViewController: UIViewController {
             let emptyView = EmptyView(message: "This user has been reported !")
             postsCollectionView.backgroundView = emptyView
         }
+        getVideos(artist: artist)
         isArtistInFav(artist: artist)
         nameLabel.text = artist.name
         locationLabel.text = artist.city
@@ -136,6 +143,17 @@ class ProfileViewController: UIViewController {
                 self?.singleArtist = artist1
             }
         }
+    }
+    
+    func getVideos(artist:Artist){
+        db.getVideo(artist: artist) { (result) in
+        switch result {
+        case .failure(let error):
+          print(error)
+        case .success(let videos):
+          self.videos = videos
+        }
+      }
     }
     
     @objc func reportArtist(_ sender: UIBarButtonItem){
@@ -237,23 +255,38 @@ class ProfileViewController: UIViewController {
         navigationController?.pushViewController(chatVC, animated: true)
     }
 }
+
+
+
+
 extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let maxSize: CGSize = UIScreen.main.bounds.size
-        let itemWidth: CGFloat = maxSize.width * 0.20
-        let itemHeight: CGFloat = maxSize.height * 0.30
-        return CGSize(width: itemWidth, height: itemHeight)
-    }
+       
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if state == .prof {
+        
+        if collectionView == tagsCollection {
+            if state == .prof {
             return singleArtist?.tags.count ?? 3
         } else {
             return expArtist?.tags.count ?? 2
         }
     }
+        
+        if collectionView == postsCollectionView {
+            if state == .prof {
+                return singleArtist?.videos?.count ?? 3
+            } else {
+                return expArtist?.videos?.count ?? 2
+            }
+        }
+        
+        return 0
+    }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        if collectionView == tagsCollection {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "tagCell", for: indexPath) as? TagCollectionViewCell else {
-            fatalError("could not conform to TagCell")
+            fatalError("could not downcast to TagCollectionViewCell")
         }
         if state == .prof {
             let tag = singleArtist?.tags[indexPath.row]
@@ -264,4 +297,59 @@ extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDel
         }
         return cell
     }
-}
+        if collectionView == postsCollectionView {
+            
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "postCell", for: indexPath) as? PostCell else {
+                fatalError("could not conform to TagCell")
+                }
+                
+            if state == .prof {
+                let video = singleArtist?.videos?[indexPath.row]
+    
+//                print(video?.title ?? "no video to print")
+            } else if state == .explore {
+                let video = expArtist?.videos?[indexPath.row]
+//                print(video?.title ?? "no video to print")
+            }
+            
+            return cell
+        }
+          return UICollectionViewCell()
+    }
+
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+           
+           if collectionView == tagsCollection {
+           let maxSize: CGSize = UIScreen.main.bounds.size
+           let itemWidth: CGFloat = maxSize.width * 0.20
+           let itemHeight: CGFloat = maxSize.height * 0.30
+           return CGSize(width: itemWidth, height: itemHeight)
+           }
+           
+           if collectionView == postsCollectionView {
+              
+                   let maxSize: CGSize = UIScreen.main.bounds.size
+                   let itemWidth: CGFloat = maxSize.width * 0.40
+                   let itemHeight: CGFloat = maxSize.height * 0.40
+                   return CGSize(width: itemWidth, height: itemHeight)
+               }
+            return CGSize(width: 0.5, height: 0.5)
+           }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+          // get video selected at n index
+          let video = videos[indexPath.row]
+          // create av player vc
+          let playController = AVPlayerViewController()
+          guard let urlStr = video.urlString else { return }
+          let player = AVPlayer(url: URL(string: urlStr)!)
+          //present av vc
+          playController.player = player
+          present(playController, animated: true) {
+            player.play()
+          }
+        }
+    }
+
+
