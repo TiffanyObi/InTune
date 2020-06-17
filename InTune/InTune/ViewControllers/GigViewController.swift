@@ -77,7 +77,12 @@ extension GigViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let detailVC = GigsDetailViewController()
+        let storyBoard = UIStoryboard(name: "GigsView", bundle:  nil)
+        guard let detailVC = storyBoard.instantiateViewController(identifier: "GigsDetailViewController") as? GigsDetailViewController else {
+            fatalError("could not load gigsDetail")
+        }
+        let gig = gigs[indexPath.row]
+        detailVC.gigPost = gig
         navigationController?.pushViewController(detailVC, animated: true)
     }
 }
