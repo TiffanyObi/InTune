@@ -10,4 +10,11 @@ import UIKit
 
 class FeaturedArtistCell: UICollectionViewCell {
     
+    
+    @IBOutlet weak var imageView: UIImageView!
+    
+    
+    public func configureCell(placeHolderImage: String){
+        imageView.image = UIImage(named: placeHolderImage)
+    }
 }

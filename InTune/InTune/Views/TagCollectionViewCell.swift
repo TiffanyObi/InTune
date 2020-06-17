@@ -24,17 +24,18 @@ class TagCollectionViewCell: UICollectionViewCell {
     
     @IBAction func checkButtonPressed(_ sender: UIButton) {
         checkButton.setImage(UIImage(systemName: "checkmark.rectangle.fill"), for: .normal)
-//        checkButton.imageView?.tintColor = .purple
+
     }
     
     func configureCell(_ tag:String) {
         
-        
         if Tags.instrumentList.contains(tag){
             tagTitle.text = tag
+            self.layer.cornerRadius = 30
             tagTitle.backgroundColor = .purple
         } else if Tags.genreList.contains(tag){
         tagTitle.text = tag
+            self.layer.cornerRadius = 30
             tagTitle.backgroundColor = .systemTeal
     }
 }
