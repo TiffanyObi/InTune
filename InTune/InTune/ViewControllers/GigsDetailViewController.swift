@@ -9,13 +9,33 @@
 import UIKit
 
 class GigsDetailViewController: UIViewController {
+    
+    @IBOutlet var titleLabel: UILabel!
+    @IBOutlet var postImage: UIImageView!
+    @IBOutlet var dateLabel: UILabel!
+    @IBOutlet var postedByLabel: UILabel!
+    @IBOutlet var priceLabel: UILabel!
+    @IBOutlet var descriptionText: UITextView!
+    
+    var gigPost: GigsPost?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
+        
+        updateUI()
     }
     
-
+    func updateUI() {
+        //set up image for profile + segue to prof
+        guard let gig = gigPost else { return }
+        titleLabel.text = gig.title
+        guard let url = URL(string: gig.imageURL) else { return }
+        postImage.kf.setImage(with: url)
+        dateLabel.text = gig.eventDate
+        postedByLabel.text = gig.artistName
+        priceLabel.text = "$\(gig.price)"
+        descriptionText.text = gig.descript
+    }
     
 
 }
