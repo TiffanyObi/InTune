@@ -27,6 +27,14 @@ class TagCollectionViewCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
+        layer.cornerRadius = 10.0
+        layer.masksToBounds = true
+        
+        tagTitle.layer.cornerRadius = 10.0
+        tagTitle.layer.masksToBounds = true
+        
+        checkButton.layer.cornerRadius = 10.0
+        checkButton.layer.masksToBounds = true
     }
     
     

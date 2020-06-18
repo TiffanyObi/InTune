@@ -165,16 +165,25 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gkA-Xx-SUE">
-                                <rect key="frame" x="177" y="713" width="60" height="44"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gkA-Xx-SUE" customClass="DesignableButton" customModule="InTune" customModuleProvider="target">
+                                <rect key="frame" x="167" y="713" width="80" height="44"/>
+                                <color key="backgroundColor" red="0.52265780019999997" green="0.87158946699999995" blue="0.86406644870000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="60" id="bax-Lj-vF6"/>
+                                    <constraint firstAttribute="width" constant="80" id="bax-Lj-vF6"/>
                                     <constraint firstAttribute="height" constant="44" id="oMv-U1-htm"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
-                                <state key="normal" title="S A V E ">
+                                <state key="normal" title="Save">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="saveButtonPressed:" destination="sbL-JO-zxD" eventType="touchUpInside" id="v1q-vS-DA0"/>
                                 </connections>
