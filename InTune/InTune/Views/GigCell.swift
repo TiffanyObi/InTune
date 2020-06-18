@@ -20,10 +20,9 @@ class GigCell: UITableViewCell {
     
     public func configureGig(for gig: GigsPost) {
         gigImageView.kf.setImage(with: URL(string: gig.imageURL))
-        titleLabel.text = gig.title
-        dateLabel.text = gig.eventDate
-        priceLabel.text = gig.price.description
-        
+        titleLabel.text = gig.title.uppercased()
+        dateLabel.text = "Event date: \(gig.eventDate)"
+        priceLabel.text = "Payment: $\(gig.price.description)"
         
     }
     

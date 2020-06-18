@@ -13,19 +13,23 @@ import FirebaseFirestore
 
 class CreateGigViewController: UIViewController {
     
-    
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var gigImageView: UIImageView!
-    @IBOutlet weak var dateTextField: UITextField!
+    @IBOutlet var datePicker: UIDatePicker!
     @IBOutlet weak var priceTextField: UITextField!
+    @IBOutlet var locationPicker: UIPickerView!
     @IBOutlet weak var descriptionTextView: UITextView!
-    
     
     let databaseService = DatabaseService()
     
     private let storageService = StorageService()
     
     var currentUser: Artist?
+    
+    var date: Date?
+    
+    let states = StatesForPickerView.states
+    var location = ""
     
     private var selectedImage: UIImage? {
         didSet {
@@ -39,23 +43,21 @@ class CreateGigViewController: UIViewController {
         return picker
     }()
     
-    
     private lazy var longPressGesture: UILongPressGestureRecognizer = {
         let gesture = UILongPressGestureRecognizer()
         gesture.addTarget(self, action: #selector(showPhotoOptions))
         return gesture
     }()
     
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         titleTextField.delegate = self
-        dateTextField.delegate = self
+        datePicker.minimumDate = Date()
         priceTextField.delegate = self
         descriptionTextView.delegate = self
+        locationPicker.delegate = self
+        locationPicker.dataSource = self
         addGestures()
         updateCurrentArtist()
     }
@@ -96,38 +98,39 @@ class CreateGigViewController: UIViewController {
         present(alertController, animated: true)
     }
     
+    @IBAction func datePickerUsed(_ sender: UIDatePicker) {
+        date = sender.date
+    }
+    
     
     @IBAction func submitButtonPressed(_ sender: UIButton) {
         print("submit button pressed")
-        
+        //location add
         guard let title = titleTextField.text,
             !title.isEmpty,
-            let date = dateTextField.text,
-            !date.isEmpty,
             let price = priceTextField.text,
             !price.isEmpty,
+            let date = date,
             let description = descriptionTextView.text,
             !description.isEmpty,
             let selectedImage = selectedImage else {
                 print("missing fields")
                 return
         }
+        let dateString = date.description
         
         let resizedImage = UIImage.resizeImage(originalImage: selectedImage, rect: gigImageView.bounds)
-        
-        
-        
-        databaseService.createGig(artist: currentUser!, title: title, description: description, price: Int(price) ?? 0, eventDate: date, createdDate: Timestamp()) { (result) in
-            switch result {
-            case .failure(let error):
-                print(error.localizedDescription)
-            case .success(let documentId):
-                self.uploadPhoto(photo: resizedImage, documentId: documentId)
-            }
-        }
+    
+//        databaseService.createGig(artist: currentUser!, title: title, description: description, price: Int(price) ?? 0, eventDate: dateString, createdDate: Timestamp()) { (result) in
+//            switch result {
+//            case .failure(let error):
+//                print(error.localizedDescription)
+//            case .success(let documentId):
+//                self.uploadPhoto(photo: resizedImage, documentId: documentId)
+//            }
+//        }
 
     }
-    
     
     private func uploadPhoto(photo: UIImage, documentId: String) {
         storageService.uploadPhoto(itemId: documentId, image: photo) { (result) in
@@ -159,8 +162,23 @@ class CreateGigViewController: UIViewController {
         }
     }
     
-    
-    
+}
+
+extension CreateGigViewController: UIPickerViewDataSource, UIPickerViewDelegate {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+       
+        return states.count
+    }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+       
+        return states[row]
+    }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        location = states[row]
+    }
     
 }
 
@@ -173,7 +191,6 @@ extension CreateGigViewController: UITextFieldDelegate {
 }
 
 extension CreateGigViewController: UITextViewDelegate {
-    
     
 }
 
