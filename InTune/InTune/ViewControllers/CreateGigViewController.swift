@@ -37,6 +37,12 @@ class CreateGigViewController: UIViewController {
         }
     }
     
+    private lazy var tapGesture: UITapGestureRecognizer = {
+        let gesture = UITapGestureRecognizer()
+        gesture.addTarget(self, action: #selector(resignTextfield(_:)))
+        return gesture
+    }()
+    
     private lazy var imagePickerController: UIImagePickerController = {
         let picker = UIImagePickerController()
         picker.delegate = self
@@ -60,6 +66,7 @@ class CreateGigViewController: UIViewController {
         locationPicker.dataSource = self
         addGestures()
         updateCurrentArtist()
+        view.addGestureRecognizer(tapGesture)
     }
     
     func updateCurrentArtist() {
@@ -78,6 +85,10 @@ class CreateGigViewController: UIViewController {
         gigImageView.isUserInteractionEnabled = true
         gigImageView.addGestureRecognizer(longPressGesture)
     }
+    
+    @objc private func resignTextfield(_ gesture: UITapGestureRecognizer){
+        priceTextField.resignFirstResponder()
+       }
     
     @objc private func showPhotoOptions() {
         let alertController = UIAlertController(title: "Choose Photo Option", message: nil, preferredStyle: .actionSheet)
@@ -105,7 +116,7 @@ class CreateGigViewController: UIViewController {
     
     @IBAction func submitButtonPressed(_ sender: UIButton) {
         print("submit button pressed")
-        //location add
+        //let selectedImage = selectedImage,
         guard let title = titleTextField.text,
             !title.isEmpty,
             let price = priceTextField.text,
@@ -113,22 +124,25 @@ class CreateGigViewController: UIViewController {
             let date = date,
             let description = descriptionTextView.text,
             !description.isEmpty,
-            let selectedImage = selectedImage else {
+        let artist = currentUser else {
                 print("missing fields")
                 return
         }
         let dateString = date.description
         
-        let resizedImage = UIImage.resizeImage(originalImage: selectedImage, rect: gigImageView.bounds)
-    
-//        databaseService.createGig(artist: currentUser!, title: title, description: description, price: Int(price) ?? 0, eventDate: dateString, createdDate: Timestamp()) { (result) in
-//            switch result {
-//            case .failure(let error):
-//                print(error.localizedDescription)
-//            case .success(let documentId):
-//                self.uploadPhoto(photo: resizedImage, documentId: documentId)
-//            }
-//        }
+//        let resizedImage = UIImage.resizeImage(originalImage: selectedImage, rect: gigImageView.bounds)
+        
+        databaseService.createGig(artist: artist, title: title, description: description, price: Int(price) ?? 0, eventDate: dateString, createdDate: Timestamp(), location: location) { [weak self] (result) in
+            
+            switch result {
+            case .failure(let error):
+                self?.showAlert(title: "Posting Error", message: "Could not post gig: \(error.localizedDescription)")
+            case .success:
+//                self.uploadPhoto(photo: resizedImage, documentId: documentID)
+                self?.showAlert(title: "Success!", message: "Gig posted")
+                self?.dismiss(animated: true)
+            }
+        }
 
     }
     
@@ -192,6 +206,9 @@ extension CreateGigViewController: UITextFieldDelegate {
 
 extension CreateGigViewController: UITextViewDelegate {
     
+    func textViewDidEndEditing(_ textView: UITextView) {
+        textView.resignFirstResponder()
+    }
 }
 
 extension CreateGigViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {

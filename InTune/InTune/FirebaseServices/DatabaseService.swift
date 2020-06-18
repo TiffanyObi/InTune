@@ -238,7 +238,7 @@ class DatabaseService {
         }
     }
     
-    public func createGig(artist: Artist, title: String, description: String, price: Int, eventDate: String, createdDate: Timestamp, completion: @escaping (Result<String, Error>)-> ()) {
+    public func createGig(artist: Artist, title: String, description: String, price: Int, eventDate: String, createdDate: Timestamp, location: String, completion: @escaping (Result<String, Error>)-> ()) {
         
         let documentRef = db.collection(DatabaseService.gigPosts).document()
         
