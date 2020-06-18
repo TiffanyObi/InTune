@@ -393,6 +393,7 @@ extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDel
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
           // get video selected at n index
+        if collectionView == postsCollectionView{
           let video = videos[indexPath.row]
           // create av player vc
           let playController = AVPlayerViewController()
@@ -404,6 +405,7 @@ extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDel
             player.play()
           }
         }
+    }
     }
 
 

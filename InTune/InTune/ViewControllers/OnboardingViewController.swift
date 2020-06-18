@@ -210,10 +210,12 @@ extension OnboardingViewController: UICollectionViewDataSource,UICollectionViewD
             fatalError("could not downcast to TagCollectionViewCell")
         }
             let instrument = instruments[indexPath.row]
+            tagCell.tagTitle.backgroundColor = .black
+            tagCell.layer.borderWidth = 4
+            tagCell.layer.borderColor = #colorLiteral(red: 0.3867273331, green: 0.8825651407, blue: 0.8684034944, alpha: 1)
             tagCell.tagTitle.text = instrument
             tagCell.tagsDelegate = self
             tagCell.instrument = instrument
-            tagCell.layer.cornerRadius = 10
             
             return tagCell
             
@@ -223,7 +225,9 @@ extension OnboardingViewController: UICollectionViewDataSource,UICollectionViewD
             }
             
             let genre = genres[indexPath.row]
-            tagCell.layer.cornerRadius = 10
+            tagCell.tagTitle.backgroundColor = .black
+            tagCell.layer.borderWidth = 4
+            tagCell.layer.borderColor = #colorLiteral(red: 0.3867273331, green: 0.8825651407, blue: 0.8684034944, alpha: 1)
             tagCell.tagsDelegate = self
             tagCell.genre = genre
             tagCell.tagTitle.text = genre

@@ -24,24 +24,24 @@ class ExploreOptionsController: UIViewController {
     var instruments = [String]()
     var genres = [String]()
     
-//    var selectedInstruments = Set<String>()
-//    var selectedGenres = Set<String>()
+    //    var selectedInstruments = Set<String>()
+    //    var selectedGenres = Set<String>()
     
     var selectedTags = Set<String>()
-
+    
     var instrumentIndex: Int?
     var genreIndex: Int?
     let db = DatabaseService()
     
-//     private var tagsObserver: NSKeyValueObservation?
+    //     private var tagsObserver: NSKeyValueObservation?
     
     weak var prefDelegate: UpdateUsertPref?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-       setUpCollectionViews()
-       loadCollectionViews()
+        
+        setUpCollectionViews()
+        loadCollectionViews()
     }
     
     func setUpCollectionViews(){
@@ -98,36 +98,40 @@ extension ExploreOptionsController: UICollectionViewDelegateFlowLayout,UICollect
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-                if collectionView == instrumentsCollectionView {
-                
+        if collectionView == instrumentsCollectionView {
+            
             guard let tagCell = collectionView.dequeueReusableCell(withReuseIdentifier: "tagCell", for: indexPath) as? TagCollectionViewCell else {
                 fatalError("could not downcast to TagCollectionViewCell")
             }
-                let instrument = instruments[indexPath.row]
-                tagCell.tagTitle.backgroundColor = .purple
-                tagCell.tagsDelegate = self
-                    
-                tagCell.tagTitle.text = instrument
-                    tagCell.instrument = instrument
-                tagCell.tagTitle.textColor = .white
-                return tagCell
-                
+            let instrument = instruments[indexPath.row]
+            tagCell.tagTitle.backgroundColor = .black
+            tagCell.layer.borderWidth = 4
+            tagCell.layer.borderColor = #colorLiteral(red: 0.3867273331, green: 0.8825651407, blue: 0.8684034944, alpha: 1)
+            tagCell.tagsDelegate = self
+            
+            tagCell.tagTitle.text = instrument
+            tagCell.instrument = instrument
+            tagCell.tagTitle.textColor = .white
+            return tagCell
+            
         }
-            if collectionView == genresCollectionView{
-                guard let tagCell = collectionView.dequeueReusableCell(withReuseIdentifier: "tagCell", for: indexPath) as? TagCollectionViewCell else { fatalError("could not downcast to TagCollectionViewCell")
-                }
-                
-                let genre = genres[indexPath.row]
-                tagCell.tagTitle.backgroundColor = .systemTeal
-                tagCell.tagsDelegate = self
-                tagCell.genre = genre
-                tagCell.tagTitle.textColor = .white
-                tagCell.tagTitle.text = genre
-                
-                return tagCell
+        if collectionView == genresCollectionView{
+            guard let tagCell = collectionView.dequeueReusableCell(withReuseIdentifier: "tagCell", for: indexPath) as? TagCollectionViewCell else { fatalError("could not downcast to TagCollectionViewCell")
             }
             
-            return TagCollectionViewCell()
+            let genre = genres[indexPath.row]
+            tagCell.tagTitle.backgroundColor = .black
+            tagCell.layer.borderWidth = 4
+            tagCell.layer.borderColor = #colorLiteral(red: 0.3867273331, green: 0.8825651407, blue: 0.8684034944, alpha: 1)
+            tagCell.tagsDelegate = self
+            tagCell.genre = genre
+            tagCell.tagTitle.textColor = .white
+            tagCell.tagTitle.text = genre
+            
+            return tagCell
+        }
+        
+        return TagCollectionViewCell()
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -137,26 +141,26 @@ extension ExploreOptionsController: UICollectionViewDelegateFlowLayout,UICollect
         return CGSize(width: itemWidth, height: itemHeight)
     }
     
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        if collectionView == instrumentsCollectionView {
-//
-//            let selectedInstrument = instruments[indexPath.row]
-//            instrumentIndex = indexPath.row
-//            selectedTags.insert(selectedInstrument)
-//            print(selectedTags)
-//
-//        }
-//
-//        if collectionView == genresCollectionView {
-//
-//            let selectedGenre = genres[indexPath.row]
-//            genreIndex = indexPath.row
-//            selectedTags.insert(selectedGenre)
-//
-//            print(selectedTags)
-//        }
-//    }
-
+    //    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    //        if collectionView == instrumentsCollectionView {
+    //
+    //            let selectedInstrument = instruments[indexPath.row]
+    //            instrumentIndex = indexPath.row
+    //            selectedTags.insert(selectedInstrument)
+    //            print(selectedTags)
+    //
+    //        }
+    //
+    //        if collectionView == genresCollectionView {
+    //
+    //            let selectedGenre = genres[indexPath.row]
+    //            genreIndex = indexPath.row
+    //            selectedTags.insert(selectedGenre)
+    //
+    //            print(selectedTags)
+    //        }
+    //    }
+    
     
 }
 
@@ -172,7 +176,7 @@ extension ExploreOptionsController: TagsCVDelegate {
         
         print(selectedTags)
     }
-  
+    
     
     
 }

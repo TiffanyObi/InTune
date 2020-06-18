@@ -26,8 +26,7 @@ class TagCollectionViewCell: UICollectionViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-         
-      
+        
     }
     
     
@@ -41,13 +40,13 @@ class TagCollectionViewCell: UICollectionViewCell {
     func configureCell(_ tag:String) {
         
         if Tags.instrumentList.contains(tag){
+            tagTitle.backgroundColor = .black
+            tagTitle.textColor = .white
             tagTitle.text = tag
-            self.layer.cornerRadius = 30
-            tagTitle.backgroundColor = .purple
         } else if Tags.genreList.contains(tag){
-        tagTitle.text = tag
-            self.layer.cornerRadius = 30
-            tagTitle.backgroundColor = .systemTeal
+            tagTitle.backgroundColor = #colorLiteral(red: 0.3429883122, green: 0.02074946091, blue: 0.7374325991, alpha: 1)
+            tagTitle.textColor = .white
+            tagTitle.text = tag
     }
 }
 
