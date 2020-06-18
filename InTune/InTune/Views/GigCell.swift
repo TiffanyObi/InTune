@@ -15,16 +15,12 @@ class GigCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
-    @IBOutlet weak var priceLabel: UILabel!
     
     
     public func configureGig(for gig: GigsPost) {
-        gigImageView.kf.setImage(with: URL(string: gig.imageURL))
-        titleLabel.text = gig.title
-        dateLabel.text = gig.eventDate
-        priceLabel.text = gig.price.description
-        
-        
+        titleLabel.text = gig.title.uppercased()
+        dateLabel.text = "Date: \(gig.eventDate)"
+        locationLabel.text = "Location: \(gig.location)"
     }
     
 }

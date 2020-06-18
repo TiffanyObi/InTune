@@ -238,11 +238,11 @@ class DatabaseService {
         }
     }
     
-    public func createGig(artist: Artist, title: String, description: String, price: Int, eventDate: String, createdDate: Timestamp, completion: @escaping (Result<String, Error>)-> ()) {
+    public func createGig(artist: Artist, title: String, description: String, price: Int, eventDate: String, createdDate: Timestamp, location: String, completion: @escaping (Result<String, Error>)-> ()) {
         
         let documentRef = db.collection(DatabaseService.gigPosts).document()
         
-        db.collection(DatabaseService.gigPosts).document(documentRef.documentID).setData(["title" : title, "artistName": artist.name, "artistId": artist.artistId, "descript": description, "price": price, "eventDate": eventDate, "createdDate": Timestamp()]) { (error) in
+        db.collection(DatabaseService.gigPosts).document(documentRef.documentID).setData(["title" : title, "artistName": artist.name, "artistId": artist.artistId, "descript": description, "price": price, "eventDate": eventDate, "createdDate": Timestamp(), "location": artist.city]) { (error) in
             if let error = error {
                 completion(.failure(error))
             } else {

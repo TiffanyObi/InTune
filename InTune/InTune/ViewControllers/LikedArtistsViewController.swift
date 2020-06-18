@@ -20,6 +20,7 @@ class LikedArtistsViewController: UIViewController {
             DispatchQueue.main.async {
                 self.likedArtistView.likedArtistCollectionView.reloadData()
             }
+            setUpEmptyView()
         }
     }
     
@@ -70,6 +71,15 @@ class LikedArtistsViewController: UIViewController {
 
     }
     
+    private func setUpEmptyView() {
+        if favs.count == 0 {
+            let emptyView = EmptyView(message: "You have no liked artists")
+            likedArtistView.likedArtistCollectionView.backgroundView = emptyView
+        } else {
+            likedArtistView.likedArtistCollectionView.backgroundView = nil
+        }
+    }
+    
     @objc private func showMessages() {
         let storyboard = UIStoryboard(name: "MessageView", bundle: nil)
         let viewController = storyboard.instantiateViewController(identifier: "ChatsViewController") as ChatsViewController
@@ -88,7 +98,9 @@ extension LikedArtistsViewController: UICollectionViewDataSource {
             fatalError("Could not downcast to ArtistCell")
         }
         let favArtist = favs[indexPath.row]
-        
+        artistCell.layer.cornerRadius = 10
+        artistCell.layer.borderColor = #colorLiteral(red: 0.3867273331, green: 0.8825651407, blue: 0.8684034944, alpha: 1)
+        artistCell.layer.borderWidth = 4
         artistCell.configureFavArtistCell(favArtist: favArtist)
         
         return artistCell

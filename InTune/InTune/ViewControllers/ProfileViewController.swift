@@ -57,9 +57,8 @@ class ProfileViewController: UIViewController {
     var videos = [Video](){
         didSet{
             postsCollectionView.reloadData()
-            if videos.count > 0 {
-            postsCollectionView.backgroundView = nil
-            }
+            setUpEmptyViewForUser()
+            setUpEmptyViewFromExp()
         }
     }
  
@@ -99,7 +98,7 @@ class ProfileViewController: UIViewController {
         guard let singleArtist = singleArtist else {return}
        
         getVideos(artist: singleArtist)
-        setUpEmptyViewForUser()
+//        setUpEmptyViewForUser()
         profImage.contentMode = .scaleAspectFill
         profImage.layer.cornerRadius = 60
         if user.photoURL == nil  {
@@ -124,7 +123,7 @@ class ProfileViewController: UIViewController {
         }
         
         getVideos(artist: artist)
-        setUpEmptyViewFromExp()
+//        setUpEmptyViewFromExp()
         isArtistInFav(artist: artist)
         nameLabel.text = artist.name
         locationLabel.text = artist.city
@@ -393,6 +392,7 @@ extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDel
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
           // get video selected at n index
+        if collectionView == postsCollectionView{
           let video = videos[indexPath.row]
           // create av player vc
           let playController = AVPlayerViewController()
@@ -404,6 +404,7 @@ extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDel
             player.play()
           }
         }
+    }
     }
 
 

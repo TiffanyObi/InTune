@@ -13,6 +13,7 @@ import FirebaseFirestore
 class GigViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet var searchBar: UISearchBar!
     
     var listener: ListenerRegistration?
     
@@ -28,7 +29,7 @@ class GigViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(UINib(nibName: "GigCell", bundle: nil), forCellReuseIdentifier: "gigCell")
-        
+        searchBar.delegate = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -73,7 +74,7 @@ extension GigViewController: UITableViewDataSource {
 
 extension GigViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 200
+        return 180
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -84,5 +85,12 @@ extension GigViewController: UITableViewDelegate {
         let gig = gigs[indexPath.row]
         detailVC.gigPost = gig
         navigationController?.pushViewController(detailVC, animated: true)
+    }
+}
+
+extension GigViewController: UISearchBarDelegate {
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
     }
 }
