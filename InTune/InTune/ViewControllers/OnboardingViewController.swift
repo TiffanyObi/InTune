@@ -158,7 +158,9 @@ class OnboardingViewController: UIViewController {
 
 extension OnboardingViewController: UITextFieldDelegate {
     func textFieldDidChangeSelection(_ textField: UITextField) {
-        guard !(textField.text?.isEmpty ?? true) else {return}
+        guard !(textField.text?.isEmpty ?? true) else {
+            
+            return}
         displayName = textField.text ?? "no display name"
     }
     

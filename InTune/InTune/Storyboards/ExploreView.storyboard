@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fmX-MP-kUY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fmX-MP-kUY">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -25,7 +25,7 @@
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="wdE-38-cS1">
                                 <rect key="frame" x="20" y="104" width="374" height="44"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="quaternarySystemFillColor" red="0.4549019608" green="0.4549019608" blue="0.50196078430000002" alpha="0.080000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="KDR-dQ-r3p">
                                     <size key="itemSize" width="94" height="35"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -34,24 +34,39 @@
                                 </collectionViewFlowLayout>
                                 <cells/>
                             </collectionView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artists" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jaF-bE-8Ot">
-                                <rect key="frame" x="174.5" y="168" width="65" height="26.5"/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
-                                <nil key="textColor"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jaF-bE-8Ot">
+                                <rect key="frame" x="156.5" y="164" width="101" height="27.5"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Artists">
+                                        <attributes>
+                                            <font key="NSFont" size="27" name="Copperplate"/>
+                                            <font key="NSOriginalFont" metaFont="systemBold" size="22"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" headerLevel="4"/>
+                                            <integer key="NSUnderline" value="1"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3BQ-UJ-6c2">
-                                <rect key="frame" x="20" y="210.5" width="374" height="466"/>
+                                <rect key="frame" x="20" y="207.5" width="374" height="466"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Featured Artists" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mPH-ef-Iod">
-                                <rect key="frame" x="20" y="684.5" width="123" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mPH-ef-Iod">
+                                <rect key="frame" x="20" y="681.5" width="143.5" height="25"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Featured Artists">
+                                        <attributes>
+                                            <font key="NSFont" size="20" name="Didot"/>
+                                            <font key="NSOriginalFont" size="17" name="Didot"/>
+                                            <integer key="NSUnderline" value="1"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ITP-st-gDg">
-                                <rect key="frame" x="20" y="713.5" width="374" height="89.5"/>
+                                <rect key="frame" x="20" y="714.5" width="374" height="89.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Mq2-3O-BtS">
                                     <size key="itemSize" width="108" height="90"/>
@@ -89,7 +104,7 @@
                             <constraint firstItem="wdE-38-cS1" firstAttribute="height" secondItem="02V-NR-Ez0" secondAttribute="height" multiplier="0.0491071" id="mxZ-il-TKG"/>
                             <constraint firstItem="zxf-z8-Dxc" firstAttribute="trailing" secondItem="ITP-st-gDg" secondAttribute="trailing" constant="20" id="rHD-FK-1Ez"/>
                             <constraint firstItem="mPH-ef-Iod" firstAttribute="leading" secondItem="zxf-z8-Dxc" secondAttribute="leading" constant="20" id="t5l-93-6xh"/>
-                            <constraint firstItem="jaF-bE-8Ot" firstAttribute="top" secondItem="wdE-38-cS1" secondAttribute="bottom" constant="20" id="y7A-0k-Hpu"/>
+                            <constraint firstItem="jaF-bE-8Ot" firstAttribute="top" secondItem="wdE-38-cS1" secondAttribute="bottom" constant="16" id="y7A-0k-Hpu"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="zxf-z8-Dxc"/>
                     </view>
@@ -240,7 +255,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="arrow.2.circlepath" catalog="system" width="128" height="101"/>
-        <image name="info.circle" catalog="system" width="128" height="121"/>
+        <image name="arrow.2.circlepath" catalog="system" width="64" height="50"/>
+        <image name="info.circle" catalog="system" width="64" height="60"/>
     </resources>
 </document>
