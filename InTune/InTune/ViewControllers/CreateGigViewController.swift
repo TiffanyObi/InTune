@@ -139,11 +139,11 @@ class CreateGigViewController: UIViewController {
                 self?.showAlert(title: "Posting Error", message: "Could not post gig: \(error.localizedDescription)")
             case .success:
 //                self.uploadPhoto(photo: resizedImage, documentId: documentID)
-                self?.showAlert(title: "Success!", message: "Gig posted")
-                self?.dismiss(animated: true)
+                print("posted gig")
             }
+            
         }
-
+        dismiss(animated: true)
     }
     
     private func uploadPhoto(photo: UIImage, documentId: String) {

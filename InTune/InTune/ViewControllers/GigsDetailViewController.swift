@@ -29,8 +29,9 @@ class GigsDetailViewController: UIViewController {
         //set up image for profile + segue to prof
         guard let gig = gigPost else { return }
         titleLabel.text = gig.title
-        guard let url = URL(string: gig.imageURL) else { return }
-        postImage.kf.setImage(with: url)
+//        guard let imageurl = gig.imageURL else { return }
+//        guard let url = URL(string: imageurl) else { return }
+//        postImage.kf.setImage(with: url)
         dateLabel.text = gig.eventDate
         postedByLabel.text = gig.artistName
         priceLabel.text = "$\(gig.price)"
