@@ -39,7 +39,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="ssG-k5-Mzw">
-                                <rect key="frame" x="104" y="291" width="270" height="118"/>
+                                <rect key="frame" x="104" y="290.5" width="270" height="118"/>
                                 <connections>
                                     <action selector="datePickerUsed:" destination="unz-oA-dNm" eventType="valueChanged" id="f5L-rA-zaO"/>
                                 </connections>
@@ -76,7 +76,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="emF-th-Mja">
-                                <rect key="frame" x="104" y="475" width="270" height="119"/>
+                                <rect key="frame" x="104" y="474.5" width="270" height="119.5"/>
                             </pickerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gpc-oU-fdS" customClass="DesignableButton" customModule="InTune" customModuleProvider="target">
                                 <rect key="frame" x="167" y="744.5" width="80" height="44"/>
@@ -159,7 +159,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="q5s-Np-leF">
-                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <rect key="frame" x="0.0" y="144" width="414" height="752"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="gigCell" id="69R-R8-FbP">
@@ -172,24 +172,33 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="bgu-aG-Lwt">
+                                <rect key="frame" x="0.0" y="88" width="414" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="q5s-Np-leF" firstAttribute="leading" secondItem="2TV-py-z1m" secondAttribute="leading" id="2lr-o1-Hk3"/>
+                            <constraint firstItem="q5s-Np-leF" firstAttribute="top" secondItem="bgu-aG-Lwt" secondAttribute="bottom" id="3h8-ZA-5Vz"/>
                             <constraint firstItem="q5s-Np-leF" firstAttribute="trailing" secondItem="2TV-py-z1m" secondAttribute="trailing" id="W2r-Go-bYZ"/>
+                            <constraint firstItem="bgu-aG-Lwt" firstAttribute="leading" secondItem="2TV-py-z1m" secondAttribute="leading" id="WDu-hT-RbE"/>
+                            <constraint firstItem="bgu-aG-Lwt" firstAttribute="trailing" secondItem="2TV-py-z1m" secondAttribute="trailing" id="cSq-ct-Oft"/>
                             <constraint firstAttribute="bottom" secondItem="q5s-Np-leF" secondAttribute="bottom" id="eSk-lY-n8r"/>
-                            <constraint firstItem="q5s-Np-leF" firstAttribute="top" secondItem="2TV-py-z1m" secondAttribute="top" id="fgv-Ub-cmd"/>
+                            <constraint firstItem="bgu-aG-Lwt" firstAttribute="top" secondItem="2TV-py-z1m" secondAttribute="top" id="hnI-dP-p9R"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2TV-py-z1m"/>
                     </view>
                     <navigationItem key="navigationItem" id="zPy-oF-Shl">
                         <barButtonItem key="rightBarButtonItem" image="plus" catalog="system" id="fHV-uO-J2h">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <segue destination="unz-oA-dNm" kind="presentation" id="kUU-Bl-35C"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="searchBar" destination="bgu-aG-Lwt" id="8Y5-tL-6Dm"/>
                         <outlet property="tableView" destination="q5s-Np-leF" id="cy2-Wi-ENt"/>
                     </connections>
                 </viewController>

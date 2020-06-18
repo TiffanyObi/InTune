@@ -125,7 +125,6 @@ class ExploreViewController: UIViewController {
     @IBAction func resetSearch(_ sender: UIBarButtonItem) {
         guard let user = Auth.auth().currentUser else {return}
         fetchArtists()
-        //reset tags
     }
     
 }
@@ -146,6 +145,8 @@ extension ExploreViewController: UITableViewDataSource, UITableViewDelegate {
         }
         
         let artist = artists[indexPath.row]
+        cell.layer.borderWidth = 4
+        cell.layer.cornerRadius = 10
         cell.configureCell(artist: artist)
         return cell
     }

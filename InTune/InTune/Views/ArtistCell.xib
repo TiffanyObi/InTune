@@ -47,7 +47,7 @@
                         <state key="normal" backgroundImage="circle" catalog="system"/>
                     </button>
                 </subviews>
-                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="jSN-za-CnO" firstAttribute="top" secondItem="F5l-T3-UaR" secondAttribute="top" constant="8" id="0gx-Z9-Zws"/>
                     <constraint firstAttribute="trailing" secondItem="el8-t9-yoH" secondAttribute="trailing" constant="8" id="38W-bK-ycX"/>

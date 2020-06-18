@@ -98,7 +98,9 @@ extension LikedArtistsViewController: UICollectionViewDataSource {
             fatalError("Could not downcast to ArtistCell")
         }
         let favArtist = favs[indexPath.row]
-        
+        artistCell.layer.cornerRadius = 10
+        artistCell.layer.borderColor = #colorLiteral(red: 0.3867273331, green: 0.8825651407, blue: 0.8684034944, alpha: 1)
+        artistCell.layer.borderWidth = 4
         artistCell.configureFavArtistCell(favArtist: favArtist)
         
         return artistCell

@@ -12,7 +12,7 @@ class LikedArtistView: UIView {
     
     private lazy var likedArtistLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Didot", size: 30)
+        label.font = UIFont(name: "Palatino-Roman", size: 28)
         label.text = "Liked Artists"
         return label
     }()
@@ -38,7 +38,6 @@ class LikedArtistView: UIView {
     private func commomInit() {
         setLikedArtistLabel()
         setUpLikedArtistCollectionViewConstraints()
-        
     }
     
     
