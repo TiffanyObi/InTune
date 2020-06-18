@@ -122,6 +122,12 @@ class ExploreViewController: UIViewController {
         }
     }
     
+    @IBAction func resetSearch(_ sender: UIBarButtonItem) {
+        guard let user = Auth.auth().currentUser else {return}
+        fetchArtists()
+        //reset tags 
+    }
+    
 }
 
 

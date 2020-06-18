@@ -20,6 +20,7 @@ class LikedArtistsViewController: UIViewController {
             DispatchQueue.main.async {
                 self.likedArtistView.likedArtistCollectionView.reloadData()
             }
+            setUpEmptyView()
         }
     }
     
@@ -68,6 +69,15 @@ class LikedArtistsViewController: UIViewController {
         likedArtistView.likedArtistCollectionView.dataSource = self
         likedArtistView.likedArtistCollectionView.delegate = self
 
+    }
+    
+    private func setUpEmptyView() {
+        if favs.count == 0 {
+            let emptyView = EmptyView(message: "You have no liked artists")
+            likedArtistView.likedArtistCollectionView.backgroundView = emptyView
+        } else {
+            likedArtistView.likedArtistCollectionView.backgroundView = nil
+        }
     }
     
     @objc private func showMessages() {
