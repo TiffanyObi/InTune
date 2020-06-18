@@ -22,15 +22,13 @@ class ExploreArtistCell: UITableViewCell {
     public lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.text = "Name"
-        label.textAlignment = .center
-        label.font = UIFont(name: "Didot", size: 32.0)
+        label.font = UIFont(name: "Thonburi", size: 22.0)
         return label
     }()
     
     public lazy var locationLabel: UILabel = {
         let label = UILabel()
         label.text = "location"
-        label.textAlignment = .center
         label.font = UIFont.preferredFont(forTextStyle: .subheadline)
         return label
     }()
@@ -69,9 +67,9 @@ class ExploreArtistCell: UITableViewCell {
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            nameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 8), nameLabel.centerXAnchor.constraint(equalTo: centerXAnchor)
-//            nameLabel.leadingAnchor.constraint(equalTo: artistImage.trailingAnchor, constant: 20),
-//            nameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 20)
+            nameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 8),
+            nameLabel.leadingAnchor.constraint(equalTo: artistImage.trailingAnchor, constant: 20),
+            nameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 20)
         ])
     }
     
@@ -82,19 +80,18 @@ class ExploreArtistCell: UITableViewCell {
         
         NSLayoutConstraint.activate([
             locationLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
-            locationLabel.centerXAnchor.constraint(equalTo: centerXAnchor)
-//            locationLabel.leadingAnchor.constraint(equalTo: artistImage.trailingAnchor, constant: 25),
-//            locationLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -25)
+            locationLabel.leadingAnchor.constraint(equalTo: artistImage.trailingAnchor, constant: 20),
+            locationLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20)
         ])
     }
     
     public func configureCell(artist:Artist){
         nameLabel.text = artist.name
         locationLabel.text = artist.city
-
+        
         if let urlString = artist.photoURL, let url = URL(string: urlString) {
             
-        artistImage.kf.setImage(with: url)
+            artistImage.kf.setImage(with: url)
         } else {
             artistImage.image = UIImage(systemName: "person.circle")
         }
