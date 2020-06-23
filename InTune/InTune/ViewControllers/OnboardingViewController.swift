@@ -93,7 +93,7 @@ class OnboardingViewController: UIViewController {
             database.updateUserExperience(isAnArtist: true) { [weak self](result) in
                 switch result {
                 case .failure(let error):
-                    print(error.localizedDescription)
+                  self?.showAlert(title: "Error", message: "\(error.localizedDescription)")
                 case .success:
                     self?.navigateToDisplayNameAndCityView()
                 }
@@ -102,7 +102,7 @@ class OnboardingViewController: UIViewController {
             database.updateUserExperience(isAnArtist: false) { [weak self](result) in
                 switch result {
                 case .failure(let error):
-                    print(error.localizedDescription)
+                  self?.showAlert(title: "Error", message: "\(error.localizedDescription)")
                 case .success:
 
                     self?.navigateToDisplayNameAndCityView()
@@ -117,11 +117,21 @@ class OnboardingViewController: UIViewController {
         view.backgroundColor = .systemGroupedBackground
     }
     @objc private func nextButtonPressed(){
+        
+        guard !displayName.isEmpty else {
+            showAlert(title: "Missing Feilds", message: " Please create a unique user name")
+            return
+        }
+        
+        guard !userLocation.isEmpty else {
+            showAlert(title: "Missing Feilds", message: "Please tell us where you're located")
+            return
+        }
+        
         database.updateUserDisplayNameAndLocation(userName: displayName, location: userLocation) { [weak self](result) in
             switch result {
             case.failure(let error):
-                print(error.localizedDescription)
-                
+               self?.showAlert(title: "Error", message: "\(error.localizedDescription)")
             case.success:
                 print(true)
                 self?.navigateToTagsSelectionView()
@@ -135,7 +145,11 @@ class OnboardingViewController: UIViewController {
     
     @objc private func doneButtonPressed(){
         
-        guard !selectedInstruments.isEmpty,!selectedGenres.isEmpty else { return }
+        guard !selectedInstruments.isEmpty,!selectedGenres.isEmpty else {
+            showAlert(title: "Missing Selections", message: "What instruments or genres are you interested in ?")
+            return
+            
+        }
         
         let instruments1 = Array(selectedInstruments)
         let genres1 = Array(selectedGenres)
@@ -143,9 +157,8 @@ class OnboardingViewController: UIViewController {
         database.updateUserTags(instruments: instruments1, genres: genres1) { [weak self](result) in
             switch result {
             case.failure(let error):
-                print(error.localizedDescription)
+                self?.showAlert(title: "Error", message: "\(error.localizedDescription)")
             case.success:
-                print("doing to database")
                 self?.navigateToProfileView()
             }
         }

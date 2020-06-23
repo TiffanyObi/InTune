@@ -71,12 +71,12 @@ class CreateGigViewController: UIViewController {
     
     func updateCurrentArtist() {
         guard let currentUser = Auth.auth().currentUser else {return}
-        databaseService.fetchArtist(userID: currentUser.uid) { (result) in
+        databaseService.fetchArtist(userID: currentUser.uid) { [weak self](result) in
             switch result {
             case .failure(let error):
-                print(error.localizedDescription)
+               self?.showAlert(title: "Error", message: "\(error.localizedDescription)")
             case .success(let artist):
-                self.currentUser = artist
+                self?.currentUser = artist
             }
         }
     }
@@ -125,7 +125,7 @@ class CreateGigViewController: UIViewController {
             let description = descriptionTextView.text,
             !description.isEmpty,
         let artist = currentUser else {
-                print("missing fields")
+                showAlert(title: "Missing Feilds", message: "Please review that all feilds are complete")
                 return
         }
         let dateString = date.description

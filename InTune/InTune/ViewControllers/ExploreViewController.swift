@@ -97,7 +97,7 @@ class ExploreViewController: UIViewController {
         db.getArtists { [weak self] (result) in
             switch result {
             case .failure(let error):
-                print(error.localizedDescription)
+               self?.showAlert(title: "Error", message: "\(error.localizedDescription)")
                 
             case.success(let artists1):
                 self?.artists = artists1
@@ -112,7 +112,7 @@ class ExploreViewController: UIViewController {
         db.fetchArtist(userID: user.uid) { [weak self](result) in
             switch result {
             case.failure(let error):
-                print(error.localizedDescription)
+                self?.showAlert(title: "Error", message: "\(error.localizedDescription)")
                 
             case.success(let currentUser1):
                 self?.currentUser = currentUser1
