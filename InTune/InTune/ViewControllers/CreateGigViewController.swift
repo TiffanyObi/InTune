@@ -57,6 +57,8 @@ class CreateGigViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setUpUI(titleTextField)
         view.backgroundColor = .systemBackground
         titleTextField.delegate = self
         datePicker.minimumDate = Date()
@@ -67,6 +69,14 @@ class CreateGigViewController: UIViewController {
         addGestures()
         updateCurrentArtist()
         view.addGestureRecognizer(tapGesture)
+    }
+    
+    private func setUpUI(_ item: UITextField) {
+        let bottomLayer = CALayer()
+        bottomLayer.frame = CGRect(x: 0, y: item.frame.height - 2, width: item.frame.width, height: 2)
+        bottomLayer.backgroundColor = #colorLiteral(red: 0.3429883122, green: 0.02074946091, blue: 0.7374325991, alpha: 1)
+        item.borderStyle = .none
+        item.layer.addSublayer(bottomLayer)
     }
     
     func updateCurrentArtist() {
