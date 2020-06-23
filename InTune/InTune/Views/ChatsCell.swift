@@ -16,6 +16,9 @@ class ChatsCell: UITableViewCell {
     
     func configureCell(for artist: Artist) {
         //use profImage here
+        if let photoURL = artist.photoURL, let url = URL(string: photoURL) {
+        userImage.kf.setImage(with: url)
+        }
         userNameLabel.text = artist.name
     }
 }

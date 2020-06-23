@@ -72,7 +72,7 @@ class ChatsViewController: UIViewController {
         view.backgroundColor = .systemYellow
         tableView.dataSource = self
         tableView.delegate = self
-//        tableView.register(UINib(nibName: "ChatsCell", bundle: nil), forCellReuseIdentifier: "chatCell")
+        tableView.register(UINib(nibName: "ChatsCell", bundle: nil), forCellReuseIdentifier: "chatCell")
     }
     
     
@@ -91,8 +91,7 @@ extension ChatsViewController: UITableViewDataSource, UITableViewDelegate {
             fatalError("could not downcast to ChatsCell")
         }
         let contact = users[indexPath.row]
-        cell.textLabel?.text = contact.name
-//        cell.configureCell(for: contact)
+        cell.configureCell(for: contact)
         return cell
     }
     
