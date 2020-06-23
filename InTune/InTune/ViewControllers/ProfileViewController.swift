@@ -20,11 +20,11 @@ enum Segue {
 class ProfileViewController: UIViewController {
     
     @IBOutlet var profImage: UIImageView!
-    @IBOutlet private var nameLabel: UILabel!
+    @IBOutlet public var nameLabel: UILabel!
     @IBOutlet private var bioLabel: UILabel!
     @IBOutlet public var tagsCollection: UICollectionView!
-    @IBOutlet private var postsCollectionView: UICollectionView!
-    @IBOutlet private var locationLabel: UILabel!
+    @IBOutlet public var postsCollectionView: UICollectionView!
+    @IBOutlet public var locationLabel: UILabel!
     @IBOutlet private var addMediaButton: UIBarButtonItem!
     @IBOutlet var likeArtistButton: UIButton!
     @IBOutlet var chatButton: UIButton!
@@ -40,6 +40,7 @@ class ProfileViewController: UIViewController {
             tagsCollection.reloadData()
         }
     }
+    let profileViewModel = ProfileViewViewModel()
     var expArtist: Artist?
     
     var isArtistFavorite = false {
@@ -62,14 +63,11 @@ class ProfileViewController: UIViewController {
             setUpEmptyViewFromExp()
         }
     }
- 
     
     override func viewDidLoad() {
         super.viewDidLoad()
         getArtist()
-      
         loadUI()
-        
         infoView.borderColor = #colorLiteral(red: 0.3867273331, green: 0.8825651407, blue: 0.8684034944, alpha: 1)
         tagsCollection.delegate = self
         tagsCollection.dataSource = self
@@ -83,21 +81,8 @@ class ProfileViewController: UIViewController {
         guard let user = Auth.auth().currentUser else {
             return
         }
-        
-        db.fetchArtist(userID: user.uid){ [weak self](result) in
-            switch result {
-            case.failure(let error):
-                print(error.localizedDescription)
-            case.success(let artist1):
-                DispatchQueue.main.async {
-                    self?.singleArtist = artist1
-                    self?.nameLabel.text = artist1.name
-                }
-            }
-        }
-        
+        profileViewModel.fetchArtist(profileVC: self, user: user)
         guard let singleArtist = singleArtist else {return}
-       
         getVideos(artist: singleArtist)
         profImage.contentMode = .scaleAspectFill
         profImage.layer.cornerRadius = 60
@@ -109,185 +94,73 @@ class ProfileViewController: UIViewController {
         locationLabel.text = user.email
         likeArtistButton.isHidden = true
         chatButton.isHidden = true
+
+        
+        profileViewModel.loadUI(profileVC: self, user: user, singleArtist: singleArtist)
+
     }
     
     func loadExpUI() {
-        
-        likeArtistButton.isHidden = false
-        chatButton.isHidden = false
-        navigationItem.leftBarButtonItem = .none
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "exclamationmark.octagon.fill"), style: .plain, target: self, action: #selector(reportArtist(_:)))
-        navigationItem.rightBarButtonItem?.tintColor = .systemRed
         guard let artist = expArtist else { print("no expArtist")
             return
         }
-        
-        getVideos(artist: artist)
-        isArtistInFav(artist: artist)
-        nameLabel.text = artist.name
-        locationLabel.text = artist.city
-        
+        profileViewModel.loadExpUI(profileVC: self, artist: artist)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-       
+        
         if state == .prof{
             loadUI()
         } else {
-           loadExpUI()
-        }
-}
-    
-    func getArtist(){
-
-        guard let userID = Auth.auth().currentUser?.uid else {
-            return
-        }
-        db.fetchArtist(userID: userID){ [weak self](result) in
-            switch result {
-            case.failure(let error):
-                print(error.localizedDescription)
-                
-            case.success(let artist1):
-                self?.singleArtist = artist1
-            }
+            loadExpUI()
         }
     }
     
-    func getVideos(artist:Artist){
-        db.getVideo(artist: artist) { (result) in
-        switch result {
-        case .failure(let error):
-          print(error)
-        case .success(let videos):
-          self.videos = videos
+    func getArtist(){
+        guard let user = Auth.auth().currentUser else {
+            return
         }
-      }
+        profileViewModel.fetchArtist(profileVC: self, user: user)
+    }
+    func getVideos(artist:Artist){
+        profileViewModel.getVideos(artist: artist, profileVC: self)
     }
     
     func setUpEmptyViewForUser(){
-         guard let singleArtist = singleArtist else {return}
-        if singleArtist.isReported {
-                       let emptyView = EmptyView(message: "Your account has been reported !")
-                   
-                   postsCollectionView.backgroundView = emptyView
-                   
-               } else if videos.count == 0 {
-            postsCollectionView.backgroundView = EmptyView(message: "Add New Videos !")
-        } else {
-             postsCollectionView.backgroundView = nil
-        }
+        profileViewModel.setUpEmptyViewForUser(profileVC: self)
     }
-    
     func setUpEmptyViewFromExp(){
-        guard let artist = expArtist else { print("no expArtist")
-            return
-        }
-        if artist.isReported {
-            likeArtistButton.isHidden = true
-            chatButton.isHidden = true
-            navigationItem.rightBarButtonItem = .none
-            let emptyView = EmptyView(message: "This user has been reported !")
-            postsCollectionView.backgroundView = emptyView
-        } else if videos.count == 0 {
-            postsCollectionView.backgroundView = EmptyView(message: "No Posts Available")
-        } else {
-            postsCollectionView.backgroundView = nil
+        profileViewModel.setUpEmptyViewFromExp(profileVC: self)
     }
-}
     @objc func reportArtist(_ sender: UIBarButtonItem){
-        guard let artist = expArtist else {
-          navigationItem.rightBarButtonItem?.isEnabled = false
-          return
-        }
-        let actionSheet = UIAlertController(title: "Report", message: "Are you sure you want to report this user?", preferredStyle: .actionSheet)
-        let reportAction = UIAlertAction(title: "Report User", style: .destructive) { (alertAction) in
-          self.db.reportArtist(for: artist) { (result) in
-                switch result {
-                case .failure(let error):
-                  print(error.localizedDescription)
-                case.success:
-                  print(true)
-                }
-              }
-        }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
-        actionSheet.addAction(reportAction)
-        actionSheet.addAction(cancelAction)
-        present(actionSheet, animated: true)
-    }
-    
-    
-    @IBAction func postVideoButtonPressed(_ sender: UIBarButtonItem) {
         
+profileViewModel.setUpReportArtist(profileVC: self, expArtist: expArtist)
+    }
+       
+    @IBAction func postVideoButtonPressed(_ sender: UIBarButtonItem) {
     }
     
     @IBAction func settingsButtonPressed(_ sender: UIBarButtonItem) {
-        
-        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let signOutAction = UIAlertAction(title: "Sign Out", style: .destructive) { (alertAction) in
-            
-            self.signOutAction(title: "Sign Out", message: "Are you sure you want to sign out?")
-        }
-        let editProfAction = UIAlertAction(title: "Edit Profile", style: .default) { (alertAction) in
-            //display edit vc
-            let storyboard = UIStoryboard(name: "MainView", bundle: nil)
-            let editProfVC = storyboard.instantiateViewController(withIdentifier: "EditProfController")
-            self.navigationController?.show(editProfVC, sender: nil)
-        }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
-        alertController.addAction(signOutAction)
-        alertController.addAction(editProfAction)
-        alertController.addAction(cancelAction)
-        present(alertController, animated: true)
-        print(Auth.auth().currentUser?.email ?? "not current user because youre not logged in or signed up")
+profileViewModel.setUpSettingsButton(profileVC: self, sender: sender)
+
     }
     
     @IBAction func favArtistButtonPressed(_ sender: UIButton) {
         guard let expArtist = expArtist else { return }
-        
         if isArtistFavorite {
             isArtistInFav(artist: expArtist)
-            db.deleteFavArtist(for: expArtist) { [weak self] (result) in
-                switch result {
-                case .failure(let error):
-                    print("could not delete from fav: \(error)")
-                case .success:
-                    sender.setImage(UIImage(systemName: "music.note"), for: .normal)
-                    sender.setBackgroundImage(UIImage(systemName: "circle"), for: .normal)
-                    sender.imageView?.tintColor = #colorLiteral(red: 0.3429883122, green: 0.02074946091, blue: 0.7374325991, alpha: 1)
-                    self?.isArtistFavorite = false
-                }
-            }
+
+profileViewModel.deleteFavArtist(profileVC: self, expArtist: expArtist, sender: sender)
         } else {
-            db.createFavArtist(artist: expArtist) { [weak self] (result) in
-                switch result {
-                case.failure(let error):
-                    print(error.localizedDescription)
-                case .success:
-                    sender.setBackgroundImage(UIImage(systemName: "circle.fill"), for: .normal)
-                    sender.imageView?.tintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-                    self?.isArtistFavorite = true
-                }
+    profileViewModel.createFavArtist(profileVC: self, expArtist: expArtist, sender: sender)
             }
-        }
     }
-    private func isArtistInFav(artist:Artist){
-        db.isArtistInFav(for: artist) {[weak self] (result) in
-            switch result {
-            case .failure(let error):
-                print("try again: \(error.localizedDescription)")
-            case .success(let status):
-                if status {
-                    self?.isArtistFavorite = true
-                } else {
-                    
-                    self?.isArtistFavorite = false
-                }
-            }
-        }
+
+    public func isArtistInFav(artist:Artist){
+        profileViewModel.isArtistInFav(artist: artist, profileVC: self)
     }
+    
     @IBAction func chatButtonPressed(_ sender: UIButton) {
         let chatVC = ChatViewController()
         chatVC.artist = expArtist
@@ -295,114 +168,98 @@ class ProfileViewController: UIViewController {
     }
 }
 
-
-
-
 extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-       
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         if collectionView == tagsCollection {
             if state == .prof {
-            return singleArtist?.tags.count ?? 3
-        } else {
-            return expArtist?.tags.count ?? 2
+                return singleArtist?.tags.count ?? 3
+            } else {
+                return expArtist?.tags.count ?? 2
+            }
         }
-    }
-        
         if collectionView == postsCollectionView {
             if state == .prof {
-                if singleArtist?.isReported ?? true {
-                    return 0
-                } else {
-                return videos.count
+                return profileViewModel.checkReportStatus(profileVC: self, artist: singleArtist)
+            } else {
+                return profileViewModel.checkReportStatus(profileVC: self, artist: expArtist)
+                }
             }
-        }else {
-                if expArtist?.isReported ?? true {
-                    return 0
-                } else {
-                return videos.count 
-            }
-        }
-
-    }
         return 0
-}
+        }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         if collectionView == tagsCollection {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "tagCell", for: indexPath) as? TagCollectionViewCell else {
-            fatalError("could not downcast to TagCollectionViewCell")
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "tagCell", for: indexPath) as? TagCollectionViewCell else {
+                fatalError("could not downcast to TagCollectionViewCell")
+            }
+            if state == .prof {
+                let tag = singleArtist?.tags[indexPath.row]
+                cell.configureCell(tag ?? "no tags")
+            } else if state == .explore {
+                let tag = expArtist?.tags[indexPath.row]
+                cell.configureCell(tag ?? "no tags")
+            }
+            return cell
         }
-        if state == .prof {
-            let tag = singleArtist?.tags[indexPath.row]
-            cell.configureCell(tag ?? "no tags")
-        } else if state == .explore {
-            let tag = expArtist?.tags[indexPath.row]
-            cell.configureCell(tag ?? "no tags")
-        }
-        return cell
-    }
         if collectionView == postsCollectionView {
             
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "postCell", for: indexPath) as? PostCell else {
                 fatalError("could not conform to TagCell")
-                }
+            }
             if state == .prof {
                 let video = videos[indexPath.row]
                 print(video.urlString ?? "")
                 if let urlString = video.urlString {
-                cell.configureCell(vidURL: urlString)
+                    cell.configureCell(vidURL: urlString)
                 }
             } else if state == .explore {
                 let video = videos[indexPath.row]
                 print(video.urlString ?? "")
                 if let urlString = video.urlString {
-                cell.configureCell(vidURL: urlString)
+                    cell.configureCell(vidURL: urlString)
                 }
             }
-            
             return cell
         }
-          return UICollectionViewCell()
+        return UICollectionViewCell()
     }
-
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-           
-           if collectionView == tagsCollection {
-           let maxSize: CGSize = UIScreen.main.bounds.size
-           let itemWidth: CGFloat = maxSize.width * 0.20
-           let itemHeight: CGFloat = maxSize.height * 0.30
-           return CGSize(width: itemWidth, height: itemHeight)
-           }
-           
-           if collectionView == postsCollectionView {
-              
-                   let maxSize: CGSize = UIScreen.main.bounds.size
-                   let itemWidth: CGFloat = maxSize.width * 0.55
-                   let itemHeight: CGFloat = maxSize.height * 0.25
-                   return CGSize(width: itemWidth, height: itemHeight)
-               }
-            return CGSize(width: 0.5, height: 0.5)
-           }
+        
+        if collectionView == tagsCollection {
+            let maxSize: CGSize = UIScreen.main.bounds.size
+            let itemWidth: CGFloat = maxSize.width * 0.20
+            let itemHeight: CGFloat = maxSize.height * 0.30
+            return CGSize(width: itemWidth, height: itemHeight)
+        }
+        
+        if collectionView == postsCollectionView {
+            
+            let maxSize: CGSize = UIScreen.main.bounds.size
+            let itemWidth: CGFloat = maxSize.width * 0.55
+            let itemHeight: CGFloat = maxSize.height * 0.25
+            return CGSize(width: itemWidth, height: itemHeight)
+        }
+        return CGSize(width: 0.5, height: 0.5)
+    }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-          // get video selected at n index
+        // get video selected at n index
         if collectionView == postsCollectionView{
-          let video = videos[indexPath.row]
-          // create av player vc
-          let playController = AVPlayerViewController()
-          guard let urlStr = video.urlString else { return }
-          let player = AVPlayer(url: URL(string: urlStr)!)
-          //present av vc
-          playController.player = player
-          present(playController, animated: true) {
-            player.play()
-          }
+            let video = videos[indexPath.row]
+            // create av player vc
+            let playController = AVPlayerViewController()
+            guard let urlStr = video.urlString else { return }
+            let player = AVPlayer(url: URL(string: urlStr)!)
+            //present av vc
+            playController.player = player
+            present(playController, animated: true) {
+                player.play()
+            }
         }
     }
-    }
+}
 
 

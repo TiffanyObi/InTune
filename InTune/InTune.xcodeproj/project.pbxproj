@@ -36,6 +36,7 @@
 		3E43F48D247E9AF800CC0584 /* LikedArtistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F48C247E9AF800CC0584 /* LikedArtistView.swift */; };
 		3E43F491247E9B2400CC0584 /* LikedArtistsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F490247E9B2400CC0584 /* LikedArtistsViewController.swift */; };
 		3E43F493247E9B3F00CC0584 /* VideoPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F492247E9B3F00CC0584 /* VideoPostViewController.swift */; };
+		3E6D8FFB24A27E77001AF7A7 /* ProfileViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6D8FFA24A27E77001AF7A7 /* ProfileViewViewModel.swift */; };
 		3E754304248FD0C600383D02 /* UserExperienceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E754303248FD0C600383D02 /* UserExperienceView.swift */; };
 		3E75433B2490027500383D02 /* OnboardingView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E75433A2490027500383D02 /* OnboardingView.storyboard */; };
 		3E75433D24900C1300383D02 /* DisplayNameAndLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E75433C24900C1300383D02 /* DisplayNameAndLocationView.swift */; };
@@ -119,6 +120,7 @@
 		3E43F48C247E9AF800CC0584 /* LikedArtistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedArtistView.swift; sourceTree = "<group>"; };
 		3E43F490247E9B2400CC0584 /* LikedArtistsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedArtistsViewController.swift; sourceTree = "<group>"; };
 		3E43F492247E9B3F00CC0584 /* VideoPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPostViewController.swift; sourceTree = "<group>"; };
+		3E6D8FFA24A27E77001AF7A7 /* ProfileViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewViewModel.swift; sourceTree = "<group>"; };
 		3E754303248FD0C600383D02 /* UserExperienceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserExperienceView.swift; sourceTree = "<group>"; };
 		3E75433A2490027500383D02 /* OnboardingView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OnboardingView.storyboard; sourceTree = "<group>"; };
 		3E75433C24900C1300383D02 /* DisplayNameAndLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayNameAndLocationView.swift; sourceTree = "<group>"; };
@@ -333,6 +335,7 @@
 				3E7C53D4248AC614001974DB /* TagsInfoModels.swift */,
 				3E75433E2490711300383D02 /* StatesForPickerView.swift */,
 				3E43F48A247E9A7C00CC0584 /* Posts.swift */,
+				3E6D8FFA24A27E77001AF7A7 /* ProfileViewViewModel.swift */,
 				3E43F484247E985700CC0584 /* LoginViewViewModel.swift */,
 				BEDF3FCC2485349A00D22E2D /* Chat.swift */,
 				BEDF3FCE248534A600D22E2D /* Message.swift */,
@@ -563,6 +566,7 @@
 				3EF5809B24929E6600D1942E /* ExploreOptionsController.swift in Sources */,
 				3E43F468247E8DD100CC0584 /* AuthentificationService.swift in Sources */,
 				3E43F485247E985700CC0584 /* LoginViewViewModel.swift in Sources */,
+				3E6D8FFB24A27E77001AF7A7 /* ProfileViewViewModel.swift in Sources */,
 				3E43F477247E90B700CC0584 /* DateFormatter.swift in Sources */,
 				3E43F475247E909A00CC0584 /* ShowAlert.swift in Sources */,
 				3E43F48D247E9AF800CC0584 /* LikedArtistView.swift in Sources */,
@@ -738,7 +742,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.tiffanyobi.InTune;
+				PRODUCT_BUNDLE_IDENTIFIER = org.pursuit.intune;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -758,7 +762,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.tiffanyobi.InTune;
+				PRODUCT_BUNDLE_IDENTIFIER = org.pursuit.intune;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
