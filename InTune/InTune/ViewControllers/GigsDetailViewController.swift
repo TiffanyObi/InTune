@@ -37,6 +37,9 @@ class GigsDetailViewController: UIViewController {
         priceLabel.text = "$\(gig.price)"
         descriptionText.text = gig.descript
     }
-    
 
+    @IBAction func messageButtonPressed(_ sender: UIButton) {
+        print("message")
+    }
+    
 }
