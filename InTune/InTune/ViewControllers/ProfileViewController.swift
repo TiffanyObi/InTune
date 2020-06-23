@@ -227,12 +227,8 @@ class ProfileViewController: UIViewController {
         
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let signOutAction = UIAlertAction(title: "Sign Out", style: .destructive) { (alertAction) in
-            do {
-                try Auth.auth().signOut()
-            } catch {
-                self.showAlert(title: "Error Signing Out", message: " \(error.localizedDescription)")
-            }
-            UIViewController.showViewController(storyboardName: "LoginView", viewControllerID: "LoginViewController")
+            
+            self.signOutAction(title: "Sign Out", message: "Are you sure you want to sign out?")
         }
         let editProfAction = UIAlertAction(title: "Edit Profile", style: .default) { (alertAction) in
             //display edit vc
