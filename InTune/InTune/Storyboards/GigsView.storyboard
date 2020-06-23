@@ -16,36 +16,37 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter event title" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wde-Q7-Iqo">
-                                <rect key="frame" x="50" y="40" width="314" height="34"/>
+                                <rect key="frame" x="50" y="32" width="314" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="uwT-Cd-xON">
-                                <rect key="frame" x="50" y="95" width="314" height="166"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="uwT-Cd-xON">
+                                <rect key="frame" x="60" y="105" width="294" height="166"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="exj-IL-o7b">
-                                <rect key="frame" x="8" y="596" width="88" height="20.5"/>
+                                <rect key="frame" x="8" y="606" width="88" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="mIh-Qb-Fze">
-                                <rect key="frame" x="16" y="632.5" width="382" height="84"/>
+                                <rect key="frame" x="16" y="642.5" width="382" height="84"/>
                                 <color key="backgroundColor" systemColor="systemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="ssG-k5-Mzw">
-                                <rect key="frame" x="104" y="290.5" width="270" height="118"/>
+                                <rect key="frame" x="104" y="300.5" width="270" height="118"/>
                                 <connections>
                                     <action selector="datePickerUsed:" destination="unz-oA-dNm" eventType="valueChanged" id="f5L-rA-zaO"/>
                                 </connections>
                             </datePicker>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="80" translatesAutoresizingMaskIntoConstraints="NO" id="Exq-gL-ttQ">
-                                <rect key="frame" x="20" y="342.5" width="44" height="121"/>
+                                <rect key="frame" x="20" y="352.5" width="44" height="121"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XNc-uH-cOn">
                                         <rect key="frame" x="0.0" y="0.0" width="44" height="20.5"/>
@@ -65,21 +66,21 @@
                                 </constraints>
                             </stackView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter a  price e.g. 75" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eeX-lh-MD3">
-                                <rect key="frame" x="104" y="424.5" width="260" height="34"/>
+                                <rect key="frame" x="104" y="434.5" width="260" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JVZ-Cy-t59">
-                                <rect key="frame" x="8" y="523.5" width="70.5" height="20.5"/>
+                                <rect key="frame" x="8" y="533.5" width="70.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="emF-th-Mja">
-                                <rect key="frame" x="104" y="474.5" width="270" height="119.5"/>
+                                <rect key="frame" x="104" y="484.5" width="270" height="119.5"/>
                             </pickerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gpc-oU-fdS" customClass="DesignableButton" customModule="InTune" customModuleProvider="target">
-                                <rect key="frame" x="167" y="744.5" width="80" height="44"/>
+                                <rect key="frame" x="167" y="754.5" width="80" height="44"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="05l-Gu-C9X"/>
@@ -100,7 +101,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uqx-79-O0e">
-                                <rect key="frame" x="320" y="218.5" width="44" height="44"/>
+                                <rect key="frame" x="320" y="244.5" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="44" id="QbT-iG-AA9"/>
                                     <constraint firstAttribute="height" constant="44" id="Zkw-AB-0DQ"/>
@@ -110,6 +111,9 @@
                                 <state key="normal" image="plus.circle.fill" catalog="system">
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
                                 </state>
+                                <connections>
+                                    <action selector="addImageButtonPressed:" destination="unz-oA-dNm" eventType="touchUpInside" id="0fA-Kk-vbt"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -117,12 +121,12 @@
                             <constraint firstItem="mIh-Qb-Fze" firstAttribute="top" secondItem="exj-IL-o7b" secondAttribute="bottom" constant="16" id="2Z4-08-xM9"/>
                             <constraint firstItem="KbT-L7-lgw" firstAttribute="trailing" secondItem="ssG-k5-Mzw" secondAttribute="trailing" constant="40" id="6Ou-KU-Q7b"/>
                             <constraint firstItem="exj-IL-o7b" firstAttribute="leading" secondItem="KbT-L7-lgw" secondAttribute="leading" constant="8" id="6Ry-3I-qtN"/>
-                            <constraint firstItem="uwT-Cd-xON" firstAttribute="top" secondItem="wde-Q7-Iqo" secondAttribute="bottom" constant="20" id="BBd-Lo-47S"/>
+                            <constraint firstItem="uwT-Cd-xON" firstAttribute="top" secondItem="wde-Q7-Iqo" secondAttribute="bottom" constant="38" id="BBd-Lo-47S"/>
                             <constraint firstItem="ssG-k5-Mzw" firstAttribute="height" secondItem="eKG-PA-lHU" secondAttribute="height" multiplier="0.14" id="Dec-DG-2bl"/>
                             <constraint firstItem="KbT-L7-lgw" firstAttribute="trailing" secondItem="wde-Q7-Iqo" secondAttribute="trailing" constant="50" id="Eda-cF-CCm"/>
-                            <constraint firstItem="uwT-Cd-xON" firstAttribute="leading" secondItem="KbT-L7-lgw" secondAttribute="leading" constant="50" id="FFI-vx-jh2"/>
+                            <constraint firstItem="uwT-Cd-xON" firstAttribute="leading" secondItem="KbT-L7-lgw" secondAttribute="leading" constant="60" id="FFI-vx-jh2"/>
                             <constraint firstItem="ssG-k5-Mzw" firstAttribute="leading" secondItem="Exq-gL-ttQ" secondAttribute="trailing" constant="40" id="FUi-pC-1ew"/>
-                            <constraint firstItem="KbT-L7-lgw" firstAttribute="trailing" secondItem="uwT-Cd-xON" secondAttribute="trailing" constant="50" id="Fgq-g9-msW"/>
+                            <constraint firstItem="KbT-L7-lgw" firstAttribute="trailing" secondItem="uwT-Cd-xON" secondAttribute="trailing" constant="60" id="Fgq-g9-msW"/>
                             <constraint firstItem="eeX-lh-MD3" firstAttribute="leading" secondItem="ssG-k5-Mzw" secondAttribute="leading" id="HH3-Jg-QHM"/>
                             <constraint firstItem="Exq-gL-ttQ" firstAttribute="top" secondItem="uwT-Cd-xON" secondAttribute="bottom" constant="80" id="I3k-Rm-gJa"/>
                             <constraint firstItem="emF-th-Mja" firstAttribute="height" secondItem="ssG-k5-Mzw" secondAttribute="height" multiplier="1.01695" id="NDl-XX-osH"/>
@@ -134,13 +138,13 @@
                             <constraint firstItem="wde-Q7-Iqo" firstAttribute="leading" secondItem="KbT-L7-lgw" secondAttribute="leading" constant="50" id="Ruo-sm-8bb"/>
                             <constraint firstItem="mIh-Qb-Fze" firstAttribute="leading" secondItem="KbT-L7-lgw" secondAttribute="leading" constant="16" id="WyM-lZ-wlt"/>
                             <constraint firstItem="emF-th-Mja" firstAttribute="trailing" secondItem="ssG-k5-Mzw" secondAttribute="trailing" id="YUq-fc-SAO"/>
-                            <constraint firstItem="uqx-79-O0e" firstAttribute="trailing" secondItem="uwT-Cd-xON" secondAttribute="trailing" id="Zss-c5-Knm"/>
+                            <constraint firstItem="uqx-79-O0e" firstAttribute="trailing" secondItem="uwT-Cd-xON" secondAttribute="trailing" constant="10" id="Zss-c5-Knm"/>
                             <constraint firstItem="Exq-gL-ttQ" firstAttribute="leading" secondItem="KbT-L7-lgw" secondAttribute="leading" constant="20" id="b5t-4i-1R1"/>
-                            <constraint firstItem="uqx-79-O0e" firstAttribute="bottom" secondItem="uwT-Cd-xON" secondAttribute="bottom" id="c55-Ws-WOE"/>
+                            <constraint firstItem="uqx-79-O0e" firstAttribute="bottom" secondItem="uwT-Cd-xON" secondAttribute="bottom" constant="16" id="c55-Ws-WOE"/>
                             <constraint firstItem="uwT-Cd-xON" firstAttribute="height" secondItem="eKG-PA-lHU" secondAttribute="height" multiplier="0.2" id="ePs-gw-tmc"/>
                             <constraint firstItem="Gpc-oU-fdS" firstAttribute="centerX" secondItem="eKG-PA-lHU" secondAttribute="centerX" id="huj-sI-UBA"/>
                             <constraint firstItem="mIh-Qb-Fze" firstAttribute="height" secondItem="eKG-PA-lHU" secondAttribute="height" multiplier="0.1" id="i27-AE-7No"/>
-                            <constraint firstItem="wde-Q7-Iqo" firstAttribute="top" secondItem="KbT-L7-lgw" secondAttribute="top" constant="40" id="jGm-KY-dat"/>
+                            <constraint firstItem="wde-Q7-Iqo" firstAttribute="top" secondItem="KbT-L7-lgw" secondAttribute="top" constant="32" id="jGm-KY-dat"/>
                             <constraint firstItem="eeX-lh-MD3" firstAttribute="top" secondItem="ssG-k5-Mzw" secondAttribute="bottom" constant="16" id="nTP-hR-84D"/>
                             <constraint firstItem="emF-th-Mja" firstAttribute="top" secondItem="eeX-lh-MD3" secondAttribute="bottom" constant="16" id="vzv-po-Do4"/>
                             <constraint firstItem="KbT-L7-lgw" firstAttribute="trailing" secondItem="emF-th-Mja" secondAttribute="trailing" constant="40" id="wJd-gw-jrU"/>

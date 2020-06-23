@@ -227,12 +227,8 @@ class ProfileViewController: UIViewController {
         
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let signOutAction = UIAlertAction(title: "Sign Out", style: .destructive) { (alertAction) in
-            do {
-                try Auth.auth().signOut()
-            } catch {
-                self.showAlert(title: "Error Signing Out", message: " \(error.localizedDescription)")
-            }
-            UIViewController.showViewController(storyboardName: "LoginView", viewControllerID: "LoginViewController")
+            
+            self.signOutAction(title: "Sign Out", message: "Are you sure you want to sign out?")
         }
         let editProfAction = UIAlertAction(title: "Edit Profile", style: .default) { (alertAction) in
             //display edit vc
@@ -259,6 +255,8 @@ class ProfileViewController: UIViewController {
                     print("could not delete from fav: \(error)")
                 case .success:
                     sender.setImage(UIImage(systemName: "music.note"), for: .normal)
+                    sender.setBackgroundImage(UIImage(systemName: "circle"), for: .normal)
+                    sender.imageView?.tintColor = #colorLiteral(red: 0.3429883122, green: 0.02074946091, blue: 0.7374325991, alpha: 1)
                     self?.isArtistFavorite = false
                 }
             }

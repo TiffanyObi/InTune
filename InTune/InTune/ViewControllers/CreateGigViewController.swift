@@ -186,6 +186,11 @@ class CreateGigViewController: UIViewController {
         }
     }
     
+    @IBAction func addImageButtonPressed(_ sender: UIButton) {
+        showPhotoOptions()
+    }
+    
+    
 }
 
 extension CreateGigViewController: UIPickerViewDataSource, UIPickerViewDelegate {

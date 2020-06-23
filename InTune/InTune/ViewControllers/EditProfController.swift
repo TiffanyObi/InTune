@@ -111,6 +111,16 @@ class EditProfController: UIViewController {
             return
         }
         
+        db.updateDisplayName(name: userName) { [weak self] (result) in
+            
+            switch result {
+            case .failure(let error):
+                self?.showAlert(title: "Error updating name", message: "\(error.localizedDescription)")
+            case .success:
+                self?.showAlert(title: "Success", message: "Updated name")
+            }
+        }
+        
         storageService.uploadPhoto(userId: user.uid, itemId: "123", image: resizedImage){ [weak self] (result) in
             
             switch result {
@@ -137,6 +147,7 @@ class EditProfController: UIViewController {
                             self?.showAlert(title: "Error updating profile", message: "Error changing profile error: \(error.localizedDescription)")
                         }
                     } else {
+                        //maybe nest functions
                         DispatchQueue.main.async {
                             self?.showAlert(title: "Profile Update", message: "Profile successfully updated")
                         }
