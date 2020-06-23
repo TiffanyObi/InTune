@@ -255,6 +255,8 @@ class ProfileViewController: UIViewController {
                     print("could not delete from fav: \(error)")
                 case .success:
                     sender.setImage(UIImage(systemName: "music.note"), for: .normal)
+                    sender.setBackgroundImage(UIImage(systemName: "circle"), for: .normal)
+                    sender.imageView?.tintColor = #colorLiteral(red: 0.3429883122, green: 0.02074946091, blue: 0.7374325991, alpha: 1)
                     self?.isArtistFavorite = false
                 }
             }
