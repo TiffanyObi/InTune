@@ -45,9 +45,10 @@ class ProfileViewController: UIViewController {
     var isArtistFavorite = false {
         didSet {
             if isArtistFavorite {
-                likeArtistButton.setImage(UIImage(systemName: "person.crop.circle.fill.badge.minus"), for: .normal)
+                likeArtistButton.setBackgroundImage(UIImage(systemName: "circle.fill"), for: .normal)
+                likeArtistButton.imageView?.tintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
             } else {
-                likeArtistButton.setImage(UIImage(systemName: "person.crop.circle.badge.plus"), for: .normal)
+                likeArtistButton.setImage(UIImage(systemName: "music.note"), for: .normal)
             }
         }
     }
@@ -98,7 +99,6 @@ class ProfileViewController: UIViewController {
         guard let singleArtist = singleArtist else {return}
        
         getVideos(artist: singleArtist)
-//        setUpEmptyViewForUser()
         profImage.contentMode = .scaleAspectFill
         profImage.layer.cornerRadius = 60
         if user.photoURL == nil  {
@@ -123,7 +123,6 @@ class ProfileViewController: UIViewController {
         }
         
         getVideos(artist: artist)
-//        setUpEmptyViewFromExp()
         isArtistInFav(artist: artist)
         nameLabel.text = artist.name
         locationLabel.text = artist.city
@@ -259,7 +258,7 @@ class ProfileViewController: UIViewController {
                 case .failure(let error):
                     print("could not delete from fav: \(error)")
                 case .success:
-                    sender.setImage(UIImage(systemName: "person.crop.circle.fill.badge.plus"), for: .normal)
+                    sender.setImage(UIImage(systemName: "music.note"), for: .normal)
                     self?.isArtistFavorite = false
                 }
             }
@@ -269,7 +268,8 @@ class ProfileViewController: UIViewController {
                 case.failure(let error):
                     print(error.localizedDescription)
                 case .success:
-                    sender.setImage(UIImage(systemName: "person.crop.circle.badge.minus"), for: .normal)
+                    sender.setBackgroundImage(UIImage(systemName: "circle.fill"), for: .normal)
+                    sender.imageView?.tintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
                     self?.isArtistFavorite = true
                 }
             }
