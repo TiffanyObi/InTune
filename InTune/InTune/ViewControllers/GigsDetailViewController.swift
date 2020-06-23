@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import FirebaseAuth
+import Firebase
+import FirebaseFirestore
 
 class GigsDetailViewController: UIViewController {
     
@@ -18,10 +21,30 @@ class GigsDetailViewController: UIViewController {
     @IBOutlet var descriptionText: UITextView!
     
     var gigPost: GigsPost?
-
+    
+    let db = DatabaseService()
+    
+    var singleArtist: Artist?
+    
+    func getArtist(){
+        guard let userID = gigPost?.artistId else {
+            return
+        }
+        db.fetchArtist(userID: userID){ [weak self](result) in
+            switch result {
+            case.failure(let error):
+                print(error.localizedDescription)
+                
+            case.success(let artist1):
+                self?.singleArtist = artist1
+            }
+        }
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        getArtist()
         updateUI()
     }
     
@@ -29,17 +52,19 @@ class GigsDetailViewController: UIViewController {
         //set up image for profile + segue to prof
         guard let gig = gigPost else { return }
         titleLabel.text = gig.title
-//        guard let imageurl = gig.imageURL else { return }
-//        guard let url = URL(string: imageurl) else { return }
-//        postImage.kf.setImage(with: url)
+        //        guard let imageurl = gig.imageURL else { return }
+        //        guard let url = URL(string: imageurl) else { return }
+        //        postImage.kf.setImage(with: url)
         dateLabel.text = gig.eventDate
         postedByLabel.text = gig.artistName
         priceLabel.text = "$\(gig.price)"
         descriptionText.text = gig.descript
     }
-
+    
     @IBAction func messageButtonPressed(_ sender: UIButton) {
-        print("message")
+        let chatVC = ChatViewController()
+        chatVC.artist = singleArtist
+        navigationController?.pushViewController(chatVC, animated: true)
     }
     
 }
