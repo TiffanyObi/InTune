@@ -66,3 +66,7 @@ extension GigsPost {
     }
 }
 
+struct FavGig {
+    let name: String
+    
+}

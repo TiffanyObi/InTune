@@ -264,6 +264,28 @@ class DatabaseService {
         
     }
     
+    public func createGigPost(artist: Artist, title: String, description: String, price: Int, eventDate: String, createdDate: Timestamp, location: String, completion: @escaping (Result<Bool, Error>)-> ()) {
+        
+        let documentRef = db.collection(DatabaseService.gigPosts).document()
+        
+        db.collection(DatabaseService.artistsCollection).document(artist.artistId).collection(DatabaseService.gigPosts).document(documentRef.documentID).setData(["title" : title, "artistName": artist.name, "artistId": artist.artistId, "descript": description, "price": price, "eventDate": eventDate, "createdDate": Timestamp(), "location": artist.city]) { (error) in
+            
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(true))
+            }
+        
+        }
+    }
+    
+    
+    public func favoriteGig(gigPost: GigsPost, completion: @escaping (Result<Bool, Error>) -> ()) {
+        let documentRef = db.collection(DatabaseService.gigPosts).document()
+        
+//        db.collection(DatabaseService.gigPosts).document(documentRef.documentID).setData([""], completion: <#T##((Error?) -> Void)?##((Error?) -> Void)?##(Error?) -> Void#>)
+    }
+    
 
     public func reportArtist(for artist: Artist, completion: @escaping (Result<Bool, Error>) -> ()) {
         db.collection(DatabaseService.artistsCollection).document(artist.artistId).updateData(["isReported":true]){ (error) in
