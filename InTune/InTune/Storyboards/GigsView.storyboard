@@ -317,7 +317,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="49f-P0-le6"/>
                     </view>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" id="s8c-0x-UzW"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="dateLabel" destination="Htt-SL-24W" id="gHh-iK-Q4q"/>
                         <outlet property="descriptionText" destination="K0R-c1-rwd" id="38w-4C-syg"/>
@@ -329,7 +331,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OfE-SN-7sc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1818.840579710145" y="819.64285714285711"/>
+            <point key="canvasLocation" x="958" y="882"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="33D-Dh-ZJK">

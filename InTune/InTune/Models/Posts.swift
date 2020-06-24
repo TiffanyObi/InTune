@@ -67,6 +67,25 @@ extension GigsPost {
 }
 
 struct FavGig {
-    let name: String
-    
+    let title: String
+    let artistName: String
+    let artistId: String
+    let description: String
+    let price: Int
+    let eventDate: String
+    let location: String
+    let favDate: Timestamp
+}
+
+extension FavGig {
+    init?(_ dictionary: [String: Any]) {
+        self.title = dictionary["title"] as? String  ?? "no title"
+        self.artistName = dictionary["artistName"] as? String ?? "no name"
+        self.artistId = dictionary["artistId"] as? String ?? "no artistId"
+        self.description = dictionary["description"] as? String ?? "no descript"
+        self.price = dictionary["price"] as? Int ?? 0
+        self.eventDate = dictionary["eventDate"] as? String ?? "no event date"
+        self.location = dictionary["location"] as? String ?? "no location"
+        self.favDate = dictionary["favDate"] as? Timestamp ?? Timestamp()
+    }
 }

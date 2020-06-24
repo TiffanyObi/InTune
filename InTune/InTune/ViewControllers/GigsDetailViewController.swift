@@ -44,6 +44,8 @@ class GigsDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "bookmark"), style: .plain, target: self, action: #selector(favoriteButtonPressed(_:)))
         getArtist()
         updateUI()
     }
@@ -59,6 +61,10 @@ class GigsDetailViewController: UIViewController {
         postedByLabel.text = gig.artistName
         priceLabel.text = "$\(gig.price)"
         descriptionText.text = gig.descript
+    }
+    
+    @objc func favoriteButtonPressed(_ sender: UIBarButtonItem){
+        
     }
     
     @IBAction func messageButtonPressed(_ sender: UIButton) {

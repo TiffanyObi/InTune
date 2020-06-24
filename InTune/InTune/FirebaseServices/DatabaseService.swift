@@ -19,6 +19,7 @@ class DatabaseService {
     static let artistPosts = "artistPost"
     static let favCollection = "favoriteArtists"
     static let gigPosts = "gigPosts"
+    static let favGigPosts = "favGigPosts"
     static let threadCollection = "thread"
     static let artVideos = "videos"
     static let reportCollection = "reported"
@@ -280,10 +281,19 @@ class DatabaseService {
     }
     
     
-    public func favoriteGig(gigPost: GigsPost, completion: @escaping (Result<Bool, Error>) -> ()) {
-        let documentRef = db.collection(DatabaseService.gigPosts).document()
+    public func favoriteGig(artist: Artist, gigPost: GigsPost, completion: @escaping (Result<Bool, Error>) -> ()) {
         
-//        db.collection(DatabaseService.gigPosts).document(documentRef.documentID).setData([""], completion: <#T##((Error?) -> Void)?##((Error?) -> Void)?##(Error?) -> Void#>)
+        let documentRef = db.collection(DatabaseService.favGigPosts).document()
+        
+        db.collection(DatabaseService.artistsCollection).document(artist.artistId).collection(DatabaseService.favGigPosts).document(documentRef.documentID).setData(["title": gigPost.title, "artistName": gigPost.artistName, "artistId": gigPost.artistId, "description": gigPost.descript, "price": gigPost.price, "eventDate": gigPost.eventDate, "location": gigPost.location, "favDate": Timestamp()]) { (error) in
+            
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(true))
+            }
+        }
+        
     }
     
 
