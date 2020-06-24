@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,37 +16,37 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qxA-jb-dGO">
-                                <rect key="frame" x="85" y="320" width="44" height="21"/>
+                                <rect key="frame" x="85" y="325" width="44" height="21"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xee-wn-Q6z">
-                                <rect key="frame" x="85" y="350" width="244" height="34"/>
+                                <rect key="frame" x="85" y="355" width="244" height="34"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gn1-Zh-EqU">
-                                <rect key="frame" x="85" y="399" width="78" height="21"/>
+                                <rect key="frame" x="85" y="404" width="78" height="21"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="b3J-4d-dHB">
-                                <rect key="frame" x="85" y="428" width="244" height="34"/>
+                                <rect key="frame" x="85" y="433" width="244" height="34"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't have an account? " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gJF-BD-7s0">
-                                <rect key="frame" x="100" y="577" width="214" height="21.5"/>
+                                <rect key="frame" x="100" y="582" width="214" height="21.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="18"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vkx-zz-WLv">
-                                <rect key="frame" x="110" y="512" width="194" height="45"/>
+                                <rect key="frame" x="110" y="517" width="194" height="45"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                 <state key="normal" title="LOGIN">
@@ -57,21 +57,23 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eGH-3e-uqC">
-                                <rect key="frame" x="8" y="276" width="398" height="24"/>
+                                <rect key="frame" x="8" y="281" width="398" height="24"/>
                                 <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="b4g-fA-aBl">
-                                <rect key="frame" x="120" y="94" width="174" height="174"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="b4g-fA-aBl" customClass="DesignableImageView" customModule="InTune" customModuleProvider="target">
+                                <rect key="frame" x="120" y="94" width="174" height="179"/>
                                 <color key="tintColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="b4g-fA-aBl" secondAttribute="height" multiplier="1:1" id="ydA-b5-Cee"/>
-                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="91"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uhw-gd-gm3">
-                                <rect key="frame" x="160" y="606.5" width="94" height="36"/>
+                                <rect key="frame" x="160" y="611.5" width="94" height="36"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <state key="normal" title="SIGN UP">
@@ -100,6 +102,7 @@
                             <constraint firstItem="uhw-gd-gm3" firstAttribute="centerX" secondItem="2XQ-vl-Dl2" secondAttribute="centerX" id="fvT-kr-MFG"/>
                             <constraint firstItem="wuJ-l4-xXg" firstAttribute="trailing" secondItem="xee-wn-Q6z" secondAttribute="trailing" constant="85" id="gul-so-DWp"/>
                             <constraint firstItem="qxA-jb-dGO" firstAttribute="leading" secondItem="wuJ-l4-xXg" secondAttribute="leading" constant="85" id="hIm-e5-5TM"/>
+                            <constraint firstItem="b4g-fA-aBl" firstAttribute="height" secondItem="2XQ-vl-Dl2" secondAttribute="height" multiplier="0.2" id="hkv-Y5-bc4"/>
                             <constraint firstItem="wuJ-l4-xXg" firstAttribute="trailing" secondItem="eGH-3e-uqC" secondAttribute="trailing" constant="8" id="hxo-P7-qMz"/>
                             <constraint firstItem="Vkx-zz-WLv" firstAttribute="leading" secondItem="wuJ-l4-xXg" secondAttribute="leading" constant="110" id="iZO-tG-z4J"/>
                             <constraint firstItem="wuJ-l4-xXg" firstAttribute="trailing" secondItem="b4g-fA-aBl" secondAttribute="trailing" constant="120" id="isx-t3-IIE"/>
@@ -128,6 +131,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="logo" width="400" height="210"/>
+        <image name="logo" width="120" height="120"/>
     </resources>
 </document>
