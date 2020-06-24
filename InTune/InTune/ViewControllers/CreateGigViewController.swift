@@ -135,7 +135,7 @@ class CreateGigViewController: UIViewController {
             let description = descriptionTextView.text,
             !description.isEmpty,
         let artist = currentUser else {
-                showAlert(title: "Missing Feilds", message: "Please review that all feilds are complete")
+                showAlert(title: "Missing Fields", message: "Please review that all feilds are complete")
                 return
         }
         let dateString = date.description
@@ -150,11 +150,22 @@ class CreateGigViewController: UIViewController {
             case .success:
 //                self.uploadPhoto(photo: resizedImage, documentId: documentID)
                 print("posted gig")
+                
+                self?.databaseService.createGigPost(artist: artist, title: title, description: description, price: Int(price) ?? 0, eventDate: dateString, createdDate: Timestamp(), location: self?.location ?? "no city") { (result) in
+                    
+                    switch result {
+                    case .failure(let error):
+                        self?.showAlert(title: "Posting Error", message: "Could not post gig: \(error.localizedDescription)")
+                    case .success:
+                        print("posted gig to artist")
+                    }
+                }
             }
             
         }
         dismiss(animated: true)
     }
+    
     
     private func uploadPhoto(photo: UIImage, documentId: String) {
         storageService.uploadPhoto(itemId: documentId, image: photo) { (result) in
