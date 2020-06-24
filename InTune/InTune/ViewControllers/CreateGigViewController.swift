@@ -28,8 +28,9 @@ class CreateGigViewController: UIViewController {
     
     var date: Date?
     
-    let states = StatesForPickerView.states
-    var location = ""
+    let states = ["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Carolina","North Dakota","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]
+    
+    var location: String!
     
     private var selectedImage: UIImage? {
         didSet {
@@ -69,6 +70,7 @@ class CreateGigViewController: UIViewController {
         addGestures()
         updateCurrentArtist()
         view.addGestureRecognizer(tapGesture)
+        location = states.first
     }
     
     private func setUpUI(_ item: UITextField) {
@@ -134,15 +136,17 @@ class CreateGigViewController: UIViewController {
             let date = date,
             let description = descriptionTextView.text,
             !description.isEmpty,
+            let location = location,
+            !location.isEmpty,
         let artist = currentUser else {
                 showAlert(title: "Missing Fields", message: "Please review that all feilds are complete")
                 return
         }
-        let dateString = date.description
+//        let dateString = date.description
         
 //        let resizedImage = UIImage.resizeImage(originalImage: selectedImage, rect: gigImageView.bounds)
         
-        databaseService.createGig(artist: artist, title: title, description: description, price: Int(price) ?? 0, eventDate: dateString, createdDate: Timestamp(), location: location) { [weak self] (result) in
+        databaseService.createGig(artist: artist, title: title, description: description, price: Int(price) ?? 0, eventDate: date.string(with: "MMM d, h:mm a"), createdDate: Timestamp(), location: location) { [weak self] (result) in
             
             switch result {
             case .failure(let error):
@@ -218,6 +222,7 @@ extension CreateGigViewController: UIPickerViewDataSource, UIPickerViewDelegate 
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         location = states[row]
+        print(location!)
     }
     
 }

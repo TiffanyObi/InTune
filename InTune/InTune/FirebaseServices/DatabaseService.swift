@@ -255,7 +255,7 @@ class DatabaseService {
         
         let documentRef = db.collection(DatabaseService.gigPosts).document()
         
-        db.collection(DatabaseService.gigPosts).document(documentRef.documentID).setData(["title" : title, "artistName": artist.name, "artistId": artist.artistId, "descript": description, "price": price, "eventDate": eventDate, "createdDate": Timestamp(), "location": artist.city]) { (error) in
+        db.collection(DatabaseService.gigPosts).document(documentRef.documentID).setData(["title" : title, "artistName": artist.name, "artistId": artist.artistId, "descript": description, "price": price, "eventDate": eventDate, "createdDate": Timestamp(), "location": location]) { (error) in
             if let error = error {
                 completion(.failure(error))
             } else {
