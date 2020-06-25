@@ -155,7 +155,7 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.crop.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="6sk-M6-T0Y">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.crop.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="6sk-M6-T0Y">
                                 <rect key="frame" x="20" y="108.5" width="124" height="123"/>
                                 <color key="tintColor" red="0.31240576289999999" green="0.058394156019999997" blue="0.70837960030000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
