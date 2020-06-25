@@ -10,12 +10,12 @@ import UIKit
 
 class LikedArtistView: UIView {
     
-    private lazy var likedArtistLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont(name: "Palatino-Roman", size: 28)
-        label.text = "Liked Artists"
-        return label
-    }()
+//    private lazy var likedArtistLabel: UILabel = {
+//        let label = UILabel()
+//        label.font = UIFont(name: "Palatino-Roman", size: 28)
+//        label.text = "Liked Artists"
+//        return label
+//    }()
     
     public lazy var likedArtistCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -36,26 +36,26 @@ class LikedArtistView: UIView {
     }
     
     private func commomInit() {
-        setLikedArtistLabel()
+//        setLikedArtistLabel()
         setUpLikedArtistCollectionViewConstraints()
     }
     
     
-    private func setLikedArtistLabel(){
-        addSubview(likedArtistLabel)
-        likedArtistLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            likedArtistLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 8),
-            likedArtistLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
-            likedArtistLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8)
-            
-        ])
-    }
+//    private func setLikedArtistLabel(){
+//        addSubview(likedArtistLabel)
+//        likedArtistLabel.translatesAutoresizingMaskIntoConstraints = false
+//        NSLayoutConstraint.activate([
+//            likedArtistLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 8),
+//            likedArtistLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
+//            likedArtistLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8)
+//
+//        ])
+//    }
     private func setUpLikedArtistCollectionViewConstraints(){
         addSubview(likedArtistCollectionView)
         likedArtistCollectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            likedArtistCollectionView.topAnchor.constraint(equalTo: likedArtistLabel.bottomAnchor, constant: 16),
+            likedArtistCollectionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16),
             likedArtistCollectionView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
             likedArtistCollectionView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
             likedArtistCollectionView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.7)

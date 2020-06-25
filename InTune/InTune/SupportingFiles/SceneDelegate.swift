@@ -23,7 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.windowScene = windowScene
         
-        
+        UITabBar.appearance().tintColor = #colorLiteral(red: 0.3429883122, green: 0.02074946091, blue: 0.7374325991, alpha: 1)
         if let _ = Auth.auth().currentUser {
             
             UIViewController.showViewController(storyboardName: "MainView", viewControllerID: "MainViewTabBarController")

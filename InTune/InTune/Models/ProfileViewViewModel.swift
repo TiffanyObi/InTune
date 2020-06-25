@@ -37,9 +37,17 @@ struct ProfileViewViewModel {
               }
             }
         }
+    
+    func setUpLikeButton(profileVC:ProfileViewController, button: UIButton) {
+        
+        button.layer.shadowColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        button.layer.shadowOffset = CGSize(width: 1.0, height: 4.0)
+        button.layer.shadowRadius = 4.0
+        button.layer.shadowOpacity = 0.8
+    }
+    
     func loadUI(profileVC:ProfileViewController, user:User, singleArtist:Artist){
         profileVC.getVideos(artist: singleArtist)
-        //        setUpEmptyViewForUser()
         profileVC.profImage.contentMode = .scaleAspectFill
        profileVC.profImage.layer.cornerRadius = 60
         if user.photoURL == nil  {
@@ -47,7 +55,7 @@ struct ProfileViewViewModel {
         } else {
             profileVC.profImage.kf.setImage(with: user.photoURL)
         }
-        profileVC.locationLabel.text = user.email
+        profileVC.locationLabel.text = "Current email: \(user.email ?? "No email available")"
         profileVC.likeArtistButton.isHidden = true
         profileVC.chatButton.isHidden = true
     }
@@ -66,7 +74,7 @@ struct ProfileViewViewModel {
         //        setUpEmptyViewFromExp()
         profileVC.isArtistInFav(artist: artist)
         profileVC.nameLabel.text = artist.name
-        profileVC.locationLabel.text = artist.city
+        profileVC.locationLabel.text = "Location: \(artist.city)"
         
     }
     
@@ -122,9 +130,7 @@ struct ProfileViewViewModel {
             case .failure(let error):
                 print("could not delete from fav: \(error)")
             case .success:
-                sender.setImage(UIImage(systemName: "music.note"), for: .normal)
-                sender.setBackgroundImage(UIImage(systemName: "circle"), for: .normal)
-                sender.imageView?.tintColor = #colorLiteral(red: 0.3429883122, green: 0.02074946091, blue: 0.7374325991, alpha: 1)
+                sender.setImage(UIImage(systemName: "star"), for: .normal)
                 profileVC?.isArtistFavorite = false
             }
     }
@@ -135,8 +141,7 @@ struct ProfileViewViewModel {
             case.failure(let error):
                 profileVC?.showAlert(title: "Error", message: error.localizedDescription)
             case .success:
-                sender.setBackgroundImage(UIImage(systemName: "circle.fill"), for: .normal)
-                sender.imageView?.tintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+                sender.setImage(UIImage(systemName: "star.fill"), for: .normal)
                 profileVC?.isArtistFavorite = true
             }
     }
