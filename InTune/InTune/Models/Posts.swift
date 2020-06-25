@@ -78,7 +78,7 @@ struct FavGig {
 }
 
 extension FavGig {
-    init?(_ dictionary: [String: Any]) {
+    init(_ dictionary: [String: Any]) {
         self.title = dictionary["title"] as? String  ?? "no title"
         self.artistName = dictionary["artistName"] as? String ?? "no name"
         self.artistId = dictionary["artistId"] as? String ?? "no artistId"

@@ -36,6 +36,7 @@
 		3E43F48D247E9AF800CC0584 /* LikedArtistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F48C247E9AF800CC0584 /* LikedArtistView.swift */; };
 		3E43F491247E9B2400CC0584 /* LikedArtistsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F490247E9B2400CC0584 /* LikedArtistsViewController.swift */; };
 		3E43F493247E9B3F00CC0584 /* VideoPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F492247E9B3F00CC0584 /* VideoPostViewController.swift */; };
+		3E6568C124A4310300A8DB11 /* GigsPostsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6568C024A4310300A8DB11 /* GigsPostsController.swift */; };
 		3E6D8FFB24A27E77001AF7A7 /* ProfileViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6D8FFA24A27E77001AF7A7 /* ProfileViewViewModel.swift */; };
 		3E6D8FFD24A2B12D001AF7A7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E6D8FFC24A2B12D001AF7A7 /* GoogleService-Info.plist */; };
 		3E754304248FD0C600383D02 /* UserExperienceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E754303248FD0C600383D02 /* UserExperienceView.swift */; };
@@ -120,6 +121,7 @@
 		3E43F48C247E9AF800CC0584 /* LikedArtistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedArtistView.swift; sourceTree = "<group>"; };
 		3E43F490247E9B2400CC0584 /* LikedArtistsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedArtistsViewController.swift; sourceTree = "<group>"; };
 		3E43F492247E9B3F00CC0584 /* VideoPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPostViewController.swift; sourceTree = "<group>"; };
+		3E6568C024A4310300A8DB11 /* GigsPostsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigsPostsController.swift; sourceTree = "<group>"; };
 		3E6D8FFA24A27E77001AF7A7 /* ProfileViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewViewModel.swift; sourceTree = "<group>"; };
 		3E6D8FFC24A2B12D001AF7A7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3E754303248FD0C600383D02 /* UserExperienceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserExperienceView.swift; sourceTree = "<group>"; };
@@ -258,6 +260,7 @@
 				80E3D25F248EC649002F3FA7 /* PostCollectionViewDelegate.swift */,
 				3E43F45C247E844B00CC0584 /* GigViewController.swift */,
 				80900C622492C80C0080C816 /* GigsDetailViewController.swift */,
+				3E6568C024A4310300A8DB11 /* GigsPostsController.swift */,
 				BE45721F2492DF2E0020D12C /* CreateGigViewController.swift */,
 				3E43F471247E8FAE00CC0584 /* OnboardingViewController.swift */,
 				3E43F490247E9B2400CC0584 /* LikedArtistsViewController.swift */,
@@ -554,6 +557,7 @@
 				3E43F43C247D7B8600CC0584 /* ExploreViewController.swift in Sources */,
 				3E7C53D5248AC614001974DB /* TagsInfoModels.swift in Sources */,
 				80900C612492C79F0080C816 /* GigCell.swift in Sources */,
+				3E6568C124A4310300A8DB11 /* GigsPostsController.swift in Sources */,
 				3E75433D24900C1300383D02 /* DisplayNameAndLocationView.swift in Sources */,
 				3E43F491247E9B2400CC0584 /* LikedArtistsViewController.swift in Sources */,
 				3E43F438247D7B8600CC0584 /* AppDelegate.swift in Sources */,
