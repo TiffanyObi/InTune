@@ -53,6 +53,9 @@ struct ProfileViewViewModel {
     }
     
     func loadExpUI(profileVC:ProfileViewController,artist:Artist){
+        if let url = artist.photoURL{
+            profileVC.profImage.kf.setImage(with: URL(string: url))
+        }
         profileVC.likeArtistButton.isHidden = false
         profileVC.chatButton.isHidden = false
         profileVC.navigationItem.leftBarButtonItem = .none
