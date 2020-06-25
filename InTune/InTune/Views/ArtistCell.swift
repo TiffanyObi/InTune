@@ -34,10 +34,16 @@ class ArtistCell: UICollectionViewCell {
                 self?.postStatusLabel.text = "No recent posts"
                 
             case .success(let posts):
-                guard let post = posts.first else {return}
-                self?.postStatusLabel.text = "Most Recent Post: \" \(post.title)\""
+                if let post = posts.first {
+        
+                if post.artistId == artist.favArtistID{
+                    self?.postStatusLabel.text = "Most Recent Post: \" \(post.title)\""
+                }
+            }else {
+                      self?.postStatusLabel.text = "No recent posts"
+                }
             }
         }
+        
     }
-    
 }
