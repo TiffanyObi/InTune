@@ -296,6 +296,18 @@ class DatabaseService {
         
     }
     
+    public func getLikedArtistGigPosts(likedArtist:FavoritedArtist, completion:@escaping (Result<[GigsPost],Error>) -> ()){
+        db.collection(DatabaseService.artistsCollection).document(likedArtist.favArtistID).collection(DatabaseService.gigPosts).getDocuments { (snapshot, error) in
+            if let error = error {
+                completion(.failure(error))
+            } else if let snapshot = snapshot {
+                let gigPosts = snapshot.documents.map { GigsPost($0.data())
+                }
+                completion(.success(gigPosts))
+            }
+        }
+    }
+    
 
     public func reportArtist(for artist: Artist, completion: @escaping (Result<Bool, Error>) -> ()) {
         db.collection(DatabaseService.artistsCollection).document(artist.artistId).updateData(["isReported":true]){ (error) in

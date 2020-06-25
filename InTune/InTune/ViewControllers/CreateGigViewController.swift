@@ -142,7 +142,7 @@ class CreateGigViewController: UIViewController {
                 showAlert(title: "Missing Fields", message: "Please review that all feilds are complete")
                 return
         }
-//        let dateString = date.description
+        let dateString = date.description
         
 //        let resizedImage = UIImage.resizeImage(originalImage: selectedImage, rect: gigImageView.bounds)
         

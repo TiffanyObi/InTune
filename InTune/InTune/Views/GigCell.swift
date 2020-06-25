@@ -23,4 +23,10 @@ class GigCell: UITableViewCell {
         locationLabel.text = "Location: \(gig.location)"
     }
     
+    public func configureFavGig(for gig: FavGig) {
+        titleLabel.text = gig.title.uppercased()
+        dateLabel.text = "Date: \(gig.eventDate)"
+        locationLabel.text = "Location: \(gig.location)"
+    }
+    
 }
