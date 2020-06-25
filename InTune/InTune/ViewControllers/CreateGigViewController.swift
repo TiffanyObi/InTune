@@ -139,10 +139,10 @@ class CreateGigViewController: UIViewController {
             let location = location,
             !location.isEmpty,
         let artist = currentUser else {
-                showAlert(title: "Missing Fields", message: "Please review that all feilds are complete")
+                showAlert(title: "Missing Fields", message: "Please review that all fields are complete")
                 return
         }
-        let dateString = date.description
+//        let dateString = date.description
         
 //        let resizedImage = UIImage.resizeImage(originalImage: selectedImage, rect: gigImageView.bounds)
         
@@ -155,7 +155,7 @@ class CreateGigViewController: UIViewController {
 //                self.uploadPhoto(photo: resizedImage, documentId: documentID)
                 print("posted gig")
                 
-                self?.databaseService.createGigPost(artist: artist, title: title, description: description, price: Int(price) ?? 0, eventDate: dateString, createdDate: Timestamp(), location: self?.location ?? "no city") { (result) in
+                self?.databaseService.createGigPost(artist: artist, title: title, description: description, price: Int(price) ?? 0, eventDate: date.string(with: "MMM d, h:mm a"), createdDate: Timestamp(), location: self?.location ?? "no city") { (result) in
                     
                     switch result {
                     case .failure(let error):
