@@ -186,7 +186,6 @@ class DatabaseService {
           let videoDocuments = snapshot.documents.map{$0.data()}
           var videos = [Video]()
           videos = videoDocuments.compactMap {Video($0)}
-          print(videos)
           completion(.success(videos))
         }
       }

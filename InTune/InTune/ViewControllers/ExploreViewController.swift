@@ -131,6 +131,11 @@ class ExploreViewController: UIViewController {
 
 extension ExploreViewController: UITableViewDataSource, UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.contentView.layer.masksToBounds = true
+        cell.addShadow()
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return height
     }
@@ -144,8 +149,6 @@ extension ExploreViewController: UITableViewDataSource, UITableViewDelegate {
         }
         
         let artist = artists[indexPath.row]
-        cell.layer.borderWidth = 4
-        cell.layer.cornerRadius = 10
         cell.configureCell(artist: artist)
         return cell
     }

@@ -20,7 +20,7 @@ class ArtistCell: UICollectionViewCell {
     let db = DatabaseService()
     public func configureFavArtistCell(favArtist:FavoritedArtist){
         imageView.image = UIImage(systemName: "photo.fill")
-        statusButton.isHidden = true
+//        statusButton.isHidden = true
         displayNameLabel.text = favArtist.favArtistName
         locationLabel.text = favArtist.favArtistLocation
         getArtistGigPosts(artist: favArtist)
@@ -37,7 +37,8 @@ class ArtistCell: UICollectionViewCell {
                 if let post = posts.first {
         
                 if post.artistId == artist.favArtistID{
-                    self?.postStatusLabel.text = "Most Recent Post: \" \(post.title)\""
+                    self?.statusButton.setImage(UIImage(systemName: "circle.fill"), for: .normal)
+                    self?.postStatusLabel.text = "New Post: \(post.title)\""
                 }
             }else {
                       self?.postStatusLabel.text = "No recent posts"
