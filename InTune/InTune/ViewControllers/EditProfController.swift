@@ -93,7 +93,6 @@ class EditProfController: UIViewController {
         }
         
         usernameTextField.text = "\(user.displayName ?? "")"
-
         
     }
     
