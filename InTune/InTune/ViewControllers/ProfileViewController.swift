@@ -243,13 +243,16 @@ extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDel
         if collectionView == postsCollectionView {
             
             let maxSize: CGSize = UIScreen.main.bounds.size
-            let itemWidth: CGFloat = maxSize.width * 0.55
-            let itemHeight: CGFloat = maxSize.height * 0.25
+            let itemWidth: CGFloat = maxSize.width * 0.415
+            let itemHeight: CGFloat = maxSize.height * 0.20
             return CGSize(width: itemWidth, height: itemHeight)
         }
         return CGSize(width: 0.5, height: 0.5)
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 25, left: 5, bottom: 25, right: 5)
+    }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // get video selected at n index
         if collectionView == postsCollectionView{
