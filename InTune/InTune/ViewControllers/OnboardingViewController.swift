@@ -14,7 +14,7 @@ struct TagCollectionViewCellModel {
 }
 
 class OnboardingViewController: UIViewController {
-
+    
     let userExperienece = UserExperienceView()
     let displayNameAndLocation = DisplayNameAndLocationView()
     let tagsSelectionView = TagsSelectionView()
@@ -25,8 +25,8 @@ class OnboardingViewController: UIViewController {
     var displayName = ""
     var userLocation = ""
     
-    var instruments = [String]()
-    var genres = [String]()
+    var instruments = [TagCollectionViewCellModel]()
+    var genres = [TagCollectionViewCellModel]()
     
     var selectedInstruments = Set<String>()
     var selectedGenres = Set<String>()
@@ -41,7 +41,7 @@ class OnboardingViewController: UIViewController {
         super.viewDidLoad()
         view = userExperienece
         view.backgroundColor = .systemGroupedBackground
-     setUpButtonOnExperienceView()
+        setUpButtonOnExperienceView()
         setUpTextFeildFroDisplayNameView()
         setUpPickerViewForLocationView()
         setUpNextButton()
@@ -50,10 +50,10 @@ class OnboardingViewController: UIViewController {
         setUpDoneButton()
         view.addGestureRecognizer(tapGesture)
     }
-
+    
     @objc private func resignTextfeilds(){
         displayNameAndLocation.displayNameTextfield.resignFirstResponder()
-       }
+    }
     
     func setUpButtonOnExperienceView(){
         for button in userExperienece.allButtons {
@@ -65,9 +65,9 @@ class OnboardingViewController: UIViewController {
         displayNameAndLocation.displayNameTextfield.delegate = self
     }
     
-   func setUpPickerViewForLocationView(){
-    displayNameAndLocation.locationPickerView.dataSource = self
-    displayNameAndLocation.locationPickerView.delegate = self
+    func setUpPickerViewForLocationView(){
+        displayNameAndLocation.locationPickerView.dataSource = self
+        displayNameAndLocation.locationPickerView.delegate = self
     }
     
     func setUpNextButton(){
@@ -85,8 +85,8 @@ class OnboardingViewController: UIViewController {
         tagsSelectionView.genresCollectionView.register(UINib(nibName: "TagCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "tagCell")
     }
     private func loadCollectionViews(){
-        instruments = Tags.instrumentList
-        genres = Tags.genreList
+        instruments = Tags.instrumentList.map {TagCollectionViewCellModel(name: $0, isSelected: false)}
+        genres = Tags.genreList.map {TagCollectionViewCellModel(name: $0, isSelected: false)}
     }
     func setUpDoneButton(){
         tagsSelectionView.doneButton.addTarget(self, action: #selector(doneButtonPressed), for: .touchUpInside)
@@ -98,7 +98,7 @@ class OnboardingViewController: UIViewController {
             database.updateUserExperience(isAnArtist: true) { [weak self](result) in
                 switch result {
                 case .failure(let error):
-                  self?.showAlert(title: "Error", message: "\(error.localizedDescription)")
+                    self?.showAlert(title: "Error", message: "\(error.localizedDescription)")
                 case .success:
                     self?.navigateToDisplayNameAndCityView()
                 }
@@ -107,9 +107,9 @@ class OnboardingViewController: UIViewController {
             database.updateUserExperience(isAnArtist: false) { [weak self](result) in
                 switch result {
                 case .failure(let error):
-                  self?.showAlert(title: "Error", message: "\(error.localizedDescription)")
+                    self?.showAlert(title: "Error", message: "\(error.localizedDescription)")
                 case .success:
-
+                    
                     self?.navigateToDisplayNameAndCityView()
                 }
             }
@@ -118,7 +118,7 @@ class OnboardingViewController: UIViewController {
         }
     }
     private func navigateToDisplayNameAndCityView(){
-       view = displayNameAndLocation
+        view = displayNameAndLocation
         view.backgroundColor = .systemGroupedBackground
     }
     @objc private func nextButtonPressed(){
@@ -136,7 +136,7 @@ class OnboardingViewController: UIViewController {
         database.updateUserDisplayNameAndLocation(userName: displayName, location: userLocation) { [weak self](result) in
             switch result {
             case.failure(let error):
-               self?.showAlert(title: "Error", message: "\(error.localizedDescription)")
+                self?.showAlert(title: "Error", message: "\(error.localizedDescription)")
             case.success:
                 print(true)
                 self?.navigateToTagsSelectionView()
@@ -170,7 +170,7 @@ class OnboardingViewController: UIViewController {
     }
     
     func navigateToProfileView(){
-         UIViewController.showViewController(storyboardName: "MainView", viewControllerID: "MainViewTabBarController")
+        UIViewController.showViewController(storyboardName: "MainView", viewControllerID: "MainViewTabBarController")
     }
 }
 
@@ -195,11 +195,11 @@ extension OnboardingViewController: UIPickerViewDataSource, UIPickerViewDelegate
         return 1
     }
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-       
+        
         return states.count
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-       
+        
         return states[row]
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
@@ -233,24 +233,33 @@ extension OnboardingViewController: UICollectionViewDataSource,UICollectionViewD
             tagCell.tagTitle.backgroundColor = .black
             tagCell.layer.borderWidth = 4
             tagCell.layer.borderColor = #colorLiteral(red: 0.3867273331, green: 0.8825651407, blue: 0.8684034944, alpha: 1)
-            tagCell.tagTitle.text = instrument
-            tagCell.tagsDelegate = self
-            tagCell.instrument = instrument
+            tagCell.isButtonPressed = { [weak self] in
+                self?.instruments[indexPath.row].isSelected = true
+                self?.selectedInstruments.insert(instrument.name)
+            }
+            tagCell.tagTitle.textColor = .white
+            tagCell.configureWithModel(instrument)
             
             return tagCell
             
-    }
+        }
         if collectionView == tagsSelectionView.genresCollectionView{
             let genre = genres[indexPath.row]
             tagCell.tagTitle.backgroundColor = .black
             tagCell.layer.borderWidth = 4
             tagCell.layer.borderColor = #colorLiteral(red: 0.3867273331, green: 0.8825651407, blue: 0.8684034944, alpha: 1)
-            tagCell.tagsDelegate = self
-            tagCell.genre = genre
-            tagCell.tagTitle.text = genre
+            
+                  tagCell.isButtonPressed = { [weak self] in
+                      self?.genres[indexPath.row].isSelected = true
+                      self?.selectedGenres.insert(genre.name)
+                  }
+                   tagCell.tagTitle.textColor = .white
+                   
+                   tagCell.configureWithModel(genre)
+            
         }
         
-         return tagCell
+        return tagCell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

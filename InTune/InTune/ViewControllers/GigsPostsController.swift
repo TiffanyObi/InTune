@@ -79,6 +79,12 @@ class GigsPostsController: UIViewController {
     
 }
 extension GigsPostsController:UITableViewDataSource,UITableViewDelegate{
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        cell.addShadow()
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == gigsTableView {
             return gigs.count
@@ -92,29 +98,21 @@ extension GigsPostsController:UITableViewDataSource,UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+        guard let gigCell = tableView.dequeueReusableCell(withIdentifier: "gigCell", for: indexPath) as? GigCell else {
+            fatalError("Could not downcast GigCell")
+        }
         if tableView == gigsTableView {
-            guard let gigCell = tableView.dequeueReusableCell(withIdentifier: "gigCell", for: indexPath) as? GigCell else {
-                fatalError("Could not downcast GigCell")
-            }
+
             let gig = gigs[indexPath.row]
             gigCell.configureFavGig(for: gig)
-          
-            return gigCell
         }
-        
         if tableView == postsTableView {
-            guard let gigCell = tableView.dequeueReusableCell(withIdentifier: "gigCell", for: indexPath) as? GigCell else {
-                fatalError("Could not downcast GigCell")
-            }
             let post = posts[indexPath.row]
             
             gigCell.configureGig(for: post)
-          
-            return gigCell
         }
         
-        return UITableViewCell()
+        return gigCell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150
