@@ -85,7 +85,7 @@ class EditProfController: UIViewController {
         }
         
         if user.photoURL == nil  {
-                     editImageView.image = UIImage(systemName: "person.fill")
+                     editImageView.image = UIImage(systemName: "person.crop.square")
                  } else {
                    editImageView.kf.setImage(with: user.photoURL)
         }

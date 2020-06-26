@@ -85,3 +85,40 @@ extension UIImage {
     }
   }
 }
+
+extension UITableViewCell {
+func addShadow() {
+    let radius: CGFloat = 10
+    contentView.layer.cornerRadius = radius
+    contentView.layer.borderWidth = 10
+    contentView.layer.borderColor = UIColor.clear.cgColor
+    contentView.layer.masksToBounds = true
+
+    layer.shadowColor = UIColor.black.cgColor
+    layer.shadowOffset = CGSize(width: 1.0, height: 4.0)
+    layer.shadowRadius = 4.0
+    layer.shadowOpacity = 0.8
+    layer.masksToBounds = false
+    layer.shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: radius).cgPath
+    layer.cornerRadius = radius
+}
+}
+
+extension UICollectionViewCell {
+    func colorShadow(for color: CGColor) {
+    let radius: CGFloat = 10
+    contentView.layer.cornerRadius = radius
+    contentView.layer.borderWidth = 1
+    contentView.layer.borderColor = UIColor.clear.cgColor
+    contentView.layer.masksToBounds = true
+
+    layer.shadowColor = color
+    layer.shadowOffset = CGSize(width: 1.0, height: 4.0)
+    layer.shadowRadius = 4.0
+    layer.shadowOpacity = 0.8
+    layer.masksToBounds = false
+    layer.shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: radius).cgPath
+    layer.cornerRadius = radius
+}
+    
+}

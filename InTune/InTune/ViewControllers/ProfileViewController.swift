@@ -46,10 +46,9 @@ class ProfileViewController: UIViewController {
     var isArtistFavorite = false {
         didSet {
             if isArtistFavorite {
-                likeArtistButton.setBackgroundImage(UIImage(systemName: "circle.fill"), for: .normal)
-                likeArtistButton.imageView?.tintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+                likeArtistButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
             } else {
-                likeArtistButton.setImage(UIImage(systemName: "music.note"), for: .normal)
+                likeArtistButton.setImage(UIImage(systemName: "star"), for: .normal)
             }
         }
     }
@@ -74,8 +73,11 @@ class ProfileViewController: UIViewController {
         tagsCollection.register(UINib(nibName: "TagCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "tagCell")
         postsCollectionView.delegate = self
         postsCollectionView.dataSource = self
+        postsCollectionView.layer.cornerRadius = 14
         postsCollectionView.register(UINib(nibName: "PostCell", bundle: nil), forCellWithReuseIdentifier: "postCell")
+        profileViewModel.setUpLikeButton(profileVC: self, button: likeArtistButton)
     }
+    
     
     private func loadUI() {
         guard let user = Auth.auth().currentUser else {
@@ -85,7 +87,6 @@ class ProfileViewController: UIViewController {
         guard let singleArtist = singleArtist else {return}
         getVideos(artist: singleArtist)
         profImage.contentMode = .scaleAspectFill
-        profImage.layer.cornerRadius = 60
         if user.photoURL == nil  {
             profImage.image = UIImage(systemName: "person.fill")
         } else {
@@ -170,6 +171,12 @@ profileViewModel.deleteFavArtist(profileVC: self, expArtist: expArtist, sender: 
 
 extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if collectionView == postsCollectionView {
+            cell.colorShadow(for: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1))
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         if collectionView == tagsCollection {
@@ -210,13 +217,11 @@ extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDel
             }
             if state == .prof {
                 let video = videos[indexPath.row]
-                print(video.urlString ?? "")
                 if let urlString = video.urlString {
                     cell.configureCell(vidURL: urlString)
                 }
             } else if state == .explore {
                 let video = videos[indexPath.row]
-                print(video.urlString ?? "")
                 if let urlString = video.urlString {
                     cell.configureCell(vidURL: urlString)
                 }

@@ -13,9 +13,10 @@ class ExploreArtistCell: UITableViewCell {
     public lazy var artistImage: UIImageView = {
         let image = UIImageView()
         image.tintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-        image.contentMode = .scaleAspectFit
-        image.layer.cornerRadius = 10
-        image.image = UIImage(systemName: "person.circle")
+        image.contentMode = .scaleAspectFill
+        image.clipsToBounds = true
+        image.layer.cornerRadius = 20
+        image.image = UIImage(systemName: "person.crop.square")
         return image
     }()
     
@@ -57,7 +58,7 @@ class ExploreArtistCell: UITableViewCell {
             artistImage.topAnchor.constraint(equalTo: topAnchor, constant: 8),
             artistImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
             artistImage.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
-            artistImage.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.2)
+            artistImage.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.28)
         ])
     }
     
@@ -93,7 +94,7 @@ class ExploreArtistCell: UITableViewCell {
             
             artistImage.kf.setImage(with: url)
         } else {
-            artistImage.image = UIImage(systemName: "person.circle")
+            artistImage.image = UIImage(systemName: "person.crop.square")
         }
     }
     

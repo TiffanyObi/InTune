@@ -14,11 +14,12 @@ class ChatsCell: UITableViewCell {
     @IBOutlet var userNameLabel: UILabel!
     @IBOutlet var messageLabel: UILabel!
     
-    func configureCell(for artist: Artist) {
-        //use profImage here
+    func configureCell(for artist: Artist, _ message: String) {
+        
         if let photoURL = artist.photoURL, let url = URL(string: photoURL) {
-        userImage.kf.setImage(with: url)
+            userImage.kf.setImage(with: url)
         }
         userNameLabel.text = artist.name
+        messageLabel.text = message
     }
 }
