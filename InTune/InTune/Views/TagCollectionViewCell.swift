@@ -9,7 +9,7 @@
 import UIKit
 
 protocol TagsCVDelegate:AnyObject {
-    func updateUserPreferences(_ isPicked:Bool,_ cell:TagCollectionViewCell,instrument:String,genre:String)
+    func updateUserPreferences(_ cell:TagCollectionViewCell,instrument:String,genre:String)
 }
 
 class TagCollectionViewCell: UICollectionViewCell {
@@ -19,10 +19,12 @@ class TagCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var checkButton: UIButton!
     
-    var isPicked: Bool = false
     var instrument = ""
     var genre = ""
     weak var tagsDelegate: TagsCVDelegate?
+    var isButtonPressed: (() -> Void)?
+    
+    static let cellIdentifier = "tagCell"
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -37,25 +39,42 @@ class TagCollectionViewCell: UICollectionViewCell {
         checkButton.layer.masksToBounds = true
     }
     
+    func configureWithModel(_ model: TagCollectionViewCellModel) {
+        tagTitle.text = model.name
+        instrument = model.name
+        
+        if model.isSelected {
+            checkButton.setImage(UIImage(systemName: "checkmark.rectangle.fill"), for: .normal)
+        } else {
+            checkButton.setImage(UIImage(systemName: "rectangle"), for: .normal)
+        }
+    }
+    
     
     @IBAction func checkButtonPressed(_ sender: UIButton) {
         checkButton.setImage(UIImage(systemName: "checkmark.rectangle.fill"), for: .normal)
         
-        isPicked = true
-        tagsDelegate?.updateUserPreferences(isPicked, self, instrument: instrument, genre: genre)
+        isButtonPressed?()
+        tagsDelegate?.updateUserPreferences(self, instrument: instrument, genre: genre)
     }
     
     func configureCell(_ tag:String) {
         
         if Tags.instrumentList.contains(tag){
-            tagTitle.backgroundColor = .black
-            tagTitle.textColor = .white
-            tagTitle.text = tag
-        } else if Tags.genreList.contains(tag){
-            tagTitle.backgroundColor = #colorLiteral(red: 0.3429883122, green: 0.02074946091, blue: 0.7374325991, alpha: 1)
-            tagTitle.textColor = .white
-            tagTitle.text = tag
-    }
+                tagTitle.backgroundColor = .black
+                tagTitle.textColor = .white
+                tagTitle.text = tag
+            } else if Tags.genreList.contains(tag){
+                tagTitle.backgroundColor = #colorLiteral(red: 0.3429883122, green: 0.02074946091, blue: 0.7374325991, alpha: 1)
+                tagTitle.textColor = .white
+                tagTitle.text = tag
+        }
 }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        checkButton.setImage(UIImage(systemName: "rectangle"), for: .normal)
+    }
 
 }

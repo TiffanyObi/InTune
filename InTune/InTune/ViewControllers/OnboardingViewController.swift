@@ -8,6 +8,11 @@
 
 import UIKit
 
+struct TagCollectionViewCellModel {
+    var name: String
+    var isSelected: Bool
+}
+
 class OnboardingViewController: UIViewController {
 
     let userExperienece = UserExperienceView()
@@ -219,11 +224,11 @@ extension OnboardingViewController: UICollectionViewDataSource,UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        if collectionView == tagsSelectionView.instrumentsCollectionView {
-            
         guard let tagCell = collectionView.dequeueReusableCell(withReuseIdentifier: "tagCell", for: indexPath) as? TagCollectionViewCell else {
-            fatalError("could not downcast to TagCollectionViewCell")
+            return UICollectionViewCell()
         }
+        
+        if collectionView == tagsSelectionView.instrumentsCollectionView {
             let instrument = instruments[indexPath.row]
             tagCell.tagTitle.backgroundColor = .black
             tagCell.layer.borderWidth = 4
@@ -236,9 +241,6 @@ extension OnboardingViewController: UICollectionViewDataSource,UICollectionViewD
             
     }
         if collectionView == tagsSelectionView.genresCollectionView{
-            guard let tagCell = collectionView.dequeueReusableCell(withReuseIdentifier: "tagCell", for: indexPath) as? TagCollectionViewCell else { fatalError("could not downcast to TagCollectionViewCell")
-            }
-            
             let genre = genres[indexPath.row]
             tagCell.tagTitle.backgroundColor = .black
             tagCell.layer.borderWidth = 4
@@ -246,11 +248,9 @@ extension OnboardingViewController: UICollectionViewDataSource,UICollectionViewD
             tagCell.tagsDelegate = self
             tagCell.genre = genre
             tagCell.tagTitle.text = genre
-            
-            return tagCell
         }
         
-        return TagCollectionViewCell()
+         return tagCell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -263,7 +263,7 @@ extension OnboardingViewController: UICollectionViewDataSource,UICollectionViewD
 }
 
 extension OnboardingViewController: TagsCVDelegate {
-    func updateUserPreferences(_ isPicked: Bool, _ cell: TagCollectionViewCell, instrument: String, genre: String) {
+    func updateUserPreferences(_ cell: TagCollectionViewCell, instrument: String, genre: String) {
         if !instrument.isEmpty {
             selectedInstruments.insert(instrument)
         }
@@ -271,9 +271,8 @@ extension OnboardingViewController: TagsCVDelegate {
         if !genre.isEmpty {
             selectedGenres.insert(genre)
         }
-        
-        
     }
+    
     
     
 }
