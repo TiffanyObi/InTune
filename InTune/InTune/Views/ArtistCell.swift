@@ -18,14 +18,13 @@ class ArtistCell: UICollectionViewCell {
     @IBOutlet var postStatusLabel: UILabel!
     
     let db = DatabaseService()
-    public func configureFavArtistCell(favArtist:FavoritedArtist){
+    public func configureFavArtistCell(favArtist: FavoritedArtist){
         if let url = favArtist.favPhotoURL, let imageURL = URL(string: url){
             imageView.kf.setImage(with: imageURL)
         }
         displayNameLabel.text = favArtist.favArtistName
         locationLabel.text = favArtist.favArtistLocation
         getArtistGigPosts(artist: favArtist)
-        
     }
     
     func getArtistGigPosts(artist:FavoritedArtist){
@@ -36,16 +35,25 @@ class ArtistCell: UICollectionViewCell {
                 
             case .success(let posts):
                 if let post = posts.first {
-        
-                if post.artistId == artist.favArtistID{
-                    self?.statusButton.setImage(UIImage(systemName: "circle.fill"), for: .normal)
-                    self?.postStatusLabel.text = "New Post: \(post.title)\""
-                }
-            }else {
-                      self?.postStatusLabel.text = "No recent posts"
+                    
+                    if post.artistId == artist.favArtistID{
+                        self?.statusButton.setImage(UIImage(systemName: "circle.fill"), for: .normal)
+                        self?.postStatusLabel.text = "New Post: \(post.title)\""
+                    }
+                } else {
+                    self?.postStatusLabel.text = "No recent posts"
                 }
             }
         }
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
         
+        imageView.image = nil
+        displayNameLabel.text = nil
+        locationLabel.text = nil
+        postStatusLabel.text = nil
+        statusButton.setImage(UIImage(systemName: "circle"), for: .normal)
     }
 }

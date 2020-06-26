@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="kTp-ca-vFH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="kTp-ca-vFH">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -237,9 +237,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="nuM-ak-I7E"/>
                     </view>
+                    <navigationItem key="navigationItem" id="KSl-2h-RhC"/>
                     <connections>
-                        <outlet property="gigsTableView" destination="Trm-D6-0Vo" id="KRS-FU-SJv"/>
-                        <outlet property="postsTableView" destination="x3c-yc-DEx" id="EHX-BE-YJp"/>
+                        <outlet property="gigsTableView" destination="Trm-D6-0Vo" id="bau-hR-7k5"/>
+                        <outlet property="postsTableView" destination="x3c-yc-DEx" id="H2v-7V-QFQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C2g-3z-RAk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -289,7 +290,7 @@
                         <barButtonItem key="leftBarButtonItem" title="Item" image="music.note.list" catalog="system" landscapeImage="music.note.list" largeContentSizeImage="music.note.list" springLoaded="YES" style="done" id="2yQ-Ag-Z8n">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
-                                <segue destination="fB8-BF-LAm" kind="showDetail" id="xEG-0K-WK3"/>
+                                <segue destination="fB8-BF-LAm" kind="presentation" id="8yk-6I-Whs"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="plus" catalog="system" id="fHV-uO-J2h">
@@ -437,10 +438,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="music.note.list" catalog="system" width="64" height="56"/>
-        <image name="person.3.fill" catalog="system" width="71" height="34"/>
-        <image name="photo.fill" catalog="system" width="64" height="46"/>
-        <image name="plus" catalog="system" width="64" height="56"/>
-        <image name="plus.circle.fill" catalog="system" width="64" height="60"/>
+        <image name="music.note.list" catalog="system" width="128" height="113"/>
+        <image name="person.3.fill" catalog="system" width="128" height="61"/>
+        <image name="photo.fill" catalog="system" width="128" height="93"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
+        <image name="plus.circle.fill" catalog="system" width="128" height="121"/>
     </resources>
 </document>
