@@ -34,6 +34,8 @@ class EditProfController: UIViewController {
         }
     }
     
+    var biotext:String?
+    
     private let storageService = StorageService()
     let db = DatabaseService()
     
@@ -98,7 +100,7 @@ class EditProfController: UIViewController {
     func updateInfo() {
         
 
-        guard let userName = usernameTextField.text, !userName.isEmpty, let selectedImage = editImageView.image, let bioText = bioTextView.text else {
+        guard let userName = usernameTextField.text, !userName.isEmpty, let selectedImage = editImageView.image, let bioText = biotext else {
             showAlert(title: "Error editing", message: "Please check all fields")
             return
         }
@@ -168,6 +170,11 @@ class EditProfController: UIViewController {
 }
 
 extension EditProfController: UITextFieldDelegate {
+    
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        guard !(textField.text?.isEmpty ?? true) else { return}
+        biotext = textField.text
+    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
