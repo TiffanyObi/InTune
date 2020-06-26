@@ -269,8 +269,9 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="bgu-aG-Lwt">
+                            <searchBar contentMode="redraw" searchBarStyle="prominent" placeholder="Search by location e.g New York" translatesAutoresizingMaskIntoConstraints="NO" id="bgu-aG-Lwt">
                                 <rect key="frame" x="0.0" y="88" width="414" height="56"/>
+                                <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                         </subviews>

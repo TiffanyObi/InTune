@@ -26,10 +26,10 @@ class GigViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpSearchBar()
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(UINib(nibName: "GigCell", bundle: nil), forCellReuseIdentifier: "gigCell")
-        searchBar.delegate = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -52,7 +52,13 @@ class GigViewController: UIViewController {
         listener?.remove()
     }
     
-    
+    private func setUpSearchBar() {
+        searchBar.layer.cornerRadius = 20
+        searchBar.layer.masksToBounds = true
+        searchBar.delegate = self
+        searchBar.searchTextField.backgroundColor = .white
+//        searchBar.searchBarShadow(for: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1))
+    }
     
     
 }
