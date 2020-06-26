@@ -17,15 +17,17 @@ class GigViewController: UIViewController {
     
     var listener: ListenerRegistration?
     
+    var db = DatabaseService()
+    
     var gigs = [GigsPost]() {
         didSet {
             tableView.reloadData()
         }
     }
     
-    var searchGig = "" {
+    var searchGigs = "" {
         didSet {
-        gigs = gigs.filter { $0.location.lowercased().contains(searchGig.lowercased())}
+        gigs = gigs.filter { $0.location.lowercased().contains(searchGigs.lowercased())}
         }
     }
     
@@ -63,6 +65,18 @@ class GigViewController: UIViewController {
         searchBar.delegate = self
         searchBar.searchTextField.backgroundColor = .white
 //        searchBar.searchBarShadow(for: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1))
+    }
+    
+    private func getGigs() {
+        db.fetchGigs { (result) in
+            
+            switch result {
+            case .failure(let error):
+                print("\(error.localizedDescription)")
+            case .success(let gigs):
+                self.gigs = gigs
+            }
+        }
     }
     
     
@@ -106,13 +120,25 @@ extension GigViewController: UITableViewDelegate {
 
 extension GigViewController: UISearchBarDelegate {
     
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = true
+    }
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
-        
         guard let searchText = searchBar.text else { return }
         
         if searchText.isEmpty {
-            
+            getGigs()
         }
+        
+        searchGigs = searchText
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = ""
+        getGigs()
+        searchBar.resignFirstResponder()
+        searchBar.showsCancelButton = false
     }
 }

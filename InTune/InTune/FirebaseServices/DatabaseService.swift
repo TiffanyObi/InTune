@@ -305,6 +305,18 @@ class DatabaseService {
         }
     }
     
+    public func fetchGigs(completion: @escaping (Result<[GigsPost], Error>) -> ()) {
+        
+        db.collection(DatabaseService.gigPosts).getDocuments { (snapshot, error) in
+            
+            if let error = error {
+                completion(.failure(error))
+            } else if let snapshot = snapshot {
+                let gigs = snapshot.documents.compactMap { GigsPost($0.data())}
+                completion(.success(gigs))
+            }
+        }
+    }
     
     public func favoriteGig(artist: Artist, gigPost: GigsPost, completion: @escaping (Result<Bool, Error>) -> ()) {
         
