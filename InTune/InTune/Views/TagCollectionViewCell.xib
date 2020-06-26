@@ -30,7 +30,7 @@
                             <constraint firstAttribute="width" constant="32" id="XLS-6L-h3i"/>
                             <constraint firstAttribute="height" constant="30" id="pD0-Qr-JBP"/>
                         </constraints>
-                        <color key="tintColor" red="0.38496607542037964" green="0.067388556897640228" blue="0.84022039175033569" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <state key="normal" image="rectangle" catalog="system"/>
                         <connections>
                             <action selector="checkButtonPressed:" destination="4QY-jG-0bI" eventType="touchUpInside" id="8fC-3l-ct7"/>

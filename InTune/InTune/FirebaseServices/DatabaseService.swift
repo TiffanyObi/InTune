@@ -61,7 +61,9 @@ class DatabaseService {
            }
        }
     
-    
+    public func fetchThread(sender: Artist, artist: Artist, completion: @escaping (Result<Bool, Error>)->()) {
+        let artistId = sender.artistId
+    }
     
     //update function for user experience ( isAnArtist == true )
     public func updateUserExperience(isAnArtist:Bool, completion: @escaping (Result<Bool,Error>) -> ()){
@@ -195,7 +197,7 @@ class DatabaseService {
     public func createFavArtist(artist:Artist, completion: @escaping (Result <Bool,Error>) -> ()){
         guard let user = Auth.auth().currentUser else { return }
         
-        db.collection(DatabaseService.artistsCollection).document(user.uid).collection(DatabaseService.favCollection).document(artist.artistId).setData(["favArtistName":artist.name,"favArtistID":artist.artistId, "favArtistLocation":artist.city,"favArtistTag":artist.tags, "favoritedDate":Timestamp(date: Date())]){ (error) in
+        db.collection(DatabaseService.artistsCollection).document(user.uid).collection(DatabaseService.favCollection).document(artist.artistId).setData(["favArtistName":artist.name,"favArtistID":artist.artistId, "favArtistLocation":artist.city,"favArtistTag":artist.tags, "favoritedDate":Timestamp(date: Date()), "favPhotoURL": artist.photoURL ?? "no url"]){ (error) in
             if let error = error {
                 completion(.failure(error))
             } else {

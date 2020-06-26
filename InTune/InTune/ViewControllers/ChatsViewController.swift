@@ -52,6 +52,7 @@ class ChatsViewController: UIViewController {
                     }
                 }
                 self.users = artist
+                
             }
         })
     }
@@ -91,7 +92,8 @@ extension ChatsViewController: UITableViewDataSource, UITableViewDelegate {
             fatalError("could not downcast to ChatsCell")
         }
         let contact = users[indexPath.row]
-        cell.configureCell(for: contact)
+        let message = messages.last?.content ?? "No messages available"
+        cell.configureCell(for: contact, message)
         return cell
     }
     

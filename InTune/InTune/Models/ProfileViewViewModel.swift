@@ -49,7 +49,6 @@ struct ProfileViewViewModel {
     func loadUI(profileVC:ProfileViewController, user:User, singleArtist:Artist){
         profileVC.getVideos(artist: singleArtist)
         profileVC.profImage.contentMode = .scaleAspectFill
-       profileVC.profImage.layer.cornerRadius = 60
         if user.photoURL == nil  {
             profileVC.profImage.image = UIImage(systemName: "person.fill")
         } else {
@@ -61,8 +60,8 @@ struct ProfileViewViewModel {
     }
     
     func loadExpUI(profileVC:ProfileViewController,artist:Artist){
-        if let url = artist.photoURL{
-            profileVC.profImage.kf.setImage(with: URL(string: url))
+        if let url = artist.photoURL, let imageURL = URL(string: url){
+            profileVC.profImage.kf.setImage(with: imageURL)
         }
         profileVC.likeArtistButton.isHidden = false
         profileVC.chatButton.isHidden = false

@@ -19,8 +19,9 @@ class ArtistCell: UICollectionViewCell {
     
     let db = DatabaseService()
     public func configureFavArtistCell(favArtist:FavoritedArtist){
-        imageView.image = UIImage(systemName: "photo.fill")
-//        statusButton.isHidden = true
+        if let url = favArtist.favPhotoURL, let imageURL = URL(string: url){
+            imageView.kf.setImage(with: imageURL)
+        }
         displayNameLabel.text = favArtist.favArtistName
         locationLabel.text = favArtist.favArtistLocation
         getArtistGigPosts(artist: favArtist)

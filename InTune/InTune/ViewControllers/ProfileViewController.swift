@@ -87,7 +87,6 @@ class ProfileViewController: UIViewController {
         guard let singleArtist = singleArtist else {return}
         getVideos(artist: singleArtist)
         profImage.contentMode = .scaleAspectFill
-        profImage.layer.cornerRadius = 60
         if user.photoURL == nil  {
             profImage.image = UIImage(systemName: "person.fill")
         } else {

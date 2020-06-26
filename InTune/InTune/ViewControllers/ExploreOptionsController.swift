@@ -122,7 +122,7 @@ extension ExploreOptionsController: UICollectionViewDelegateFlowLayout,UICollect
             let genre = genres[indexPath.row]
             tagCell.tagTitle.backgroundColor = .black
             tagCell.layer.borderWidth = 4
-            tagCell.layer.borderColor = #colorLiteral(red: 0.3867273331, green: 0.8825651407, blue: 0.8684034944, alpha: 1)
+            tagCell.layer.borderColor = #colorLiteral(red: 0.3429883122, green: 0.02074946091, blue: 0.7374325991, alpha: 1)
             tagCell.tagsDelegate = self
             tagCell.genre = genre
             tagCell.tagTitle.textColor = .white

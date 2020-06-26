@@ -155,12 +155,17 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.crop.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="6sk-M6-T0Y">
-                                <rect key="frame" x="20" y="108.5" width="124" height="123"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.crop.square" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="6sk-M6-T0Y" customClass="DesignableImageView" customModule="InTune" customModuleProvider="target">
+                                <rect key="frame" x="20" y="109" width="124" height="121.5"/>
                                 <color key="tintColor" red="0.31240576289999999" green="0.058394156019999997" blue="0.70837960030000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="124" id="auH-fd-gdJ"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="r5Z-zo-cvx">
                                 <rect key="frame" x="20" y="248" width="374" height="104"/>
@@ -184,7 +189,7 @@
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YWW-US-s2D">
                                                 <rect key="frame" x="16" y="17" width="274" height="18"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -227,6 +232,10 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="WzN-fK-OSW" firstAttribute="trailing" secondItem="CVX-XU-ReK" secondAttribute="trailing" id="3Fi-kx-FfJ"/>
+                                    <constraint firstItem="WzN-fK-OSW" firstAttribute="leading" secondItem="r5Z-zo-cvx" secondAttribute="leading" id="oBh-xU-KTR"/>
+                                </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9rV-Bc-jbx" customClass="DesignableButton" customModule="InTune" customModuleProvider="target">
                                 <rect key="frame" x="350" y="108.5" width="44" height="43"/>
@@ -436,7 +445,7 @@
         <image name="circle" catalog="system" width="128" height="121"/>
         <image name="gear" catalog="system" width="128" height="119"/>
         <image name="person.circle.fill" catalog="system" width="128" height="121"/>
-        <image name="person.crop.circle" catalog="system" width="128" height="121"/>
+        <image name="person.crop.square" catalog="system" width="128" height="114"/>
         <image name="star" catalog="system" width="128" height="116"/>
         <image name="video.badge.plus.fill" catalog="system" width="128" height="80"/>
         <image name="video.circle.fill" catalog="system" width="128" height="121"/>
