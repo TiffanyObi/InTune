@@ -14,7 +14,7 @@ class DisplayNameAndLocationView: UIView {
         let label = UILabel()
         label.numberOfLines = 0
         label.text = "Please create your unique username"
-        label.font = UIFont(name: "Didot", size: 30.0)
+        label.font = UIFont(name: "Thonburi", size: 28.0)
         label.backgroundColor = .white
         label.textAlignment = .center
         return label
@@ -22,15 +22,15 @@ class DisplayNameAndLocationView: UIView {
     
     public lazy var displayNameTextfield: UITextField = {
         let textfield = UITextField()
-        textfield.backgroundColor = .white
         textfield.placeholder = "Enter Display Name"
+        textfield.layer.cornerRadius = 10
         return textfield
     }()
     
     private lazy var locationLabel: UILabel = {
         let label = UILabel()
         label.text = "Where are you located?"
-         label.font = UIFont(name: "Didot", size: 30.0)
+         label.font = UIFont(name: "Thonburi", size: 28.0)
         label.backgroundColor = .white
         label.textAlignment = .center
         return label
@@ -83,6 +83,13 @@ class DisplayNameAndLocationView: UIView {
     
     func setUpDisplayNameTextField(){
         addSubview(displayNameTextfield)
+        
+        let bottomLayer = CALayer()
+        bottomLayer.frame = CGRect(x: 0, y: displayNameTextfield.frame.height - 2, width: displayNameTextfield.frame.width, height: 2)
+        bottomLayer.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        displayNameTextfield.borderStyle = .none
+        displayNameTextfield.layer.addSublayer(bottomLayer)
+        
         displayNameTextfield.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([

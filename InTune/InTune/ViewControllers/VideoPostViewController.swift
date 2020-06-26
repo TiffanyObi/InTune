@@ -34,7 +34,7 @@ class VideoPostViewController: UIViewController {
     }
     @IBAction func postButtonPressed(_ sender: UIButton) {
         //thumbnail updates to Profile vc cell
-        guard let user = Auth.auth().currentUser, let url = vidURL else { return }
+        guard let url = vidURL else { return }
         let urlString = url.absoluteString
         // we have the video url
         // 1. convert url to Data

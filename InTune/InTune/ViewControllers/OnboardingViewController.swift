@@ -40,7 +40,7 @@ class OnboardingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view = userExperienece
-        view.backgroundColor = .systemGroupedBackground
+        view.backgroundColor = .white
         setUpButtonOnExperienceView()
         setUpTextFeildFroDisplayNameView()
         setUpPickerViewForLocationView()
@@ -119,7 +119,7 @@ class OnboardingViewController: UIViewController {
     }
     private func navigateToDisplayNameAndCityView(){
         view = displayNameAndLocation
-        view.backgroundColor = .systemGroupedBackground
+        view.backgroundColor = .white
     }
     @objc private func nextButtonPressed(){
         
@@ -145,7 +145,7 @@ class OnboardingViewController: UIViewController {
     }
     private func navigateToTagsSelectionView(){
         view = tagsSelectionView
-        view.backgroundColor = .systemGroupedBackground
+        view.backgroundColor = .white
     }
     
     @objc private func doneButtonPressed(){

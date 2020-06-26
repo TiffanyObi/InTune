@@ -13,8 +13,8 @@ class TagsSelectionView: UIView {
     private lazy var instrumentsLabel : UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.text = "Which Instruments Do You Play?"
-        label.font = UIFont(name: "Didot", size: 25.0)
+        label.text = "Which instruments do you play?"
+        label.font = UIFont(name: "Thonburi", size: 26.0)
         label.backgroundColor = .white
         label.textAlignment = .center
         return label
@@ -30,8 +30,8 @@ class TagsSelectionView: UIView {
     private lazy var genresLabel : UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.text = "Which Genres Do You Favor?"
-        label.font = UIFont(name: "Didot", size: 25.0)
+        label.text = "Which genres do you favor?"
+        label.font = UIFont(name: "Thonburi", size: 26.0)
         label.backgroundColor = .white
         label.textAlignment = .center
         return label
@@ -47,8 +47,9 @@ class TagsSelectionView: UIView {
     
     public lazy var doneButton: UIButton = {
         let button = UIButton()
-        button.setTitle("D O N E", for: .normal)
-        button.backgroundColor = .systemTeal
+        button.setTitle("Done", for: .normal)
+        button.layer.cornerRadius = 10
+        button.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         button.titleLabel?.textColor = .white
         return button
     }()

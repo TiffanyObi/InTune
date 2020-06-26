@@ -190,7 +190,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Cy9-Uo-gez" firstAttribute="leading" secondItem="Tmx-DZ-p4G" secondAttribute="leading" constant="20" id="2ps-yx-Re8"/>
                             <constraint firstItem="b4g-MS-Df0" firstAttribute="leading" secondItem="Tmx-DZ-p4G" secondAttribute="leading" constant="20" id="3hM-mv-Php"/>
