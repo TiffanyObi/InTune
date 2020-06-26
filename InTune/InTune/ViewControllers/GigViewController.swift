@@ -23,6 +23,11 @@ class GigViewController: UIViewController {
         }
     }
     
+    var searchGig = "" {
+        didSet {
+        gigs = gigs.filter { $0.location.lowercased().contains(searchGig.lowercased())}
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -102,6 +107,12 @@ extension GigViewController: UITableViewDelegate {
 extension GigViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
         
+        guard let searchText = searchBar.text else { return }
+        
+        if searchText.isEmpty {
+            
+        }
     }
 }

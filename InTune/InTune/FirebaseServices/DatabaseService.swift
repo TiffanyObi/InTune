@@ -234,6 +234,20 @@ class DatabaseService {
         }
     }
     
+    public func fetchFavArtists(artist: Artist, completion: @escaping (Result<[FavoritedArtist], Error>) -> ()) {
+        
+        db.collection(DatabaseService.artistsCollection).document(artist.artistId).collection(DatabaseService.favCollection).getDocuments { (snapshot, error) in
+            
+            if let error = error {
+                completion(.failure(error))
+            } else if let snapshot = snapshot {
+                let favArtists = snapshot.documents.compactMap { FavoritedArtist($0.data())}
+                completion(.success(favArtists))
+            }
+        }
+        
+    }
+    
     public func deleteFavArtist(for artist: Artist, completion: @escaping (Result<Bool, Error>) -> ()) {
         guard let user = Auth.auth().currentUser else { return }
         

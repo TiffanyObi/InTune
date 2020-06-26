@@ -42,6 +42,8 @@ class LikedArtistsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        getArtist()
+        loadFavArtists()
         likedArtistView.likedArtistSearchBar.delegate = self
         setUpCollectionView()
         likedArtistView.likedArtistCollectionView.register(UINib(nibName: "ArtistCell", bundle: nil), forCellWithReuseIdentifier: "artistCell")
@@ -78,6 +80,35 @@ class LikedArtistsViewController: UIViewController {
         likedArtistView.likedArtistCollectionView.dataSource = self
         likedArtistView.likedArtistCollectionView.delegate = self
     }
+    
+    private func getArtist() {
+        guard let user = Auth.auth().currentUser else {
+            return
+        }
+        db.fetchArtist(userID: user.uid) { [weak self] (result) in
+            
+            switch result {
+            case .failure(let error):
+                print("\(error.localizedDescription)")
+            case .success(let artist):
+                self?.currentArtist = artist
+            }
+        }
+    }
+    
+    private func loadFavArtists() {
+        guard let artist = currentArtist else { return }
+        db.fetchFavArtists(artist: artist) { (result) in
+            
+            switch result {
+            case .failure(let error):
+                print("\(error.localizedDescription)")
+            case .success(let artists):
+                self.favs = artists
+            }
+        }
+    }
+    
     
     private func setUpEmptyView() {
         if favs.count == 0 {
@@ -131,12 +162,16 @@ extension LikedArtistsViewController: UICollectionViewDelegateFlowLayout {
 
 extension LikedArtistsViewController: UISearchBarDelegate {
     
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = true
+    }
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         guard let searchText = searchBar.text else { return }
         
         if searchText.isEmpty {
-            likedArtistView.likedArtistCollectionView.reloadData()
+            loadFavArtists()
         }
         
         searchQuery = searchText
@@ -144,7 +179,7 @@ extension LikedArtistsViewController: UISearchBarDelegate {
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = ""
-        likedArtistView.likedArtistCollectionView.reloadData()
+        loadFavArtists()
         searchBar.resignFirstResponder()
         searchBar.showsCancelButton = false
     }
