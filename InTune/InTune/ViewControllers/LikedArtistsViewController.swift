@@ -24,6 +24,16 @@ class LikedArtistsViewController: UIViewController {
         }
     }
     
+    let db = DatabaseService()
+    
+    var currentArtist: Artist?
+    
+    var searchQuery = "" {
+        didSet {
+            favs = favs.filter { $0.favArtistName.lowercased().contains(searchQuery.lowercased())}
+        }
+    }
+    
     override func loadView() {
         view = likedArtistView
     }
@@ -32,7 +42,6 @@ class LikedArtistsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        
         likedArtistView.likedArtistSearchBar.delegate = self
         setUpCollectionView()
         likedArtistView.likedArtistCollectionView.register(UINib(nibName: "ArtistCell", bundle: nil), forCellWithReuseIdentifier: "artistCell")
@@ -122,4 +131,21 @@ extension LikedArtistsViewController: UICollectionViewDelegateFlowLayout {
 
 extension LikedArtistsViewController: UISearchBarDelegate {
     
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        guard let searchText = searchBar.text else { return }
+        
+        if searchText.isEmpty {
+            likedArtistView.likedArtistCollectionView.reloadData()
+        }
+        
+        searchQuery = searchText
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = ""
+        likedArtistView.likedArtistCollectionView.reloadData()
+        searchBar.resignFirstResponder()
+        searchBar.showsCancelButton = false
+    }
 }
