@@ -20,6 +20,7 @@ class ChatsViewController: UIViewController {
     private let databaseService = DatabaseService()
     
     var currentUserBucket: Artist!
+    var otherUser: Artist?
     
     var users = [Artist]() {
         didSet {
@@ -29,7 +30,7 @@ class ChatsViewController: UIViewController {
         }
     }
     
-    var messages = [Message]() {
+    var messages = [Message?]() {
         didSet{
             DispatchQueue.main.async {
                 self.tableView.reloadData()
@@ -74,9 +75,48 @@ class ChatsViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(UINib(nibName: "ChatsCell", bundle: nil), forCellReuseIdentifier: "chatCell")
+        getCurrentArtist()
     }
     
     
+    private func getMessages(for artist: Artist) {
+        
+        databaseService.fetchThread(sender: currentUserBucket, artist: artist) { (result) in
+            
+            switch result {
+            case .failure(let error):
+                print("no msgs found: \(error.localizedDescription)")
+            case .success(let messages):
+                self.messages = messages
+            }
+        }
+    }
+    
+    private func getCurrentArtist() {
+        guard let current = Auth.auth().currentUser else { return }
+        databaseService.fetchArtist(userID: current.uid) { (result) in
+            
+            switch result {
+            case .failure(let error):
+                print("\(error.localizedDescription)")
+            case .success(let artist):
+                self.currentUserBucket = artist
+            }
+        }
+    }
+    
+    private func getOtherArtist(for artist: Artist) {
+        databaseService.fetchArtist(userID: artist.artistId) { (result) in
+            
+            switch result {
+            case .failure(let error):
+                print("\(error.localizedDescription)")
+            case .success(let artist):
+                self.otherUser = artist
+            }
+        }
+
+    }
     
 }
 
@@ -92,7 +132,9 @@ extension ChatsViewController: UITableViewDataSource, UITableViewDelegate {
             fatalError("could not downcast to ChatsCell")
         }
         let contact = users[indexPath.row]
-        let message = messages.last?.content ?? "No messages available"
+        getMessages(for: currentUserBucket)
+        getOtherArtist(for: contact)
+        let message = messages.last??.content ?? "No messages available"
         cell.configureCell(for: contact, message)
         return cell
     }

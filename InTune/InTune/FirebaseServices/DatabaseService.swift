@@ -61,8 +61,18 @@ class DatabaseService {
            }
        }
     
-    public func fetchThread(sender: Artist, artist: Artist, completion: @escaping (Result<Bool, Error>)->()) {
+    public func fetchThread(sender: Artist, artist: Artist, completion: @escaping (Result<[Message?], Error>)->()) {
         let artistId = sender.artistId
+        
+        db.collection(DatabaseService.artistsCollection).document(artistId).collection(DatabaseService.threadCollection).getDocuments { (snapshot, error) in
+            
+            if let error = error {
+                completion(.failure(error))
+            } else if let snapshot = snapshot {
+                let messages = snapshot.documents.map { Message(dictionary: $0.data()) }
+                completion(.success(messages))
+            }
+        }
     }
     
     //update function for user experience ( isAnArtist == true )
