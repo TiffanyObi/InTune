@@ -30,7 +30,9 @@ class ChatsViewController: UIViewController {
         }
     }
     
-    var messages = [Message?]() {
+    var message: Message?
+    
+    var messages = [Message]() {
         didSet{
             DispatchQueue.main.async {
                 self.tableView.reloadData()
@@ -62,12 +64,7 @@ class ChatsViewController: UIViewController {
         listener?.remove()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(true)
-    }
-    
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Chats"
@@ -76,26 +73,27 @@ class ChatsViewController: UIViewController {
         tableView.delegate = self
         tableView.register(UINib(nibName: "ChatsCell", bundle: nil), forCellReuseIdentifier: "chatCell")
         getCurrentArtist()
+       
     }
     
     
-    private func getMessages(for artist: Artist) {
-        
-        databaseService.fetchThread(sender: currentUserBucket, artist: artist) { (result) in
-            
-            switch result {
-            case .failure(let error):
-                print("no msgs found: \(error.localizedDescription)")
-            case .success(let messages):
-                self.messages = messages
-            }
-        }
-    }
+//    private func getMessages(for artist: Artist) {
+//
+//        databaseService.fetchThread(sender: currentUserBucket, artist: artist) { (result) in
+//
+//            switch result {
+//            case .failure(let error):
+//                print("no msgs found: \(error.localizedDescription)")
+//            case .success(let messages):
+//                self.messages = messages
+//            }
+//        }
+//    }
     
     private func getCurrentArtist() {
         guard let current = Auth.auth().currentUser else { return }
         databaseService.fetchArtist(userID: current.uid) { (result) in
-            
+
             switch result {
             case .failure(let error):
                 print("\(error.localizedDescription)")
@@ -104,19 +102,19 @@ class ChatsViewController: UIViewController {
             }
         }
     }
-    
-    private func getOtherArtist(for artist: Artist) {
-        databaseService.fetchArtist(userID: artist.artistId) { (result) in
-            
-            switch result {
-            case .failure(let error):
-                print("\(error.localizedDescription)")
-            case .success(let artist):
-                self.otherUser = artist
-            }
-        }
-
-    }
+//
+//    private func getOtherArtist(for artist: Artist) {
+//        databaseService.fetchArtist(userID: artist.artistId) { (result) in
+//
+//            switch result {
+//            case .failure(let error):
+//                print("\(error.localizedDescription)")
+//            case .success(let artist):
+//                self.otherUser = artist
+//            }
+//        }
+//
+//    }
     
 }
 
@@ -132,23 +130,30 @@ extension ChatsViewController: UITableViewDataSource, UITableViewDelegate {
             fatalError("could not downcast to ChatsCell")
         }
         let contact = users[indexPath.row]
-        getMessages(for: currentUserBucket)
-        getOtherArtist(for: contact)
-        let message = messages.last??.content ?? "No messages available"
+//        guard let message = message else { return }
+        let message = messages.last
         cell.configureCell(for: contact, message)
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let chatVC = ChatViewController()
-        let userName = users[indexPath.row]
-        chatVC.artist = userName
-//        chatVC.user2Name = userName.name
-//        chatVC.user2UID = userName.artistId
+        let user = users[indexPath.row]
+        chatVC.artist = user
+        chatVC.delegate = self
         navigationController?.pushViewController(chatVC, animated: true)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 140
     }
+}
+
+extension ChatsViewController: MessageThreadDelegate {
+    func getLastMessage(_ vc: ChatViewController, _ messages: [Message]) {
+        self.messages = messages
+        print(messages)
+    }
+    
+    
 }
