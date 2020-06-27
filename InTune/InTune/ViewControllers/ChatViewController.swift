@@ -12,8 +12,15 @@ import InputBarAccessoryView
 import Firebase
 import FirebaseFirestore
 
+protocol MessageThreadDelegate: AnyObject {
+    func getLastMessage(_ vc: ChatViewController, _ messages: [Message])
+    
+}
+
+
 class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate, MessagesDataSource, MessagesLayoutDelegate, MessagesDisplayDelegate {
 
+    weak var delegate: MessageThreadDelegate?
 //   var currentUser: User = Auth.auth().currentUser!
     
     var currentUser: Artist?
@@ -212,6 +219,7 @@ class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate,
                      //messages.append(message)
                      insertNewMessage(message)
                      save(message)
+                     delegate?.getLastMessage(self, messages)
        
                      inputBar.inputTextView.text = ""
                      messagesCollectionView.reloadData()
@@ -241,10 +249,10 @@ class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate,
            func avatarSize(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGSize {
                return .zero
            }
-           
+
            // MARK: - MessagesDisplayDelegate
            func backgroundColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
-               return isFromCurrentSender(message: message) ? .blue: .lightGray
+            return isFromCurrentSender(message: message) ? #colorLiteral(red: 0.5122948289, green: 0.9550222754, blue: 0.9884085059, alpha: 1) : #colorLiteral(red: 0.3236978054, green: 0.1063579395, blue: 0.574860394, alpha: 1)
            }
 
    //        func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
