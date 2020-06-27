@@ -131,8 +131,8 @@ extension ChatsViewController: UITableViewDataSource, UITableViewDelegate {
         }
         let contact = users[indexPath.row]
 //        guard let message = message else { return }
-        let message = messages.last
-        cell.configureCell(for: contact, message)
+//        let message = messages.last
+        cell.configureCell(for: contact)
         return cell
     }
     
