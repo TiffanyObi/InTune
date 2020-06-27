@@ -29,4 +29,13 @@ class GigCell: UITableViewCell {
         locationLabel.text = "Location: \(gig.location)"
     }
     
+    override func prepareForReuse() {
+           super.prepareForReuse()
+           
+        gigImageView.image = UIImage(named: "newPost")
+        titleLabel.text = nil
+        dateLabel.text = nil
+        locationLabel.text = nil
+    }
+    
 }

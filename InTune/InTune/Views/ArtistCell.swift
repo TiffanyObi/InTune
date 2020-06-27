@@ -50,10 +50,10 @@ class ArtistCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         
-        imageView.image = nil
+        imageView.image = UIImage(systemName: "person.crop.square")
         displayNameLabel.text = nil
         locationLabel.text = nil
-        postStatusLabel.text = nil
+        postStatusLabel.text = "No recent posts"
         statusButton.setImage(UIImage(systemName: "circle"), for: .normal)
     }
 }
