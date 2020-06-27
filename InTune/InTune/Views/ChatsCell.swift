@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class ChatsCell: UITableViewCell {
     
@@ -14,15 +15,22 @@ class ChatsCell: UITableViewCell {
     @IBOutlet var userNameLabel: UILabel!
     @IBOutlet var messageLabel: UILabel!
     
-    func configureCell(for artist: Artist, _ message: Message?) {
-        
-        if let photoURL = artist.photoURL, let url = URL(string: photoURL) {
+    func configureCell(for artist: Artist) {
+        if let urlString = artist.photoURL, let url = URL(string: urlString) {
             userImage.kf.setImage(with: url)
+        } else {
+            userImage.image = UIImage(systemName: "person.crop.square")
         }
         userNameLabel.text = artist.name
+        messageLabel.text = "Location: \(artist.city)"
+//        if let message = message {
+//            messageLabel.text = "\(message.content)"
+//        }
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
         
-        if let message = message {
-            messageLabel.text = message.content
-        } 
+        
     }
 }

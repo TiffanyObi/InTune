@@ -41,7 +41,7 @@ class DatabaseService {
     
     public func createThread(artist: Artist, completion: @escaping (Result<Bool, Error>)->()) {
         guard let artistId = Auth.auth().currentUser?.uid else {return}
-        db.collection(DatabaseService.artistsCollection).document(artistId).collection(DatabaseService.threadCollection).document(artist.artistId).setData(["name" : artist.name, "artistId": artist.artistId]) { (error) in
+        db.collection(DatabaseService.artistsCollection).document(artistId).collection(DatabaseService.threadCollection).document(artist.artistId).setData(["name" : artist.name, "artistId": artist.artistId, "photoURL": artist.photoURL ?? "no photo url", "city": artist.city]) { (error) in
             if let error = error {
                 completion(.failure(error))
             } else {
@@ -52,7 +52,7 @@ class DatabaseService {
     
     public func createThread2(sender: Artist, artist: Artist, completion: @escaping (Result<Bool, Error>)->()) {
          let artistId = sender.artistId
-        db.collection(DatabaseService.artistsCollection).document(artistId).collection(DatabaseService.threadCollection).document(Auth.auth().currentUser!.uid).setData(["name" : artist.name, "artistId": artist.artistId]) { (error) in
+        db.collection(DatabaseService.artistsCollection).document(artistId).collection(DatabaseService.threadCollection).document(Auth.auth().currentUser!.uid).setData(["name" : artist.name, "artistId": artist.artistId, "photoURL": artist.photoURL ?? "no photo url", "city": artist.city]) { (error) in
                if let error = error {
                    completion(.failure(error))
                } else {
