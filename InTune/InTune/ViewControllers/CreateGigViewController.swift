@@ -56,6 +56,8 @@ class CreateGigViewController: UIViewController {
         return gesture
     }()
     
+    var textCount: Int?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -86,7 +88,7 @@ class CreateGigViewController: UIViewController {
         databaseService.fetchArtist(userID: currentUser.uid) { [weak self](result) in
             switch result {
             case .failure(let error):
-               self?.showAlert(title: "Error", message: "\(error.localizedDescription)")
+                self?.showAlert(title: "Error", message: "\(error.localizedDescription)")
             case .success(let artist):
                 self?.currentUser = artist
             }
@@ -99,8 +101,14 @@ class CreateGigViewController: UIViewController {
     }
     
     @objc private func resignTextfield(_ gesture: UITapGestureRecognizer){
+        guard let count = textCount else { return }
+        guard count < 20 else {
+                self.showAlert(title: "Limit Reached", message: "Title cannot be longer than 20 characters")
+            return
+        }
+        titleTextField.resignFirstResponder()
         priceTextField.resignFirstResponder()
-       }
+    }
     
     @objc private func showPhotoOptions() {
         let alertController = UIAlertController(title: "Choose Photo Option", message: nil, preferredStyle: .actionSheet)
@@ -130,7 +138,7 @@ class CreateGigViewController: UIViewController {
         print("submit button pressed")
         //let selectedImage = selectedImage,
         guard let title = titleTextField.text,
-            !title.isEmpty,
+            !title.isEmpty, let count = textCount,
             let price = priceTextField.text,
             !price.isEmpty,
             let date = date,
@@ -138,13 +146,17 @@ class CreateGigViewController: UIViewController {
             !description.isEmpty,
             let location = location,
             !location.isEmpty,
-        let artist = currentUser else {
+            let artist = currentUser else {
                 showAlert(title: "Missing Fields", message: "Please review that all fields are complete")
                 return
         }
-//        let dateString = date.description
         
-//        let resizedImage = UIImage.resizeImage(originalImage: selectedImage, rect: gigImageView.bounds)
+        guard count < 20 else {
+                self.showAlert(title: "Limit Reached", message: "Title cannot be longer than 20 characters")
+            return
+        }
+        
+        //        let resizedImage = UIImage.resizeImage(originalImage: selectedImage, rect: gigImageView.bounds)
         
         databaseService.createGig(artist: artist, title: title, description: description, price: Int(price) ?? 0, eventDate: date.string(with: "MMM d, h:mm a"), createdDate: Timestamp(), location: location) { [weak self] (result) in
             
@@ -152,7 +164,7 @@ class CreateGigViewController: UIViewController {
             case .failure(let error):
                 self?.showAlert(title: "Posting Error", message: "Could not post gig: \(error.localizedDescription)")
             case .success:
-//                self.uploadPhoto(photo: resizedImage, documentId: documentID)
+                //                self.uploadPhoto(photo: resizedImage, documentId: documentID)
                 print("posted gig")
                 
                 self?.databaseService.createGigPost(artist: artist, title: title, description: description, price: Int(price) ?? 0, eventDate: date.string(with: "MMM d, h:mm a"), createdDate: Timestamp(), location: self?.location ?? "no city") { (result) in
@@ -213,11 +225,11 @@ extension CreateGigViewController: UIPickerViewDataSource, UIPickerViewDelegate 
         return 1
     }
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-       
+        
         return states.count
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-       
+        
         return states[row]
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
@@ -228,10 +240,22 @@ extension CreateGigViewController: UIPickerViewDataSource, UIPickerViewDelegate 
 }
 
 extension CreateGigViewController: UITextFieldDelegate {
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        guard let text = textField.text else { return }
+        textCount = text.count
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        guard let text = textField.text else { return false }
+        if text.count > 20 {
+            self.showAlert(title: "Limit Reached", message: "Title cannot be longer than 20 characters")
+        }
         textField.resignFirstResponder()
         return true
     }
+    
+    
     
 }
 

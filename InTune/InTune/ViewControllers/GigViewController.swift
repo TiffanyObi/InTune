@@ -31,6 +31,12 @@ class GigViewController: UIViewController {
         }
     }
     
+    private lazy var tapGesture: UITapGestureRecognizer = {
+           let gesture = UITapGestureRecognizer()
+           gesture.addTarget(self, action: #selector(resignTextfield(_:)))
+           return gesture
+       }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpSearchBar()
@@ -79,6 +85,9 @@ class GigViewController: UIViewController {
         }
     }
     
+    @objc private func resignTextfield(_ gesture: UITapGestureRecognizer){
+        searchBar.resignFirstResponder()
+       }
     
 }
 
