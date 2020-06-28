@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1le-8U-xG4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1le-8U-xG4">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -42,8 +42,8 @@
                                 <rect key="frame" x="147" y="691" width="120" height="44"/>
                                 <color key="backgroundColor" red="0.52265780019999997" green="0.87158946699999995" blue="0.86406644870000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="0r6-Z4-jrf"/>
-                                    <constraint firstAttribute="width" constant="120" id="Pku-cm-cje"/>
+                                    <constraint firstAttribute="width" constant="120" id="i4U-U4-PkC"/>
+                                    <constraint firstAttribute="height" constant="44" id="sff-zR-qYI"/>
                                 </constraints>
                                 <state key="normal" title="Done">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -52,23 +52,6 @@
                                     <action selector="doneButtonPressed:" destination="dgH-lO-nSv" eventType="touchUpInside" id="RSI-1d-ubR"/>
                                 </connections>
                             </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="G1d-gz-jWI">
-                                <rect key="frame" x="144" y="445" width="250" height="166"/>
-                                <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter username here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="M5u-Ol-Fmr">
-                                        <rect key="frame" x="0.0" y="0.0" width="250" height="34"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Enter bio here" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="GGU-hN-rOg">
-                                        <rect key="frame" x="0.0" y="54" width="250" height="112"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                    </textView>
-                                </subviews>
-                            </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="oDK-qS-dUf">
                                 <rect key="frame" x="20" y="448" width="78.5" height="61"/>
                                 <subviews>
@@ -86,21 +69,39 @@
                                     </label>
                                 </subviews>
                             </stackView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter username here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="M5u-Ol-Fmr">
+                                <rect key="frame" x="134" y="431" width="250" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="GGU-hN-rOg">
+                                <rect key="frame" x="134" y="491" width="250" height="112"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="112" id="A8B-YN-Ih4"/>
+                                    <constraint firstAttribute="width" constant="250" id="VER-9s-rE2"/>
+                                </constraints>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="oDK-qS-dUf" firstAttribute="top" secondItem="S2Y-Xt-HF3" secondAttribute="top" constant="360" id="2l9-jz-yAb"/>
+                            <constraint firstItem="S2Y-Xt-HF3" firstAttribute="trailing" secondItem="M5u-Ol-Fmr" secondAttribute="trailing" constant="30" id="3m4-Ge-hBj"/>
                             <constraint firstItem="55s-Sr-8JT" firstAttribute="top" secondItem="Sen-vV-TpP" secondAttribute="bottom" constant="20" id="5wh-RH-qzy"/>
                             <constraint firstItem="Sen-vV-TpP" firstAttribute="top" secondItem="S2Y-Xt-HF3" secondAttribute="top" constant="60" id="Ajh-Ca-J6v"/>
-                            <constraint firstItem="G1d-gz-jWI" firstAttribute="top" secondItem="55s-Sr-8JT" secondAttribute="bottom" constant="60" id="B8B-I4-umx"/>
                             <constraint firstItem="Sen-vV-TpP" firstAttribute="leading" secondItem="S2Y-Xt-HF3" secondAttribute="leading" constant="120" id="CP1-dM-eSt"/>
-                            <constraint firstItem="YQU-ls-SC3" firstAttribute="centerX" secondItem="suh-Lp-W5e" secondAttribute="centerX" id="E8b-1l-ULi"/>
-                            <constraint firstItem="S2Y-Xt-HF3" firstAttribute="trailing" secondItem="G1d-gz-jWI" secondAttribute="trailing" constant="20" id="Mpi-ID-phL"/>
+                            <constraint firstItem="M5u-Ol-Fmr" firstAttribute="leading" secondItem="oDK-qS-dUf" secondAttribute="trailing" constant="35.5" id="LGZ-0f-4yh"/>
+                            <constraint firstItem="S2Y-Xt-HF3" firstAttribute="trailing" secondItem="GGU-hN-rOg" secondAttribute="trailing" constant="30" id="NV2-SA-r7b"/>
+                            <constraint firstItem="GGU-hN-rOg" firstAttribute="top" secondItem="M5u-Ol-Fmr" secondAttribute="bottom" constant="26" id="Oj1-fo-3lm"/>
                             <constraint firstItem="oDK-qS-dUf" firstAttribute="leading" secondItem="S2Y-Xt-HF3" secondAttribute="leading" constant="20" id="PuI-Zd-FWy"/>
                             <constraint firstItem="55s-Sr-8JT" firstAttribute="centerX" secondItem="suh-Lp-W5e" secondAttribute="centerX" id="Ufl-pB-3fF"/>
+                            <constraint firstItem="YQU-ls-SC3" firstAttribute="top" secondItem="GGU-hN-rOg" secondAttribute="bottom" constant="88" id="VwF-5Y-LIT"/>
                             <constraint firstItem="S2Y-Xt-HF3" firstAttribute="trailing" secondItem="Sen-vV-TpP" secondAttribute="trailing" constant="120" id="ZIz-qi-iaX"/>
-                            <constraint firstItem="G1d-gz-jWI" firstAttribute="centerX" secondItem="suh-Lp-W5e" secondAttribute="centerX" multiplier="1.3" id="ni4-ud-6D9"/>
-                            <constraint firstItem="YQU-ls-SC3" firstAttribute="top" secondItem="G1d-gz-jWI" secondAttribute="bottom" constant="80" id="yYp-pu-hpK"/>
+                            <constraint firstItem="YQU-ls-SC3" firstAttribute="centerX" secondItem="suh-Lp-W5e" secondAttribute="centerX" id="Zd7-1F-fqU"/>
+                            <constraint firstItem="M5u-Ol-Fmr" firstAttribute="top" secondItem="55s-Sr-8JT" secondAttribute="bottom" constant="46" id="cX4-FY-6IS"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="S2Y-Xt-HF3"/>
                     </view>
@@ -442,12 +443,12 @@
         </scene>
     </scenes>
     <resources>
-        <image name="circle" catalog="system" width="128" height="121"/>
-        <image name="gear" catalog="system" width="128" height="119"/>
-        <image name="person.circle.fill" catalog="system" width="128" height="121"/>
-        <image name="person.crop.square" catalog="system" width="128" height="114"/>
-        <image name="star" catalog="system" width="128" height="116"/>
-        <image name="video.badge.plus.fill" catalog="system" width="128" height="80"/>
-        <image name="video.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="circle" catalog="system" width="64" height="60"/>
+        <image name="gear" catalog="system" width="64" height="58"/>
+        <image name="person.circle.fill" catalog="system" width="64" height="60"/>
+        <image name="person.crop.square" catalog="system" width="64" height="56"/>
+        <image name="star" catalog="system" width="64" height="58"/>
+        <image name="video.badge.plus.fill" catalog="system" width="64" height="40"/>
+        <image name="video.circle.fill" catalog="system" width="64" height="60"/>
     </resources>
 </document>

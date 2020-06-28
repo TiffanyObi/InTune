@@ -19,6 +19,7 @@ struct Artist {
   let isAnArtist:Bool
   let createdDate: Timestamp
   let photoURL:String?
+  let bioText:String?
   let preferences:[String]?
   let isReported: Bool
 //  let videos: [Video]? // videos cannot be retrieved liked this. because firebase wont read the model . must refactor
@@ -33,6 +34,7 @@ extension Artist {
     self.createdDate = dictionary["createdDate"] as? Timestamp ?? Timestamp(date: Date())
     self.email = dictionary["email"] as? String ?? "no email"
     self.photoURL = dictionary["photoURL"] as? String ?? "no URL"
+    self.bioText = dictionary["bioText"] as? String ?? "no bioText"
     self.preferences = dictionary["preferences"] as? [String] ?? [""]
     self.isReported = dictionary["isReported"] as? Bool ?? false
 //    self.videos = dictionary["videos"] as? [String] ?? ["no video urls"]
