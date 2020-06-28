@@ -19,6 +19,7 @@ class GigsDetailViewController: UIViewController {
     @IBOutlet var postedByLabel: UILabel!
     @IBOutlet var priceLabel: UILabel!
     @IBOutlet var descriptionText: UITextView!
+    @IBOutlet var messageButton: UIButton!
     
     var gigPost: GigsPost?
     

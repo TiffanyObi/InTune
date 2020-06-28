@@ -31,6 +31,12 @@ class GigViewController: UIViewController {
         }
     }
     
+    private lazy var tapGesture: UITapGestureRecognizer = {
+           let gesture = UITapGestureRecognizer()
+           gesture.addTarget(self, action: #selector(resignTextfield(_:)))
+           return gesture
+       }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpSearchBar()
@@ -79,6 +85,9 @@ class GigViewController: UIViewController {
         }
     }
     
+    @objc private func resignTextfield(_ gesture: UITapGestureRecognizer){
+        searchBar.resignFirstResponder()
+       }
     
 }
 
@@ -116,6 +125,37 @@ extension GigViewController: UITableViewDelegate {
         detailVC.gigPost = gig
         navigationController?.pushViewController(detailVC, animated: true)
     }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        guard let id = Auth.auth().currentUser?.uid else { return false }
+        let gig = gigs[indexPath.row]
+        if gig.artistId != id {
+            return false
+        } else {
+            return true
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        guard let id = Auth.auth().currentUser?.uid else { return }
+        
+            if editingStyle == .delete {
+                let gig = gigs[indexPath.row]
+                db.deleteGig(artistId: id, gig: gig) { [weak self] (result) in
+                    
+                    switch result {
+                    case .failure(let error):
+                        DispatchQueue.main.async {
+                            self?.showAlert(title: "Deletion Error", message: "\(error.localizedDescription)")
+                        }
+                    case .success:
+                        DispatchQueue.main.async {
+                            self?.showAlert(title: "Deleted", message: "\(gig.title) was deleted")
+                        }
+                    }
+                }
+            }
+        }
 }
 
 extension GigViewController: UISearchBarDelegate {

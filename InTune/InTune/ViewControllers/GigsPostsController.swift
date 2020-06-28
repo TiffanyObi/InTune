@@ -22,6 +22,7 @@ class GigsPostsController: UIViewController {
         }
     }
     
+    var db = DatabaseService()
     var gigListener: ListenerRegistration?
     var postsListener: ListenerRegistration?
     
@@ -116,5 +117,34 @@ extension GigsPostsController:UITableViewDataSource,UITableViewDelegate{
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if tableView == postsTableView {
+            return true
+        }
+        return false
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+    guard let id = Auth.auth().currentUser?.uid else { return }
+    
+        if editingStyle == .delete {
+            let post = posts[indexPath.row]
+            db.deleteGig(artistId: id, gig: post) { [weak self] (result) in
+                
+                switch result {
+                case .failure(let error):
+                    DispatchQueue.main.async {
+                        self?.showAlert(title: "Deletion Error", message: "\(error.localizedDescription)")
+                    }
+                case .success:
+                    DispatchQueue.main.async {
+                        self?.showAlert(title: "Deleted", message: "\(post.title) was deleted")
+                    }
+                }
+            }
+        }
     }
 }

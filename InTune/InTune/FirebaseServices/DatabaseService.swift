@@ -345,6 +345,18 @@ class DatabaseService {
         
     }
     
+    public func deleteGig(artistId: String, gig: GigsPost, completion: @escaping (Result<Bool, Error>) -> ()) {
+        
+        db.collection(DatabaseService.artistsCollection).document(artistId).collection(DatabaseService.gigPosts).document(gig.gigId).delete { (error) in
+            
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(true))
+            }
+        }
+    }
+    
     public func getLikedArtistGigPosts(likedArtist:FavoritedArtist, completion:@escaping (Result<[GigsPost],Error>) -> ()){
         db.collection(DatabaseService.artistsCollection).document(likedArtist.favArtistID).collection(DatabaseService.gigPosts).getDocuments { (snapshot, error) in
             if let error = error {
@@ -356,7 +368,6 @@ class DatabaseService {
             }
         }
     }
-    
 
     public func reportArtist(for artist: Artist, completion: @escaping (Result<Bool, Error>) -> ()) {
         db.collection(DatabaseService.artistsCollection).document(artist.artistId).updateData(["isReported":true]){ (error) in

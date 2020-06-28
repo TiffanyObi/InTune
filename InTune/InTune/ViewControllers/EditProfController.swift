@@ -100,9 +100,8 @@ class EditProfController: UIViewController {
     }
     
     func updateInfo() {
-        
-        
         guard let userName = userName, !userName.isEmpty, let selectedImage = editImageView.image, let bioText = biotext else {
+
             showAlert(title: "Error editing", message: "Please check all fields")
             return
         }
