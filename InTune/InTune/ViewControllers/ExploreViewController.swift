@@ -78,6 +78,7 @@ class ExploreViewController: UIViewController {
                 self?.tags = artist.preferences ?? ["no tags"]
             }
         })
+        fetchArtists()
     }
 
 

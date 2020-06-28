@@ -99,7 +99,7 @@ class EditProfController: UIViewController {
     func updateInfo() {
         
 
-        guard let userName = usernameTextField.text, !userName.isEmpty, let selectedImage = editImageView.image, let bioText = biotext else {
+        guard let userName = usernameTextField.text, !userName.isEmpty, let selectedImage = editImageView.image else {
             showAlert(title: "Error editing", message: "Please check all fields")
             return
         }
