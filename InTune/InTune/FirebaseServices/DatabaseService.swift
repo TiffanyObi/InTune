@@ -169,6 +169,18 @@ class DatabaseService {
         }
     }
     
+    
+    public func updateBio(bioText:String, completion:@escaping (Result<Bool,Error>) ->()){
+        guard let user = Auth.auth().currentUser else { return}
+        db.collection(DatabaseService.artistsCollection).document(user.uid).updateData(["bioText":bioText]) { (error) in
+            
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(true))
+            }
+        }
+    }
     public func updateUserPhoto(_ user: User, photoURL:String, completion:@escaping (Result<Bool,Error>) -> ()){
         db.collection(DatabaseService.artistsCollection).document(user.uid).updateData(["photoURL":photoURL]) { (error) in
             if let error = error {

@@ -92,6 +92,11 @@ class ProfileViewController: UIViewController {
         } else {
             profImage.kf.setImage(with: user.photoURL)
         }
+        if singleArtist.bioText == nil {
+            bioLabel.text = "Under Construction"
+        } else {
+            bioLabel.text = singleArtist.bioText
+        }
         locationLabel.text = user.email
         likeArtistButton.isHidden = true
         chatButton.isHidden = true

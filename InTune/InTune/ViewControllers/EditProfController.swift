@@ -35,18 +35,20 @@ class EditProfController: UIViewController {
     }
     
     var biotext:String?
+    var userName:String?
     
     private let storageService = StorageService()
     let db = DatabaseService()
     
     var artist: Artist?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setUpUI()
-        usernameTextField.delegate = self
         updateUI()
+        usernameTextField.delegate = self
+        bioTextView.delegate = self
         getArtist()
     }
     
@@ -61,7 +63,7 @@ class EditProfController: UIViewController {
     func getArtist(){
         
         guard let userID = Auth.auth().currentUser?.uid else {return}
-    
+        
         db.fetchArtist(userID: userID) { [weak self](result) in
             switch result {
             case.failure(let error):
@@ -70,6 +72,7 @@ class EditProfController: UIViewController {
             case.success(let artist1):
                 self?.artist = artist1
                 self?.usernameTextField.text = artist1.name
+                self?.bioTextView.text = artist1.bioText ?? "Enter Bio Here"
                 
             }
         }
@@ -87,19 +90,18 @@ class EditProfController: UIViewController {
         }
         
         if user.photoURL == nil  {
-                     editImageView.image = UIImage(systemName: "person.crop.square")
-                 } else {
-                   editImageView.kf.setImage(with: user.photoURL)
+            editImageView.image = UIImage(systemName: "person.crop.square")
+        } else {
+            editImageView.kf.setImage(with: user.photoURL)
         }
         
-        usernameTextField.text = "\(user.displayName ?? "")"
+        userName = "\(user.displayName ?? "")"
         
     }
     
     func updateInfo() {
-        
+        guard let userName = userName, !userName.isEmpty, let selectedImage = editImageView.image, let bioText = biotext else {
 
-        guard let userName = usernameTextField.text, !userName.isEmpty, let selectedImage = editImageView.image else {
             showAlert(title: "Error editing", message: "Please check all fields")
             return
         }
@@ -118,7 +120,7 @@ class EditProfController: UIViewController {
             case .failure(let error):
                 self?.showAlert(title: "Error updating name", message: "\(error.localizedDescription)")
             case .success:
-                self?.showAlert(title: "Success", message: "Updated name")
+                print(true)
             }
         }
         
@@ -158,7 +160,21 @@ class EditProfController: UIViewController {
                 
             }
         }
+        
+        
+        db.updateBio(bioText: bioText) { [weak self](result) in
+            switch result {
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    self?.showAlert(title: "Error updating bio", message: error.localizedDescription)
+                }
+                
+            case .success:
+                print(true)
+            }
+        }
     }
+    
     
     
     @IBAction func doneButtonPressed(_ sender: UIButton) {
@@ -172,11 +188,21 @@ extension EditProfController: UITextFieldDelegate {
     
     func textFieldDidChangeSelection(_ textField: UITextField) {
         guard !(textField.text?.isEmpty ?? true) else { return}
-        biotext = textField.text
+        userName = textField.text
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+        return true
+    }
+}
+
+extension EditProfController: UITextViewDelegate {
+    func textViewDidChangeSelection(_ textView: UITextView) {
+        biotext = textView.text
+    }
+    func textViewShouldReturn(_ textView: UITextField) -> Bool {
+        textView.resignFirstResponder()
         return true
     }
 }
