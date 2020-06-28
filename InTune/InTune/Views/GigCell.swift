@@ -12,6 +12,7 @@ import Kingfisher
 class GigCell: UITableViewCell {
     
     @IBOutlet weak var gigImageView: UIImageView!
+    @IBOutlet weak var postedBy: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
@@ -19,12 +20,14 @@ class GigCell: UITableViewCell {
     
     public func configureGig(for gig: GigsPost) {
         titleLabel.text = gig.title.uppercased()
+        postedBy.text = "Posted by: \(gig.artistName)"
         dateLabel.text = "Date: \(gig.eventDate)"
         locationLabel.text = "Location: \(gig.location)"
     }
     
     public func configureFavGig(for gig: FavGig) {
         titleLabel.text = gig.title.uppercased()
+        postedBy.text = "Posted by: \(gig.artistName)"
         dateLabel.text = "Date: \(gig.eventDate)"
         locationLabel.text = "Location: \(gig.location)"
     }

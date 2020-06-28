@@ -28,14 +28,14 @@
                         </userDefinedRuntimeAttributes>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H7h-fg-unS">
-                        <rect key="frame" x="155" y="114" width="224" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <rect key="frame" x="155" y="117" width="224" height="18"/>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="buv-Yd-VvF">
-                        <rect key="frame" x="155" y="77" width="244" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <rect key="frame" x="155" y="91" width="244" height="18"/>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -45,19 +45,28 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Posted by" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QSd-P3-IQt">
+                        <rect key="frame" x="155" y="57" width="272" height="16"/>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
+                    <constraint firstItem="QSd-P3-IQt" firstAttribute="trailing" secondItem="DUp-XJ-TkO" secondAttribute="trailingMargin" constant="8" id="4vV-sj-6dk"/>
                     <constraint firstAttribute="trailing" secondItem="yb0-xy-fZh" secondAttribute="trailing" constant="20" id="5kH-ZD-4xN"/>
                     <constraint firstAttribute="trailing" secondItem="H7h-fg-unS" secondAttribute="trailing" constant="60" id="AvL-ke-9Jf"/>
+                    <constraint firstItem="QSd-P3-IQt" firstAttribute="top" secondItem="yb0-xy-fZh" secondAttribute="bottom" constant="8" id="B7Q-9T-8wm"/>
                     <constraint firstItem="OC0-GS-rPb" firstAttribute="leading" secondItem="DUp-XJ-TkO" secondAttribute="leading" constant="20" id="Etg-qf-yTJ"/>
                     <constraint firstAttribute="bottom" secondItem="OC0-GS-rPb" secondAttribute="bottom" constant="20" id="L0e-Vb-hVH"/>
-                    <constraint firstItem="H7h-fg-unS" firstAttribute="top" secondItem="buv-Yd-VvF" secondAttribute="bottom" constant="16" id="QvE-4o-tOf"/>
+                    <constraint firstItem="H7h-fg-unS" firstAttribute="top" secondItem="buv-Yd-VvF" secondAttribute="bottom" constant="8" id="QvE-4o-tOf"/>
                     <constraint firstItem="yb0-xy-fZh" firstAttribute="leading" secondItem="OC0-GS-rPb" secondAttribute="trailing" constant="8" id="VP6-jK-Wdh"/>
                     <constraint firstItem="yb0-xy-fZh" firstAttribute="top" secondItem="DUp-XJ-TkO" secondAttribute="top" constant="28" id="bbR-V6-Oae"/>
                     <constraint firstItem="buv-Yd-VvF" firstAttribute="leading" secondItem="OC0-GS-rPb" secondAttribute="trailing" constant="8" id="cCb-ax-sHJ"/>
                     <constraint firstAttribute="trailingMargin" secondItem="buv-Yd-VvF" secondAttribute="trailing" constant="20" id="g2F-N7-wp8"/>
                     <constraint firstAttribute="bottom" secondItem="H7h-fg-unS" secondAttribute="bottom" constant="32" id="j4F-0h-WSx"/>
+                    <constraint firstItem="QSd-P3-IQt" firstAttribute="leading" secondItem="OC0-GS-rPb" secondAttribute="trailing" constant="8" id="vUf-z3-zdj"/>
                     <constraint firstItem="H7h-fg-unS" firstAttribute="leading" secondItem="OC0-GS-rPb" secondAttribute="trailing" constant="8" id="vab-29-yWg"/>
                     <constraint firstItem="OC0-GS-rPb" firstAttribute="top" secondItem="DUp-XJ-TkO" secondAttribute="top" constant="20" id="w0d-YM-Ui9"/>
                 </constraints>
@@ -66,9 +75,10 @@
                 <outlet property="dateLabel" destination="buv-Yd-VvF" id="LtS-Eu-Dch"/>
                 <outlet property="gigImageView" destination="OC0-GS-rPb" id="r7X-yL-fd2"/>
                 <outlet property="locationLabel" destination="H7h-fg-unS" id="qWy-tp-42j"/>
+                <outlet property="postedBy" destination="QSd-P3-IQt" id="Oaw-LJ-kcu"/>
                 <outlet property="titleLabel" destination="yb0-xy-fZh" id="BWI-PW-xch"/>
             </connections>
-            <point key="canvasLocation" x="129.71014492753625" y="144.97767857142856"/>
+            <point key="canvasLocation" x="129.71014492753625" y="143.63839285714286"/>
         </tableViewCell>
     </objects>
     <resources>
