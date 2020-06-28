@@ -128,11 +128,11 @@ extension GigsPostsController:UITableViewDataSource,UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
-    guard let id = Auth.auth().currentUser?.uid else { return }
+        guard let id = Auth.auth().currentUser?.uid else {return}
     
         if editingStyle == .delete {
             let post = posts[indexPath.row]
-            db.deleteGig(artistId: id, gig: post) { [weak self] (result) in
+            db.deleteGigPost(artistId: id, gig: post) { [weak self] (result) in
                 
                 switch result {
                 case .failure(let error):

@@ -41,10 +41,15 @@ class PostCollectionViewDelegate: NSObject,UICollectionViewDelegate, UICollectio
 
 class FeaturedArtistCVDelegate: NSObject,UICollectionViewDelegate, UICollectionViewDataSource {
     
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+           
+               cell.colorShadow(for: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1))
+       }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let maxSize: CGSize = UIScreen.main.bounds.size
-        let itemWidth: CGFloat = maxSize.width * 0.60
-        let itemHeight: CGFloat = maxSize.height * 0.60
+        let itemWidth: CGFloat = maxSize.width * 0.28
+        let itemHeight: CGFloat = maxSize.height * 0.28
         return CGSize(width: itemWidth, height: itemHeight)
     }
     
@@ -57,7 +62,7 @@ class FeaturedArtistCVDelegate: NSObject,UICollectionViewDelegate, UICollectionV
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "featuredArtist", for: indexPath) as? FeaturedArtistCell else {
             fatalError("could not conform to FeaturedArtistCell")
         }
-        
+        cell.clipsToBounds = true
         return cell
     }
     

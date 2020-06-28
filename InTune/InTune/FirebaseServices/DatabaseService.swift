@@ -292,7 +292,7 @@ class DatabaseService {
         
         let documentRef = db.collection(DatabaseService.gigPosts).document()
         
-        db.collection(DatabaseService.gigPosts).document(documentRef.documentID).setData(["title" : title, "artistName": artist.name, "artistId": artist.artistId, "descript": description, "price": price, "eventDate": eventDate, "createdDate": Timestamp(), "location": location]) { (error) in
+        db.collection(DatabaseService.gigPosts).document(documentRef.documentID).setData(["title" : title, "artistName": artist.name, "artistId": artist.artistId, "descript": description, "price": price, "eventDate": eventDate, "createdDate": Timestamp(), "location": location,"gigId":documentRef.documentID]) { (error) in
             if let error = error {
                 completion(.failure(error))
             } else {
@@ -306,7 +306,7 @@ class DatabaseService {
         
         let documentRef = db.collection(DatabaseService.gigPosts).document()
         
-        db.collection(DatabaseService.artistsCollection).document(artist.artistId).collection(DatabaseService.gigPosts).document(documentRef.documentID).setData(["title" : title, "artistName": artist.name, "artistId": artist.artistId, "descript": description, "price": price, "eventDate": eventDate, "createdDate": Timestamp(), "location": artist.city]) { (error) in
+        db.collection(DatabaseService.artistsCollection).document(artist.artistId).collection(DatabaseService.gigPosts).document(documentRef.documentID).setData(["title" : title, "artistName": artist.name, "artistId": artist.artistId, "descript": description, "price": price, "eventDate": eventDate, "createdDate": Timestamp(), "location": artist.city,"gigId":documentRef.documentID]) { (error) in
             
             if let error = error {
                 completion(.failure(error))
@@ -345,7 +345,19 @@ class DatabaseService {
         
     }
     
-    public func deleteGig(artistId: String, gig: GigsPost, completion: @escaping (Result<Bool, Error>) -> ()) {
+    public func deleteGig(gig: GigsPost, completion: @escaping (Result<Bool, Error>) -> ()) {
+      
+        db.collection(DatabaseService.gigPosts).document(gig.gigId).delete { (error) in
+            
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(true))
+            }
+        }
+    }
+    
+    public func deleteGigPost(artistId: String, gig: GigsPost, completion: @escaping (Result<Bool, Error>) -> ()) {
         
         db.collection(DatabaseService.artistsCollection).document(artistId).collection(DatabaseService.gigPosts).document(gig.gigId).delete { (error) in
             
