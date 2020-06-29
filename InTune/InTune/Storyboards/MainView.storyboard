@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1le-8U-xG4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1le-8U-xG4">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -324,8 +324,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="video.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="dAC-V6-Dv7" customClass="DesignableImageView" customModule="InTune" customModuleProvider="target">
-                                <rect key="frame" x="40" y="100.5" width="334" height="285"/>
-                                <color key="backgroundColor" red="0.38496607542037964" green="0.067388556897640228" blue="0.84022039175033569" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="40" y="247" width="334" height="285"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" red="0.52265780019999997" green="0.87158946699999995" blue="0.86406644870000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="286" id="aPa-fB-TA4"/>
@@ -337,7 +337,7 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g0g-3i-ucc" customClass="DesignableButton" customModule="InTune" customModuleProvider="target">
-                                <rect key="frame" x="147" y="466" width="120" height="44"/>
+                                <rect key="frame" x="147" y="612.5" width="120" height="44"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="imB-wT-y8g"/>
@@ -358,28 +358,64 @@
                                     <action selector="postButtonPressed:" destination="FSs-2j-PIi" eventType="touchUpInside" id="iY2-ia-RyN"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uYI-qP-saV">
-                                <rect key="frame" x="171.5" y="40" width="71" height="30"/>
-                                <state key="normal" title="Add Video"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uYI-qP-saV" customClass="DesignableButton" customModule="InTune" customModuleProvider="target">
+                                <rect key="frame" x="157" y="162.5" width="100" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="c5U-B0-SPn"/>
+                                    <constraint firstAttribute="width" constant="100" id="mmk-1G-K7W"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Thonburi-Bold" family="Thonburi" pointSize="16"/>
+                                <state key="normal" title="Add Video">
+                                    <color key="titleColor" red="0.31240576289999999" green="0.058394156019999997" blue="0.70837960030000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="addPostButtonPressed:" destination="FSs-2j-PIi" eventType="touchUpInside" id="vYv-ea-2de"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Post a video!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gu4-d4-ard">
+                                <rect key="frame" x="20" y="58" width="374" height="26.5"/>
+                                <fontDescription key="fontDescription" name="Thonburi-Bold" family="Thonburi" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please choose a video that is 40 seconds or less." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bn8-X8-0EW">
+                                <rect key="frame" x="20" y="104.5" width="374" height="18"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="bn8-X8-0EW" firstAttribute="top" secondItem="gu4-d4-ard" secondAttribute="bottom" constant="20" id="1P0-3b-YLV"/>
+                            <constraint firstItem="gu4-d4-ard" firstAttribute="centerX" secondItem="40B-Fd-4bx" secondAttribute="centerX" id="2XS-BL-1gk"/>
                             <constraint firstItem="dAC-V6-Dv7" firstAttribute="centerX" secondItem="40B-Fd-4bx" secondAttribute="centerX" id="2eI-Wm-pgn"/>
-                            <constraint firstItem="dAC-V6-Dv7" firstAttribute="top" secondItem="Pku-Je-f9j" secondAttribute="top" constant="100" id="GC0-bQ-YpA"/>
+                            <constraint firstItem="gu4-d4-ard" firstAttribute="top" secondItem="Pku-Je-f9j" secondAttribute="top" constant="58" id="4qr-jt-Rug"/>
+                            <constraint firstItem="Pku-Je-f9j" firstAttribute="trailing" secondItem="bn8-X8-0EW" secondAttribute="trailing" constant="20" id="75e-L4-asg"/>
+                            <constraint firstItem="dAC-V6-Dv7" firstAttribute="top" secondItem="uYI-qP-saV" secondAttribute="bottom" constant="40" id="BXm-h1-sO4"/>
+                            <constraint firstItem="uYI-qP-saV" firstAttribute="top" secondItem="bn8-X8-0EW" secondAttribute="bottom" constant="40" id="Hj4-4O-qUT"/>
                             <constraint firstItem="dAC-V6-Dv7" firstAttribute="leading" secondItem="Pku-Je-f9j" secondAttribute="leading" constant="40" id="MH8-tQ-hiX"/>
+                            <constraint firstItem="Pku-Je-f9j" firstAttribute="trailing" secondItem="gu4-d4-ard" secondAttribute="trailing" constant="20" id="OXz-Aq-2hC"/>
                             <constraint firstItem="g0g-3i-ucc" firstAttribute="top" secondItem="dAC-V6-Dv7" secondAttribute="bottom" constant="80" id="OlX-PL-Y4O"/>
                             <constraint firstItem="g0g-3i-ucc" firstAttribute="centerX" secondItem="40B-Fd-4bx" secondAttribute="centerX" id="Q0S-Hy-AmZ"/>
                             <constraint firstItem="uYI-qP-saV" firstAttribute="centerX" secondItem="40B-Fd-4bx" secondAttribute="centerX" id="WUG-gE-Og2"/>
                             <constraint firstItem="Pku-Je-f9j" firstAttribute="trailing" secondItem="dAC-V6-Dv7" secondAttribute="trailing" constant="40" id="XjH-1h-yBV"/>
-                            <constraint firstItem="uYI-qP-saV" firstAttribute="top" secondItem="Pku-Je-f9j" secondAttribute="top" constant="40" id="aEV-03-Loq"/>
+                            <constraint firstItem="bn8-X8-0EW" firstAttribute="leading" secondItem="Pku-Je-f9j" secondAttribute="leading" constant="20" id="dB2-Qu-6Sb"/>
+                            <constraint firstItem="gu4-d4-ard" firstAttribute="leading" secondItem="Pku-Je-f9j" secondAttribute="leading" constant="20" id="g2U-mR-eJ1"/>
+                            <constraint firstItem="bn8-X8-0EW" firstAttribute="centerX" secondItem="40B-Fd-4bx" secondAttribute="centerX" id="nBy-52-xFY"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Pku-Je-f9j"/>
                     </view>
                     <connections>
+                        <outlet property="addVidButton" destination="uYI-qP-saV" id="ycH-1d-vsZ"/>
                         <outlet property="videoView" destination="dAC-V6-Dv7" id="UbS-AV-Rqg"/>
                     </connections>
                 </viewController>
@@ -443,12 +479,12 @@
         </scene>
     </scenes>
     <resources>
-        <image name="circle" catalog="system" width="64" height="60"/>
-        <image name="gear" catalog="system" width="64" height="58"/>
-        <image name="person.circle.fill" catalog="system" width="64" height="60"/>
-        <image name="person.crop.square" catalog="system" width="64" height="56"/>
-        <image name="star" catalog="system" width="64" height="58"/>
-        <image name="video.badge.plus.fill" catalog="system" width="64" height="40"/>
-        <image name="video.circle.fill" catalog="system" width="64" height="60"/>
+        <image name="circle" catalog="system" width="128" height="121"/>
+        <image name="gear" catalog="system" width="128" height="119"/>
+        <image name="person.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="person.crop.square" catalog="system" width="128" height="114"/>
+        <image name="star" catalog="system" width="128" height="116"/>
+        <image name="video.badge.plus.fill" catalog="system" width="128" height="80"/>
+        <image name="video.circle.fill" catalog="system" width="128" height="121"/>
     </resources>
 </document>

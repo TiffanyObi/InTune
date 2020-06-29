@@ -14,7 +14,9 @@ import FirebaseStorage
 
 class VideoPostViewController: UIViewController {
     
-    @IBOutlet var videoView: DesignableImageView!
+    @IBOutlet private var videoView: DesignableImageView!
+    @IBOutlet private var addVidButton: UIButton!
+    
     private lazy var imagePickerController: UIImagePickerController = {
         let mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)
         let pickerController = UIImagePickerController()
@@ -27,7 +29,10 @@ class VideoPostViewController: UIViewController {
     private var artist: Artist?
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        addVidButton.shadowLayer(addVidButton)
     }
+    
     @IBAction func addPostButtonPressed(_ sender: UIButton) {
         imagePickerController.sourceType = .photoLibrary
         present(imagePickerController, animated: true)
