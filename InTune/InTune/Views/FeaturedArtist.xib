@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,17 +16,30 @@
                 <rect key="frame" x="0.0" y="0.0" width="214" height="145"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Ut1-6f-37U">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="siY-GF-5mq">
+                        <rect key="frame" x="8" y="8" width="198" height="128"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    </view>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Ut1-6f-37U" customClass="DesignableImageView" customModule="InTune" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.5" width="214" height="144"/>
                         <color key="tintColor" red="0.52265780019999997" green="0.87158946699999995" blue="0.86406644870000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="40"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </imageView>
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="Ut1-6f-37U" secondAttribute="trailing" id="KSi-Lu-HuS"/>
-                    <constraint firstItem="Ut1-6f-37U" firstAttribute="leading" secondItem="kRb-tZ-fpC" secondAttribute="leading" id="TuD-UN-ZZp"/>
+                    <constraint firstItem="siY-GF-5mq" firstAttribute="leading" secondItem="kRb-tZ-fpC" secondAttribute="leading" constant="8" id="IyV-0t-eUp"/>
+                    <constraint firstItem="siY-GF-5mq" firstAttribute="top" secondItem="kRb-tZ-fpC" secondAttribute="top" constant="8" id="SCd-Yq-zsQ"/>
+                    <constraint firstAttribute="trailing" secondItem="siY-GF-5mq" secondAttribute="trailing" constant="8" id="Uvw-ha-eNY"/>
                     <constraint firstAttribute="bottom" secondItem="Ut1-6f-37U" secondAttribute="bottom" id="ZBh-8Z-Xau"/>
                     <constraint firstItem="Ut1-6f-37U" firstAttribute="top" secondItem="kRb-tZ-fpC" secondAttribute="top" id="g56-6I-JN6"/>
+                    <constraint firstItem="Ut1-6f-37U" firstAttribute="leading" secondItem="kRb-tZ-fpC" secondAttribute="leading" id="hsg-fS-y5q"/>
+                    <constraint firstAttribute="trailing" secondItem="Ut1-6f-37U" secondAttribute="trailing" id="oHD-lr-eYL"/>
+                    <constraint firstAttribute="bottom" secondItem="siY-GF-5mq" secondAttribute="bottom" constant="9" id="ouR-7f-5Mb"/>
                 </constraints>
             </collectionViewCellContentView>
             <size key="customSize" width="214" height="145"/>
@@ -37,6 +50,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="person.circle.fill" catalog="system" width="64" height="60"/>
+        <image name="person.circle.fill" catalog="system" width="128" height="121"/>
     </resources>
 </document>

@@ -55,7 +55,7 @@ class ExploreViewController: UIViewController {
         expEdit.prefDelegate = self
     }
     
-    let height: CGFloat = 120
+    let height: CGFloat = 140
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -213,9 +213,7 @@ extension ExploreViewController: UICollectionViewDelegateFlowLayout, UICollectio
                 fatalError("could not downcast to FeaturedArtistCell")
             }
             let featuredArtist = featuredArtists[indexPath.row]
-            
             featureCell.configureCell(artistPhotoURL: featuredArtist.photoURL )
-            featureCell.imageView.layer.cornerRadius = 38
             
             return featureCell
         }

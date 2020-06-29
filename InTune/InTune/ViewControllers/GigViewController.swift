@@ -40,6 +40,7 @@ class GigViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.tintColor = .black
+        tableView.separatorColor = .clear
         setUpSearchBar()
         tableView.dataSource = self
         tableView.delegate = self
@@ -111,12 +112,8 @@ extension GigViewController: UITableViewDataSource {
 
 extension GigViewController: UITableViewDelegate {
     
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cell.addShadow()
-    }
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 180
+        return 160
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

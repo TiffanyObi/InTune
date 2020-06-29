@@ -16,7 +16,7 @@ class GigCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
-    
+    @IBOutlet weak var containerView: UIView!
     
     public func configureGig(for gig: GigsPost) {
         titleLabel.text = gig.title.uppercased()
@@ -39,6 +39,13 @@ class GigCell: UITableViewCell {
         titleLabel.text = nil
         dateLabel.text = nil
         locationLabel.text = nil
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        containerView.viewShadow()
+        containerView.layer.cornerRadius = 10
     }
     
 }
