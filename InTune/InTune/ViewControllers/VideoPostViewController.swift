@@ -46,7 +46,6 @@ class VideoPostViewController: UIViewController {
         guard let videoData = try? Data(contentsOf: url) else {
             return
         }
-//        let post = ArtistPost(artistName: "", artistId: user.uid, postId: "1234", postedDate: Timestamp(date: Date()), postURL: urlString)
         let vid = Video(title: "", urlString: urlString)
         db.createVideoPosts(post: vid) { (result) in
             switch result {
@@ -55,8 +54,6 @@ class VideoPostViewController: UIViewController {
             case .success:
                 // 2. update Data to Firebase Storage
                 StorageService().uploadVideoData(videoData) { (result) in
-                    // TODO: handle cases
-//                    self.dismiss(animated: true, completion: nil)
                 }
                 self.dismiss(animated: true, completion: nil)
             }

@@ -10,7 +10,7 @@ import Foundation
 import Firebase
 
 //renamed to user
-struct Artist {
+struct Artist:Hashable {
   let name: String
   let email:String
   let artistId: String
