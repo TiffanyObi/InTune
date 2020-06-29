@@ -31,7 +31,14 @@ class ExploreViewController: UIViewController {
     
     
     var currentUser: Artist?
-    var featuredArtistPlaceHolderImages = ["singer","tatMan","tLuke","trio","violinist"]
+    var featuredArtists = [Artist](){
+        didSet{
+            DispatchQueue.main.async {
+                self.featuredArtistCV.reloadData()
+                print(self.featuredArtists.count)
+            }
+        }
+    }
     
     var tags = [String]() {
         didSet {
@@ -42,11 +49,11 @@ class ExploreViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-            guard let expEdit = segue.destination as? ExploreOptionsController else {
-                fatalError("could not segue to ExploreOptionsController ")
-            }
-        expEdit.prefDelegate = self
+        guard let expEdit = segue.destination as? ExploreOptionsController else {
+            fatalError("could not segue to ExploreOptionsController ")
         }
+        expEdit.prefDelegate = self
+    }
     
     let height: CGFloat = 120
     
@@ -68,7 +75,7 @@ class ExploreViewController: UIViewController {
         
         listener = Firestore.firestore().collection(DatabaseService.artistsCollection).document(currentUser1.artistId).addSnapshotListener({ [weak self](snapshot, error) in
             if let error = error {
-
+                
                 DispatchQueue.main.async {
                     self?.showAlert(title: "Firestore Error (Cannot Retrieve Data)", message: "\(error.localizedDescription)")
                 }
@@ -78,10 +85,10 @@ class ExploreViewController: UIViewController {
                 self?.tags = artist.preferences ?? ["no tags"]
             }
         })
-        fetchArtists()
+        
     }
-
-
+    
+    
     private func setUpCVs() {
         tagsCollectionView.delegate = self
         tagsCollectionView.dataSource = self
@@ -98,11 +105,11 @@ class ExploreViewController: UIViewController {
         db.getArtists { [weak self] (result) in
             switch result {
             case .failure(let error):
-               self?.showAlert(title: "Error", message: "\(error.localizedDescription)")
+                self?.showAlert(title: "Error", message: "\(error.localizedDescription)")
                 
             case.success(let artists1):
                 self?.artists = artists1
-                print(self?.artists.count ?? 0)
+                self?.featuredArtists = (self?.helperFuncForFeaturedArtist(artists1: artists1))!
             }
         }
     }
@@ -127,8 +134,18 @@ class ExploreViewController: UIViewController {
         fetchArtists()
     }
     
+    func helperFuncForFeaturedArtist(artists1:[Artist]) -> [Artist]{
+        var featureSet = Set<Artist>()
+       
+        while featureSet.count < 5 {
+            guard let randomArtist = artists1.randomElement() else {return [Artist]()}
+            featureSet.insert(randomArtist)
+           
+        }
+        
+        return Array(featureSet)
+    }
 }
-
 
 extension ExploreViewController: UITableViewDataSource, UITableViewDelegate {
     
@@ -173,35 +190,35 @@ extension ExploreViewController: UICollectionViewDelegateFlowLayout, UICollectio
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         if collectionView == tagsCollectionView {
-        return currentUser?.preferences?.count ?? 2
-    }
+            return currentUser?.preferences?.count ?? 2
+        }
         if collectionView == featuredArtistCV {
-            return featuredArtistPlaceHolderImages.count
+            return featuredArtists.count
         }
         return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
+        
         if collectionView == tagsCollectionView {
-        
-        guard let tagCell = collectionView.dequeueReusableCell(withReuseIdentifier: "tagCell", for: indexPath) as? TagCollectionViewCell else {
-            fatalError("could not downcast to TagCollectionViewCell")
+            
+            guard let tagCell = collectionView.dequeueReusableCell(withReuseIdentifier: "tagCell", for: indexPath) as? TagCollectionViewCell else {
+                fatalError("could not downcast to TagCollectionViewCell")
+            }
+            
+            let tag = currentUser?.preferences?[indexPath.row] ?? "no tag"
+            tagCell.configureCell(tag)
+            
+            
+            return tagCell
         }
-      
-        let tag = currentUser?.preferences?[indexPath.row] ?? "no tag"
-             tagCell.configureCell(tag)
-        
-
-        return tagCell
-    }
         if collectionView == featuredArtistCV {
             guard let featureCell = collectionView.dequeueReusableCell(withReuseIdentifier: "featuredArtist", for: indexPath) as? FeaturedArtistCell else {
                 fatalError("could not downcast to FeaturedArtistCell")
             }
-            let placeHolder = featuredArtistPlaceHolderImages[indexPath.row]
+            let featuredArtist = featuredArtists[indexPath.row]
             
-            featureCell.configureCell(placeHolderImage: placeHolder)
+            featureCell.configureCell(artistPhotoURL: featuredArtist.photoURL )
             featureCell.imageView.layer.cornerRadius = 38
             
             return featureCell
@@ -233,13 +250,13 @@ extension ExploreViewController: UpdateUsertPref {
             case .success(let filteredArtist):
                 for pref in self.currentUser?.preferences ?? ["none"] {
                     
-                self.artists = filteredArtist.filter{ $0.tags.contains(pref) }
+                    self.artists = filteredArtist.filter{ $0.tags.contains(pref) }
                 }
             }
         }
-
+        
     }
 }
-    
-    
+
+
 
