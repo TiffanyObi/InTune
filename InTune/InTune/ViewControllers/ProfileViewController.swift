@@ -67,6 +67,7 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         getArtist()
         loadUI()
+        self.navigationController?.navigationBar.tintColor = .black
         infoView.borderColor = #colorLiteral(red: 0.3867273331, green: 0.8825651407, blue: 0.8684034944, alpha: 1)
         tagsCollection.delegate = self
         tagsCollection.dataSource = self
