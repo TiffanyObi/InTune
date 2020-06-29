@@ -39,6 +39,7 @@ class GigViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.tintColor = .black
         setUpSearchBar()
         tableView.dataSource = self
         tableView.delegate = self
