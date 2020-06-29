@@ -19,6 +19,7 @@ class GigsDetailViewController: UIViewController {
     @IBOutlet var postedByLabel: UILabel!
     @IBOutlet var priceLabel: UILabel!
     @IBOutlet var descriptionText: UITextView!
+    @IBOutlet var locationLabel: UILabel!
     @IBOutlet var messageButton: UIButton!
     
     var gigPost: GigsPost?
@@ -63,6 +64,7 @@ class GigsDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.title = "Details"
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "bookmark"), style: .plain, target: self, action: #selector(favoriteButtonPressed(_:)))
         getCurrentUser()
         getArtist()
@@ -76,6 +78,7 @@ class GigsDetailViewController: UIViewController {
         //        guard let imageurl = gig.imageURL else { return }
         //        guard let url = URL(string: imageurl) else { return }
         //        postImage.kf.setImage(with: url)
+        locationLabel.text = "Location: \(gig.location)"
         dateLabel.text = gig.eventDate
         postedByLabel.text = gig.artistName
         priceLabel.text = "$\(gig.price)"
