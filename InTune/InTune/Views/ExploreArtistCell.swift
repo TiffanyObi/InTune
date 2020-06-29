@@ -10,6 +10,11 @@ import UIKit
 
 class ExploreArtistCell: UITableViewCell {
     
+    public lazy var containerView: UIView = {
+        let view = UIView()
+        return view
+    }()
+    
     public lazy var artistImage: UIImageView = {
         let image = UIImageView()
         image.tintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
@@ -44,9 +49,25 @@ class ExploreArtistCell: UITableViewCell {
     }
     
     private func commonInit() {
+        containerViewConstraints()
         setUpArtistImageConstraints()
         setUpNameConstraints()
         setUpLocationLabelConstraints()
+    }
+    
+    private func containerViewConstraints() {
+        addSubview(containerView)
+        containerView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        containerView.layer.cornerRadius = 20
+        containerView.viewShadow()
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            containerView.topAnchor.constraint(equalTo: topAnchor, constant: 8),
+            containerView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
+            containerView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
+            containerView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
+        ])
     }
     
     private func setUpArtistImageConstraints() {
@@ -55,9 +76,9 @@ class ExploreArtistCell: UITableViewCell {
         artistImage.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            artistImage.topAnchor.constraint(equalTo: topAnchor, constant: 8),
-            artistImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
-            artistImage.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
+            artistImage.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 8),
+            artistImage.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 8),
+            artistImage.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -8),
             artistImage.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.28)
         ])
     }
@@ -68,9 +89,9 @@ class ExploreArtistCell: UITableViewCell {
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            nameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 8),
+            nameLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 8),
             nameLabel.leadingAnchor.constraint(equalTo: artistImage.trailingAnchor, constant: 20),
-            nameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 20)
+            nameLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: 20)
         ])
     }
     
@@ -80,9 +101,9 @@ class ExploreArtistCell: UITableViewCell {
         locationLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            locationLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
+            locationLabel.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -20),
             locationLabel.leadingAnchor.constraint(equalTo: artistImage.trailingAnchor, constant: 20),
-            locationLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20)
+            locationLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -20)
         ])
     }
     
