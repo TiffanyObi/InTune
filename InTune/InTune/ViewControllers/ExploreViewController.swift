@@ -169,22 +169,20 @@ extension ExploreViewController: UITableViewDataSource, UITableViewDelegate {
 }
 
 extension ExploreViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         if collectionView == tagsCollectionView {
-        
         return currentUser?.preferences?.count ?? 2
     }
-        
         if collectionView == featuredArtistCV {
             return featuredArtistPlaceHolderImages.count
         }
-        
         return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
+
         if collectionView == tagsCollectionView {
         
         guard let tagCell = collectionView.dequeueReusableCell(withReuseIdentifier: "tagCell", for: indexPath) as? TagCollectionViewCell else {
@@ -204,13 +202,15 @@ extension ExploreViewController: UICollectionViewDelegateFlowLayout, UICollectio
             let placeHolder = featuredArtistPlaceHolderImages[indexPath.row]
             
             featureCell.configureCell(placeHolderImage: placeHolder)
-            featureCell.imageView.layer.cornerRadius = 30
+            featureCell.imageView.layer.cornerRadius = 38
             
             return featureCell
         }
         
         return UICollectionViewCell()
     }
+    
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let maxSize: CGSize = UIScreen.main.bounds.size
         let itemWidth: CGFloat = maxSize.width * 0.20

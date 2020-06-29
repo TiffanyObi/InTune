@@ -57,7 +57,6 @@ class GigViewController: UIViewController {
                       self.gigs = gig
                   }
               })
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -66,11 +65,13 @@ class GigViewController: UIViewController {
     }
     
     private func setUpSearchBar() {
+         searchBar.showsSearchResultsButton = false
         searchBar.layer.cornerRadius = 20
         searchBar.layer.masksToBounds = true
         searchBar.delegate = self
         searchBar.searchTextField.backgroundColor = .white
 //        searchBar.searchBarShadow(for: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1))
+        searchBar.showsCancelButton = false
     }
     
     private func getGigs() {
@@ -89,6 +90,7 @@ class GigViewController: UIViewController {
         searchBar.resignFirstResponder()
        }
     
+ 
 }
 
 extension GigViewController: UITableViewDataSource {
@@ -137,11 +139,10 @@ extension GigViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        guard let id = Auth.auth().currentUser?.uid else { return }
         
             if editingStyle == .delete {
                 let gig = gigs[indexPath.row]
-                db.deleteGig(artistId: id, gig: gig) { [weak self] (result) in
+                db.deleteGig(gig: gig) { [weak self] (result) in
                     
                     switch result {
                     case .failure(let error):
@@ -152,6 +153,7 @@ extension GigViewController: UITableViewDelegate {
                         DispatchQueue.main.async {
                             self?.showAlert(title: "Deleted", message: "\(gig.title) was deleted")
                         }
+                        
                     }
                 }
             }
@@ -162,6 +164,7 @@ extension GigViewController: UISearchBarDelegate {
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchBar.showsCancelButton = true
+       
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
