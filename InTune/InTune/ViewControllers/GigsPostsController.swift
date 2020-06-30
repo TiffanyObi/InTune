@@ -81,11 +81,6 @@ class GigsPostsController: UIViewController {
 }
 extension GigsPostsController:UITableViewDataSource,UITableViewDelegate{
     
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        
-        cell.addShadow()
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == gigsTableView {
             return gigs.count

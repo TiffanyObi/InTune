@@ -55,10 +55,11 @@ class ExploreViewController: UIViewController {
         expEdit.prefDelegate = self
     }
     
-    let height: CGFloat = 120
+    let height: CGFloat = 140
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.artistTableView.separatorColor = .clear
         fetchArtists()
         getCurrentUserPref()
         tagsCollectionView.register(UINib(nibName: "TagCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "tagCell")
@@ -149,11 +150,6 @@ class ExploreViewController: UIViewController {
 
 extension ExploreViewController: UITableViewDataSource, UITableViewDelegate {
     
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cell.contentView.layer.masksToBounds = true
-        cell.addShadow()
-    }
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return height
     }
@@ -217,9 +213,7 @@ extension ExploreViewController: UICollectionViewDelegateFlowLayout, UICollectio
                 fatalError("could not downcast to FeaturedArtistCell")
             }
             let featuredArtist = featuredArtists[indexPath.row]
-            
             featureCell.configureCell(artistPhotoURL: featuredArtist.photoURL )
-            featureCell.imageView.layer.cornerRadius = 38
             
             return featureCell
         }
@@ -234,6 +228,7 @@ extension ExploreViewController: UICollectionViewDelegateFlowLayout, UICollectio
         let itemHeight: CGFloat = maxSize.height * 0.30
         return CGSize(width: itemWidth, height: itemHeight)
     }
+    
 }
 
 extension ExploreViewController: UpdateUsertPref {

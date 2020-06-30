@@ -42,8 +42,7 @@ class PostCollectionViewDelegate: NSObject,UICollectionViewDelegate, UICollectio
 class FeaturedArtistCVDelegate: NSObject,UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-           
-               cell.colorShadow(for: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1))
+        cell.colorShadow(for: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1))
        }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

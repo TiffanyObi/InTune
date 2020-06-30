@@ -11,9 +11,7 @@ import Kingfisher
 
 class FeaturedArtistCell: UICollectionViewCell {
     
-    
     @IBOutlet weak var imageView: UIImageView!
-    
     
     public func configureCell(artistPhotoURL: String?){
         if let photoURL = artistPhotoURL, let url = URL(string: photoURL){
@@ -22,5 +20,5 @@ class FeaturedArtistCell: UICollectionViewCell {
             imageView.image = UIImage(systemName: "person.fill")
         }
     }
-        
+    
 }

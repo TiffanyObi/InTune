@@ -66,7 +66,7 @@ struct ProfileViewViewModel {
         profileVC.likeArtistButton.isHidden = false
         profileVC.chatButton.isHidden = false
         profileVC.navigationItem.leftBarButtonItem = .none
-        profileVC.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "exclamationmark.octagon.fill"), style: .plain, target: profileVC, action: #selector(profileVC.reportArtist(_:)))
+        profileVC.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "flag.fill"), style: .plain, target: profileVC, action: #selector(profileVC.reportArtist(_:)))
         profileVC.navigationItem.rightBarButtonItem?.tintColor = .systemRed
         
         profileVC.getVideos(artist: artist)

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fmX-MP-kUY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fmX-MP-kUY">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -33,39 +33,24 @@
                                 </collectionViewFlowLayout>
                                 <cells/>
                             </collectionView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jaF-bE-8Ot">
-                                <rect key="frame" x="156.5" y="164" width="101" height="27.5"/>
-                                <attributedString key="attributedText">
-                                    <fragment content="Artists">
-                                        <attributes>
-                                            <font key="NSFont" size="27" name="Copperplate"/>
-                                            <font key="NSOriginalFont" metaFont="systemBold" size="22"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" headerLevel="4"/>
-                                            <integer key="NSUnderline" value="1"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artists" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jaF-bE-8Ot">
+                                <rect key="frame" x="174" y="164" width="66" height="26.5"/>
+                                <fontDescription key="fontDescription" name="Thonburi-Bold" family="Thonburi" pointSize="20"/>
+                                <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3BQ-UJ-6c2">
-                                <rect key="frame" x="20" y="207.5" width="374" height="466"/>
+                                <rect key="frame" x="20" y="206.5" width="374" height="448"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mPH-ef-Iod">
-                                <rect key="frame" x="20" y="681.5" width="143.5" height="25"/>
-                                <attributedString key="attributedText">
-                                    <fragment content="Featured Artists">
-                                        <attributes>
-                                            <font key="NSFont" size="20" name="Didot"/>
-                                            <font key="NSOriginalFont" size="17" name="Didot"/>
-                                            <integer key="NSUnderline" value="1"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Featured Artists" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mPH-ef-Iod">
+                                <rect key="frame" x="20" y="666.5" width="135" height="22.5"/>
+                                <fontDescription key="fontDescription" name="Thonburi-Bold" family="Thonburi" pointSize="17"/>
+                                <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ITP-st-gDg">
-                                <rect key="frame" x="20" y="714.5" width="374" height="89.5"/>
+                                <rect key="frame" x="20" y="701" width="374" height="89.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Mq2-3O-BtS">
                                     <size key="itemSize" width="108" height="90"/>
@@ -80,16 +65,16 @@
                         <constraints>
                             <constraint firstItem="ITP-st-gDg" firstAttribute="leading" secondItem="zxf-z8-Dxc" secondAttribute="leading" constant="20" id="7X4-iR-wQr"/>
                             <constraint firstItem="zxf-z8-Dxc" firstAttribute="trailing" secondItem="3BQ-UJ-6c2" secondAttribute="trailing" constant="20" id="Mae-w0-VxQ"/>
-                            <constraint firstItem="ITP-st-gDg" firstAttribute="height" secondItem="02V-NR-Ez0" secondAttribute="height" multiplier="0.0998884" id="N2E-OR-J8a"/>
+                            <constraint firstItem="ITP-st-gDg" firstAttribute="height" secondItem="02V-NR-Ez0" secondAttribute="height" multiplier="0.1" id="N2E-OR-J8a"/>
                             <constraint firstItem="wdE-38-cS1" firstAttribute="top" secondItem="zxf-z8-Dxc" secondAttribute="top" constant="16" id="NaI-Ek-Amm"/>
-                            <constraint firstItem="ITP-st-gDg" firstAttribute="top" secondItem="mPH-ef-Iod" secondAttribute="bottom" constant="8" id="Rf9-py-39R"/>
+                            <constraint firstItem="ITP-st-gDg" firstAttribute="top" secondItem="mPH-ef-Iod" secondAttribute="bottom" constant="12" id="Rf9-py-39R"/>
                             <constraint firstItem="3BQ-UJ-6c2" firstAttribute="leading" secondItem="zxf-z8-Dxc" secondAttribute="leading" constant="20" id="S4a-4F-h5A"/>
                             <constraint firstItem="jaF-bE-8Ot" firstAttribute="centerX" secondItem="02V-NR-Ez0" secondAttribute="centerX" id="Seo-gY-QHX"/>
                             <constraint firstItem="wdE-38-cS1" firstAttribute="leading" secondItem="zxf-z8-Dxc" secondAttribute="leading" constant="20" id="Txb-v5-XUJ"/>
                             <constraint firstItem="zxf-z8-Dxc" firstAttribute="trailing" secondItem="wdE-38-cS1" secondAttribute="trailing" constant="20" id="gLB-KD-P1O"/>
-                            <constraint firstItem="3BQ-UJ-6c2" firstAttribute="height" secondItem="02V-NR-Ez0" secondAttribute="height" multiplier="0.520089" id="hR6-4B-oWi"/>
+                            <constraint firstItem="3BQ-UJ-6c2" firstAttribute="height" secondItem="02V-NR-Ez0" secondAttribute="height" multiplier="0.5" id="hR6-4B-oWi"/>
                             <constraint firstItem="3BQ-UJ-6c2" firstAttribute="top" secondItem="jaF-bE-8Ot" secondAttribute="bottom" constant="16" id="hac-zO-MEF"/>
-                            <constraint firstItem="mPH-ef-Iod" firstAttribute="top" secondItem="3BQ-UJ-6c2" secondAttribute="bottom" constant="8" id="jTT-bP-cAg"/>
+                            <constraint firstItem="mPH-ef-Iod" firstAttribute="top" secondItem="3BQ-UJ-6c2" secondAttribute="bottom" constant="12" id="jTT-bP-cAg"/>
                             <constraint firstItem="wdE-38-cS1" firstAttribute="height" secondItem="02V-NR-Ez0" secondAttribute="height" multiplier="0.0491071" id="mxZ-il-TKG"/>
                             <constraint firstItem="zxf-z8-Dxc" firstAttribute="trailing" secondItem="ITP-st-gDg" secondAttribute="trailing" constant="20" id="rHD-FK-1Ez"/>
                             <constraint firstItem="mPH-ef-Iod" firstAttribute="leading" secondItem="zxf-z8-Dxc" secondAttribute="leading" constant="20" id="t5l-93-6xh"/>
@@ -241,7 +226,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="arrow.2.circlepath" catalog="system" width="64" height="50"/>
-        <image name="magnifyingglass.circle.fill" catalog="system" width="64" height="60"/>
+        <image name="arrow.2.circlepath" catalog="system" width="128" height="101"/>
+        <image name="magnifyingglass.circle.fill" catalog="system" width="128" height="121"/>
     </resources>
 </document>
