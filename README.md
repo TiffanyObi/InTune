@@ -16,6 +16,8 @@ Artists and enthusiasts need to create an account and give us some basic informa
 
 ![messages](Assets/messages.png)
 
+![gigs](Assets/gigs.png)
+
 ![profile](Assets/profile.png)
 
 ## Gif
