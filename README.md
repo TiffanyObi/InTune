@@ -28,3 +28,13 @@ Artists and enthusiasts need to create an account and give us some basic informa
 
 ## Installation 
 
+## Contributors 
+
+**[Maitree Bain](https://github.com/maitreebain)**
+
+**[Tiffany Obi](https://github.com/TiffanyObi)**
+
+**[Christian Hurtado](https://github.com/ChristianHurtado29)**
+
+**[Oscar Victoria Gonzales](https://github.com/oscarvictoria)**
+
