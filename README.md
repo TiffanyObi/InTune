@@ -26,6 +26,12 @@ Artists and enthusiasts need to create an account and give us some basic informa
 
 ## Features
 
+## Code Snippet 
+
+## Technologies
+
+
+
 ## Requirements
 
 ## Installation 
@@ -39,4 +45,8 @@ Artists and enthusiasts need to create an account and give us some basic informa
 **[Christian Hurtado](https://github.com/ChristianHurtado29)**
 
 **[Oscar Victoria Gonzales](https://github.com/oscarvictoria)**
+
+## FAQ
+
+## Support
 
