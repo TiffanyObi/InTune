@@ -10,19 +10,25 @@ Artists and enthusiasts need to create an account and give us some basic informa
 
 ## Screenshot
 
-![home screen](Assets/homescreen.png)
+**Liked Artist Tab**
 
-![main View](Assets/mainview.png)
+<img src="DemoExamples/LA.png" width="300">
 
-![messages](Assets/messages.png)
+**Gigs Tab**
 
-![gigs](Assets/gigs.png)
-
-![profile](Assets/profile.png)
+<img src="DemoExamples/GT.png" width="300">
+<img src="DemoExamples/PG.png" width="300">
+<img src="DemoExamples/GD.png" width="300">
 
 ## Gif
 
-![video upload](Assets/video-upload.gif)
+**Find artists using tags**
+
+![gif](DemoExamples/TagsExplore.gif)
+
+**Starting a chat with an artist**
+
+![gif](DemoExamples/Chat.gif)
 
 ## Features
 
