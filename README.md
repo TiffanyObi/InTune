@@ -17,3 +17,10 @@ Intune allows you to connect with local artist right from the comfort of your ph
 ## Gif
 
 ![video upload](Assets/video-upload.gif)
+
+## Features
+
+## Requirements
+
+## Installation 
+
