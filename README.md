@@ -1,8 +1,12 @@
 # InTune: Connect with Artist
 
+Winning 6-week Capstone Project: Won the 'Best In Class App' award, awarded by staff from the Capital One team. 
+
 ## Description 
 
-Intune allows you to connect with local artist right from the comfort of your phone.
+InTune is an app where artists can show off their skills and make a living. In tune connects artists and enthusiasts, creating a virtual community and a networking system.
+
+Artists and enthusiasts need to create an account and give us some basic information about themselves and their interests.Artists can post videos, like other artists as well as collaborate with other artists. All users can like their favorite artists. Artists can chat with other artists. Enthusiasts can chat with artists. Everyone can post gigs, to find artists for their private events.
 
 ## Screenshot
 
