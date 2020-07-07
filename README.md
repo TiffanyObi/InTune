@@ -36,7 +36,7 @@ Artists and enthusiasts need to create an account and give us some basic informa
 
 ## Technologies
 
-
+This project includes cocoapods such as MessageKit and Kingfisher to facilitate the production of the app. MessageKit was used to create conversations between our users for the chat features. Kingfisher was used to access images faster on the product. Firebase was used to organize and store user data.
 
 ## Requirements
 
