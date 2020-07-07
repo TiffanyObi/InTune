@@ -31,11 +31,16 @@ Artists and enthusiasts need to create an account and give us some basic informa
 ![gif](DemoExamples/Chat.gif)
 
 ## Features
-### Posting Videos
+Posting Videos
+
 ![intune-videogif-p1](https://user-images.githubusercontent.com/55755297/86839904-06bad880-c070-11ea-9291-5f1b0ffed1a5.gif)
+
 ![intune-videogif-p2](https://user-images.githubusercontent.com/55755297/86839910-091d3280-c070-11ea-818a-fa2185e3a33c.gif)
+
 ![intune-videogif-p3](https://user-images.githubusercontent.com/55755297/86839916-0cb0b980-c070-11ea-8c77-b39b55d6471a.gif)
+
 ![intune-videogif-p4](https://user-images.githubusercontent.com/55755297/86841107-84cbaf00-c071-11ea-90bf-f558a4b752dd.gif)
+
 
 ## Code Snippet 
 
