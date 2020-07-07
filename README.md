@@ -8,7 +8,7 @@ InTune is an app where artists can show off their skills and make a living. In t
 
 Artists and enthusiasts need to create an account and give us some basic information about themselves and their interests.Artists can post videos, like other artists as well as collaborate with other artists. All users can like their favorite artists. Artists can chat with other artists. Enthusiasts can chat with artists. Everyone can post gigs, to find artists for their private events.
 
-## Screenshot
+## Screenshots
 
 **Liked Artist Tab**
 
@@ -31,6 +31,11 @@ Artists and enthusiasts need to create an account and give us some basic informa
 ![gif](DemoExamples/Chat.gif)
 
 ## Features
+![intune-videogif-p1](https://user-images.githubusercontent.com/55755297/86839904-06bad880-c070-11ea-9291-5f1b0ffed1a5.gif) ||
+![intune-videogif-p2](https://user-images.githubusercontent.com/55755297/86839910-091d3280-c070-11ea-818a-fa2185e3a33c.gif) ||
+![intune-videogif-p3](https://user-images.githubusercontent.com/55755297/86839916-0cb0b980-c070-11ea-8c77-b39b55d6471a.gif) ||
+![intune-videogif-p4](https://user-images.githubusercontent.com/55755297/86839927-10dcd700-c070-11ea-9dac-d30b2ff214b5.gif) ||
+
 
 ## Code Snippet 
 
