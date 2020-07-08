@@ -6,7 +6,7 @@ Winning 6-week Capstone Project: Won the 'Best In Class App' award, awarded by s
 
 InTune is an app where artists can show off their skills and make a living. InTune connects artists and enthusiasts, creating a virtual community and a networking system.
 
-Artists and enthusiasts need to create an account and give us some basic information about themselves and their interests.Artists can post videos, like other artists as well as collaborate with other artists. All users can like their favorite artists. Artists can chat with other artists. Enthusiasts can chat with artists. Everyone can post gigs, to find artists for their private events.
+Artists and enthusiasts need to create an account and give us some basic information about themselves and their interests. Artists can post videos, like other artists as well as collaborate with other artists. All users can like their favorite artists. Artists can chat with other artists. Enthusiasts can chat with artists. Everyone can post gigs, to find artists for their private events.
 
 ## Features
 
@@ -59,21 +59,13 @@ public func createThread(artist: Artist, completion: @escaping (Result<Bool, Err
 
 This project includes cocoapods such as MessageKit and Kingfisher to facilitate the production of the app. MessageKit was used to create conversations between our users for the chat features. Kingfisher was used to access images faster on the product. Firebase was used to organize and store user data.
 
-## Requirements
-
-## Installation 
 
 ## Contributors 
 
-**[Maitree Bain](https://github.com/maitreebain)**
-
-**[Tiffany Obi](https://github.com/TiffanyObi)**
-
-**[Christian Hurtado](https://github.com/ChristianHurtado29)**
-
-**[Oscar Victoria Gonzales](https://github.com/oscarvictoria)**
-
-## FAQ
+| <a href="https://github.com/maitreebain" target="_blank">**InTune**</a> | <a href="https://github.com/TiffanyObi" target="_blank">**InTune**</a> | <a href="https://github.com/ChristianHurtado29" target="_blank">**InTune**</a> | <a href="https://github.com/oscarvictoria" target="_blank">**InTune**</a> |
+| :---: |:---:| :---: |:---:|
+| [![InTune](https://avatars2.githubusercontent.com/u/55721710?s=250&u=0eebcc3a8a764dfe250d0b89fce345a2ca46eb6d&v=4&s=200)](https://github.com/maitreebain) |  [![InTune](https://avatars2.githubusercontent.com/u/55755297?s=400&u=364f4a7c46054d81adf10cc9b63e5215b5a83515&v=4&s=200)](https://github.com/TiffanyObi)    | [![InTune](https://avatars2.githubusercontent.com/u/55717913?s=260&u=6a26ab824fe75a6038add490238e47dc972ec603&v=4&s=200)](https://github.com/ChristianHurtado29) | [![InTune](https://avatars3.githubusercontent.com/u/55722232?s=260&u=742a8f0f4cab152c96093d98305b09c92eddf8bc&v=4&s=200)](https://github.com/oscarvictoria)  | 
+| <a href="https://github.com/maitreebain" target="_blank">`https://github.com/maitreebain`</a> | <a href="https://github.com/TiffanyObi" target="_blank">`https://github.com/TiffanyObi`</a> | <a href="https://github.com/ChristianHurtado29" target="_blank">`https://github.com/ChristianHurtado29`</a> |  <a href="https://github.com/oscarvictoria" target="_blank">`https://github.com/oscarvictoria`</a> |
 
 ## Support
 
