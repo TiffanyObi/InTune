@@ -2,13 +2,13 @@
 
 Winning 6-week Capstone Project: Won the 'Best In Class App' award, awarded by staff from the Capital One team. 
 
-## Description 
+## About
 
 InTune is an app where artists can show off their skills and make a living. InTune connects artists and enthusiasts, creating a virtual community and a networking system.
 
 Artists and enthusiasts need to create an account and give us some basic information about themselves and their interests.Artists can post videos, like other artists as well as collaborate with other artists. All users can like their favorite artists. Artists can chat with other artists. Enthusiasts can chat with artists. Everyone can post gigs, to find artists for their private events.
 
-## Screenshots
+## Features
 
 **Liked Artist Tab**
 
@@ -20,7 +20,7 @@ Artists and enthusiasts need to create an account and give us some basic informa
 <img src="DemoExamples/PG.png" width="300">
 <img src="DemoExamples/GD.png" width="300">
 
-## Gifs
+## Demo
 
 **Find artists using tags**
 
@@ -30,8 +30,7 @@ Artists and enthusiasts need to create an account and give us some basic informa
 
 ![gif](DemoExamples/Chat.gif)
 
-## Features
-Posting Videos
+**Posting Videos**
 
 ![intune-videogif-p1](https://user-images.githubusercontent.com/55755297/86839904-06bad880-c070-11ea-9291-5f1b0ffed1a5.gif)
 ![intune-videogif-p2](https://user-images.githubusercontent.com/55755297/86839910-091d3280-c070-11ea-818a-fa2185e3a33c.gif)
@@ -41,7 +40,7 @@ Posting Videos
 
 ## Code Snippet 
 
-#### Adding threads to users profile
+**Creating a thread**
 
 ```swift
 public func createThread(artist: Artist, completion: @escaping (Result<Bool, Error>)->()) {
