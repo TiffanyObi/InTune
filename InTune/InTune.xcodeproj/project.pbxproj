@@ -36,6 +36,9 @@
 		3E43F48D247E9AF800CC0584 /* LikedArtistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F48C247E9AF800CC0584 /* LikedArtistView.swift */; };
 		3E43F491247E9B2400CC0584 /* LikedArtistsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F490247E9B2400CC0584 /* LikedArtistsViewController.swift */; };
 		3E43F493247E9B3F00CC0584 /* VideoPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F492247E9B3F00CC0584 /* VideoPostViewController.swift */; };
+		3E6568C124A4310300A8DB11 /* GigsPostsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6568C024A4310300A8DB11 /* GigsPostsController.swift */; };
+		3E6D8FFB24A27E77001AF7A7 /* ProfileViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6D8FFA24A27E77001AF7A7 /* ProfileViewViewModel.swift */; };
+		3E6D8FFD24A2B12D001AF7A7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E6D8FFC24A2B12D001AF7A7 /* GoogleService-Info.plist */; };
 		3E754304248FD0C600383D02 /* UserExperienceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E754303248FD0C600383D02 /* UserExperienceView.swift */; };
 		3E75433B2490027500383D02 /* OnboardingView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E75433A2490027500383D02 /* OnboardingView.storyboard */; };
 		3E75433D24900C1300383D02 /* DisplayNameAndLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E75433C24900C1300383D02 /* DisplayNameAndLocationView.swift */; };
@@ -45,7 +48,6 @@
 		3E907EB82491A87700BFA1A3 /* TagCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E907EB72491A87700BFA1A3 /* TagCollectionViewCell.xib */; };
 		3EA7E76F24888FD50092C03B /* ArtistCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EA7E76E24888FD50092C03B /* ArtistCell.xib */; };
 		3EE738FE2481A91800C4C9D3 /* FirebaseAuthenticationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EE738FD2481A91800C4C9D3 /* FirebaseAuthenticationTests.swift */; };
-		3EE739022481C10B00C4C9D3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3EE739012481C10B00C4C9D3 /* GoogleService-Info.plist */; };
 		3EF5809B24929E6600D1942E /* ExploreOptionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF5809A24929E6600D1942E /* ExploreOptionsController.swift */; };
 		800D8998248843C300C3FB67 /* ChatsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 800D8997248843C300C3FB67 /* ChatsCell.xib */; };
 		800D899A248843F500C3FB67 /* ChatsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800D8999248843F500C3FB67 /* ChatsCell.swift */; };
@@ -119,6 +121,9 @@
 		3E43F48C247E9AF800CC0584 /* LikedArtistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedArtistView.swift; sourceTree = "<group>"; };
 		3E43F490247E9B2400CC0584 /* LikedArtistsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedArtistsViewController.swift; sourceTree = "<group>"; };
 		3E43F492247E9B3F00CC0584 /* VideoPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPostViewController.swift; sourceTree = "<group>"; };
+		3E6568C024A4310300A8DB11 /* GigsPostsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigsPostsController.swift; sourceTree = "<group>"; };
+		3E6D8FFA24A27E77001AF7A7 /* ProfileViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewViewModel.swift; sourceTree = "<group>"; };
+		3E6D8FFC24A2B12D001AF7A7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3E754303248FD0C600383D02 /* UserExperienceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserExperienceView.swift; sourceTree = "<group>"; };
 		3E75433A2490027500383D02 /* OnboardingView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OnboardingView.storyboard; sourceTree = "<group>"; };
 		3E75433C24900C1300383D02 /* DisplayNameAndLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayNameAndLocationView.swift; sourceTree = "<group>"; };
@@ -128,7 +133,6 @@
 		3E907EB72491A87700BFA1A3 /* TagCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TagCollectionViewCell.xib; sourceTree = "<group>"; };
 		3EA7E76E24888FD50092C03B /* ArtistCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArtistCell.xib; sourceTree = "<group>"; };
 		3EE738FD2481A91800C4C9D3 /* FirebaseAuthenticationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthenticationTests.swift; sourceTree = "<group>"; };
-		3EE739012481C10B00C4C9D3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3EF5809A24929E6600D1942E /* ExploreOptionsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreOptionsController.swift; sourceTree = "<group>"; };
 		5EDC17E70E02A5BD32363172 /* Pods-InTune.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InTune.debug.xcconfig"; path = "Target Support Files/Pods-InTune/Pods-InTune.debug.xcconfig"; sourceTree = "<group>"; };
 		7569B63AC8D4A59DD4C294EF /* Pods_InTune.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InTune.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -218,7 +222,7 @@
 				3E43F464247E850A00CC0584 /* ViewControllers */,
 				3E43F459247E83A600CC0584 /* SupportingFiles */,
 				3E43F445247D7B8D00CC0584 /* Info.plist */,
-				3EE739012481C10B00C4C9D3 /* GoogleService-Info.plist */,
+				3E6D8FFC24A2B12D001AF7A7 /* GoogleService-Info.plist */,
 			);
 			path = InTune;
 			sourceTree = "<group>";
@@ -256,6 +260,7 @@
 				80E3D25F248EC649002F3FA7 /* PostCollectionViewDelegate.swift */,
 				3E43F45C247E844B00CC0584 /* GigViewController.swift */,
 				80900C622492C80C0080C816 /* GigsDetailViewController.swift */,
+				3E6568C024A4310300A8DB11 /* GigsPostsController.swift */,
 				BE45721F2492DF2E0020D12C /* CreateGigViewController.swift */,
 				3E43F471247E8FAE00CC0584 /* OnboardingViewController.swift */,
 				3E43F490247E9B2400CC0584 /* LikedArtistsViewController.swift */,
@@ -333,6 +338,7 @@
 				3E7C53D4248AC614001974DB /* TagsInfoModels.swift */,
 				3E75433E2490711300383D02 /* StatesForPickerView.swift */,
 				3E43F48A247E9A7C00CC0584 /* Posts.swift */,
+				3E6D8FFA24A27E77001AF7A7 /* ProfileViewViewModel.swift */,
 				3E43F484247E985700CC0584 /* LoginViewViewModel.swift */,
 				BEDF3FCC2485349A00D22E2D /* Chat.swift */,
 				BEDF3FCE248534A600D22E2D /* Message.swift */,
@@ -438,6 +444,7 @@
 			files = (
 				80D58F7F248AE44F005392A0 /* FeaturedArtist.xib in Resources */,
 				3E43F444247D7B8D00CC0584 /* LaunchScreen.storyboard in Resources */,
+				3E6D8FFD24A2B12D001AF7A7 /* GoogleService-Info.plist in Resources */,
 				80900C5F2492C7880080C816 /* GigCell.xib in Resources */,
 				3E907EB82491A87700BFA1A3 /* TagCollectionViewCell.xib in Resources */,
 				800D8998248843C300C3FB67 /* ChatsCell.xib in Resources */,
@@ -450,7 +457,6 @@
 				3E43F441247D7B8D00CC0584 /* Assets.xcassets in Resources */,
 				80142DAF248AB85F002C928C /* ExploreView.storyboard in Resources */,
 				3E43F470247E8F6400CC0584 /* LoginView.storyboard in Resources */,
-				3EE739022481C10B00C4C9D3 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -551,6 +557,7 @@
 				3E43F43C247D7B8600CC0584 /* ExploreViewController.swift in Sources */,
 				3E7C53D5248AC614001974DB /* TagsInfoModels.swift in Sources */,
 				80900C612492C79F0080C816 /* GigCell.swift in Sources */,
+				3E6568C124A4310300A8DB11 /* GigsPostsController.swift in Sources */,
 				3E75433D24900C1300383D02 /* DisplayNameAndLocationView.swift in Sources */,
 				3E43F491247E9B2400CC0584 /* LikedArtistsViewController.swift in Sources */,
 				3E43F438247D7B8600CC0584 /* AppDelegate.swift in Sources */,
@@ -563,6 +570,7 @@
 				3EF5809B24929E6600D1942E /* ExploreOptionsController.swift in Sources */,
 				3E43F468247E8DD100CC0584 /* AuthentificationService.swift in Sources */,
 				3E43F485247E985700CC0584 /* LoginViewViewModel.swift in Sources */,
+				3E6D8FFB24A27E77001AF7A7 /* ProfileViewViewModel.swift in Sources */,
 				3E43F477247E90B700CC0584 /* DateFormatter.swift in Sources */,
 				3E43F475247E909A00CC0584 /* ShowAlert.swift in Sources */,
 				3E43F48D247E9AF800CC0584 /* LikedArtistView.swift in Sources */,
@@ -738,7 +746,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.tiffanyobi.InTune;
+				PRODUCT_BUNDLE_IDENTIFIER = org.pursuit.intune;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -758,7 +766,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.tiffanyobi.InTune;
+				PRODUCT_BUNDLE_IDENTIFIER = org.pursuit.intune;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

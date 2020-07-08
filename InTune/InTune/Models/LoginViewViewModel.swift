@@ -55,6 +55,7 @@ struct LoginViewViewModel {
                            case .success:
                                DispatchQueue.main.async {
                                    //navigate to main view
+                                //if fields in fb account nil, send back to specific view
                                 self.navigateToMainView()
                                }
                            }

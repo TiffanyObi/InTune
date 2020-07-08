@@ -34,23 +34,36 @@ class EditProfController: UIViewController {
         }
     }
     
+    var biotext:String?
+    var userName:String?
+    
     private let storageService = StorageService()
     let db = DatabaseService()
     
     var artist: Artist?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        usernameTextField.delegate = self
+        setUpUI()
         updateUI()
+        usernameTextField.delegate = self
+        bioTextView.delegate = self
         getArtist()
+    }
+    
+    private func setUpUI() {
+        let bottomLayer = CALayer()
+        bottomLayer.frame = CGRect(x: 0, y: usernameTextField.frame.height - 2, width: usernameTextField.frame.width, height: 2)
+        bottomLayer.backgroundColor = #colorLiteral(red: 0.3429883122, green: 0.02074946091, blue: 0.7374325991, alpha: 1)
+        usernameTextField.borderStyle = .none
+        usernameTextField.layer.addSublayer(bottomLayer)
     }
     
     func getArtist(){
         
         guard let userID = Auth.auth().currentUser?.uid else {return}
-    
+        
         db.fetchArtist(userID: userID) { [weak self](result) in
             switch result {
             case.failure(let error):
@@ -59,6 +72,7 @@ class EditProfController: UIViewController {
             case.success(let artist1):
                 self?.artist = artist1
                 self?.usernameTextField.text = artist1.name
+                self?.bioTextView.text = artist1.bioText ?? "Enter Bio Here"
                 
             }
         }
@@ -76,20 +90,18 @@ class EditProfController: UIViewController {
         }
         
         if user.photoURL == nil  {
-                     editImageView.image = UIImage(systemName: "person.fill")
-                 } else {
-                   editImageView.kf.setImage(with: user.photoURL)
+            editImageView.image = UIImage(systemName: "person.crop.square")
+        } else {
+            editImageView.kf.setImage(with: user.photoURL)
         }
         
-        usernameTextField.text = "\(user.displayName ?? "")"
-
+        userName = "\(user.displayName ?? "")"
         
     }
     
     func updateInfo() {
-        
+        guard let userName = userName, !userName.isEmpty, let selectedImage = editImageView.image, let bioText = biotext else {
 
-        guard let userName = usernameTextField.text, !userName.isEmpty, let selectedImage = editImageView.image, let bioText = bioTextView.text else {
             showAlert(title: "Error editing", message: "Please check all fields")
             return
         }
@@ -102,6 +114,16 @@ class EditProfController: UIViewController {
             return
         }
         
+        db.updateDisplayName(name: userName) { [weak self] (result) in
+            
+            switch result {
+            case .failure(let error):
+                self?.showAlert(title: "Error updating name", message: "\(error.localizedDescription)")
+            case .success:
+                print(true)
+            }
+        }
+        
         storageService.uploadPhoto(userId: user.uid, itemId: "123", image: resizedImage){ [weak self] (result) in
             
             switch result {
@@ -112,6 +134,15 @@ class EditProfController: UIViewController {
                 let request = Auth.auth().currentUser?.createProfileChangeRequest()
                 request?.displayName = userName
                 request?.photoURL = url
+                //update pic url
+                self?.db.updateUserPhoto(user, photoURL: url.absoluteString, completion: { (result) in
+                    switch result {
+                    case.failure(let error):
+                        print(error.localizedDescription)
+                    case.success:
+                        print(true)
+                    }
+                })
                 request?.commitChanges(completion: { (error) in
                     
                     if let error = error {
@@ -119,6 +150,7 @@ class EditProfController: UIViewController {
                             self?.showAlert(title: "Error updating profile", message: "Error changing profile error: \(error.localizedDescription)")
                         }
                     } else {
+                        //maybe nest functions
                         DispatchQueue.main.async {
                             self?.showAlert(title: "Profile Update", message: "Profile successfully updated")
                         }
@@ -128,7 +160,21 @@ class EditProfController: UIViewController {
                 
             }
         }
+        
+        
+        db.updateBio(bioText: bioText) { [weak self](result) in
+            switch result {
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    self?.showAlert(title: "Error updating bio", message: error.localizedDescription)
+                }
+                
+            case .success:
+                print(true)
+            }
+        }
     }
+    
     
     
     @IBAction func doneButtonPressed(_ sender: UIButton) {
@@ -140,8 +186,23 @@ class EditProfController: UIViewController {
 
 extension EditProfController: UITextFieldDelegate {
     
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        guard !(textField.text?.isEmpty ?? true) else { return}
+        userName = textField.text
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+        return true
+    }
+}
+
+extension EditProfController: UITextViewDelegate {
+    func textViewDidChangeSelection(_ textView: UITextView) {
+        biotext = textView.text
+    }
+    func textViewShouldReturn(_ textView: UITextField) -> Bool {
+        textView.resignFirstResponder()
         return true
     }
 }

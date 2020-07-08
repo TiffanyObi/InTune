@@ -12,4 +12,11 @@ class PostCell: UICollectionViewCell {
     
     @IBOutlet weak var cellImage: UIImageView!
     
+    func configureCell(vidURL: String) {
+        guard let url = URL(string: vidURL) else { return }
+        let imageInfo = url.videoPreviewThumbnail()
+        cellImage.image = imageInfo
+       
+    }
+    
 }

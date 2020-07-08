@@ -20,6 +20,7 @@ class ChatsViewController: UIViewController {
     private let databaseService = DatabaseService()
     
     var currentUserBucket: Artist!
+    var otherUser: Artist?
     
     var users = [Artist]() {
         didSet {
@@ -28,6 +29,8 @@ class ChatsViewController: UIViewController {
             }
         }
     }
+    
+    var message: Message?
     
     var messages = [Message]() {
         didSet{
@@ -52,6 +55,7 @@ class ChatsViewController: UIViewController {
                     }
                 }
                 self.users = artist
+                
             }
         })
     }
@@ -60,22 +64,57 @@ class ChatsViewController: UIViewController {
         listener?.remove()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(true)
-    }
-    
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Chats"
-        view.backgroundColor = .systemYellow
+        view.backgroundColor = #colorLiteral(red: 0.3867273331, green: 0.8825651407, blue: 0.8684034944, alpha: 1)
         tableView.dataSource = self
         tableView.delegate = self
-//        tableView.register(UINib(nibName: "ChatsCell", bundle: nil), forCellReuseIdentifier: "chatCell")
+        tableView.register(UINib(nibName: "ChatsCell", bundle: nil), forCellReuseIdentifier: "chatCell")
+        getCurrentArtist()
+       
     }
     
     
+//    private func getMessages(for artist: Artist) {
+//
+//        databaseService.fetchThread(sender: currentUserBucket, artist: artist) { (result) in
+//
+//            switch result {
+//            case .failure(let error):
+//                print("no msgs found: \(error.localizedDescription)")
+//            case .success(let messages):
+//                self.messages = messages
+//            }
+//        }
+//    }
+    
+    private func getCurrentArtist() {
+        guard let current = Auth.auth().currentUser else { return }
+        databaseService.fetchArtist(userID: current.uid) { (result) in
+
+            switch result {
+            case .failure(let error):
+                print("\(error.localizedDescription)")
+            case .success(let artist):
+                self.currentUserBucket = artist
+            }
+        }
+    }
+//
+//    private func getOtherArtist(for artist: Artist) {
+//        databaseService.fetchArtist(userID: artist.artistId) { (result) in
+//
+//            switch result {
+//            case .failure(let error):
+//                print("\(error.localizedDescription)")
+//            case .success(let artist):
+//                self.otherUser = artist
+//            }
+//        }
+//
+//    }
     
 }
 
@@ -91,21 +130,30 @@ extension ChatsViewController: UITableViewDataSource, UITableViewDelegate {
             fatalError("could not downcast to ChatsCell")
         }
         let contact = users[indexPath.row]
-        cell.textLabel?.text = contact.name
-//        cell.configureCell(for: contact)
+//        guard let message = message else { return }
+//        let message = messages.last
+        cell.configureCell(for: contact)
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let chatVC = ChatViewController()
-        let userName = users[indexPath.row]
-        chatVC.artist = userName
-//        chatVC.user2Name = userName.name
-//        chatVC.user2UID = userName.artistId
+        let user = users[indexPath.row]
+        chatVC.artist = user
+        chatVC.delegate = self
         navigationController?.pushViewController(chatVC, animated: true)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 140
     }
+}
+
+extension ChatsViewController: MessageThreadDelegate {
+    func getLastMessage(_ vc: ChatViewController, _ messages: [Message]) {
+        self.messages = messages
+        print(messages)
+    }
+    
+    
 }

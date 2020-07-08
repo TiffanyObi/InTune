@@ -19,6 +19,7 @@ class DatabaseService {
     static let artistPosts = "artistPost"
     static let favCollection = "favoriteArtists"
     static let gigPosts = "gigPosts"
+    static let favGigPosts = "favGigPosts"
     static let threadCollection = "thread"
     static let artVideos = "videos"
     static let reportCollection = "reported"
@@ -40,7 +41,7 @@ class DatabaseService {
     
     public func createThread(artist: Artist, completion: @escaping (Result<Bool, Error>)->()) {
         guard let artistId = Auth.auth().currentUser?.uid else {return}
-        db.collection(DatabaseService.artistsCollection).document(artistId).collection(DatabaseService.threadCollection).document(artist.artistId).setData(["name" : artist.name, "artistId": artist.artistId]) { (error) in
+        db.collection(DatabaseService.artistsCollection).document(artistId).collection(DatabaseService.threadCollection).document(artist.artistId).setData(["name" : artist.name, "artistId": artist.artistId, "photoURL": artist.photoURL ?? "no photo url", "city": artist.city]) { (error) in
             if let error = error {
                 completion(.failure(error))
             } else {
@@ -51,7 +52,7 @@ class DatabaseService {
     
     public func createThread2(sender: Artist, artist: Artist, completion: @escaping (Result<Bool, Error>)->()) {
          let artistId = sender.artistId
-        db.collection(DatabaseService.artistsCollection).document(artistId).collection(DatabaseService.threadCollection).document(Auth.auth().currentUser!.uid).setData(["name" : artist.name, "artistId": artist.artistId]) { (error) in
+        db.collection(DatabaseService.artistsCollection).document(artistId).collection(DatabaseService.threadCollection).document(Auth.auth().currentUser!.uid).setData(["name" : artist.name, "artistId": artist.artistId, "photoURL": artist.photoURL ?? "no photo url", "city": artist.city]) { (error) in
                if let error = error {
                    completion(.failure(error))
                } else {
@@ -60,7 +61,19 @@ class DatabaseService {
            }
        }
     
-    
+    public func fetchThread(sender: Artist, artist: Artist, completion: @escaping (Result<[Message?], Error>)->()) {
+        let artistId = sender.artistId
+        
+        db.collection(DatabaseService.artistsCollection).document(artistId).collection(DatabaseService.threadCollection).getDocuments { (snapshot, error) in
+            
+            if let error = error {
+                completion(.failure(error))
+            } else if let snapshot = snapshot {
+                let messages = snapshot.documents.map { Message(dictionary: $0.data()) }
+                completion(.success(messages))
+            }
+        }
+    }
     
     //update function for user experience ( isAnArtist == true )
     public func updateUserExperience(isAnArtist:Bool, completion: @escaping (Result<Bool,Error>) -> ()){
@@ -144,6 +157,40 @@ class DatabaseService {
         }
     }
     
+    public func updateDisplayName(name: String, completion: @escaping (Result<Bool, Error>) -> ()) {
+        guard let user = Auth.auth().currentUser else { return }
+        db.collection(DatabaseService.artistsCollection).document(user.uid).updateData(["name": name]) { (error) in
+            
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(true))
+            }
+        }
+    }
+    
+    
+    public func updateBio(bioText:String, completion:@escaping (Result<Bool,Error>) ->()){
+        guard let user = Auth.auth().currentUser else { return}
+        db.collection(DatabaseService.artistsCollection).document(user.uid).updateData(["bioText":bioText]) { (error) in
+            
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(true))
+            }
+        }
+    }
+    public func updateUserPhoto(_ user: User, photoURL:String, completion:@escaping (Result<Bool,Error>) -> ()){
+        db.collection(DatabaseService.artistsCollection).document(user.uid).updateData(["photoURL":photoURL]) { (error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(true))
+            }
+        }
+    }
+    
     public func createVideoPosts(post: Video, completion: @escaping (Result<Bool, Error>) -> ()) {
       guard let user = Auth.auth().currentUser else {return}
       db.collection(DatabaseService.artistsCollection).document(user.uid).collection(DatabaseService.artVideos).document().setData(["videos": post.urlString ?? "no string"]) { (error) in
@@ -163,7 +210,6 @@ class DatabaseService {
           let videoDocuments = snapshot.documents.map{$0.data()}
           var videos = [Video]()
           videos = videoDocuments.compactMap {Video($0)}
-          print(videos)
           completion(.success(videos))
         }
       }
@@ -173,7 +219,7 @@ class DatabaseService {
     public func createFavArtist(artist:Artist, completion: @escaping (Result <Bool,Error>) -> ()){
         guard let user = Auth.auth().currentUser else { return }
         
-        db.collection(DatabaseService.artistsCollection).document(user.uid).collection(DatabaseService.favCollection).document(artist.artistId).setData(["favArtistName":artist.name,"favArtistID":artist.artistId, "favArtistLocation":artist.city,"favArtistTag":artist.tags, "favoritedDate":Timestamp(date: Date())]){ (error) in
+        db.collection(DatabaseService.artistsCollection).document(user.uid).collection(DatabaseService.favCollection).document(artist.artistId).setData(["favArtistName":artist.name,"favArtistID":artist.artistId, "favArtistLocation":artist.city,"favArtistTag":artist.tags, "favoritedDate":Timestamp(date: Date()), "favPhotoURL": artist.photoURL ?? "no url"]){ (error) in
             if let error = error {
                 completion(.failure(error))
             } else {
@@ -198,6 +244,20 @@ class DatabaseService {
                 }
             }
         }
+    }
+    
+    public func fetchFavArtists(artist: Artist, completion: @escaping (Result<[FavoritedArtist], Error>) -> ()) {
+        
+        db.collection(DatabaseService.artistsCollection).document(artist.artistId).collection(DatabaseService.favCollection).getDocuments { (snapshot, error) in
+            
+            if let error = error {
+                completion(.failure(error))
+            } else if let snapshot = snapshot {
+                let favArtists = snapshot.documents.compactMap { FavoritedArtist($0.data())}
+                completion(.success(favArtists))
+            }
+        }
+        
     }
     
     public func deleteFavArtist(for artist: Artist, completion: @escaping (Result<Bool, Error>) -> ()) {
@@ -228,11 +288,11 @@ class DatabaseService {
         }
     }
     
-    public func createGig(artist: Artist, title: String, description: String, price: Int, eventDate: String, createdDate: Timestamp, completion: @escaping (Result<String, Error>)-> ()) {
+    public func createGig(artist: Artist, title: String, description: String, price: Int, eventDate: String, createdDate: Timestamp, location: String, completion: @escaping (Result<String, Error>)-> ()) {
         
         let documentRef = db.collection(DatabaseService.gigPosts).document()
         
-        db.collection(DatabaseService.gigPosts).document(documentRef.documentID).setData(["title" : title, "artistName": artist.name, "artistId": artist.artistId, "descript": description, "price": price, "eventDate": eventDate, "createdDate": Timestamp()]) { (error) in
+        db.collection(DatabaseService.gigPosts).document(documentRef.documentID).setData(["title" : title, "artistName": artist.name, "artistId": artist.artistId, "descript": description, "price": price, "eventDate": eventDate, "createdDate": Timestamp(), "location": location,"gigId":documentRef.documentID]) { (error) in
             if let error = error {
                 completion(.failure(error))
             } else {
@@ -242,30 +302,84 @@ class DatabaseService {
         
     }
     
+    public func createGigPost(artist: Artist, title: String, description: String, price: Int, eventDate: String, createdDate: Timestamp, location: String, completion: @escaping (Result<Bool, Error>)-> ()) {
+        
+        let documentRef = db.collection(DatabaseService.gigPosts).document()
+        
+        db.collection(DatabaseService.artistsCollection).document(artist.artistId).collection(DatabaseService.gigPosts).document(documentRef.documentID).setData(["title" : title, "artistName": artist.name, "artistId": artist.artistId, "descript": description, "price": price, "eventDate": eventDate, "createdDate": Timestamp(), "location": artist.city,"gigId":documentRef.documentID]) { (error) in
+            
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(true))
+            }
+        
+        }
+    }
     
-    //should rename to user
-//    public func createGigPost(for user: Artist, gigPost: GigsPost, completion: @escaping (Result<Bool, Error>) ->()) {
-//
-//        guard let currentUser = Auth.auth().currentUser else { return }
-//
-//        db.collection(DatabaseService.artistsCollection).document(currentUser.uid).collection(DatabaseService.gigPosts).addDocument(data:
-//            ["user": user,
-//             "gigId": UUID().uuidString,
-//             "title": gigPost.title,
-//             "descript": gigPost.descript,
-//             "photoUR": gigPost.imageURL,
-//             "price": gigPost.price,
-//             "eventDate": gigPost.eventDate,
-//             "createdDate": Timestamp()
-//        ]) { (error) in
-//
-//            if let error = error {
-//                completion(.failure(error))
-//            } else {
-//                completion(.success(true))
-//            }
-//        }
-//    }
+    public func fetchGigs(completion: @escaping (Result<[GigsPost], Error>) -> ()) {
+        
+        db.collection(DatabaseService.gigPosts).getDocuments { (snapshot, error) in
+            
+            if let error = error {
+                completion(.failure(error))
+            } else if let snapshot = snapshot {
+                let gigs = snapshot.documents.compactMap { GigsPost($0.data())}
+                completion(.success(gigs))
+            }
+        }
+    }
+    
+    public func favoriteGig(artist: Artist, gigPost: GigsPost, completion: @escaping (Result<Bool, Error>) -> ()) {
+        
+        let documentRef = db.collection(DatabaseService.favGigPosts).document()
+        
+        db.collection(DatabaseService.artistsCollection).document(artist.artistId).collection(DatabaseService.favGigPosts).document(documentRef.documentID).setData(["title": gigPost.title, "artistName": gigPost.artistName, "artistId": gigPost.artistId, "description": gigPost.descript, "price": gigPost.price, "eventDate": gigPost.eventDate, "location": gigPost.location, "favDate": Timestamp()]) { (error) in
+            
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(true))
+            }
+        }
+        
+    }
+    
+    public func deleteGig(gig: GigsPost, completion: @escaping (Result<Bool, Error>) -> ()) {
+      
+        db.collection(DatabaseService.gigPosts).document(gig.gigId).delete { (error) in
+            
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(true))
+            }
+        }
+    }
+    
+    public func deleteGigPost(artistId: String, gig: GigsPost, completion: @escaping (Result<Bool, Error>) -> ()) {
+        
+        db.collection(DatabaseService.artistsCollection).document(artistId).collection(DatabaseService.gigPosts).document(gig.gigId).delete { (error) in
+            
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(true))
+            }
+        }
+    }
+    
+    public func getLikedArtistGigPosts(likedArtist:FavoritedArtist, completion:@escaping (Result<[GigsPost],Error>) -> ()){
+        db.collection(DatabaseService.artistsCollection).document(likedArtist.favArtistID).collection(DatabaseService.gigPosts).getDocuments { (snapshot, error) in
+            if let error = error {
+                completion(.failure(error))
+            } else if let snapshot = snapshot {
+                let gigPosts = snapshot.documents.map { GigsPost($0.data())
+                }
+                completion(.success(gigPosts))
+            }
+        }
+    }
 
     public func reportArtist(for artist: Artist, completion: @escaping (Result<Bool, Error>) -> ()) {
         db.collection(DatabaseService.artistsCollection).document(artist.artistId).updateData(["isReported":true]){ (error) in

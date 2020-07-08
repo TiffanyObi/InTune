@@ -11,9 +11,17 @@ import MessageKit
 import InputBarAccessoryView
 import Firebase
 import FirebaseFirestore
+import Kingfisher
+
+protocol MessageThreadDelegate: AnyObject {
+    func getLastMessage(_ vc: ChatViewController, _ messages: [Message])
+    
+}
+
 
 class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate, MessagesDataSource, MessagesLayoutDelegate, MessagesDisplayDelegate {
 
+    weak var delegate: MessageThreadDelegate?
 //   var currentUser: User = Auth.auth().currentUser!
     
     var currentUser: Artist?
@@ -212,6 +220,7 @@ class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate,
                      //messages.append(message)
                      insertNewMessage(message)
                      save(message)
+                     delegate?.getLastMessage(self, messages)
        
                      inputBar.inputTextView.text = ""
                      messagesCollectionView.reloadData()
@@ -241,24 +250,26 @@ class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate,
            func avatarSize(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGSize {
                return .zero
            }
-           
+    
+    func textColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
+        return .black
+    }
+
            // MARK: - MessagesDisplayDelegate
            func backgroundColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
-               return isFromCurrentSender(message: message) ? .blue: .lightGray
+            return isFromCurrentSender(message: message) ? #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1) : #colorLiteral(red: 0.3867273331, green: 0.8825651407, blue: 0.8684034944, alpha: 1)
            }
 
-   //        func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
-   //
-   //            if message.sender.senderId == currentUser.uid {
-   //                SDWebImageManager.shared.loadImage(with: currentUser.photoURL, options: .highPriority, progress: nil) { (image, data, error, cacheType, isFinished, imageUrl) in
-   //                    avatarView.image = image
-   //                }
-   //            } else {
-   ////                SDWebImageManager.shared.loadImage(with: URL(string: user2ImgUrl!), options: .highPriority, progress: nil) { (image, data, error, cacheType, isFinished, imageUrl) in
-   ////                    avatarView.image = image
-   ////                }
-   //            }
-   //        }
+           func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
+   
+               if message.sender.senderId == currentUser?.artistId {
+                guard let url = currentUser?.photoURL, let imageURL = URL(string: url) else { return }
+                avatarView.kf.setImage(with: imageURL)
+               } else {
+                guard let url = artist?.photoURL, let imageURL = URL(string: url) else { return }
+                avatarView.kf.setImage(with: imageURL)
+               }
+           }
 
            func messageStyle(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageStyle {
 

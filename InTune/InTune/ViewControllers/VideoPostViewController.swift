@@ -14,7 +14,9 @@ import FirebaseStorage
 
 class VideoPostViewController: UIViewController {
     
-    @IBOutlet var videoView: DesignableImageView!
+    @IBOutlet private var videoView: DesignableImageView!
+    @IBOutlet private var addVidButton: UIButton!
+    
     private lazy var imagePickerController: UIImagePickerController = {
         let mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)
         let pickerController = UIImagePickerController()
@@ -27,21 +29,23 @@ class VideoPostViewController: UIViewController {
     private var artist: Artist?
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        addVidButton.shadowLayer(addVidButton)
     }
+    
     @IBAction func addPostButtonPressed(_ sender: UIButton) {
         imagePickerController.sourceType = .photoLibrary
         present(imagePickerController, animated: true)
     }
     @IBAction func postButtonPressed(_ sender: UIButton) {
         //thumbnail updates to Profile vc cell
-        guard let user = Auth.auth().currentUser, let url = vidURL else { return }
+        guard let url = vidURL else { return }
         let urlString = url.absoluteString
         // we have the video url
         // 1. convert url to Data
         guard let videoData = try? Data(contentsOf: url) else {
             return
         }
-        let post = ArtistPost(artistName: "", artistId: user.uid, postId: "1234", postedDate: Timestamp(date: Date()), postURL: urlString)
         let vid = Video(title: "", urlString: urlString)
         db.createVideoPosts(post: vid) { (result) in
             switch result {
@@ -50,8 +54,6 @@ class VideoPostViewController: UIViewController {
             case .success:
                 // 2. update Data to Firebase Storage
                 StorageService().uploadVideoData(videoData) { (result) in
-                    // TODO: handle cases
-//                    self.dismiss(animated: true, completion: nil)
                 }
                 self.dismiss(animated: true, completion: nil)
             }

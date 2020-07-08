@@ -12,35 +12,28 @@ protocol UpdateUsertPref:AnyObject {
     func didUpdatePreferences(_ tags: [String], _ exploreVC:ExploreOptionsController)
 }
 
-
 class ExploreOptionsController: UIViewController {
-    
     
     @IBOutlet weak var instrumentsCollectionView: UICollectionView!
     
-    
     @IBOutlet weak var genresCollectionView: UICollectionView!
     
-    var instruments = [String]()
-    var genres = [String]()
-    
-//    var selectedInstruments = Set<String>()
-//    var selectedGenres = Set<String>()
+    var instruments = [TagCollectionViewCellModel]()
+    var genres = [TagCollectionViewCellModel]()
     
     var selectedTags = Set<String>()
-
     
+    var instrumentIndex: Int?
+    var genreIndex: Int?
     let db = DatabaseService()
-    
-//     private var tagsObserver: NSKeyValueObservation?
     
     weak var prefDelegate: UpdateUsertPref?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-       setUpCollectionViews()
-       loadCollectionViews()
+        
+        setUpCollectionViews()
+        loadCollectionViews()
     }
     
     func setUpCollectionViews(){
@@ -49,14 +42,14 @@ class ExploreOptionsController: UIViewController {
         genresCollectionView.dataSource = self
         genresCollectionView.delegate = self
         
-        instrumentsCollectionView.register(UINib(nibName: "TagCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "tagCell")
+        instrumentsCollectionView.register(UINib(nibName: "TagCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: TagCollectionViewCell.cellIdentifier)
         
-        genresCollectionView.register(UINib(nibName: "TagCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "tagCell")
+        genresCollectionView.register(UINib(nibName: "TagCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: TagCollectionViewCell.cellIdentifier)
     }
     
     private func loadCollectionViews(){
-        instruments = Tags.instrumentList
-        genres = Tags.genreList
+        instruments = Tags.instrumentList.map {TagCollectionViewCellModel(name: $0, isSelected: false)}
+        genres = Tags.genreList.map {TagCollectionViewCellModel(name: $0, isSelected: false)}
     }
     
     
@@ -81,14 +74,6 @@ class ExploreOptionsController: UIViewController {
         
     }
     
-//    private func configureTagsObservation(){
-//        tagsObserver = self.observe(\.selectedTags, options: [.old,.new], changeHandler: { [weak self](tags, change) in
-//            guard let tags = change.newValue else { return }
-//
-//        })
-//    }
-    
-    
 }
 
 extension ExploreOptionsController: UICollectionViewDelegateFlowLayout,UICollectionViewDataSource {
@@ -105,30 +90,44 @@ extension ExploreOptionsController: UICollectionViewDelegateFlowLayout,UICollect
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-                if collectionView == instrumentsCollectionView {
-                
-            guard let tagCell = collectionView.dequeueReusableCell(withReuseIdentifier: "tagCell", for: indexPath) as? TagCollectionViewCell else {
-                fatalError("could not downcast to TagCollectionViewCell")
-            }
-                let instrument = instruments[indexPath.row]
-                    tagCell.tagTitle.backgroundColor = .purple
-                tagCell.tagTitle.text = instrument
-                tagCell.tagTitle.textColor = .white
-                return tagCell
-                
+        guard let tagCell = collectionView.dequeueReusableCell(withReuseIdentifier: "tagCell", for: indexPath) as? TagCollectionViewCell else {
+            return UICollectionViewCell()
         }
-            if collectionView == genresCollectionView{
-                guard let tagCell = collectionView.dequeueReusableCell(withReuseIdentifier: "tagCell", for: indexPath) as? TagCollectionViewCell else { fatalError("could not downcast to TagCollectionViewCell")
-                }
-                
-                let genre = genres[indexPath.row]
-                tagCell.tagTitle.backgroundColor = .systemTeal
-                tagCell.tagTitle.textColor = .white
-                tagCell.tagTitle.text = genre
-                return tagCell
-            }
+
+        if collectionView == instrumentsCollectionView {
+            let instrument = instruments[indexPath.row]
+            tagCell.tagTitle.backgroundColor = .black
+            tagCell.layer.borderWidth = 4
+            tagCell.layer.borderColor = #colorLiteral(red: 0.3867273331, green: 0.8825651407, blue: 0.8684034944, alpha: 1)
             
-            return TagCollectionViewCell()
+            tagCell.isButtonPressed = { [weak self] in
+                self?.instruments[indexPath.row].isSelected = true
+                self?.selectedTags.insert(instrument.name)
+            }
+            tagCell.tagTitle.textColor = .white
+            
+            tagCell.configureWithModel(instrument)
+            
+            
+            
+        }
+        if collectionView == genresCollectionView{
+            let genre = genres[indexPath.row]
+            tagCell.tagTitle.backgroundColor = .black
+            tagCell.layer.borderWidth = 4
+            tagCell.layer.borderColor = #colorLiteral(red: 0.3429883122, green: 0.02074946091, blue: 0.7374325991, alpha: 1)
+            tagCell.tagTitle.textColor = .white
+            
+            tagCell.isButtonPressed = { [weak self] in
+                self?.genres[indexPath.row].isSelected = true
+                self?.selectedTags.insert(genre.name)
+            }
+             tagCell.tagTitle.textColor = .white
+             
+             tagCell.configureWithModel(genre)
+        }
+        
+        return tagCell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -137,25 +136,18 @@ extension ExploreOptionsController: UICollectionViewDelegateFlowLayout,UICollect
         let itemHeight: CGFloat = maxSize.height * 0.10
         return CGSize(width: itemWidth, height: itemHeight)
     }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if collectionView == instrumentsCollectionView {
-            
-            let selectedInstrument = instruments[indexPath.row]
-          
-            selectedTags.insert(selectedInstrument)
-            print(selectedTags)
-            
+}
+
+extension ExploreOptionsController {
+    func updateUserPreferences(instrument: String, genre: String) {
+        if !instrument.isEmpty {
+            selectedTags.insert(instrument)
+        }
+        if !genre.isEmpty {
+            selectedTags.insert(genre)
         }
         
-        if collectionView == genresCollectionView {
-            
-            let selectedGenre = genres[indexPath.row]
-            selectedTags.insert(selectedGenre)
-            
-            print(selectedTags)
-        }
+        print(selectedTags)
     }
-
     
 }

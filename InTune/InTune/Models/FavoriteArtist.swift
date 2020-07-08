@@ -15,6 +15,7 @@ struct FavoritedArtist {
     let favArtistID:String
     let favArtistTag:[String]
     let favoritedDate: Timestamp
+    let favPhotoURL: String?
 //    let note: String? // if users want to favorite an Artist with a specific reason why they are liking it (i.e to book for an event or contacts at a later date etc) but we dont have to keep this.
 }
 
@@ -26,7 +27,7 @@ extension FavoritedArtist{
         self.favArtistName = dictionary["favArtistName"] as? String ?? "no favArtistName"
         self.favArtistTag = dictionary["favArtistTag"] as? [String] ?? ["no favArtistTag"]
         self.favoritedDate = dictionary["favoritedDate"] as? Timestamp ?? Timestamp(date: Date())
-
+        self.favPhotoURL = dictionary["favPhotoURL"] as? String ?? "no photo url"
     }
 
 }

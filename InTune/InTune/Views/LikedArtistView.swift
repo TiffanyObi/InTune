@@ -10,11 +10,13 @@ import UIKit
 
 class LikedArtistView: UIView {
     
-    private lazy var likedArtistLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont(name: "Didot", size: 30)
-        label.text = "Liked Artists"
-        return label
+    public lazy var likedArtistSearchBar: UISearchBar = {
+        let search = UISearchBar()
+        search.placeholder = "Search an artist by name"
+        search.layer.cornerRadius = 20
+        search.layer.masksToBounds = true
+        search.searchTextField.backgroundColor = .white
+        return search
     }()
     
     public lazy var likedArtistCollectionView: UICollectionView = {
@@ -36,27 +38,27 @@ class LikedArtistView: UIView {
     }
     
     private func commomInit() {
-        setLikedArtistLabel()
+        setUpSearchBarConstraints()
         setUpLikedArtistCollectionViewConstraints()
-        
     }
     
-    
-    private func setLikedArtistLabel(){
-        addSubview(likedArtistLabel)
-        likedArtistLabel.translatesAutoresizingMaskIntoConstraints = false
+    private func setUpSearchBarConstraints() {
+        addSubview(likedArtistSearchBar)
+        
+        likedArtistSearchBar.translatesAutoresizingMaskIntoConstraints = false
+        
         NSLayoutConstraint.activate([
-            likedArtistLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 8),
-            likedArtistLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
-            likedArtistLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8)
-            
+            likedArtistSearchBar.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            likedArtistSearchBar.leadingAnchor.constraint(equalTo: leadingAnchor),
+            likedArtistSearchBar.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])
     }
+    
     private func setUpLikedArtistCollectionViewConstraints(){
         addSubview(likedArtistCollectionView)
         likedArtistCollectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            likedArtistCollectionView.topAnchor.constraint(equalTo: likedArtistLabel.bottomAnchor, constant: 16),
+            likedArtistCollectionView.topAnchor.constraint(equalTo: likedArtistSearchBar.bottomAnchor, constant: 8),
             likedArtistCollectionView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
             likedArtistCollectionView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
             likedArtistCollectionView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.7)

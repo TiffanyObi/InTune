@@ -12,7 +12,7 @@ class EmptyView: UIView {
      private lazy var messageLabel: UILabel = {
             let label = UILabel()
             label.text = "User Reported"
-            label.font = UIFont(name: "Didot", size: 50)
+            label.font = UIFont(name: "Didot", size: 24)
             label.numberOfLines = 6
             label.textAlignment = .center
             return label

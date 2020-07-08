@@ -8,8 +8,13 @@
 
 import UIKit
 
-class OnboardingViewController: UIViewController {
+struct TagCollectionViewCellModel {
+    var name: String
+    var isSelected: Bool
+}
 
+class OnboardingViewController: UIViewController {
+    
     let userExperienece = UserExperienceView()
     let displayNameAndLocation = DisplayNameAndLocationView()
     let tagsSelectionView = TagsSelectionView()
@@ -20,8 +25,8 @@ class OnboardingViewController: UIViewController {
     var displayName = ""
     var userLocation = ""
     
-    var instruments = [String]()
-    var genres = [String]()
+    var instruments = [TagCollectionViewCellModel]()
+    var genres = [TagCollectionViewCellModel]()
     
     var selectedInstruments = Set<String>()
     var selectedGenres = Set<String>()
@@ -35,8 +40,8 @@ class OnboardingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view = userExperienece
-        view.backgroundColor = .systemGroupedBackground
-     setUpButtonOnExperienceView()
+        view.backgroundColor = .white
+        setUpButtonOnExperienceView()
         setUpTextFeildFroDisplayNameView()
         setUpPickerViewForLocationView()
         setUpNextButton()
@@ -45,10 +50,10 @@ class OnboardingViewController: UIViewController {
         setUpDoneButton()
         view.addGestureRecognizer(tapGesture)
     }
-
+    
     @objc private func resignTextfeilds(){
         displayNameAndLocation.displayNameTextfield.resignFirstResponder()
-       }
+    }
     
     func setUpButtonOnExperienceView(){
         for button in userExperienece.allButtons {
@@ -60,9 +65,9 @@ class OnboardingViewController: UIViewController {
         displayNameAndLocation.displayNameTextfield.delegate = self
     }
     
-   func setUpPickerViewForLocationView(){
-    displayNameAndLocation.locationPickerView.dataSource = self
-    displayNameAndLocation.locationPickerView.delegate = self
+    func setUpPickerViewForLocationView(){
+        displayNameAndLocation.locationPickerView.dataSource = self
+        displayNameAndLocation.locationPickerView.delegate = self
     }
     
     func setUpNextButton(){
@@ -80,8 +85,8 @@ class OnboardingViewController: UIViewController {
         tagsSelectionView.genresCollectionView.register(UINib(nibName: "TagCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "tagCell")
     }
     private func loadCollectionViews(){
-        instruments = Tags.instrumentList
-        genres = Tags.genreList
+        instruments = Tags.instrumentList.map {TagCollectionViewCellModel(name: $0, isSelected: false)}
+        genres = Tags.genreList.map {TagCollectionViewCellModel(name: $0, isSelected: false)}
     }
     func setUpDoneButton(){
         tagsSelectionView.doneButton.addTarget(self, action: #selector(doneButtonPressed), for: .touchUpInside)
@@ -93,7 +98,7 @@ class OnboardingViewController: UIViewController {
             database.updateUserExperience(isAnArtist: true) { [weak self](result) in
                 switch result {
                 case .failure(let error):
-                    print(error.localizedDescription)
+                    self?.showAlert(title: "Error", message: "\(error.localizedDescription)")
                 case .success:
                     self?.navigateToDisplayNameAndCityView()
                 }
@@ -102,9 +107,9 @@ class OnboardingViewController: UIViewController {
             database.updateUserExperience(isAnArtist: false) { [weak self](result) in
                 switch result {
                 case .failure(let error):
-                    print(error.localizedDescription)
+                    self?.showAlert(title: "Error", message: "\(error.localizedDescription)")
                 case .success:
-
+                    
                     self?.navigateToDisplayNameAndCityView()
                 }
             }
@@ -113,15 +118,25 @@ class OnboardingViewController: UIViewController {
         }
     }
     private func navigateToDisplayNameAndCityView(){
-       view = displayNameAndLocation
-        view.backgroundColor = .systemGroupedBackground
+        view = displayNameAndLocation
+        view.backgroundColor = .white
     }
     @objc private func nextButtonPressed(){
+        
+        guard !displayName.isEmpty else {
+            showAlert(title: "Missing Feilds", message: " Please create a unique user name")
+            return
+        }
+        
+        guard !userLocation.isEmpty else {
+            showAlert(title: "Missing Feilds", message: "Please tell us where you're located")
+            return
+        }
+        
         database.updateUserDisplayNameAndLocation(userName: displayName, location: userLocation) { [weak self](result) in
             switch result {
             case.failure(let error):
-                print(error.localizedDescription)
-                
+                self?.showAlert(title: "Error", message: "\(error.localizedDescription)")
             case.success:
                 print(true)
                 self?.navigateToTagsSelectionView()
@@ -130,12 +145,16 @@ class OnboardingViewController: UIViewController {
     }
     private func navigateToTagsSelectionView(){
         view = tagsSelectionView
-        view.backgroundColor = .systemGroupedBackground
+        view.backgroundColor = .white
     }
     
     @objc private func doneButtonPressed(){
         
-        guard !selectedInstruments.isEmpty,!selectedGenres.isEmpty else { return }
+        guard !selectedInstruments.isEmpty,!selectedGenres.isEmpty else {
+            showAlert(title: "Missing Selections", message: "What instruments or genres are you interested in ?")
+            return
+            
+        }
         
         let instruments1 = Array(selectedInstruments)
         let genres1 = Array(selectedGenres)
@@ -143,22 +162,23 @@ class OnboardingViewController: UIViewController {
         database.updateUserTags(instruments: instruments1, genres: genres1) { [weak self](result) in
             switch result {
             case.failure(let error):
-                print(error.localizedDescription)
+                self?.showAlert(title: "Error", message: "\(error.localizedDescription)")
             case.success:
-                print("doing to database")
                 self?.navigateToProfileView()
             }
         }
     }
     
     func navigateToProfileView(){
-         UIViewController.showViewController(storyboardName: "MainView", viewControllerID: "MainViewTabBarController")
+        UIViewController.showViewController(storyboardName: "MainView", viewControllerID: "MainViewTabBarController")
     }
 }
 
 extension OnboardingViewController: UITextFieldDelegate {
     func textFieldDidChangeSelection(_ textField: UITextField) {
-        guard !(textField.text?.isEmpty ?? true) else {return}
+        guard !(textField.text?.isEmpty ?? true) else {
+            
+            return}
         displayName = textField.text ?? "no display name"
     }
     
@@ -175,11 +195,11 @@ extension OnboardingViewController: UIPickerViewDataSource, UIPickerViewDelegate
         return 1
     }
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-       
+        
         return states.count
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-       
+        
         return states[row]
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
@@ -204,31 +224,42 @@ extension OnboardingViewController: UICollectionViewDataSource,UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        if collectionView == tagsSelectionView.instrumentsCollectionView {
-            
         guard let tagCell = collectionView.dequeueReusableCell(withReuseIdentifier: "tagCell", for: indexPath) as? TagCollectionViewCell else {
-            fatalError("could not downcast to TagCollectionViewCell")
-        }
-            let instrument = instruments[indexPath.row]
-            tagCell.tagTitle.text = instrument
-           
-            tagCell.layer.cornerRadius = 10
-            
-            return tagCell
-            
-    }
-        if collectionView == tagsSelectionView.genresCollectionView{
-            guard let tagCell = collectionView.dequeueReusableCell(withReuseIdentifier: "tagCell", for: indexPath) as? TagCollectionViewCell else { fatalError("could not downcast to TagCollectionViewCell")
-            }
-            
-            let genre = genres[indexPath.row]
-            tagCell.layer.cornerRadius = 10
-            tagCell.tagTitle.text = genre
-            
-            return tagCell
+            return UICollectionViewCell()
         }
         
-        return TagCollectionViewCell()
+        if collectionView == tagsSelectionView.instrumentsCollectionView {
+            let instrument = instruments[indexPath.row]
+            tagCell.tagTitle.backgroundColor = .black
+            tagCell.layer.borderWidth = 4
+            tagCell.layer.borderColor = #colorLiteral(red: 0.3867273331, green: 0.8825651407, blue: 0.8684034944, alpha: 1)
+            tagCell.isButtonPressed = { [weak self] in
+                self?.instruments[indexPath.row].isSelected = true
+                self?.selectedInstruments.insert(instrument.name)
+            }
+            tagCell.tagTitle.textColor = .white
+            tagCell.configureWithModel(instrument)
+            
+            return tagCell
+            
+        }
+        if collectionView == tagsSelectionView.genresCollectionView{
+            let genre = genres[indexPath.row]
+            tagCell.tagTitle.backgroundColor = .black
+            tagCell.layer.borderWidth = 4
+            tagCell.layer.borderColor = #colorLiteral(red: 0.3867273331, green: 0.8825651407, blue: 0.8684034944, alpha: 1)
+            
+                  tagCell.isButtonPressed = { [weak self] in
+                      self?.genres[indexPath.row].isSelected = true
+                      self?.selectedGenres.insert(genre.name)
+                  }
+                   tagCell.tagTitle.textColor = .white
+                   
+                   tagCell.configureWithModel(genre)
+            
+        }
+        
+        return tagCell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -238,28 +269,19 @@ extension OnboardingViewController: UICollectionViewDataSource,UICollectionViewD
         return CGSize(width: itemWidth, height: itemHeight)
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if collectionView == tagsSelectionView.instrumentsCollectionView {
-            guard let tagCell = collectionView.dequeueReusableCell(withReuseIdentifier: "tagCell", for: indexPath) as? TagCollectionViewCell else { fatalError("could not downcast to TagCollectionViewCell")
-            }
-            
-            let selectedInstrument = instruments[indexPath.row]
-            tagCell.tagTitle.isHighlighted = true
-            
-            selectedInstruments.insert(selectedInstrument)
-            print(selectedInstruments)
+}
+
+extension OnboardingViewController: TagsCVDelegate {
+    func updateUserPreferences(_ cell: TagCollectionViewCell, instrument: String, genre: String) {
+        if !instrument.isEmpty {
+            selectedInstruments.insert(instrument)
         }
         
-        if collectionView == tagsSelectionView.genresCollectionView {
-            guard let tagCell = collectionView.dequeueReusableCell(withReuseIdentifier: "tagCell", for: indexPath) as? TagCollectionViewCell else { fatalError("could not downcast to TagCollectionViewCell")
-            }
-            
-            let selectedGenre = genres[indexPath.row]
-            tagCell.tagTitle.isHighlighted = true
-           
-            selectedGenres.insert(selectedGenre)
-            print(selectedGenres)
+        if !genre.isEmpty {
+            selectedGenres.insert(genre)
         }
     }
+    
+    
     
 }
