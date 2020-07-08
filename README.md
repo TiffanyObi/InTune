@@ -55,6 +55,31 @@ public func createThread(artist: Artist, completion: @escaping (Result<Bool, Err
 }    
 ```
 
+
+Used a delegate to pass in tags from the cells and filtered the artists array based on tags 
+```swift
+    func didUpdatePreferences(_ tags: [String], _ exploreVC: ExploreOptionsController) {
+        getCurrentUserPref()
+        tagsCollectionView.reloadData()
+        artistTableView.reloadData()
+        
+        db.getArtists { (result) in
+            switch result {
+            case .failure(let error):
+                print(error)
+                
+            case .success(let filteredArtist):
+                for pref in self.currentUser?.preferences ?? ["none"] {
+                    
+                    self.artists = filteredArtist.filter{ $0.tags.contains(pref) }
+                }
+            }
+        }
+        
+    }
+```
+
+
 ## Technologies
 
 This project includes cocoapods such as MessageKit and Kingfisher to facilitate the production of the app. MessageKit was used to create conversations between our users for the chat features. Kingfisher was used to access images faster on the product. Firebase was used to organize and store user data.
