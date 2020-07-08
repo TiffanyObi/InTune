@@ -41,6 +41,21 @@ Posting Videos
 
 ## Code Snippet 
 
+#### Adding threads to users profile
+
+```swift
+public func createThread(artist: Artist, completion: @escaping (Result<Bool, Error>)->()) {
+    guard let artistId = Auth.auth().currentUser?.uid else {return}
+    db.collection(DatabaseService.artistsCollection).document(artistId).collection(DatabaseService.threadCollection).document(artist.artistId).setData(["name" : artist.name, "artistId": artist.artistId, "photoURL": artist.photoURL ?? "no photo url", "city": artist.city]) { (error) in
+        if let error = error {
+            completion(.failure(error))
+        } else {
+            completion(.success(true))
+        }
+    }
+}    
+```
+
 ## Technologies
 
 This project includes cocoapods such as MessageKit and Kingfisher to facilitate the production of the app. MessageKit was used to create conversations between our users for the chat features. Kingfisher was used to access images faster on the product. Firebase was used to organize and store user data.
