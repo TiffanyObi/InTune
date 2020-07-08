@@ -86,16 +86,10 @@ This project includes cocoapods such as MessageKit and Kingfisher to facilitate 
 
 
 ## Contributors 
-
-|<a href="https://github.com/maitreebain" target="_blank">**InTune**</a>|
-|<a href="https://github.com/TiffanyObi" target="_blank">**InTune**</a>|
-|<a href="https://github.com/ChristianHurtado29" target="_blank">**InTune**</a>|
-|<a href="https://github.com/oscarvictoria" target="_blank">**InTune**</a>|
-
-|:---:
-|:---:
-|:---:
-|:---:|
+|:-:
+|:-:
+|:-:
+|:-:|
 
 |[![InTune](https://avatars2.githubusercontent.com/u/55721710?s=200&u=0eebcc3a8a764dfe250d0b89fce345a2ca46eb6d&v=4&s=300)](https://github.com/maitreebain)
 |[![InTune](https://avatars2.githubusercontent.com/u/55755297?s=200&u=364f4a7c46054d81adf10cc9b63e5215b5a83515&v=4&s=30)](https://github.com/TiffanyObi)
