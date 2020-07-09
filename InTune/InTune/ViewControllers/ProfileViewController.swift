@@ -32,6 +32,11 @@ class ProfileViewController: UIViewController {
     @IBOutlet var settingsButton: UIBarButtonItem!
     @IBOutlet var infoView: DesignableView!
     
+    private lazy var longPress: UILongPressGestureRecognizer = {
+       let press = UILongPressGestureRecognizer()
+        press.addTarget(self, action: #selector(deletePost(_:)))
+        return press
+    }()
     
     let db = DatabaseService()
     
@@ -76,6 +81,7 @@ class ProfileViewController: UIViewController {
         postsCollectionView.dataSource = self
         postsCollectionView.layer.cornerRadius = 14
         postsCollectionView.register(UINib(nibName: "PostCell", bundle: nil), forCellWithReuseIdentifier: "postCell")
+        postsCollectionView.addGestureRecognizer(longPress)
         profileViewModel.setUpLikeButton(profileVC: self, button: likeArtistButton)
     }
     
@@ -143,6 +149,18 @@ class ProfileViewController: UIViewController {
     @objc func reportArtist(_ sender: UIBarButtonItem){
         
 profileViewModel.setUpReportArtist(profileVC: self, expArtist: expArtist)
+    }
+    
+    @objc func deletePost(_ gesture: UILongPressGestureRecognizer) {
+        let alert = UIAlertController(title: nil, message:  nil, preferredStyle: .actionSheet)
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { (alertAction) in
+            //call delete post here
+            
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alert.addAction(cancelAction)
+        alert.addAction(deleteAction)
+        present(alert, animated: true)
     }
        
     @IBAction func postVideoButtonPressed(_ sender: UIBarButtonItem) {
@@ -273,6 +291,8 @@ extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDel
                 player.play()
             }
         }
+        
+        //long press
     }
 }
 

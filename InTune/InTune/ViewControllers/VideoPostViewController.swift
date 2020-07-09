@@ -75,8 +75,7 @@ extension VideoPostViewController: UIImagePickerControllerDelegate, UINavigation
             print("video picked")
             dismiss(animated: true, completion: nil)
             if let mediaURL = info[UIImagePickerController.InfoKey.mediaURL] as? URL,
-                let image = mediaURL.videoPreviewThumbnail(),
-                let imageData = image.jpegData(compressionQuality: 1.0)
+                let image = mediaURL.videoPreviewThumbnail()
             {
                 vidURL = mediaURL
                 videoView.image = image
