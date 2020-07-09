@@ -20,6 +20,9 @@ class VideoPostViewController: UIViewController {
     private lazy var imagePickerController: UIImagePickerController = {
         let mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)
         let pickerController = UIImagePickerController()
+        pickerController.videoMaximumDuration = 30.0
+        pickerController.allowsEditing = true
+        pickerController.isEditing = true
         pickerController.mediaTypes = mediaTypes ?? ["kUTTypeImage"]
         pickerController.delegate = self
         return pickerController
