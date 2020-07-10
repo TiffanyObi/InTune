@@ -8,18 +8,21 @@
 
 import Foundation
 struct Video {
-  let title: String?
-  let urlString: String?
+  let artistName: String?
+  let videoUrl: String?
+    let postId: String
 }
 extension Video {
   init?(_ dictionary: [String: Any]) {
    // if let title = videoInformation["artistName"] as? String,
     //            let videoURL = videoInformation["videoUrl"] as? String {
-    guard let title = dictionary["artistName"] as? String,
-      let urlString = dictionary["videoUrl"] as? String else {
+    guard let artistName = dictionary["artistName"] as? String,
+      let videoUrl = dictionary["videoUrl"] as? String,
+    let postId = dictionary["postId"] as? String else {
         return nil
     }
-    self.title = title
-    self.urlString = urlString
+    self.artistName = artistName
+    self.videoUrl = videoUrl
+    self.postId = postId
   }
 }
