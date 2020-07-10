@@ -49,18 +49,10 @@ class VideoPostViewController: UIViewController {
         guard let videoData = try? Data(contentsOf: url) else {
             return
         }
-        let vid = Video(title: "", urlString: urlString)
-        db.createVideoPosts(post: vid) { (result) in
-            switch result {
-            case .failure(let error):
-                print("could not post media: \(error.localizedDescription)")
-            case .success:
-                // 2. update Data to Firebase Storage
-                StorageService().uploadVideoData(videoData) { (result) in
-                }
-                self.dismiss(animated: true, completion: nil)
-            }
+        let vid = Video(artistName: "", videoUrl: urlString, postId: UUID().uuidString)
+        StorageService().uploadVideoData(videoData, vid: vid) { (result) in
         }
+        self.dismiss(animated: true, completion: nil)
     }
 }
 extension VideoPostViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -75,8 +67,7 @@ extension VideoPostViewController: UIImagePickerControllerDelegate, UINavigation
             print("video picked")
             dismiss(animated: true, completion: nil)
             if let mediaURL = info[UIImagePickerController.InfoKey.mediaURL] as? URL,
-                let image = mediaURL.videoPreviewThumbnail(),
-                let imageData = image.jpegData(compressionQuality: 1.0)
+                let image = mediaURL.videoPreviewThumbnail()
             {
                 vidURL = mediaURL
                 videoView.image = image

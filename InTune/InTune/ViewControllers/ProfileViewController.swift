@@ -32,8 +32,14 @@ class ProfileViewController: UIViewController {
     @IBOutlet var settingsButton: UIBarButtonItem!
     @IBOutlet var infoView: DesignableView!
     
+    private lazy var longPress: UILongPressGestureRecognizer = {
+       let press = UILongPressGestureRecognizer()
+        press.addTarget(self, action: #selector(deletePost(_:)))
+        return press
+    }()
     
     let db = DatabaseService()
+    let storageService = StorageService()
     
     var singleArtist: Artist? {
         didSet {
@@ -62,6 +68,8 @@ class ProfileViewController: UIViewController {
             setUpEmptyViewFromExp()
         }
     }
+    
+    var vid: Video?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -144,6 +152,38 @@ class ProfileViewController: UIViewController {
         
 profileViewModel.setUpReportArtist(profileVC: self, expArtist: expArtist)
     }
+    
+    @objc func deletePost(_ gesture: UILongPressGestureRecognizer) {
+        let alert = UIAlertController(title: nil, message:  nil, preferredStyle: .actionSheet)
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { (alertAction) in
+            //call delete post here
+            self.deletePost()
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alert.addAction(cancelAction)
+        alert.addAction(deleteAction)
+        present(alert, animated: true)
+    }
+    
+    private func deletePost() {
+        guard let video = vid else {
+            print("no vid found")
+            return }
+        db.deleteVideoPost(post: video) { [weak self] (result) in
+            
+            switch result {
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    self?.showAlert(title: "Error deleting post", message: "\(error.localizedDescription)")
+                }
+            case .success:
+                DispatchQueue.main.async {
+                    self?.showAlert(title: "Success", message: "Video deleted")
+                    self?.postsCollectionView.reloadData()
+                }
+            }
+        }
+    }
        
     @IBAction func postVideoButtonPressed(_ sender: UIBarButtonItem) {
     }
@@ -223,12 +263,14 @@ extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDel
             }
             if state == .prof {
                 let video = videos[indexPath.row]
-                if let urlString = video.urlString {
+                vid = video
+                if let urlString = video.videoUrl {
                     cell.configureCell(vidURL: urlString)
+                    cell.addGestureRecognizer(longPress)
                 }
             } else if state == .explore {
                 let video = videos[indexPath.row]
-                if let urlString = video.urlString {
+                if let urlString = video.videoUrl {
                     cell.configureCell(vidURL: urlString)
                 }
             }
@@ -265,7 +307,7 @@ extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDel
             let video = videos[indexPath.row]
             // create av player vc
             let playController = AVPlayerViewController()
-            guard let urlStr = video.urlString else { return }
+            guard let urlStr = video.videoUrl else { return }
             let player = AVPlayer(url: URL(string: urlStr)!)
             //present av vc
             playController.player = player

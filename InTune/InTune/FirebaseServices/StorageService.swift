@@ -29,7 +29,7 @@ class StorageService {
             (metadata, error) in
             if let error = error {
                 completion(.failure(error))
-            }else if let metadata = metadata {
+            } else {
                 photoReference.downloadURL { (url, error) in
                     if let error = error {
                         completion(.failure(error))
@@ -40,7 +40,7 @@ class StorageService {
             }
         }
     }
-func uploadVideoData(_ videoData: Data, completion: @escaping (Result<Bool, Error>) -> ()){
+    func uploadVideoData(_ videoData: Data, vid: Video, completion: @escaping (Result<Bool, Error>) -> ()){
  guard let user = Auth.auth().currentUser else {
   return
  }
@@ -65,7 +65,9 @@ func uploadVideoData(_ videoData: Data, completion: @escaping (Result<Bool, Erro
      .collection("videos")
      .document(documentRef.documentID)
      .setData(["artistName" : "AXP Films",
-          "videoUrl": url!.absoluteString]) { error in
+          "videoUrl": url!.absoluteString,
+          "postId": documentRef.documentID
+     ]) { error in
            if let error = error {
             print("error: \(error)")
      }
@@ -74,4 +76,21 @@ func uploadVideoData(_ videoData: Data, completion: @escaping (Result<Bool, Erro
   }
  }
 }
+    
+//    func deleteVideo(completion: @escaping (Result<Bool, Error>) -> ()) {
+//        guard let user = Auth.auth().currentUser else {
+//         return
+//        }
+//        let storageRef = FirebaseStorage.Storage.storage().reference()
+//        let videoRef = storageRef.child("Videos/\(user.uid)/\(UUID().uuidString)")
+//        
+//        videoRef.delete { (error) in
+//            
+//            if let error = error {
+//                completion(.failure(error))
+//            } else {
+//                completion(.success(true))
+//            }
+//        }
+//    }
 }

@@ -191,17 +191,6 @@ class DatabaseService {
         }
     }
     
-    public func createVideoPosts(post: Video, completion: @escaping (Result<Bool, Error>) -> ()) {
-      guard let user = Auth.auth().currentUser else {return}
-      db.collection(DatabaseService.artistsCollection).document(user.uid).collection(DatabaseService.artVideos).document().setData(["videos": post.urlString ?? "no string"]) { (error) in
-        if let error = error {
-          completion(.failure(error))
-        } else {
-          completion(.success(true))
-        }
-      }
-    }
-    
     public func getVideo(artist:Artist,completion: @escaping (Result<[Video], Error>) -> ()){
         db.collection(DatabaseService.artistsCollection).document(artist.artistId).collection(DatabaseService.artVideos).getDocuments { (snapshot, error) in
         if let error = error{
@@ -213,6 +202,19 @@ class DatabaseService {
           completion(.success(videos))
         }
       }
+    }
+    
+    public func deleteVideoPost(post: Video, completion: @escaping (Result<Bool, Error>) -> ()) {
+        guard let user = Auth.auth().currentUser else { return }
+        
+        db.collection(DatabaseService.artistsCollection).document(user.uid).collection(DatabaseService.artVideos).document(post.postId).delete { (error) in
+            
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(true))
+            }
+        }
     }
     
    
