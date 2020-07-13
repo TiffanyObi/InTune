@@ -133,6 +133,20 @@ class ExploreViewController: UIViewController {
     
     @IBAction func resetSearch(_ sender: UIBarButtonItem) {
         fetchArtists()
+        
+        guard let currentUser1 = currentUser else { return }
+       
+        db.updateUserPreferences(currentUser1.tags) {[weak self] (result) in
+            switch result {
+            case .failure(let error):
+                self?.showAlert(title: "Error Updating", message: error.localizedDescription)
+            case .success:
+                self?.getCurrentUserPref()
+                
+            }
+        }
+        
+        
     }
     
     func helperFuncForFeaturedArtist(artists1:[Artist]) -> [Artist]{
