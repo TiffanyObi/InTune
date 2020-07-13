@@ -24,6 +24,16 @@ class GigsDetailViewController: UIViewController {
     
     var gigPost: GigsPost?
     
+    var isGigInFavorite = false {
+          didSet {
+              if isGigInFavorite {
+                navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "bookmark.fill"), style: .plain, target: self, action: #selector(favoriteButtonPressed(_:)))
+              } else {
+                navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "bookmark"), style: .plain, target: self, action: #selector(favoriteButtonPressed(_:)))
+              }
+          }
+      }
+    
     let db = DatabaseService()
     
     var singleArtist: Artist?
@@ -44,7 +54,7 @@ class GigsDetailViewController: UIViewController {
         }
     }
     
-    func getCurrentUser(){
+    func getCurrentUser() {
         guard let user = Auth.auth().currentUser else { return}
         db.fetchArtist(userID: user.uid) { [weak self](result) in
             switch result {
@@ -85,19 +95,58 @@ class GigsDetailViewController: UIViewController {
         descriptionText.text = gig.descript
     }
     
-    @objc func favoriteButtonPressed(_ sender: UIBarButtonItem){
-        db.favoriteGig(artist: currentUser, gigPost: gigPost!) { [weak self](result) in
-            switch result {
-            case .failure(let error):
-                DispatchQueue.main.async {
-                    self?.showAlert(title: "Error", message: error.localizedDescription)
+    @objc func favoriteButtonPressed(_ sender: UIBarButtonItem) {
+        
+        guard let gigPost = gigPost else {
+            return
+        }
+        
+        isInFav(gigPost)
+        
+        if !isGigInFavorite {
+            db.favoriteGig(artist: currentUser, gigPost: gigPost) { [weak self](result) in
+                switch result {
+                case .failure(let error):
+                    DispatchQueue.main.async {
+                        self?.showAlert(title: "Error", message: error.localizedDescription)
+                    }
+                    
+                case.success:
+                    DispatchQueue.main.async {
+                        self?.showAlert(title: "Success", message: "Gig added to favorites" )
+                        self?.isGigInFavorite = true
+                        
+                    }
                 }
-                
-            case.success:
-                print(true)
+            }
+        } else  {
+        
+            db.unfavoriteGig(for: gigPost) { (result) in
+                switch result {
+                case .failure(let error):
+                    print("error \(error.localizedDescription)")
+                case .success:
+                    self.isGigInFavorite = false
+                }
             }
         }
         
+    }
+    
+    private func isInFav(_ gigPost: GigsPost) {
+        
+        db.isGigInFav(favGig: gigPost) { (result) in
+            switch result {
+            case .failure(let error):
+                print("error \(error.localizedDescription)")
+            case .success(let state):
+                if state {
+                    self.isGigInFavorite = true
+                } else {
+                    self.isGigInFavorite = false
+                }
+            }
+        }
     }
     
     @IBAction func messageButtonPressed(_ sender: UIButton) {

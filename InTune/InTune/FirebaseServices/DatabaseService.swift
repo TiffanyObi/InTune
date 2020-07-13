@@ -332,11 +332,31 @@ class DatabaseService {
         }
     }
     
+    public func isGigInFav(favGig: GigsPost, completion: @escaping (Result<Bool, Error>)->()) {
+        guard let user = Auth.auth().currentUser else { return }
+        
+        db.collection(DatabaseService.artistsCollection).document(user.uid).collection(DatabaseService.favGigPosts).whereField("gigId", isEqualTo: favGig.gigId).getDocuments { (snapshot, error) in
+            if let error = error {
+                completion(.failure(error))
+            } else if let snapshot = snapshot {
+                let count = snapshot.documents.count
+                if count > 0 {
+                    completion(.success(true))
+                } else {
+                    completion(.success(false))
+                }
+            }
+        }
+    }
+    
+    
+
+    
     public func favoriteGig(artist: Artist, gigPost: GigsPost, completion: @escaping (Result<Bool, Error>) -> ()) {
         
         let documentRef = db.collection(DatabaseService.favGigPosts).document()
         
-        db.collection(DatabaseService.artistsCollection).document(artist.artistId).collection(DatabaseService.favGigPosts).document(documentRef.documentID).setData(["title": gigPost.title, "artistName": gigPost.artistName, "artistId": gigPost.artistId, "description": gigPost.descript, "price": gigPost.price, "eventDate": gigPost.eventDate, "location": gigPost.location, "favDate": Timestamp()]) { (error) in
+        db.collection(DatabaseService.artistsCollection).document(artist.artistId).collection(DatabaseService.favGigPosts).document(documentRef.documentID).setData(["title": gigPost.title, "gigId": gigPost.gigId, "artistName": gigPost.artistName, "artistId": gigPost.artistId, "description": gigPost.descript, "price": gigPost.price, "eventDate": gigPost.eventDate, "location": gigPost.location, "favDate": Timestamp()]) { (error) in
             
             if let error = error {
                 completion(.failure(error))
@@ -346,6 +366,20 @@ class DatabaseService {
         }
         
     }
+    
+    public func unfavoriteGig(for gig: GigsPost, completion: @escaping (Result<Bool, Error>)->()) {
+        guard let user = Auth.auth().currentUser else { return }
+        
+        db.collection(DatabaseService.artistsCollection).document(user.uid).collection(DatabaseService.favGigPosts).document(gig.gigId).delete { (error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(true))
+            }
+        }
+    }
+    
+
     
     public func deleteGig(gig: GigsPost, completion: @escaping (Result<Bool, Error>) -> ()) {
       
