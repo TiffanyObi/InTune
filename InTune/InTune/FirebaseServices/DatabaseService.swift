@@ -332,11 +332,63 @@ class DatabaseService {
         }
     }
     
+//    public func getFavGigs(gig: GigsPost, completion: @escaping (Result<FavGig, Error>) -> ()) {
+//        guard let user = Auth.auth().currentUser else { return }
+//
+//        db.collection(DatabaseService.artistsCollection).document(user.uid).collection(DatabaseService.favGigPosts).getDocuments { (snapShot, error) in
+//            if let error = error {
+//                completion(.failure(error))
+//            } else if let snapShot = snapShot {
+//                let favorites = snapShot.documents.compactMap {FavGig ($0.data())}
+//                completion(.success(favorites{$0}))
+//            }
+//        }
+//    }
+    
+
+    
+    public func isGigInFav(favGig: GigsPost, completion: @escaping (Result<Bool, Error>)->()) {
+        guard let user = Auth.auth().currentUser else { return }
+        db.collection(DatabaseService.artistsCollection).document(user.uid).collection(DatabaseService.favGigPosts).whereField("gigId", isEqualTo: favGig.gigId).getDocuments { (snapshot, error) in
+            if let error = error {
+                completion(.failure(error))
+            } else if let snapshot = snapshot {
+                let count = snapshot.documents.count
+                if count > 0 {
+                    completion(.success(true))
+                } else {
+                    completion(.success(false))
+                }
+            }
+        }
+    }
+    
+//    public func isItemInFavorites(item: Item, completion: @escaping (Result<Bool, Error>) -> ()) {
+//      guard let user = Auth.auth().currentUser else { return }
+//
+//      // in firebase we use the "where" keyword to query (search) a collection
+//
+//      // addSnapshotListener - continues to listen for modifications to a collection
+//      // getDocuments - fetches documents ONLY once
+//      db.collection(DatabaseService.usersCollection).document(user.uid).collection(DatabaseService.favoritesCollection).whereField("itemId", isEqualTo: item.itemId).getDocuments { (snapshot, error) in
+//        if let error = error {
+//          completion(.failure(error))
+//        } else if let snapshot = snapshot {
+//          let count = snapshot.documents.count // check if we have documents
+//          if count > 0 {
+//            completion(.success(true))
+//          } else {
+//            completion(.success(false))
+//          }
+//        }
+//      }
+//    }
+    
     public func favoriteGig(artist: Artist, gigPost: GigsPost, completion: @escaping (Result<Bool, Error>) -> ()) {
         
-        let documentRef = db.collection(DatabaseService.favGigPosts).document()
+//        let documentRef = db.collection(DatabaseService.favGigPosts).document()
         
-        db.collection(DatabaseService.artistsCollection).document(artist.artistId).collection(DatabaseService.favGigPosts).document(documentRef.documentID).setData(["title": gigPost.title, "artistName": gigPost.artistName, "artistId": gigPost.artistId, "description": gigPost.descript, "price": gigPost.price, "eventDate": gigPost.eventDate, "location": gigPost.location, "favDate": Timestamp()]) { (error) in
+        db.collection(DatabaseService.artistsCollection).document(artist.artistId).collection(DatabaseService.favGigPosts).document(gigPost.gigId).setData(["title": gigPost.title, "gigId": gigPost.gigId, "artistName": gigPost.artistName, "artistId": gigPost.artistId, "description": gigPost.descript, "price": gigPost.price, "eventDate": gigPost.eventDate, "location": gigPost.location, "favDate": Timestamp()]) { (error) in
             
             if let error = error {
                 completion(.failure(error))
@@ -346,6 +398,20 @@ class DatabaseService {
         }
         
     }
+    
+    public func unfavoriteGig(for gig: GigsPost, completion: @escaping (Result<Bool, Error>)->()) {
+        guard let user = Auth.auth().currentUser else { return }
+        
+        db.collection(DatabaseService.artistsCollection).document(user.uid).collection(DatabaseService.favGigPosts).document(gig.gigId).delete { (error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(true))
+            }
+        }
+    }
+    
+
     
     public func deleteGig(gig: GigsPost, completion: @escaping (Result<Bool, Error>) -> ()) {
       
