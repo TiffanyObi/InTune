@@ -155,7 +155,7 @@ extension LikedArtistsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let maxSize: CGSize = UIScreen.main.bounds.size
         let itemWidth: CGFloat = maxSize.width * 0.9
-        let itemHeight: CGFloat = maxSize.height * 0.18
+        let itemHeight: CGFloat = maxSize.height * 0.2
         return CGSize(width: itemWidth, height: itemHeight)
     }
     

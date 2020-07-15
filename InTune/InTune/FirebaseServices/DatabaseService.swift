@@ -273,9 +273,7 @@ class DatabaseService {
                 completion(.success(true))
             }
         }
-        
     }
-    
     
     public func updateUserPreferences(_ preferences:[String], completion:
         @escaping (Result<Bool,Error>) -> ()) {

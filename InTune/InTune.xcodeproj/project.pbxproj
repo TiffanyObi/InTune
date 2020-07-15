@@ -56,6 +56,8 @@
 		80135C8224805C0F0038A0CC /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80135C8124805C0F0038A0CC /* StorageService.swift */; };
 		80142DAF248AB85F002C928C /* ExploreView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80142DAE248AB85F002C928C /* ExploreView.storyboard */; };
 		80142DB1248ABB6C002C928C /* ExploreArtistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80142DB0248ABB6C002C928C /* ExploreArtistCell.swift */; };
+		802E699B24BCE25600987D25 /* EnthusiastCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 802E699A24BCE25600987D25 /* EnthusiastCell.xib */; };
+		802E699D24BCE43F00987D25 /* EnthusiastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802E699C24BCE43F00987D25 /* EnthusiastCell.swift */; };
 		80900C5D2492C6650080C816 /* GigsView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80900C5C2492C6650080C816 /* GigsView.storyboard */; };
 		80900C5F2492C7880080C816 /* GigCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80900C5E2492C7880080C816 /* GigCell.xib */; };
 		80900C612492C79F0080C816 /* GigCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80900C602492C79F0080C816 /* GigCell.swift */; };
@@ -144,6 +146,8 @@
 		80135C8124805C0F0038A0CC /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		80142DAE248AB85F002C928C /* ExploreView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ExploreView.storyboard; sourceTree = "<group>"; };
 		80142DB0248ABB6C002C928C /* ExploreArtistCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreArtistCell.swift; sourceTree = "<group>"; };
+		802E699A24BCE25600987D25 /* EnthusiastCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EnthusiastCell.xib; sourceTree = "<group>"; };
+		802E699C24BCE43F00987D25 /* EnthusiastCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnthusiastCell.swift; sourceTree = "<group>"; };
 		80900C5C2492C6650080C816 /* GigsView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GigsView.storyboard; sourceTree = "<group>"; };
 		80900C5E2492C7880080C816 /* GigCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GigCell.xib; sourceTree = "<group>"; };
 		80900C602492C79F0080C816 /* GigCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigCell.swift; sourceTree = "<group>"; };
@@ -319,11 +323,13 @@
 		804588B124BCBE9B007166C7 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				80135C7D248026210038A0CC /* PostCell.xib */,
 				80135C7F248027630038A0CC /* PostCell.swift */,
+				802E699A24BCE25600987D25 /* EnthusiastCell.xib */,
+				802E699C24BCE43F00987D25 /* EnthusiastCell.swift */,
 				80C375B624819E3F00152996 /* TagCollectionViewCell.swift */,
 				3E907EB72491A87700BFA1A3 /* TagCollectionViewCell.xib */,
 				800D8999248843F500C3FB67 /* ChatsCell.swift */,
-				80135C7D248026210038A0CC /* PostCell.xib */,
 				800D8997248843C300C3FB67 /* ChatsCell.xib */,
 				3EA7E76E24888FD50092C03B /* ArtistCell.xib */,
 				3E379999248963EB00DC0487 /* ArtistCell.swift */,
@@ -485,6 +491,7 @@
 				3EA7E76F24888FD50092C03B /* ArtistCell.xib in Resources */,
 				BEDF3FC9248533B000D22E2D /* MessageView.storyboard in Resources */,
 				3E43F46E247E8EA200CC0584 /* MainView.storyboard in Resources */,
+				802E699B24BCE25600987D25 /* EnthusiastCell.xib in Resources */,
 				80900C5D2492C6650080C816 /* GigsView.storyboard in Resources */,
 				3E43F441247D7B8D00CC0584 /* Assets.xcassets in Resources */,
 				80142DAF248AB85F002C928C /* ExploreView.storyboard in Resources */,
@@ -609,6 +616,7 @@
 				80E3D260248EC649002F3FA7 /* PostCollectionViewDelegate.swift in Sources */,
 				80D58F81248AE7E8005392A0 /* FeaturedArtistCell.swift in Sources */,
 				BEDF3FCD2485349A00D22E2D /* Chat.swift in Sources */,
+				802E699D24BCE43F00987D25 /* EnthusiastCell.swift in Sources */,
 				3E75433F2490711300383D02 /* StatesForPickerView.swift in Sources */,
 				3E75434124907D3A00383D02 /* TagsSelectionView.swift in Sources */,
 				3E43F479247E90CA00CC0584 /* Navigation.swift in Sources */,

@@ -28,6 +28,12 @@ class EditProfController: UIViewController {
         return pickerController
     }()
     
+    private lazy var tapGesture: UITapGestureRecognizer = {
+        let gesture = UITapGestureRecognizer()
+        gesture.addTarget(self, action: #selector(dismissKeyboard(_:)))
+        return gesture
+    }()
+    
     public var selectedImage: UIImage? {
         didSet{
             editImageView.image = selectedImage
@@ -50,6 +56,7 @@ class EditProfController: UIViewController {
         usernameTextField.delegate = self
         bioTextView.delegate = self
         getArtist()
+        view.addGestureRecognizer(tapGesture)
     }
     
     private func setUpUI() {
@@ -76,6 +83,10 @@ class EditProfController: UIViewController {
                 
             }
         }
+    }
+    
+    @objc private func dismissKeyboard(_ gesture: UITapGestureRecognizer) {
+        bioTextView.resignFirstResponder()
     }
     
     @IBAction func changeProfImagePressed(_ sender: UIButton) {

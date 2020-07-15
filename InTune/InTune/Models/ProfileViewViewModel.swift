@@ -13,20 +13,22 @@ import FirebaseAuth
 struct ProfileViewViewModel {
     private var database = DatabaseService()
     
-    func fetchArtist(profileVC:ProfileViewController,user:User){
-        
-        database.fetchArtist(userID: user.uid){ [weak profileVC](result) in
-            switch result {
-            case.failure(let error):
-                print(error.localizedDescription)
-            case.success(let artist1):
-                DispatchQueue.main.async {
-                    profileVC?.singleArtist = artist1
-                    profileVC?.nameLabel.text = artist1.name
-                }
-            }
-        }
-    }
+//    func fetchArtist(profileVC:ProfileViewController,user:User){
+//        
+//        database.fetchArtist(userID: user.uid){ [weak profileVC](result) in
+//            switch result {
+//            case.failure(let error):
+//                print(error.localizedDescription)
+//            case.success(let artist1):
+//                DispatchQueue.main.async {
+//                    profileVC?.singleArtist = artist1
+//                    profileVC?.nameLabel.text = artist1.name
+//                    profileVC?.isAnArtist = artist1.isAnArtist
+//                }
+//            }
+//        }
+    //}
+    
         func getVideos(artist:Artist,profileVC:ProfileViewController){
             database.getVideo(artist: artist) {[weak profileVC] (result) in
               switch result {
