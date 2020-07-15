@@ -45,6 +45,7 @@ class GigViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(UINib(nibName: "GigCell", bundle: nil), forCellReuseIdentifier: "gigCell")
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
