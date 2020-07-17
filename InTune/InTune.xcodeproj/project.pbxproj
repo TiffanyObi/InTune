@@ -65,6 +65,7 @@
 		80D58F7F248AE44F005392A0 /* FeaturedArtist.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80D58F7E248AE44F005392A0 /* FeaturedArtist.xib */; };
 		80D58F81248AE7E8005392A0 /* FeaturedArtistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D58F80248AE7E8005392A0 /* FeaturedArtistCell.swift */; };
 		80E3D260248EC649002F3FA7 /* PostCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E3D25F248EC649002F3FA7 /* PostCollectionViewDelegate.swift */; };
+		BE3DB16A24C21EBE0023E9DC /* CreateGigVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3DB16924C21EBE0023E9DC /* CreateGigVC.swift */; };
 		BE4572202492DF2E0020D12C /* CreateGigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE45721F2492DF2E0020D12C /* CreateGigViewController.swift */; };
 		BEDF3FC9248533B000D22E2D /* MessageView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEDF3FC8248533B000D22E2D /* MessageView.storyboard */; };
 		BEDF3FCB248533D400D22E2D /* ChatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDF3FCA248533D400D22E2D /* ChatsViewController.swift */; };
@@ -154,6 +155,7 @@
 		80D58F80248AE7E8005392A0 /* FeaturedArtistCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedArtistCell.swift; sourceTree = "<group>"; };
 		80E3D25F248EC649002F3FA7 /* PostCollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCollectionViewDelegate.swift; sourceTree = "<group>"; };
 		9BE6182879AA5607E95E84A9 /* Pods-InTuneTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InTuneTests.debug.xcconfig"; path = "Target Support Files/Pods-InTuneTests/Pods-InTuneTests.debug.xcconfig"; sourceTree = "<group>"; };
+		BE3DB16924C21EBE0023E9DC /* CreateGigVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGigVC.swift; sourceTree = "<group>"; };
 		BE45721F2492DF2E0020D12C /* CreateGigViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGigViewController.swift; sourceTree = "<group>"; };
 		BEDF3FC8248533B000D22E2D /* MessageView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MessageView.storyboard; sourceTree = "<group>"; };
 		BEDF3FCA248533D400D22E2D /* ChatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsViewController.swift; sourceTree = "<group>"; };
@@ -223,9 +225,9 @@
 				804588B124BCBE9B007166C7 /* Cells */,
 				3E43F464247E850A00CC0584 /* LogIn */,
 				804588B224BCBF80007166C7 /* Explore */,
-				3E43F490247E9B2400CC0584 /* LikedArtistsViewController.swift */,
 				804588B324BCBF92007166C7 /* Chat */,
 				804588B524BCBFA9007166C7 /* Gigs */,
+				3E43F490247E9B2400CC0584 /* LikedArtistsViewController.swift */,
 				804588B424BCBFA1007166C7 /* Profile */,
 				3E43F459247E83A600CC0584 /* SupportingFiles */,
 				3E43F445247D7B8D00CC0584 /* Info.plist */,
@@ -375,6 +377,7 @@
 				80900C622492C80C0080C816 /* GigsDetailViewController.swift */,
 				BE45721F2492DF2E0020D12C /* CreateGigViewController.swift */,
 				3E6568C024A4310300A8DB11 /* GigsPostsController.swift */,
+				BE3DB16924C21EBE0023E9DC /* CreateGigVC.swift */,
 			);
 			path = Gigs;
 			sourceTree = "<group>";
@@ -602,6 +605,7 @@
 				3EF5809B24929E6600D1942E /* ExploreOptionsController.swift in Sources */,
 				3E43F468247E8DD100CC0584 /* AuthentificationService.swift in Sources */,
 				3E43F485247E985700CC0584 /* LoginViewViewModel.swift in Sources */,
+				BE3DB16A24C21EBE0023E9DC /* CreateGigVC.swift in Sources */,
 				3E6D8FFB24A27E77001AF7A7 /* ProfileViewViewModel.swift in Sources */,
 				3E43F477247E90B700CC0584 /* DateFormatter.swift in Sources */,
 				3E43F475247E909A00CC0584 /* ShowAlert.swift in Sources */,
