@@ -27,7 +27,7 @@ class ExploreViewController: UIViewController {
         
         
         collectionView?.register(FeaturedArtistsCell.self, forCellWithReuseIdentifier: FeaturedArtistsCell.identifier)
-        collectionView?.backgroundColor = .systemBackground
+        collectionView?.backgroundColor = .red
         collectionView?.showsHorizontalScrollIndicator = false
         collectionView?.delegate = self
         collectionView?.dataSource = self
