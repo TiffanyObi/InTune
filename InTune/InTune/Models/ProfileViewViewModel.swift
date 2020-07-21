@@ -23,6 +23,8 @@ struct ProfileViewViewModel {
                 DispatchQueue.main.async {
                     profileVC?.singleArtist = artist1
                     profileVC?.nameLabel.text = artist1.name
+                    self.getVideos(artist: artist1, profileVC: profileVC!)
+                    
                 }
             }
         }
@@ -34,10 +36,18 @@ struct ProfileViewViewModel {
                 print(error)
               case .success(let videos):
                 profileVC?.videos = videos
+                self.setUpAddVideoButton(profileVC: profileVC!, videosCount: videos.count)
               }
             }
         }
     
+    private func setUpAddVideoButton(profileVC:ProfileViewController,videosCount:Int){
+           if videosCount == 4 || videosCount > 4  {
+            profileVC.postVidButton.isEnabled = false
+           } else {
+               profileVC.postVidButton.isEnabled = true
+           }
+       }
     func setUpLikeButton(profileVC:ProfileViewController, button: UIButton) {
         
         button.layer.shadowColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)

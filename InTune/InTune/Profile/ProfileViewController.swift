@@ -66,7 +66,6 @@ class ProfileViewController: UIViewController {
             postsCollectionView.reloadData()
             setUpEmptyViewForUser()
             setUpEmptyViewFromExp()
-            setUpAddVideoButton(videosCount: videos.count)
         }
     }
     
@@ -88,21 +87,17 @@ class ProfileViewController: UIViewController {
         profileViewModel.setUpLikeButton(profileVC: self, button: likeArtistButton)
     }
     
-    private func setUpAddVideoButton(videosCount:Int){
-        if videosCount == 4 || videosCount > 4  {
-            postVidButton.isEnabled = false
-        } else {
-            postVidButton.isEnabled = true
-        }
-    }
+   
     
     private func loadUI() {
         guard let user = Auth.auth().currentUser else {
             return
         }
         profileViewModel.fetchArtist(profileVC: self, user: user)
-        guard let singleArtist = singleArtist else {return}
-        getVideos(artist: singleArtist)
+        
+        guard let singleArtist = singleArtist else {
+            return
+        }
         profImage.contentMode = .scaleAspectFill
         if user.photoURL == nil  {
             profImage.image = UIImage(systemName: "person.fill")
@@ -132,7 +127,7 @@ class ProfileViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        
+       
         if state == .prof{
             loadUI()
         } else {
@@ -148,6 +143,7 @@ class ProfileViewController: UIViewController {
     }
     func getVideos(artist:Artist){
         profileViewModel.getVideos(artist: artist, profileVC: self)
+        
     }
     
     func setUpEmptyViewForUser(){
@@ -271,12 +267,13 @@ extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDel
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "postCell", for: indexPath) as? PostCell else {
                 fatalError("could not conform to TagCell")
             }
+            
             if state == .prof {
+                cell.addGestureRecognizer(longPress)
                 let video = videos[indexPath.row]
                 vid = video
                 if let urlString = video.videoUrl {
                     cell.configureCell(vidURL: urlString)
-                    cell.addGestureRecognizer(longPress)
                 }
             } else if state == .explore {
                 let video = videos[indexPath.row]
@@ -284,6 +281,7 @@ extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDel
                     cell.configureCell(vidURL: urlString)
                 }
             }
+            
             return cell
         }
         return UICollectionViewCell()
@@ -311,6 +309,7 @@ extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDel
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 25, left: 5, bottom: 25, right: 5)
     }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // get video selected at n index
         if collectionView == postsCollectionView{
