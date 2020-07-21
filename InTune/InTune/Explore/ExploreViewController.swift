@@ -27,7 +27,6 @@ class ExploreViewController: UIViewController {
         
         
         collectionView?.register(FeaturedArtistsCell.self, forCellWithReuseIdentifier: FeaturedArtistsCell.identifier)
-        collectionView?.backgroundColor = .red
         collectionView?.showsHorizontalScrollIndicator = false
         collectionView?.delegate = self
         collectionView?.dataSource = self
@@ -65,8 +64,7 @@ class ExploreViewController: UIViewController {
         didSet{
             DispatchQueue.main.async {
                 self.collectionView?.reloadData()
-//                self.featuredArtistCV.reloadData()
-//                print(self.featuredArtists.count)
+
             }
         }
     }

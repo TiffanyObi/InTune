@@ -66,6 +66,7 @@ class ProfileViewController: UIViewController {
             postsCollectionView.reloadData()
             setUpEmptyViewForUser()
             setUpEmptyViewFromExp()
+            setUpAddVideoButton(videosCount: videos.count)
         }
     }
     
@@ -87,6 +88,13 @@ class ProfileViewController: UIViewController {
         profileViewModel.setUpLikeButton(profileVC: self, button: likeArtistButton)
     }
     
+    private func setUpAddVideoButton(videosCount:Int){
+        if videosCount == 4 || videosCount > 4  {
+            postVidButton.isEnabled = false
+        } else {
+            postVidButton.isEnabled = true
+        }
+    }
     
     private func loadUI() {
         guard let user = Auth.auth().currentUser else {
@@ -122,8 +130,8 @@ class ProfileViewController: UIViewController {
         profileViewModel.loadExpUI(profileVC: self, artist: artist)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         
         if state == .prof{
             loadUI()
@@ -186,6 +194,8 @@ profileViewModel.setUpReportArtist(profileVC: self, expArtist: expArtist)
     }
        
     @IBAction func postVideoButtonPressed(_ sender: UIBarButtonItem) {
+        
+        
     }
     
     @IBAction func settingsButtonPressed(_ sender: UIBarButtonItem) {
