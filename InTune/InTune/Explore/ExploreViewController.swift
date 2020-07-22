@@ -14,6 +14,7 @@ class ExploreViewController: UIViewController {
     
     @IBOutlet private var tagsCollectionView: UICollectionView!
     @IBOutlet private var artistTableView: UITableView!
+    @IBOutlet weak var featuredArtistCollectionView: UICollectionView!
     
     
     private var collectionView: UICollectionView?
@@ -26,7 +27,7 @@ class ExploreViewController: UIViewController {
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         
         
-        collectionView?.register(FeaturedArtistsCell.self, forCellWithReuseIdentifier: FeaturedArtistsCell.identifier)
+//        collectionView?.register(FeaturedArtistsCell.self, forCellWithReuseIdentifier: FeaturedArtistsCell.identifier)
         collectionView?.showsHorizontalScrollIndicator = false
         collectionView?.delegate = self
         collectionView?.dataSource = self
@@ -42,6 +43,8 @@ class ExploreViewController: UIViewController {
         super.viewDidLayoutSubviews()
         collectionView?.frame = CGRect(x: 0, y: 685, width: view.frame.size.width, height: 150).integral
     }
+
+
     
     
 
@@ -63,7 +66,11 @@ class ExploreViewController: UIViewController {
     var featuredArtists = [Artist](){
         didSet{
             DispatchQueue.main.async {
+
                 self.collectionView?.reloadData()
+
+                self.featuredArtistCollectionView.reloadData()
+                print(self.featuredArtists.count)
 
             }
         }
@@ -88,13 +95,13 @@ class ExploreViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureCollectionView()
         self.artistTableView.separatorColor = .clear
         fetchArtists()
         getCurrentUserPref()
         tagsCollectionView.register(UINib(nibName: "TagCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "tagCell")
         artistTableView.register(ExploreArtistCell.self, forCellReuseIdentifier: "exploreCell")
         setUpCVs()
+        setUpArtistCollectionView()
         setUpTV()
     }
     
@@ -118,13 +125,10 @@ class ExploreViewController: UIViewController {
         
     }
     
-//    private func setUpFeaturedArtist() {
-//        featuredArtistCV.register(FeaturedArtistsCell.self, forCellWithReuseIdentifier: "artistsCell")
-//        featuredArtistCV.delegate = self
-//        featuredArtistCV.dataSource = self
-//
-//        // Register cell + Delegates and data sources
-//    }
+    private func setUpArtistCollectionView() {
+        featuredArtistCollectionView.dataSource = self
+        featuredArtistCollectionView.delegate = self
+    }
     
     
     private func setUpCVs() {
@@ -237,7 +241,7 @@ extension ExploreViewController: UICollectionViewDelegateFlowLayout, UICollectio
         if collectionView == tagsCollectionView {
             return currentUser?.preferences?.count ?? 2
         }
-        if collectionView == collectionView {
+        if collectionView == featuredArtistCollectionView {
             return featuredArtists.count
         }
         return 0
@@ -256,19 +260,19 @@ extension ExploreViewController: UICollectionViewDelegateFlowLayout, UICollectio
             
             
             return tagCell
-        }
-        if collectionView == collectionView {
-            guard let featureCell = collectionView.dequeueReusableCell(withReuseIdentifier: FeaturedArtistsCell.identifier, for: indexPath) as? FeaturedArtistsCell else {
-                fatalError("could not downcast to FeaturedArtistCell")
+        } else {
+            guard let artistCell = collectionView.dequeueReusableCell(withReuseIdentifier: "artistCell", for: indexPath) as? FeaturedArtistCell else {
+                fatalError("could not downcast to TagCollectionViewCell")
             }
-            let featuredArtist = featuredArtists[indexPath.row]
-            featureCell.configureCell(artistPhotoURL: featuredArtist.photoURL)
-
-
-            return featureCell
+            
+            let artistPhotoURL = featuredArtists[indexPath.row]
+            artistCell.configureCell(artistPhotoURL: artistPhotoURL.photoURL)
+            
+            return artistCell
         }
         
-        return UICollectionViewCell()
+        
+//        return UICollectionViewCell()
     }
     
     
@@ -280,11 +284,15 @@ extension ExploreViewController: UICollectionViewDelegateFlowLayout, UICollectio
                 let itemHeight: CGFloat = maxSize.height * 0.30
                 return CGSize(width: itemWidth, height: itemHeight)
              
-        }
+       } else {
+        let maxSize: CGSize = UIScreen.main.bounds.size
+        let itemWidth: CGFloat = maxSize.width * 0.30
+        let itemHeight: CGFloat = maxSize.height * 0.14
+        return CGSize(width: itemWidth, height: itemHeight)
         
-        return CGSize(width: 90, height: 90)
+}
         
-    }
+}
     
 }
 
