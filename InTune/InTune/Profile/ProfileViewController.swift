@@ -21,7 +21,7 @@ class ProfileViewController: UIViewController {
     
     @IBOutlet var profImage: UIImageView!
     @IBOutlet public var nameLabel: UILabel!
-    @IBOutlet private var bioLabel: UILabel!
+    @IBOutlet public var bioLabel: UILabel!
     @IBOutlet public var tagsCollection: UICollectionView!
     @IBOutlet public var postsCollectionView: UICollectionView!
     @IBOutlet public var locationLabel: UILabel!
@@ -73,8 +73,8 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getArtist()
-        loadUI()
+       
+      getArtist()
         self.navigationController?.navigationBar.tintColor = .black
         infoView.borderColor = #colorLiteral(red: 0.3867273331, green: 0.8825651407, blue: 0.8684034944, alpha: 1)
         tagsCollection.delegate = self
@@ -87,13 +87,19 @@ class ProfileViewController: UIViewController {
         profileViewModel.setUpLikeButton(profileVC: self, button: likeArtistButton)
     }
     
-   
+    private func setProfileViewState(){
+        if state == .prof {
+            loadUI()
+        } else {
+           loadExpUI()
+        }
+    }
     
     private func loadUI() {
         guard let user = Auth.auth().currentUser else {
             return
         }
-        profileViewModel.fetchArtist(profileVC: self, user: user)
+        profileViewModel.fetchArtist(profileVC: self, userID: user.uid)
         
         guard let singleArtist = singleArtist else {
             return
@@ -119,7 +125,8 @@ class ProfileViewController: UIViewController {
     }
     
     func loadExpUI() {
-        guard let artist = expArtist else { print("no expArtist")
+        guard let artist = expArtist else {
+            print("no expArtist")
             return
         }
         profileViewModel.loadExpUI(profileVC: self, artist: artist)
@@ -128,19 +135,20 @@ class ProfileViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
        
-        if state == .prof{
-            loadUI()
-        } else {
-            loadExpUI()
-        }
+        setProfileViewState()
     }
     
     func getArtist(){
+        if state == .prof {
         guard let user = Auth.auth().currentUser else {
             return
         }
-        profileViewModel.fetchArtist(profileVC: self, user: user)
-    }
+            profileViewModel.fetchArtist(profileVC: self, userID: user.uid)
+        } else {
+            guard let expArtist = expArtist else { return }
+            profileViewModel.fetchArtist(profileVC: self, userID: expArtist.artistId)
+        }
+}
     func getVideos(artist:Artist){
         profileViewModel.getVideos(artist: artist, profileVC: self)
         

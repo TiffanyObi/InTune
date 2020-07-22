@@ -9,13 +9,14 @@
 import Foundation
 import UIKit
 import FirebaseAuth
+import Kingfisher
 
 struct ProfileViewViewModel {
     private var database = DatabaseService()
     
-    func fetchArtist(profileVC:ProfileViewController,user:User){
+    func fetchArtist(profileVC:ProfileViewController,userID:String){
         
-        database.fetchArtist(userID: user.uid){ [weak profileVC](result) in
+        database.fetchArtist(userID: userID){ [weak profileVC](result) in
             switch result {
             case.failure(let error):
                 print(error.localizedDescription)
@@ -23,8 +24,17 @@ struct ProfileViewViewModel {
                 DispatchQueue.main.async {
                     profileVC?.singleArtist = artist1
                     profileVC?.nameLabel.text = artist1.name
+                    profileVC?.locationLabel.text = "Email: \(artist1.email)"
+                    if let photoString = artist1.photoURL{
+                        let url  = URL(string: photoString)
+                        profileVC?.profImage.kf.setImage(with: url)
+                    }
+                    if let bioText = artist1.bioText {
+                        profileVC?.bioLabel.text = bioText
+                    } else {
+                        profileVC?.bioLabel.text = "This user does not have a bio yet"
+                    }
                     self.getVideos(artist: artist1, profileVC: profileVC!)
-                    
                 }
             }
         }
