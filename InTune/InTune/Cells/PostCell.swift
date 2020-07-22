@@ -16,7 +16,6 @@ class PostCell: UICollectionViewCell {
         guard let url = URL(string: vidURL) else { return }
         let imageInfo = url.videoPreviewThumbnail()
         cellImage.image = imageInfo
-       
     }
     
 }

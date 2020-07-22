@@ -21,7 +21,7 @@ class ProfileViewController: UIViewController {
     
     @IBOutlet var profImage: UIImageView!
     @IBOutlet public var nameLabel: UILabel!
-    @IBOutlet private var bioLabel: UILabel!
+    @IBOutlet public var bioLabel: UILabel!
     @IBOutlet public var tagsCollection: UICollectionView!
     @IBOutlet public var postsCollectionView: UICollectionView!
     @IBOutlet public var locationLabel: UILabel!
@@ -66,7 +66,6 @@ class ProfileViewController: UIViewController {
             postsCollectionView.reloadData()
             setUpEmptyViewForUser()
             setUpEmptyViewFromExp()
-            setUpAddVideoButton(videosCount: videos.count)
         }
     }
     
@@ -74,8 +73,8 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getArtist()
-        loadUI()
+       
+      getArtist()
         self.navigationController?.navigationBar.tintColor = .black
         infoView.borderColor = #colorLiteral(red: 0.3867273331, green: 0.8825651407, blue: 0.8684034944, alpha: 1)
         tagsCollection.delegate = self
@@ -88,11 +87,11 @@ class ProfileViewController: UIViewController {
         profileViewModel.setUpLikeButton(profileVC: self, button: likeArtistButton)
     }
     
-    private func setUpAddVideoButton(videosCount:Int){
-        if videosCount == 4 || videosCount > 4  {
-            postVidButton.isEnabled = false
+    private func setProfileViewState(){
+        if state == .prof {
+            loadUI()
         } else {
-            postVidButton.isEnabled = true
+           loadExpUI()
         }
     }
     
@@ -100,9 +99,11 @@ class ProfileViewController: UIViewController {
         guard let user = Auth.auth().currentUser else {
             return
         }
-        profileViewModel.fetchArtist(profileVC: self, user: user)
-        guard let singleArtist = singleArtist else {return}
-        getVideos(artist: singleArtist)
+        profileViewModel.fetchArtist(profileVC: self, userID: user.uid)
+        
+        guard let singleArtist = singleArtist else {
+            return
+        }
         profImage.contentMode = .scaleAspectFill
         if user.photoURL == nil  {
             profImage.image = UIImage(systemName: "person.fill")
@@ -124,7 +125,8 @@ class ProfileViewController: UIViewController {
     }
     
     func loadExpUI() {
-        guard let artist = expArtist else { print("no expArtist")
+        guard let artist = expArtist else {
+            print("no expArtist")
             return
         }
         profileViewModel.loadExpUI(profileVC: self, artist: artist)
@@ -132,22 +134,24 @@ class ProfileViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        
-        if state == .prof{
-            loadUI()
-        } else {
-            loadExpUI()
-        }
+       
+        setProfileViewState()
     }
     
     func getArtist(){
+        if state == .prof {
         guard let user = Auth.auth().currentUser else {
             return
         }
-        profileViewModel.fetchArtist(profileVC: self, user: user)
-    }
+            profileViewModel.fetchArtist(profileVC: self, userID: user.uid)
+        } else {
+            guard let expArtist = expArtist else { return }
+            profileViewModel.fetchArtist(profileVC: self, userID: expArtist.artistId)
+        }
+}
     func getVideos(artist:Artist){
         profileViewModel.getVideos(artist: artist, profileVC: self)
+        
     }
     
     func setUpEmptyViewForUser(){
@@ -271,12 +275,13 @@ extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDel
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "postCell", for: indexPath) as? PostCell else {
                 fatalError("could not conform to TagCell")
             }
+            
             if state == .prof {
+                cell.addGestureRecognizer(longPress)
                 let video = videos[indexPath.row]
                 vid = video
                 if let urlString = video.videoUrl {
                     cell.configureCell(vidURL: urlString)
-                    cell.addGestureRecognizer(longPress)
                 }
             } else if state == .explore {
                 let video = videos[indexPath.row]
@@ -284,6 +289,7 @@ extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDel
                     cell.configureCell(vidURL: urlString)
                 }
             }
+            
             return cell
         }
         return UICollectionViewCell()
@@ -311,6 +317,7 @@ extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDel
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 25, left: 5, bottom: 25, right: 5)
     }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // get video selected at n index
         if collectionView == postsCollectionView{
