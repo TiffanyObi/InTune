@@ -65,7 +65,7 @@
 		80E3D260248EC649002F3FA7 /* PostCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E3D25F248EC649002F3FA7 /* PostCollectionViewDelegate.swift */; };
 		BE3DB16A24C21EBE0023E9DC /* CreateGigVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3DB16924C21EBE0023E9DC /* CreateGigVC.swift */; };
 		BE4572202492DF2E0020D12C /* CreateGigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE45721F2492DF2E0020D12C /* CreateGigViewController.swift */; };
-		BE463F2F24C28D6D001A3A3B /* FeaturedArtistsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE463F2E24C28D6D001A3A3B /* FeaturedArtistsCell.swift */; };
+		BE463F3124C51C85001A3A3B /* FeaturedArtistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE463F3024C51C85001A3A3B /* FeaturedArtistCell.swift */; };
 		BEDF3FC9248533B000D22E2D /* MessageView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEDF3FC8248533B000D22E2D /* MessageView.storyboard */; };
 		BEDF3FCB248533D400D22E2D /* ChatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDF3FCA248533D400D22E2D /* ChatsViewController.swift */; };
 		BEDF3FCD2485349A00D22E2D /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDF3FCC2485349A00D22E2D /* Chat.swift */; };
@@ -154,7 +154,7 @@
 		9BE6182879AA5607E95E84A9 /* Pods-InTuneTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InTuneTests.debug.xcconfig"; path = "Target Support Files/Pods-InTuneTests/Pods-InTuneTests.debug.xcconfig"; sourceTree = "<group>"; };
 		BE3DB16924C21EBE0023E9DC /* CreateGigVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGigVC.swift; sourceTree = "<group>"; };
 		BE45721F2492DF2E0020D12C /* CreateGigViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGigViewController.swift; sourceTree = "<group>"; };
-		BE463F2E24C28D6D001A3A3B /* FeaturedArtistsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedArtistsCell.swift; sourceTree = "<group>"; };
+		BE463F3024C51C85001A3A3B /* FeaturedArtistCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedArtistCell.swift; sourceTree = "<group>"; };
 		BEDF3FC8248533B000D22E2D /* MessageView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MessageView.storyboard; sourceTree = "<group>"; };
 		BEDF3FCA248533D400D22E2D /* ChatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsViewController.swift; sourceTree = "<group>"; };
 		BEDF3FCC2485349A00D22E2D /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
@@ -330,7 +330,7 @@
 				80142DB0248ABB6C002C928C /* ExploreArtistCell.swift */,
 				80900C5E2492C7880080C816 /* GigCell.xib */,
 				80900C602492C79F0080C816 /* GigCell.swift */,
-				BE463F2E24C28D6D001A3A3B /* FeaturedArtistsCell.swift */,
+				BE463F3024C51C85001A3A3B /* FeaturedArtistCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -584,7 +584,6 @@
 				3E43F463247E84DA00CC0584 /* MainViewTabBarController.swift in Sources */,
 				3E43F461247E849700CC0584 /* EditProfController.swift in Sources */,
 				80C375B524819DE600152996 /* Designable.swift in Sources */,
-				BE463F2F24C28D6D001A3A3B /* FeaturedArtistsCell.swift in Sources */,
 				3E43F45B247E83DE00CC0584 /* LoginViewController.swift in Sources */,
 				3E43F43C247D7B8600CC0584 /* ExploreViewController.swift in Sources */,
 				3E7C53D5248AC614001974DB /* TagsInfoModels.swift in Sources */,
@@ -596,6 +595,7 @@
 				80900C632492C80C0080C816 /* GigsDetailViewController.swift in Sources */,
 				3E43F472247E8FAE00CC0584 /* OnboardingViewController.swift in Sources */,
 				800D899A248843F500C3FB67 /* ChatsCell.swift in Sources */,
+				BE463F3124C51C85001A3A3B /* FeaturedArtistCell.swift in Sources */,
 				3E43F43A247D7B8600CC0584 /* SceneDelegate.swift in Sources */,
 				80142DB1248ABB6C002C928C /* ExploreArtistCell.swift in Sources */,
 				80135C8224805C0F0038A0CC /* StorageService.swift in Sources */,
