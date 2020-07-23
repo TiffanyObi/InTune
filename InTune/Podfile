@@ -6,7 +6,12 @@ target 'InTune' do
   use_frameworks!
 
   # Pods for InTune
-pod 'Firebase/Analytics'
+  
+pod 'Firebase/Firestore'
+pod 'Firebase/Auth'
+pod 'Firebase/Storage'
+pod 'MessageKit'
+pod 'Kingfisher'
 
   target 'InTuneTests' do
     inherit! :search_paths

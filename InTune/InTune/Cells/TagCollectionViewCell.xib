@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="tagCell" id="4QY-jG-0bI" customClass="TagCollectionViewCell" customModule="InTune" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="124" height="50"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="jf9-xD-P5p">
+                <rect key="frame" x="0.0" y="0.0" width="124" height="50"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tag" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zg5-6v-8N1">
+                        <rect key="frame" x="0.0" y="0.0" width="124" height="50"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="17"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Me-O4-V5A">
+                        <rect key="frame" x="92" y="0.0" width="32" height="30"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="32" id="XLS-6L-h3i"/>
+                            <constraint firstAttribute="height" constant="30" id="pD0-Qr-JBP"/>
+                        </constraints>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <state key="normal" image="rectangle" catalog="system"/>
+                        <connections>
+                            <action selector="checkButtonPressed:" destination="4QY-jG-0bI" eventType="touchUpInside" id="8fC-3l-ct7"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="zg5-6v-8N1" secondAttribute="trailing" id="GxO-Bx-wOY"/>
+                    <constraint firstItem="zg5-6v-8N1" firstAttribute="top" secondItem="jf9-xD-P5p" secondAttribute="top" id="MvZ-sl-6Ir"/>
+                    <constraint firstAttribute="bottom" secondItem="zg5-6v-8N1" secondAttribute="bottom" id="TgM-qq-h8R"/>
+                    <constraint firstAttribute="trailing" secondItem="2Me-O4-V5A" secondAttribute="trailing" id="Ug2-d5-mK0"/>
+                    <constraint firstItem="2Me-O4-V5A" firstAttribute="top" secondItem="jf9-xD-P5p" secondAttribute="top" id="dwq-ny-L1Q"/>
+                    <constraint firstItem="zg5-6v-8N1" firstAttribute="leading" secondItem="jf9-xD-P5p" secondAttribute="leading" id="t8a-hc-Ext"/>
+                </constraints>
+            </collectionViewCellContentView>
+            <size key="customSize" width="124" height="50"/>
+            <connections>
+                <outlet property="checkButton" destination="2Me-O4-V5A" id="sRy-DV-yOJ"/>
+                <outlet property="tagTitle" destination="zg5-6v-8N1" id="8BP-WH-AB1"/>
+            </connections>
+            <point key="canvasLocation" x="127.53623188405798" y="112.5"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="rectangle" catalog="system" width="128" height="93"/>
+    </resources>
+</document>
