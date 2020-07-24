@@ -33,7 +33,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet var infoView: DesignableView!
     
     private lazy var longPress: UILongPressGestureRecognizer = {
-       let press = UILongPressGestureRecognizer()
+        let press = UILongPressGestureRecognizer()
         press.addTarget(self, action: #selector(deletePost(_:)))
         return press
     }()
@@ -73,8 +73,8 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-      getArtist()
+        
+        getArtist()
         self.navigationController?.navigationBar.tintColor = .black
         infoView.borderColor = #colorLiteral(red: 0.3867273331, green: 0.8825651407, blue: 0.8684034944, alpha: 1)
         tagsCollection.delegate = self
@@ -91,7 +91,7 @@ class ProfileViewController: UIViewController {
         if state == .prof {
             loadUI()
         } else {
-           loadExpUI()
+            loadExpUI()
         }
     }
     
@@ -118,10 +118,10 @@ class ProfileViewController: UIViewController {
         locationLabel.text = user.email
         likeArtistButton.isHidden = true
         chatButton.isHidden = true
-
+        
         
         profileViewModel.loadUI(profileVC: self, user: user, singleArtist: singleArtist)
-
+        
     }
     
     func loadExpUI() {
@@ -134,21 +134,21 @@ class ProfileViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-       
+        
         setProfileViewState()
     }
     
     func getArtist(){
         if state == .prof {
-        guard let user = Auth.auth().currentUser else {
-            return
-        }
+            guard let user = Auth.auth().currentUser else {
+                return
+            }
             profileViewModel.fetchArtist(profileVC: self, userID: user.uid)
         } else {
             guard let expArtist = expArtist else { return }
             profileViewModel.fetchArtist(profileVC: self, userID: expArtist.artistId)
         }
-}
+    }
     func getVideos(artist:Artist){
         profileViewModel.getVideos(artist: artist, profileVC: self)
         
@@ -162,7 +162,7 @@ class ProfileViewController: UIViewController {
     }
     @objc func reportArtist(_ sender: UIBarButtonItem){
         
-profileViewModel.setUpReportArtist(profileVC: self, expArtist: expArtist)
+        profileViewModel.setUpReportArtist(profileVC: self, expArtist: expArtist)
     }
     
     @objc func deletePost(_ gesture: UILongPressGestureRecognizer) {
@@ -196,28 +196,28 @@ profileViewModel.setUpReportArtist(profileVC: self, expArtist: expArtist)
             }
         }
     }
-       
+    
     @IBAction func postVideoButtonPressed(_ sender: UIBarButtonItem) {
         
         
     }
     
     @IBAction func settingsButtonPressed(_ sender: UIBarButtonItem) {
-profileViewModel.setUpSettingsButton(profileVC: self, sender: sender)
-
+        profileViewModel.setUpSettingsButton(profileVC: self, sender: sender)
+        
     }
     
     @IBAction func favArtistButtonPressed(_ sender: UIButton) {
         guard let expArtist = expArtist else { return }
         if isArtistFavorite {
             isArtistInFav(artist: expArtist)
-
-profileViewModel.deleteFavArtist(profileVC: self, expArtist: expArtist, sender: sender)
+            
+            profileViewModel.deleteFavArtist(profileVC: self, expArtist: expArtist, sender: sender)
         } else {
-    profileViewModel.createFavArtist(profileVC: self, expArtist: expArtist, sender: sender)
-            }
+            profileViewModel.createFavArtist(profileVC: self, expArtist: expArtist, sender: sender)
+        }
     }
-
+    
     public func isArtistInFav(artist:Artist){
         profileViewModel.isArtistInFav(artist: artist, profileVC: self)
     }
@@ -251,10 +251,10 @@ extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDel
                 return profileViewModel.checkReportStatus(profileVC: self, artist: singleArtist)
             } else {
                 return profileViewModel.checkReportStatus(profileVC: self, artist: expArtist)
-                }
             }
-        return 0
         }
+        return 0
+    }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == tagsCollection {
