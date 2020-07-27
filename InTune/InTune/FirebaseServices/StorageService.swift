@@ -45,7 +45,7 @@ class StorageService {
   return
  }
  let storageRef = FirebaseStorage.Storage.storage().reference()
- let videoRef = storageRef.child("Videos/\(user.uid)/\(UUID().uuidString)")
+        let videoRef = storageRef.child("Videos/\(user.uid)/\(vid.postId)")
  let metadata = StorageMetadata()
  metadata.contentType = "video/mp4"
  videoRef.putData(videoData, metadata: metadata) { (metadata, error) in
@@ -56,17 +56,18 @@ class StorageService {
    videoRef.downloadURL { (url, error) in
     // 1
     // attach video url to the artists subcollection called "videos"
-    let documentRef = Firestore.firestore().collection("artists")
-     .document(user.uid)
-     .collection("videos")
-     .document()
+//    let documentRef = Firestore.firestore().collection("artists")
+//     .document(user.uid)
+//     .collection("videos")
+//     .document()
+    
     Firestore.firestore().collection("artists")
      .document(user.uid)
      .collection("videos")
-     .document(documentRef.documentID)
+        .document(vid.postId)
      .setData(["artistName" : "AXP Films",
           "videoUrl": url!.absoluteString,
-          "postId": documentRef.documentID
+          "postId": vid.postId
      ]) { error in
            if let error = error {
             print("error: \(error)")
@@ -77,20 +78,23 @@ class StorageService {
  }
 }
     
-//    func deleteVideo(completion: @escaping (Result<Bool, Error>) -> ()) {
-//        guard let user = Auth.auth().currentUser else {
-//         return
-//        }
-//        let storageRef = FirebaseStorage.Storage.storage().reference()
-//        let videoRef = storageRef.child("Videos/\(user.uid)/\(UUID().uuidString)")
-//        
-//        videoRef.delete { (error) in
-//            
-//            if let error = error {
-//                completion(.failure(error))
-//            } else {
-//                completion(.success(true))
-//            }
-//        }
-//    }
+    func deleteVideo(vid: Video, completion: @escaping (Result<Bool, Error>) -> ()) {
+        guard let user = Auth.auth().currentUser else {
+         return
+        }
+//        let docRef = Firestore.firestore().collection("artists")
+//        .document(user.uid)
+//        .collection("videos")
+//        .document()
+        let storageRef = FirebaseStorage.Storage.storage().reference()
+        let videoRef = storageRef.child("Videos/\(user.uid)/\(vid.postId)")
+        
+        videoRef.delete { (error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(true))
+            }
+        }
+    }
 }
