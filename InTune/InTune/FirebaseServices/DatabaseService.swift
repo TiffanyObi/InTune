@@ -207,6 +207,8 @@ class DatabaseService {
     public func deleteVideoPost(post: Video, completion: @escaping (Result<Bool, Error>) -> ()) {
         guard let user = Auth.auth().currentUser else { return }
         
+      
+        
         db.collection(DatabaseService.artistsCollection).document(user.uid).collection(DatabaseService.artVideos).document(post.postId).delete { (error) in
             
             if let error = error {

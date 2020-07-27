@@ -73,7 +73,6 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         getArtist()
         self.navigationController?.navigationBar.tintColor = .black
         infoView.borderColor = #colorLiteral(red: 0.3867273331, green: 0.8825651407, blue: 0.8684034944, alpha: 1)
@@ -189,9 +188,26 @@ class ProfileViewController: UIViewController {
                     self?.showAlert(title: "Error deleting post", message: "\(error.localizedDescription)")
                 }
             case .success:
+                self!.deleteStorage()
+            }
+        }
+    }
+    
+    func deleteStorage() {
+        guard let video = vid else {
+        print("no vid found")
+        return }
+
+        storageService.deleteVideo(vid: video) { (result) in
+            switch result {
+            case .failure(let error):
                 DispatchQueue.main.async {
-                    self?.showAlert(title: "Success", message: "Video deleted")
-                    self?.postsCollectionView.reloadData()
+                    self.showAlert(title: "Could not delete video", message: error.localizedDescription)
+                }
+            case .success:
+                DispatchQueue.main.async {
+                    self.showAlert(title: "Video Deleted", message: nil)
+                    self.postsCollectionView.reloadData()
                 }
             }
         }
@@ -285,6 +301,7 @@ extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDel
                 }
             } else if state == .explore {
                 let video = videos[indexPath.row]
+                vid = video
                 if let urlString = video.videoUrl {
                     cell.configureCell(vidURL: urlString)
                 }
