@@ -12,15 +12,12 @@ import FirebaseFirestore
 
 class CreateGigVC: UITableViewController {
     
-    
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var priceTextField: UITextField!
     @IBOutlet weak var descriptionTextField: UITextField!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var locationPicker: UIPickerView!
-    
-    
-    
+
      let databaseService = DatabaseService()
     
     var currentUser: Artist?
