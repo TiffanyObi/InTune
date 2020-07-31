@@ -103,6 +103,7 @@ class ProfileViewController: UIViewController {
         postsCollectionView.dataSource = self
         postsCollectionView.layer.cornerRadius = 14
         postsCollectionView.register(UINib(nibName: "PostCell", bundle: nil), forCellWithReuseIdentifier: "postCell")
+        postsCollectionView.register(UINib(nibName: "ExperienceView", bundle: nil), forCellWithReuseIdentifier: "expCell")
         profileViewModel.setUpLikeButton(profileVC: self, button: likeArtistButton)
     }
     
@@ -344,10 +345,14 @@ extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDel
                         cell.configureCell(vidURL: urlString)
                     }
                 } else {
+                    guard let expCell = collectionView.dequeueReusableCell(withReuseIdentifier: "expCell", for: indexPath) as? ExperienceView else {
+                        fatalError("could not conform to expCell")
+                    }
                     print("not an artist")
-                    cell.contentView.addSubview(experienceView)
                     let post = gigs[indexPath.row]
-                    cell.configureCell(gigPost: post)
+                    expCell.configureCell(for: post)
+                    
+                    return expCell
                 }
             }
             return cell
