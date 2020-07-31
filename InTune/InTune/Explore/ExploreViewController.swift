@@ -14,9 +14,40 @@ class ExploreViewController: UIViewController {
     
     @IBOutlet private var tagsCollectionView: UICollectionView!
     @IBOutlet private var artistTableView: UITableView!
-    @IBOutlet private var featuredArtistCV: UICollectionView!
+    @IBOutlet weak var featuredArtistCollectionView: UICollectionView!
     
-    let featuredCVDelegate = FeaturedArtistCVDelegate()
+    
+    private var collectionView: UICollectionView?
+    
+    private func configureCollectionView() {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.itemSize = CGSize(width: 150, height: 120)
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        
+        
+//        collectionView?.register(FeaturedArtistsCell.self, forCellWithReuseIdentifier: FeaturedArtistsCell.identifier)
+        collectionView?.showsHorizontalScrollIndicator = false
+        collectionView?.delegate = self
+        collectionView?.dataSource = self
+        
+        guard let myCollectionView = collectionView else {
+            return
+        }
+        
+        view.addSubview(myCollectionView)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        collectionView?.frame = CGRect(x: 0, y: 685, width: view.frame.size.width, height: 150).integral
+    }
+
+
+    
+    
+
     
     let db = DatabaseService()
     var listener: ListenerRegistration?
@@ -31,11 +62,16 @@ class ExploreViewController: UIViewController {
     
     
     var currentUser: Artist?
+    
     var featuredArtists = [Artist](){
         didSet{
             DispatchQueue.main.async {
-                self.featuredArtistCV.reloadData()
+
+                self.collectionView?.reloadData()
+
+                self.featuredArtistCollectionView.reloadData()
                 print(self.featuredArtists.count)
+
             }
         }
     }
@@ -64,8 +100,8 @@ class ExploreViewController: UIViewController {
         getCurrentUserPref()
         tagsCollectionView.register(UINib(nibName: "TagCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "tagCell")
         artistTableView.register(ExploreArtistCell.self, forCellReuseIdentifier: "exploreCell")
-        featuredArtistCV.register(UINib(nibName: "FeaturedArtist", bundle: nil), forCellWithReuseIdentifier: "featuredArtist")
         setUpCVs()
+        setUpArtistCollectionView()
         setUpTV()
     }
     
@@ -89,12 +125,15 @@ class ExploreViewController: UIViewController {
         
     }
     
+    private func setUpArtistCollectionView() {
+        featuredArtistCollectionView.dataSource = self
+        featuredArtistCollectionView.delegate = self
+    }
+    
     
     private func setUpCVs() {
         tagsCollectionView.delegate = self
         tagsCollectionView.dataSource = self
-        featuredArtistCV.delegate = featuredCVDelegate
-        featuredArtistCV.dataSource = self
     }
     
     private func setUpTV() {
@@ -133,6 +172,20 @@ class ExploreViewController: UIViewController {
     
     @IBAction func resetSearch(_ sender: UIBarButtonItem) {
         fetchArtists()
+        
+        guard let currentUser1 = currentUser else { return }
+       
+        db.updateUserPreferences(currentUser1.tags) {[weak self] (result) in
+            switch result {
+            case .failure(let error):
+                self?.showAlert(title: "Error Updating", message: error.localizedDescription)
+            case .success:
+                self?.getCurrentUserPref()
+                
+            }
+        }
+        
+        
     }
     
     func helperFuncForFeaturedArtist(artists1:[Artist]) -> [Artist]{
@@ -188,7 +241,7 @@ extension ExploreViewController: UICollectionViewDelegateFlowLayout, UICollectio
         if collectionView == tagsCollectionView {
             return currentUser?.preferences?.count ?? 2
         }
-        if collectionView == featuredArtistCV {
+        if collectionView == featuredArtistCollectionView {
             return featuredArtists.count
         }
         return 0
@@ -207,27 +260,39 @@ extension ExploreViewController: UICollectionViewDelegateFlowLayout, UICollectio
             
             
             return tagCell
-        }
-        if collectionView == featuredArtistCV {
-            guard let featureCell = collectionView.dequeueReusableCell(withReuseIdentifier: "featuredArtist", for: indexPath) as? FeaturedArtistCell else {
-                fatalError("could not downcast to FeaturedArtistCell")
+        } else {
+            guard let artistCell = collectionView.dequeueReusableCell(withReuseIdentifier: "artistCell", for: indexPath) as? FeaturedArtistCell else {
+                fatalError("could not downcast to TagCollectionViewCell")
             }
-            let featuredArtist = featuredArtists[indexPath.row]
-            featureCell.configureCell(artistPhotoURL: featuredArtist.photoURL )
             
-            return featureCell
+            let artistPhotoURL = featuredArtists[indexPath.row]
+            artistCell.configureCell(artistPhotoURL: artistPhotoURL.photoURL)
+            
+            return artistCell
         }
         
-        return UICollectionViewCell()
+        
+//        return UICollectionViewCell()
     }
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+     
+       if collectionView == tagsCollectionView {
+                let maxSize: CGSize = UIScreen.main.bounds.size
+                let itemWidth: CGFloat = maxSize.width * 0.20
+                let itemHeight: CGFloat = maxSize.height * 0.30
+                return CGSize(width: itemWidth, height: itemHeight)
+             
+       } else {
         let maxSize: CGSize = UIScreen.main.bounds.size
-        let itemWidth: CGFloat = maxSize.width * 0.20
-        let itemHeight: CGFloat = maxSize.height * 0.30
+        let itemWidth: CGFloat = maxSize.width * 0.30
+        let itemHeight: CGFloat = maxSize.height * 0.14
         return CGSize(width: itemWidth, height: itemHeight)
-    }
+        
+}
+        
+}
     
 }
 

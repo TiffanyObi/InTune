@@ -29,7 +29,7 @@ class StorageService {
             (metadata, error) in
             if let error = error {
                 completion(.failure(error))
-            }else if let metadata = metadata {
+            } else {
                 photoReference.downloadURL { (url, error) in
                     if let error = error {
                         completion(.failure(error))
@@ -40,12 +40,12 @@ class StorageService {
             }
         }
     }
-func uploadVideoData(_ videoData: Data, completion: @escaping (Result<Bool, Error>) -> ()){
+    func uploadVideoData(_ videoData: Data, vid: Video, completion: @escaping (Result<Bool, Error>) -> ()){
  guard let user = Auth.auth().currentUser else {
   return
  }
  let storageRef = FirebaseStorage.Storage.storage().reference()
- let videoRef = storageRef.child("Videos/\(user.uid)/\(UUID().uuidString)")
+        let videoRef = storageRef.child("Videos/\(user.uid)/\(vid.postId)")
  let metadata = StorageMetadata()
  metadata.contentType = "video/mp4"
  videoRef.putData(videoData, metadata: metadata) { (metadata, error) in
@@ -56,16 +56,19 @@ func uploadVideoData(_ videoData: Data, completion: @escaping (Result<Bool, Erro
    videoRef.downloadURL { (url, error) in
     // 1
     // attach video url to the artists subcollection called "videos"
-    let documentRef = Firestore.firestore().collection("artists")
-     .document(user.uid)
-     .collection("videos")
-     .document()
+//    let documentRef = Firestore.firestore().collection("artists")
+//     .document(user.uid)
+//     .collection("videos")
+//     .document()
+    
     Firestore.firestore().collection("artists")
      .document(user.uid)
      .collection("videos")
-     .document(documentRef.documentID)
+        .document(vid.postId)
      .setData(["artistName" : "AXP Films",
-          "videoUrl": url!.absoluteString]) { error in
+          "videoUrl": url!.absoluteString,
+          "postId": vid.postId
+     ]) { error in
            if let error = error {
             print("error: \(error)")
      }
@@ -74,4 +77,24 @@ func uploadVideoData(_ videoData: Data, completion: @escaping (Result<Bool, Erro
   }
  }
 }
+    
+    func deleteVideo(vid: Video, completion: @escaping (Result<Bool, Error>) -> ()) {
+        guard let user = Auth.auth().currentUser else {
+         return
+        }
+//        let docRef = Firestore.firestore().collection("artists")
+//        .document(user.uid)
+//        .collection("videos")
+//        .document()
+        let storageRef = FirebaseStorage.Storage.storage().reference()
+        let videoRef = storageRef.child("Videos/\(user.uid)/\(vid.postId)")
+        
+        videoRef.delete { (error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(true))
+            }
+        }
+    }
 }

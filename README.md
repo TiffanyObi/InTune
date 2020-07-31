@@ -86,7 +86,13 @@ This project includes cocoapods such as MessageKit and Kingfisher to facilitate 
 
 
 ## Contributors 
- [![](https://avatars2.githubusercontent.com/u/55721710?s=200&u=0eebcc3a8a764dfe250d0b89fce345a2ca46eb6d&v=4&s=300)](https://github.com/maitreebain)    [![](https://avatars2.githubusercontent.com/u/55755297?s=200&u=364f4a7c46054d81adf10cc9b63e5215b5a83515&v=4&s=30)](https://github.com/TiffanyObi)   [![](https://avatars2.githubusercontent.com/u/55717913?s=200&u=6a26ab824fe75a6038add490238e47dc972ec603&v=4&s=30)](https://github.com/ChristianHurtado29)   [![](https://avatars3.githubusercontent.com/u/55722232?s=200&u=742a8f0f4cab152c96093d98305b09c92eddf8bc&v=4&s=30)](https://github.com/oscarvictoria)
+
+| <a href="https://github.com/maitreebain" target="_blank">**Maitree Bain**</a> | <a href="https://github.com/TiffanyObi" target="_blank">**Tiffany Obi**</a> | <a href="https://github.com/ChristianHurtado29" target="_blank">**Christian Hurtado**</a> | <a href="https://github.com/oscarvictoria" target="_blank">**Oscar Gonzales**</a> |
+| :---: |:---:| :---:| :---: |
+|[![Maitree](https://avatars2.githubusercontent.com/u/55721710?s=200&u=0eebcc3a8a764dfe250d0b89fce345a2ca46eb6d&v=4&s=300)](https://github.com/maitreebain) [LinkedIn](https://www.linkedin.com/in/maitree-bain-16956972/)| [![Tiffany](https://avatars2.githubusercontent.com/u/55755297?s=200&u=364f4a7c46054d81adf10cc9b63e5215b5a83515&v=4&s=30)](https://github.com/TiffanyObi) [LinkedIn](https://www.linkedin.com/in/tiffany-obi-a1720818a/)|[![Christian](https://avatars2.githubusercontent.com/u/55717913?s=200&u=6a26ab824fe75a6038add490238e47dc972ec603&v=4&s=30)](https://github.com/ChristianHurtado29) [LinkedIn](https://www.linkedin.com/in/christian-hurtado-a1431a194/)|[![Oscar](https://avatars3.githubusercontent.com/u/55722232?s=200&u=742a8f0f4cab152c96093d98305b09c92eddf8bc&v=4&s=30)](https://github.com/oscarvictoria) [LinkedIn](https://www.linkedin.com/in/oscar-victoria-5b6400137/)| 
+
+ 
+ 
 
 
 ## Support

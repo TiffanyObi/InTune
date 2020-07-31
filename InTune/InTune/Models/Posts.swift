@@ -67,6 +67,7 @@ extension GigsPost {
 }
 
 struct FavGig {
+    let gigId: String
     let title: String
     let artistName: String
     let artistId: String
@@ -79,6 +80,7 @@ struct FavGig {
 
 extension FavGig {
     init(_ dictionary: [String: Any]) {
+        self.gigId = dictionary["gigId"] as? String ?? "no gig id"
         self.title = dictionary["title"] as? String  ?? "no title"
         self.artistName = dictionary["artistName"] as? String ?? "no name"
         self.artistId = dictionary["artistId"] as? String ?? "no artistId"

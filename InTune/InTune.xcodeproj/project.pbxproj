@@ -60,12 +60,14 @@
 		80900C5F2492C7880080C816 /* GigCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80900C5E2492C7880080C816 /* GigCell.xib */; };
 		80900C612492C79F0080C816 /* GigCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80900C602492C79F0080C816 /* GigCell.swift */; };
 		80900C632492C80C0080C816 /* GigsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80900C622492C80C0080C816 /* GigsDetailViewController.swift */; };
+		80A264F024C5EF7C00DA6662 /* ExperienceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80A264EF24C5EF7C00DA6662 /* ExperienceView.xib */; };
 		80C375B524819DE600152996 /* Designable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C375B424819DE600152996 /* Designable.swift */; };
 		80C375B724819E3F00152996 /* TagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C375B624819E3F00152996 /* TagCollectionViewCell.swift */; };
-		80D58F7F248AE44F005392A0 /* FeaturedArtist.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80D58F7E248AE44F005392A0 /* FeaturedArtist.xib */; };
-		80D58F81248AE7E8005392A0 /* FeaturedArtistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D58F80248AE7E8005392A0 /* FeaturedArtistCell.swift */; };
+		80C935EA24C774A800D1C66F /* ExperienceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C935E924C774A800D1C66F /* ExperienceView.swift */; };
 		80E3D260248EC649002F3FA7 /* PostCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E3D25F248EC649002F3FA7 /* PostCollectionViewDelegate.swift */; };
+		BE3DB16A24C21EBE0023E9DC /* CreateGigVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3DB16924C21EBE0023E9DC /* CreateGigVC.swift */; };
 		BE4572202492DF2E0020D12C /* CreateGigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE45721F2492DF2E0020D12C /* CreateGigViewController.swift */; };
+		BE463F3124C51C85001A3A3B /* FeaturedArtistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE463F3024C51C85001A3A3B /* FeaturedArtistCell.swift */; };
 		BEDF3FC9248533B000D22E2D /* MessageView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEDF3FC8248533B000D22E2D /* MessageView.storyboard */; };
 		BEDF3FCB248533D400D22E2D /* ChatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDF3FCA248533D400D22E2D /* ChatsViewController.swift */; };
 		BEDF3FCD2485349A00D22E2D /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDF3FCC2485349A00D22E2D /* Chat.swift */; };
@@ -148,13 +150,15 @@
 		80900C5E2492C7880080C816 /* GigCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GigCell.xib; sourceTree = "<group>"; };
 		80900C602492C79F0080C816 /* GigCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigCell.swift; sourceTree = "<group>"; };
 		80900C622492C80C0080C816 /* GigsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigsDetailViewController.swift; sourceTree = "<group>"; };
+		80A264EF24C5EF7C00DA6662 /* ExperienceView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExperienceView.xib; sourceTree = "<group>"; };
 		80C375B424819DE600152996 /* Designable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Designable.swift; sourceTree = "<group>"; };
 		80C375B624819E3F00152996 /* TagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCollectionViewCell.swift; sourceTree = "<group>"; };
-		80D58F7E248AE44F005392A0 /* FeaturedArtist.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeaturedArtist.xib; sourceTree = "<group>"; };
-		80D58F80248AE7E8005392A0 /* FeaturedArtistCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedArtistCell.swift; sourceTree = "<group>"; };
+		80C935E924C774A800D1C66F /* ExperienceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperienceView.swift; sourceTree = "<group>"; };
 		80E3D25F248EC649002F3FA7 /* PostCollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCollectionViewDelegate.swift; sourceTree = "<group>"; };
 		9BE6182879AA5607E95E84A9 /* Pods-InTuneTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InTuneTests.debug.xcconfig"; path = "Target Support Files/Pods-InTuneTests/Pods-InTuneTests.debug.xcconfig"; sourceTree = "<group>"; };
+		BE3DB16924C21EBE0023E9DC /* CreateGigVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGigVC.swift; sourceTree = "<group>"; };
 		BE45721F2492DF2E0020D12C /* CreateGigViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGigViewController.swift; sourceTree = "<group>"; };
+		BE463F3024C51C85001A3A3B /* FeaturedArtistCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedArtistCell.swift; sourceTree = "<group>"; };
 		BEDF3FC8248533B000D22E2D /* MessageView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MessageView.storyboard; sourceTree = "<group>"; };
 		BEDF3FCA248533D400D22E2D /* ChatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsViewController.swift; sourceTree = "<group>"; };
 		BEDF3FCC2485349A00D22E2D /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
@@ -214,12 +218,19 @@
 		3E43F436247D7B8600CC0584 /* InTune */ = {
 			isa = PBXGroup;
 			children = (
+				3E43F462247E84DA00CC0584 /* MainViewTabBarController.swift */,
+				80E3D25F248EC649002F3FA7 /* PostCollectionViewDelegate.swift */,
 				3E43F46B247E8E0800CC0584 /* FirebaseServices */,
 				3E43F47A247E90D800CC0584 /* Extensions */,
 				3E43F47D247E97C300CC0584 /* Models */,
 				3E43F46C247E8E2300CC0584 /* Views */,
-				3E43F473247E8FC900CC0584 /* Storyboards */,
-				3E43F464247E850A00CC0584 /* ViewControllers */,
+				804588B124BCBE9B007166C7 /* Cells */,
+				3E43F464247E850A00CC0584 /* LogIn */,
+				804588B224BCBF80007166C7 /* Explore */,
+				804588B324BCBF92007166C7 /* Chat */,
+				804588B524BCBFA9007166C7 /* Gigs */,
+				3E43F490247E9B2400CC0584 /* LikedArtistsViewController.swift */,
+				804588B424BCBFA1007166C7 /* Profile */,
 				3E43F459247E83A600CC0584 /* SupportingFiles */,
 				3E43F445247D7B8D00CC0584 /* Info.plist */,
 				3E6D8FFC24A2B12D001AF7A7 /* GoogleService-Info.plist */,
@@ -248,27 +259,15 @@
 			path = SupportingFiles;
 			sourceTree = "<group>";
 		};
-		3E43F464247E850A00CC0584 /* ViewControllers */ = {
+		3E43F464247E850A00CC0584 /* LogIn */ = {
 			isa = PBXGroup;
 			children = (
+				3E43F46F247E8F6400CC0584 /* LoginView.storyboard */,
 				3E43F45A247E83DE00CC0584 /* LoginViewController.swift */,
-				3E43F462247E84DA00CC0584 /* MainViewTabBarController.swift */,
-				3E43F43B247D7B8600CC0584 /* ExploreViewController.swift */,
-				3EF5809A24929E6600D1942E /* ExploreOptionsController.swift */,
-				3E43F460247E849700CC0584 /* EditProfController.swift */,
-				3E43F45E247E846400CC0584 /* ProfileViewController.swift */,
-				80E3D25F248EC649002F3FA7 /* PostCollectionViewDelegate.swift */,
-				3E43F45C247E844B00CC0584 /* GigViewController.swift */,
-				80900C622492C80C0080C816 /* GigsDetailViewController.swift */,
-				3E6568C024A4310300A8DB11 /* GigsPostsController.swift */,
-				BE45721F2492DF2E0020D12C /* CreateGigViewController.swift */,
 				3E43F471247E8FAE00CC0584 /* OnboardingViewController.swift */,
-				3E43F490247E9B2400CC0584 /* LikedArtistsViewController.swift */,
-				3E43F492247E9B3F00CC0584 /* VideoPostViewController.swift */,
-				BEDF3FCA248533D400D22E2D /* ChatsViewController.swift */,
-				BEDF3FD02485354B00D22E2D /* ChatViewController.swift */,
+				3E75433A2490027500383D02 /* OnboardingView.storyboard */,
 			);
-			path = ViewControllers;
+			path = LogIn;
 			sourceTree = "<group>";
 		};
 		3E43F46B247E8E0800CC0584 /* FirebaseServices */ = {
@@ -289,34 +288,8 @@
 				3E754303248FD0C600383D02 /* UserExperienceView.swift */,
 				3E75433C24900C1300383D02 /* DisplayNameAndLocationView.swift */,
 				3E75434024907D3A00383D02 /* TagsSelectionView.swift */,
-				80135C7F248027630038A0CC /* PostCell.swift */,
-				80C375B624819E3F00152996 /* TagCollectionViewCell.swift */,
-				3E907EB72491A87700BFA1A3 /* TagCollectionViewCell.xib */,
-				800D8999248843F500C3FB67 /* ChatsCell.swift */,
-				80135C7D248026210038A0CC /* PostCell.xib */,
-				800D8997248843C300C3FB67 /* ChatsCell.xib */,
-				3EA7E76E24888FD50092C03B /* ArtistCell.xib */,
-				3E379999248963EB00DC0487 /* ArtistCell.swift */,
-				80D58F80248AE7E8005392A0 /* FeaturedArtistCell.swift */,
-				80D58F7E248AE44F005392A0 /* FeaturedArtist.xib */,
-				80142DB0248ABB6C002C928C /* ExploreArtistCell.swift */,
-				80900C5E2492C7880080C816 /* GigCell.xib */,
-				80900C602492C79F0080C816 /* GigCell.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		3E43F473247E8FC900CC0584 /* Storyboards */ = {
-			isa = PBXGroup;
-			children = (
-				3E43F46D247E8EA200CC0584 /* MainView.storyboard */,
-				3E43F46F247E8F6400CC0584 /* LoginView.storyboard */,
-				BEDF3FC8248533B000D22E2D /* MessageView.storyboard */,
-				80142DAE248AB85F002C928C /* ExploreView.storyboard */,
-				3E75433A2490027500383D02 /* OnboardingView.storyboard */,
-				80900C5C2492C6650080C816 /* GigsView.storyboard */,
-			);
-			path = Storyboards;
 			sourceTree = "<group>";
 		};
 		3E43F47A247E90D800CC0584 /* Extensions */ = {
@@ -345,6 +318,71 @@
 				3E2D9E0A2499939100DCF551 /* Video.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		804588B124BCBE9B007166C7 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				80135C7F248027630038A0CC /* PostCell.swift */,
+				80C375B624819E3F00152996 /* TagCollectionViewCell.swift */,
+				3E907EB72491A87700BFA1A3 /* TagCollectionViewCell.xib */,
+				800D8999248843F500C3FB67 /* ChatsCell.swift */,
+				80135C7D248026210038A0CC /* PostCell.xib */,
+				800D8997248843C300C3FB67 /* ChatsCell.xib */,
+				3EA7E76E24888FD50092C03B /* ArtistCell.xib */,
+				3E379999248963EB00DC0487 /* ArtistCell.swift */,
+				80142DB0248ABB6C002C928C /* ExploreArtistCell.swift */,
+				80900C5E2492C7880080C816 /* GigCell.xib */,
+				80900C602492C79F0080C816 /* GigCell.swift */,
+				BE463F3024C51C85001A3A3B /* FeaturedArtistCell.swift */,
+				80A264EF24C5EF7C00DA6662 /* ExperienceView.xib */,
+				80C935E924C774A800D1C66F /* ExperienceView.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		804588B224BCBF80007166C7 /* Explore */ = {
+			isa = PBXGroup;
+			children = (
+				80142DAE248AB85F002C928C /* ExploreView.storyboard */,
+				3E43F43B247D7B8600CC0584 /* ExploreViewController.swift */,
+				3EF5809A24929E6600D1942E /* ExploreOptionsController.swift */,
+			);
+			path = Explore;
+			sourceTree = "<group>";
+		};
+		804588B324BCBF92007166C7 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				BEDF3FC8248533B000D22E2D /* MessageView.storyboard */,
+				BEDF3FCA248533D400D22E2D /* ChatsViewController.swift */,
+				BEDF3FD02485354B00D22E2D /* ChatViewController.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		804588B424BCBFA1007166C7 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				3E43F46D247E8EA200CC0584 /* MainView.storyboard */,
+				3E43F45E247E846400CC0584 /* ProfileViewController.swift */,
+				3E43F460247E849700CC0584 /* EditProfController.swift */,
+				3E43F492247E9B3F00CC0584 /* VideoPostViewController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		804588B524BCBFA9007166C7 /* Gigs */ = {
+			isa = PBXGroup;
+			children = (
+				80900C5C2492C6650080C816 /* GigsView.storyboard */,
+				3E43F45C247E844B00CC0584 /* GigViewController.swift */,
+				80900C622492C80C0080C816 /* GigsDetailViewController.swift */,
+				BE45721F2492DF2E0020D12C /* CreateGigViewController.swift */,
+				3E6568C024A4310300A8DB11 /* GigsPostsController.swift */,
+				BE3DB16924C21EBE0023E9DC /* CreateGigVC.swift */,
+			);
+			path = Gigs;
 			sourceTree = "<group>";
 		};
 		80CFF8D6D99775C527BCAFD7 /* Pods */ = {
@@ -442,7 +480,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				80D58F7F248AE44F005392A0 /* FeaturedArtist.xib in Resources */,
 				3E43F444247D7B8D00CC0584 /* LaunchScreen.storyboard in Resources */,
 				3E6D8FFD24A2B12D001AF7A7 /* GoogleService-Info.plist in Resources */,
 				80900C5F2492C7880080C816 /* GigCell.xib in Resources */,
@@ -451,6 +488,7 @@
 				80135C7E248026210038A0CC /* PostCell.xib in Resources */,
 				3E75433B2490027500383D02 /* OnboardingView.storyboard in Resources */,
 				3EA7E76F24888FD50092C03B /* ArtistCell.xib in Resources */,
+				80A264F024C5EF7C00DA6662 /* ExperienceView.xib in Resources */,
 				BEDF3FC9248533B000D22E2D /* MessageView.storyboard in Resources */,
 				3E43F46E247E8EA200CC0584 /* MainView.storyboard in Resources */,
 				80900C5D2492C6650080C816 /* GigsView.storyboard in Resources */,
@@ -564,18 +602,20 @@
 				80900C632492C80C0080C816 /* GigsDetailViewController.swift in Sources */,
 				3E43F472247E8FAE00CC0584 /* OnboardingViewController.swift in Sources */,
 				800D899A248843F500C3FB67 /* ChatsCell.swift in Sources */,
+				BE463F3124C51C85001A3A3B /* FeaturedArtistCell.swift in Sources */,
 				3E43F43A247D7B8600CC0584 /* SceneDelegate.swift in Sources */,
 				80142DB1248ABB6C002C928C /* ExploreArtistCell.swift in Sources */,
 				80135C8224805C0F0038A0CC /* StorageService.swift in Sources */,
 				3EF5809B24929E6600D1942E /* ExploreOptionsController.swift in Sources */,
 				3E43F468247E8DD100CC0584 /* AuthentificationService.swift in Sources */,
 				3E43F485247E985700CC0584 /* LoginViewViewModel.swift in Sources */,
+				80C935EA24C774A800D1C66F /* ExperienceView.swift in Sources */,
+				BE3DB16A24C21EBE0023E9DC /* CreateGigVC.swift in Sources */,
 				3E6D8FFB24A27E77001AF7A7 /* ProfileViewViewModel.swift in Sources */,
 				3E43F477247E90B700CC0584 /* DateFormatter.swift in Sources */,
 				3E43F475247E909A00CC0584 /* ShowAlert.swift in Sources */,
 				3E43F48D247E9AF800CC0584 /* LikedArtistView.swift in Sources */,
 				80E3D260248EC649002F3FA7 /* PostCollectionViewDelegate.swift in Sources */,
-				80D58F81248AE7E8005392A0 /* FeaturedArtistCell.swift in Sources */,
 				BEDF3FCD2485349A00D22E2D /* Chat.swift in Sources */,
 				3E75433F2490711300383D02 /* StatesForPickerView.swift in Sources */,
 				3E75434124907D3A00383D02 /* TagsSelectionView.swift in Sources */,
