@@ -154,22 +154,6 @@ class ProfileViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        guard let user = Auth.auth().currentUser else { return }
-        if state == .prof {
-        if isAnArtist == false {
-            postsListener = Firestore.firestore().collection(DatabaseService.artistsCollection).document(user.uid).collection(DatabaseService.gigPosts).addSnapshotListener({ [weak self](snapshot, error) in
-                if let error = error {
-                    DispatchQueue.main.async {
-                        self?.showAlert(title: "Firestore Error", message: error.localizedDescription)
-                    }
-                } else if let snapshot = snapshot {
-                    let gigs = snapshot.documents.map { GigsPost($0.data())
-                    }
-                    self?.gigs = gigs
-                }
-            })
-        }
-        }
         setProfileViewState()
     }
     
@@ -187,6 +171,10 @@ class ProfileViewController: UIViewController {
     func getVideos(artist:Artist){
         profileViewModel.getVideos(artist: artist, profileVC: self)
         
+    }
+    
+    func getGigs(artist: Artist){
+        profileViewModel.getGigPosts(profileVC: self)
     }
     
     func setUpEmptyViewForUser(){

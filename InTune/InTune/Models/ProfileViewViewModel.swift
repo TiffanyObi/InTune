@@ -39,6 +39,7 @@ struct ProfileViewViewModel {
                     self.getVideos(artist: artist1, profileVC: profileVC!)
                     }
                     //getGigs here
+                    self.getGigPosts(profileVC: profileVC!)
                 }
             }
         }
@@ -54,6 +55,18 @@ struct ProfileViewViewModel {
               }
             }
         }
+    
+    func getGigPosts(profileVC:ProfileViewController) {
+        database.getGigs { (result) in
+            
+            switch result {
+            case .failure(let error):
+                print(error)
+            case .success(let posts):
+                profileVC.gigs = posts
+            }
+        }
+    }
     
     private func setUpAddVideoButton(profileVC:ProfileViewController,videosCount:Int){
            if videosCount == 4 || videosCount > 4  {
