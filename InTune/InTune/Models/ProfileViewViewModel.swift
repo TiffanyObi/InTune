@@ -15,7 +15,7 @@ struct ProfileViewViewModel {
     private var database = DatabaseService()
     
     func fetchArtist(profileVC:ProfileViewController,userID:String){
-        
+        //add completion handler on this
         database.fetchArtist(userID: userID){ [weak profileVC](result) in
             switch result {
             case.failure(let error):
@@ -23,6 +23,7 @@ struct ProfileViewViewModel {
             case.success(let artist1):
                 DispatchQueue.main.async {
                     profileVC?.singleArtist = artist1
+                    profileVC?.isAnArtist = artist1.isAnArtist
                     profileVC?.nameLabel.text = artist1.name
                     profileVC?.locationLabel.text = "Email: \(artist1.email)"
                     if let photoString = artist1.photoURL{
@@ -34,7 +35,10 @@ struct ProfileViewViewModel {
                     } else {
                         profileVC?.bioLabel.text = "This user does not have a bio yet"
                     }
+                    if artist1.isAnArtist {
                     self.getVideos(artist: artist1, profileVC: profileVC!)
+                    }
+                    //getGigs here
                 }
             }
         }
@@ -111,7 +115,7 @@ struct ProfileViewViewModel {
     }
     
     func setUpEmptyViewFromExp(profileVC:ProfileViewController){
-        guard let artist = profileVC.expArtist else { print("no expArtist")
+        guard let artist = profileVC.expArtist else {
             return
         }
         if artist.isReported {
@@ -171,7 +175,11 @@ struct ProfileViewViewModel {
         if artist.isReported {
             return 0
         } else {
-            return profileVC.videos.count
+            if artist.isAnArtist {
+                return profileVC.videos.count
+            } else {
+                return profileVC.gigs.count
+            }
         }
     }
     
