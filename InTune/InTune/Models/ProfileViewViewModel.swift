@@ -38,7 +38,7 @@ struct ProfileViewViewModel {
                     if artist1.isAnArtist {
                     self.getVideos(artist: artist1, profileVC: profileVC!)
                     }
-                    //getGigs here
+                    profileVC?.navigationItem.rightBarButtonItem = nil
                     self.getGigPosts(profileVC: profileVC!)
                 }
             }

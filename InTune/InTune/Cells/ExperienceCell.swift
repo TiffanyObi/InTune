@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ExperienceView: UICollectionViewCell {
+class ExperienceCell: UICollectionViewCell {
     
     @IBOutlet var gigImage: UIImageView!
     @IBOutlet var gigTitle: UILabel!
@@ -17,8 +17,8 @@ class ExperienceView: UICollectionViewCell {
     
     func configureCell(for post: GigsPost) {
         gigImage.image = UIImage(named: "newPost")
-        gigTitle.text = post.title
-        gigDate.text = post.eventDate
-        gigLocation.text = post.location
+        gigTitle.text = "\(post.title)"
+        gigDate.text = "Event date: \(post.eventDate)"
+        gigLocation.text = "Location: \(post.location)"
     }
 }

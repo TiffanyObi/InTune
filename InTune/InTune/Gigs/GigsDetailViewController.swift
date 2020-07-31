@@ -84,7 +84,12 @@ class GigsDetailViewController: UIViewController {
     
     func updateUI() {
         //set up image for profile + segue to prof
+        guard let user = Auth.auth().currentUser else { return }
         guard let gig = gigPost else { return }
+        if gig.artistId == user.uid {
+            navigationItem.rightBarButtonItem = nil
+            messageButton.isHidden = true
+        }
         titleLabel.text = gig.title
         //        guard let imageurl = gig.imageURL else { return }
         //        guard let url = URL(string: imageurl) else { return }
