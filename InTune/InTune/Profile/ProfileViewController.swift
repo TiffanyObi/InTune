@@ -46,7 +46,11 @@ class ProfileViewController: UIViewController {
             tagsCollection.reloadData()
         }
     }
+    
+    var postsListener: ListenerRegistration?
+    
     let profileViewModel = ProfileViewViewModel()
+    let experienceView = ExperienceView()
     var expArtist: Artist?
     
     var isArtistFavorite = false {
@@ -59,7 +63,23 @@ class ProfileViewController: UIViewController {
         }
     }
     
-    var state: Segue = .prof
+    var state: Segue = .prof 
+//        didSet {
+//            postsCollectionView.reloadData()
+//        }
+
+    
+    var isAnArtist: Bool? {
+        didSet {
+            postsCollectionView.reloadData()
+        }
+    }
+    
+    var gigs = [GigsPost]() {
+        didSet{
+            postsCollectionView.reloadData()
+        }
+    }
     
     var videos = [Video](){
         didSet{
@@ -92,6 +112,7 @@ class ProfileViewController: UIViewController {
         } else {
             loadExpUI()
         }
+        postsCollectionView.reloadData()
     }
     
     private func loadUI() {
@@ -100,26 +121,25 @@ class ProfileViewController: UIViewController {
         }
         profileViewModel.fetchArtist(profileVC: self, userID: user.uid)
         
-        guard let singleArtist = singleArtist else {
-            return
-        }
-        profImage.contentMode = .scaleAspectFill
-        if user.photoURL == nil  {
-            profImage.image = UIImage(systemName: "person.fill")
-        } else {
-            profImage.kf.setImage(with: user.photoURL)
-        }
-        if singleArtist.bioText == nil {
-            bioLabel.text = "Under Construction"
-        } else {
-            bioLabel.text = singleArtist.bioText
-        }
-        locationLabel.text = user.email
+//        guard let singleArtist = singleArtist else {
+//            return
+//        }
+//        profImage.contentMode = .scaleAspectFill
+//        if user.photoURL == nil  {
+//            profImage.image = UIImage(systemName: "person.fill")
+//        } else {
+//            profImage.kf.setImage(with: user.photoURL)
+//        }
+//        if singleArtist.bioText == nil {
+//            bioLabel.text = "Under Construction"
+//        } else {
+//            bioLabel.text = singleArtist.bioText
+//        }
         likeArtistButton.isHidden = true
         chatButton.isHidden = true
         
         
-        profileViewModel.loadUI(profileVC: self, user: user, singleArtist: singleArtist)
+//        profileViewModel.loadUI(profileVC: self, user: user, singleArtist: singleArtist)
         
     }
     
@@ -133,7 +153,22 @@ class ProfileViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        
+        guard let user = Auth.auth().currentUser else { return }
+        if state == .prof {
+        if isAnArtist == false {
+            postsListener = Firestore.firestore().collection(DatabaseService.artistsCollection).document(user.uid).collection(DatabaseService.gigPosts).addSnapshotListener({ [weak self](snapshot, error) in
+                if let error = error {
+                    DispatchQueue.main.async {
+                        self?.showAlert(title: "Firestore Error", message: error.localizedDescription)
+                    }
+                } else if let snapshot = snapshot {
+                    let gigs = snapshot.documents.map { GigsPost($0.data())
+                    }
+                    self?.gigs = gigs
+                }
+            })
+        }
+        }
         setProfileViewState()
     }
     
@@ -195,9 +230,9 @@ class ProfileViewController: UIViewController {
     
     func deleteStorage() {
         guard let video = vid else {
-        print("no vid found")
-        return }
-
+            print("no vid found")
+            return }
+        
         storageService.deleteVideo(vid: video) { (result) in
             switch result {
             case .failure(let error):
@@ -286,27 +321,35 @@ extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDel
             }
             return cell
         }
+        
         if collectionView == postsCollectionView {
             
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "postCell", for: indexPath) as? PostCell else {
-                fatalError("could not conform to TagCell")
+                fatalError("could not conform to postCell")
             }
             
-            if state == .prof {
-                cell.addGestureRecognizer(longPress)
+            switch state {
+            case .explore:
                 let video = videos[indexPath.row]
                 vid = video
                 if let urlString = video.videoUrl {
                     cell.configureCell(vidURL: urlString)
                 }
-            } else if state == .explore {
-                let video = videos[indexPath.row]
-                vid = video
-                if let urlString = video.videoUrl {
-                    cell.configureCell(vidURL: urlString)
+            case .prof:
+                if isAnArtist ?? false {
+                    cell.addGestureRecognizer(longPress)
+                    let video = videos[indexPath.row]
+                    vid = video
+                    if let urlString = video.videoUrl {
+                        cell.configureCell(vidURL: urlString)
+                    }
+                } else {
+                    print("not an artist")
+                    cell.contentView.addSubview(experienceView)
+                    let post = gigs[indexPath.row]
+                    cell.configureCell(gigPost: post)
                 }
             }
-            
             return cell
         }
         return UICollectionViewCell()
@@ -332,21 +375,25 @@ extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDel
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 25, left: 5, bottom: 25, right: 5)
+        return UIEdgeInsets(top: 16, left: 8, bottom: 16, right: 8)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // get video selected at n index
         if collectionView == postsCollectionView{
-            let video = videos[indexPath.row]
-            // create av player vc
-            let playController = AVPlayerViewController()
-            guard let urlStr = video.videoUrl else { return }
-            let player = AVPlayer(url: URL(string: urlStr)!)
-            //present av vc
-            playController.player = player
-            present(playController, animated: true) {
-                player.play()
+            if isAnArtist ?? true {
+                let video = videos[indexPath.row]
+                // create av player vc
+                let playController = AVPlayerViewController()
+                guard let urlStr = video.videoUrl else { return }
+                let player = AVPlayer(url: URL(string: urlStr)!)
+                //present av vc
+                playController.player = player
+                present(playController, animated: true) {
+                    player.play()
+                }
+            } else {
+                print("gig post")
             }
         }
     }
