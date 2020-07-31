@@ -25,7 +25,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet public var tagsCollection: UICollectionView!
     @IBOutlet public var postsCollectionView: UICollectionView!
     @IBOutlet public var locationLabel: UILabel!
-    @IBOutlet private var addMediaButton: UIBarButtonItem!
+    @IBOutlet var addMediaButton: UIBarButtonItem!
     @IBOutlet var likeArtistButton: UIButton!
     @IBOutlet var chatButton: UIButton!
     @IBOutlet var postVidButton: UIBarButtonItem!
@@ -50,7 +50,7 @@ class ProfileViewController: UIViewController {
     var postsListener: ListenerRegistration?
     
     let profileViewModel = ProfileViewViewModel()
-    let experienceView = ExperienceView()
+    let experienceView = ExperienceCell()
     var expArtist: Artist?
     
     var isArtistFavorite = false {
@@ -63,11 +63,7 @@ class ProfileViewController: UIViewController {
         }
     }
     
-    var state: Segue = .prof 
-//        didSet {
-//            postsCollectionView.reloadData()
-//        }
-
+    var state: Segue = .prof
     
     var isAnArtist: Bool? {
         didSet {
@@ -103,7 +99,7 @@ class ProfileViewController: UIViewController {
         postsCollectionView.dataSource = self
         postsCollectionView.layer.cornerRadius = 14
         postsCollectionView.register(UINib(nibName: "PostCell", bundle: nil), forCellWithReuseIdentifier: "postCell")
-        postsCollectionView.register(UINib(nibName: "ExperienceView", bundle: nil), forCellWithReuseIdentifier: "expCell")
+        postsCollectionView.register(UINib(nibName: "ExperienceCell", bundle: nil), forCellWithReuseIdentifier: "expCell")
         profileViewModel.setUpLikeButton(profileVC: self, button: likeArtistButton)
     }
     
@@ -121,27 +117,8 @@ class ProfileViewController: UIViewController {
             return
         }
         profileViewModel.fetchArtist(profileVC: self, userID: user.uid)
-        
-//        guard let singleArtist = singleArtist else {
-//            return
-//        }
-//        profImage.contentMode = .scaleAspectFill
-//        if user.photoURL == nil  {
-//            profImage.image = UIImage(systemName: "person.fill")
-//        } else {
-//            profImage.kf.setImage(with: user.photoURL)
-//        }
-//        if singleArtist.bioText == nil {
-//            bioLabel.text = "Under Construction"
-//        } else {
-//            bioLabel.text = singleArtist.bioText
-//        }
         likeArtistButton.isHidden = true
         chatButton.isHidden = true
-        
-        
-//        profileViewModel.loadUI(profileVC: self, user: user, singleArtist: singleArtist)
-        
     }
     
     func loadExpUI() {
@@ -154,22 +131,6 @@ class ProfileViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        guard let user = Auth.auth().currentUser else { return }
-        if state == .prof {
-        if isAnArtist == false {
-            postsListener = Firestore.firestore().collection(DatabaseService.artistsCollection).document(user.uid).collection(DatabaseService.gigPosts).addSnapshotListener({ [weak self](snapshot, error) in
-                if let error = error {
-                    DispatchQueue.main.async {
-                        self?.showAlert(title: "Firestore Error", message: error.localizedDescription)
-                    }
-                } else if let snapshot = snapshot {
-                    let gigs = snapshot.documents.map { GigsPost($0.data())
-                    }
-                    self?.gigs = gigs
-                }
-            })
-        }
-        }
         setProfileViewState()
     }
     
@@ -187,6 +148,10 @@ class ProfileViewController: UIViewController {
     func getVideos(artist:Artist){
         profileViewModel.getVideos(artist: artist, profileVC: self)
         
+    }
+    
+    func getGigs(artist: Artist){
+        profileViewModel.getGigPosts(profileVC: self)
     }
     
     func setUpEmptyViewForUser(){
@@ -247,11 +212,6 @@ class ProfileViewController: UIViewController {
                 }
             }
         }
-    }
-    
-    @IBAction func postVideoButtonPressed(_ sender: UIBarButtonItem) {
-        
-        
     }
     
     @IBAction func settingsButtonPressed(_ sender: UIBarButtonItem) {
@@ -345,10 +305,9 @@ extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDel
                         cell.configureCell(vidURL: urlString)
                     }
                 } else {
-                    guard let expCell = collectionView.dequeueReusableCell(withReuseIdentifier: "expCell", for: indexPath) as? ExperienceView else {
+                    guard let expCell = collectionView.dequeueReusableCell(withReuseIdentifier: "expCell", for: indexPath) as? ExperienceCell else {
                         fatalError("could not conform to expCell")
                     }
-                    print("not an artist")
                     let post = gigs[indexPath.row]
                     expCell.configureCell(for: post)
                     
@@ -371,10 +330,17 @@ extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDel
         
         if collectionView == postsCollectionView {
             
+            if isAnArtist ?? false {
             let maxSize: CGSize = UIScreen.main.bounds.size
             let itemWidth: CGFloat = maxSize.width * 0.415
             let itemHeight: CGFloat = maxSize.height * 0.20
             return CGSize(width: itemWidth, height: itemHeight)
+            } else {
+                let maxSize: CGSize = UIScreen.main.bounds.size
+                let itemWidth: CGFloat = maxSize.width * 0.8
+                let itemHeight: CGFloat = maxSize.height * 0.16
+                return CGSize(width: itemWidth, height: itemHeight)
+            }
         }
         return CGSize(width: 0.5, height: 0.5)
     }
@@ -398,7 +364,13 @@ extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDel
                     player.play()
                 }
             } else {
-                print("gig post")
+                let storyBoard = UIStoryboard(name: "GigsView", bundle:  nil)
+                guard let detailVC = storyBoard.instantiateViewController(identifier: "GigsDetailViewController") as? GigsDetailViewController else {
+                    fatalError("could not load gigsDetail")
+                }
+                let gig = gigs[indexPath.row]
+                detailVC.gigPost = gig
+                navigationController?.pushViewController(detailVC, animated: true)
             }
         }
     }

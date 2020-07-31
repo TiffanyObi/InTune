@@ -43,11 +43,6 @@ class ExploreViewController: UIViewController {
         super.viewDidLayoutSubviews()
         collectionView?.frame = CGRect(x: 0, y: 685, width: view.frame.size.width, height: 150).integral
     }
-
-
-    
-    
-
     
     let db = DatabaseService()
     var listener: ListenerRegistration?
@@ -148,7 +143,7 @@ class ExploreViewController: UIViewController {
                 self?.showAlert(title: "Error", message: "\(error.localizedDescription)")
                 
             case.success(let artists1):
-                self?.artists = artists1
+                self?.artists = artists1.filter { $0.isAnArtist == true}
                 self?.featuredArtists = (self?.helperFuncForFeaturedArtist(artists1: artists1))!
             }
         }
@@ -211,11 +206,13 @@ extension ExploreViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "exploreCell", for: indexPath) as? ExploreArtistCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "exploreCell", for: indexPath) as? ExploreArtistCell, let user = Auth.auth().currentUser else {
             fatalError("could not conform to ExploreArtistCell")
         }
-        
         let artist = artists[indexPath.row]
+        if user.uid == artist.artistId {
+            artists.remove(at: indexPath.row)
+        }
         cell.configureCell(artist: artist)
         return cell
     }
