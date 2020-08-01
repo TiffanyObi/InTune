@@ -10,9 +10,7 @@ import UIKit
 import Kingfisher
 
 class FeaturedArtistCell: UICollectionViewCell {
-    
-    
-    
+
     @IBOutlet weak var artistImageView: UIImageView!
     
     override func layoutSubviews() {
