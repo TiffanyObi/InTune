@@ -25,7 +25,11 @@ struct ProfileViewViewModel {
                     profileVC?.singleArtist = artist1
                     profileVC?.isAnArtist = artist1.isAnArtist
                     profileVC?.nameLabel.text = artist1.name
-                    profileVC?.locationLabel.text = "Email: \(artist1.email)"
+                    if profileVC?.state == .prof {
+                        profileVC?.locationLabel.text = "Email: \(artist1.email)"
+                    } else {
+                        profileVC?.locationLabel.text = "Location: \(artist1.city)"
+                    }
                     if let photoString = artist1.photoURL{
                         let url  = URL(string: photoString)
                         profileVC?.profImage.kf.setImage(with: url)
@@ -36,10 +40,13 @@ struct ProfileViewViewModel {
                         profileVC?.bioLabel.text = "This user does not have a bio yet"
                     }
                     if artist1.isAnArtist {
+                    profileVC?.navigationItem.title = "Artist"
                     self.getVideos(artist: artist1, profileVC: profileVC!)
-                    }
+                    } else {
+                    profileVC?.navigationItem.title = "Enthusiast"
                     profileVC?.navigationItem.rightBarButtonItem = nil
                     self.getGigPosts(profileVC: profileVC!)
+                    }
                 }
             }
         }
@@ -83,6 +90,7 @@ struct ProfileViewViewModel {
         button.layer.shadowOpacity = 0.8
     }
     
+    //not using this
     func loadUI(profileVC:ProfileViewController, user:User, singleArtist:Artist){
         profileVC.getVideos(artist: singleArtist)
         profileVC.profImage.contentMode = .scaleAspectFill
@@ -105,7 +113,6 @@ struct ProfileViewViewModel {
         profileVC.navigationItem.leftBarButtonItem = .none
         profileVC.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "flag.fill"), style: .plain, target: profileVC, action: #selector(profileVC.reportArtist(_:)))
         profileVC.navigationItem.rightBarButtonItem?.tintColor = .systemRed
-        
         profileVC.getVideos(artist: artist)
         //        setUpEmptyViewFromExp()
         profileVC.isArtistInFav(artist: artist)

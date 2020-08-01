@@ -27,7 +27,7 @@ class ExploreViewController: UIViewController {
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         
         
-//        collectionView?.register(FeaturedArtistsCell.self, forCellWithReuseIdentifier: FeaturedArtistsCell.identifier)
+        //        collectionView?.register(FeaturedArtistsCell.self, forCellWithReuseIdentifier: FeaturedArtistsCell.identifier)
         collectionView?.showsHorizontalScrollIndicator = false
         collectionView?.delegate = self
         collectionView?.dataSource = self
@@ -61,12 +61,12 @@ class ExploreViewController: UIViewController {
     var featuredArtists = [Artist](){
         didSet{
             DispatchQueue.main.async {
-
+                
                 self.collectionView?.reloadData()
-
+                
                 self.featuredArtistCollectionView.reloadData()
                 print(self.featuredArtists.count)
-
+                
             }
         }
     }
@@ -169,7 +169,7 @@ class ExploreViewController: UIViewController {
         fetchArtists()
         
         guard let currentUser1 = currentUser else { return }
-       
+        
         db.updateUserPreferences(currentUser1.tags) {[weak self] (result) in
             switch result {
             case .failure(let error):
@@ -185,11 +185,11 @@ class ExploreViewController: UIViewController {
     
     func helperFuncForFeaturedArtist(artists1:[Artist]) -> [Artist]{
         var featureSet = Set<Artist>()
-       
+        
         while featureSet.count < 5 {
             guard let randomArtist = artists1.randomElement() else {return [Artist]()}
             featureSet.insert(randomArtist)
-           
+            
         }
         
         return Array(featureSet)
@@ -233,6 +233,12 @@ extension ExploreViewController: UITableViewDataSource, UITableViewDelegate {
 
 extension ExploreViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if collectionView == featuredArtistCollectionView {
+            cell.colorShadow(for: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1))
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         if collectionView == tagsCollectionView {
@@ -263,33 +269,37 @@ extension ExploreViewController: UICollectionViewDelegateFlowLayout, UICollectio
             }
             
             let artistPhotoURL = featuredArtists[indexPath.row]
+//            let radius = artistCell.layer.frame.width / 2
+//            artistCell.layer.cornerRadius = radius
+            artistCell.layer.cornerRadius = 14
             artistCell.configureCell(artistPhotoURL: artistPhotoURL.photoURL)
             
             return artistCell
         }
         
         
-//        return UICollectionViewCell()
+        //        return UICollectionViewCell()
     }
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-     
-       if collectionView == tagsCollectionView {
-                let maxSize: CGSize = UIScreen.main.bounds.size
-                let itemWidth: CGFloat = maxSize.width * 0.20
-                let itemHeight: CGFloat = maxSize.height * 0.30
-                return CGSize(width: itemWidth, height: itemHeight)
-             
-       } else {
-        let maxSize: CGSize = UIScreen.main.bounds.size
-        let itemWidth: CGFloat = maxSize.width * 0.30
-        let itemHeight: CGFloat = maxSize.height * 0.14
-        return CGSize(width: itemWidth, height: itemHeight)
         
-}
-        
-}
+        if collectionView == tagsCollectionView {
+            let maxSize: CGSize = UIScreen.main.bounds.size
+            let itemWidth: CGFloat = maxSize.width * 0.20
+            let itemHeight: CGFloat = maxSize.height * 0.18
+            return CGSize(width: itemWidth, height: itemHeight)
+            
+        } else {
+            let maxSize: CGSize = UIScreen.main.bounds.size
+            let itemWidth: CGFloat = maxSize.width * 0.24
+            let itemHeight: CGFloat = maxSize.height * 0.11
+            return CGSize(width: itemWidth, height: itemHeight)
+            
+        }
+    }
+    
+    
     
 }
 

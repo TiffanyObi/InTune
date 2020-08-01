@@ -90,16 +90,12 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         getArtist()
+        setUpCollectionViews()
+        infoView.layer.shadowOpacity = 0.25
+        infoView.layer.shadowRadius = 5
+        infoView.layer.shadowOffset = CGSize(width: 0, height: 4)
+        chatButton.shadowLayer(chatButton)
         self.navigationController?.navigationBar.tintColor = .black
-        infoView.borderColor = #colorLiteral(red: 0.3867273331, green: 0.8825651407, blue: 0.8684034944, alpha: 1)
-        tagsCollection.delegate = self
-        tagsCollection.dataSource = self
-        tagsCollection.register(UINib(nibName: "TagCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "tagCell")
-        postsCollectionView.delegate = self
-        postsCollectionView.dataSource = self
-        postsCollectionView.layer.cornerRadius = 14
-        postsCollectionView.register(UINib(nibName: "PostCell", bundle: nil), forCellWithReuseIdentifier: "postCell")
-        postsCollectionView.register(UINib(nibName: "ExperienceCell", bundle: nil), forCellWithReuseIdentifier: "expCell")
         profileViewModel.setUpLikeButton(profileVC: self, button: likeArtistButton)
     }
     
@@ -110,6 +106,17 @@ class ProfileViewController: UIViewController {
             loadExpUI()
         }
         postsCollectionView.reloadData()
+    }
+    
+    private func setUpCollectionViews() {
+        tagsCollection.register(UINib(nibName: "TagCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "tagCell")
+        postsCollectionView.register(UINib(nibName: "PostCell", bundle: nil), forCellWithReuseIdentifier: "postCell")
+        postsCollectionView.register(UINib(nibName: "ExperienceCell", bundle: nil), forCellWithReuseIdentifier: "expCell")
+        tagsCollection.delegate = self
+        tagsCollection.dataSource = self
+        postsCollectionView.delegate = self
+        postsCollectionView.dataSource = self
+        postsCollectionView.layer.cornerRadius = 14
     }
     
     private func loadUI() {
@@ -329,7 +336,6 @@ extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDel
         }
         
         if collectionView == postsCollectionView {
-            
             if isAnArtist ?? false {
             let maxSize: CGSize = UIScreen.main.bounds.size
             let itemWidth: CGFloat = maxSize.width * 0.415
@@ -338,7 +344,7 @@ extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDel
             } else {
                 let maxSize: CGSize = UIScreen.main.bounds.size
                 let itemWidth: CGFloat = maxSize.width * 0.8
-                let itemHeight: CGFloat = maxSize.height * 0.16
+                let itemHeight: CGFloat = maxSize.height * 0.2
                 return CGSize(width: itemWidth, height: itemHeight)
             }
         }

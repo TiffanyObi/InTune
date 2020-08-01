@@ -44,20 +44,12 @@ class EditProfController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        setUpUI()
+        usernameTextField.textFieldShadow()
+        bioTextView.layer.cornerRadius = 14
         updateUI()
         usernameTextField.delegate = self
         bioTextView.delegate = self
         getArtist()
-    }
-    
-    private func setUpUI() {
-        let bottomLayer = CALayer()
-        bottomLayer.frame = CGRect(x: 0, y: usernameTextField.frame.height - 2, width: usernameTextField.frame.width, height: 2)
-        bottomLayer.backgroundColor = #colorLiteral(red: 0.3429883122, green: 0.02074946091, blue: 0.7374325991, alpha: 1)
-        usernameTextField.borderStyle = .none
-        usernameTextField.layer.addSublayer(bottomLayer)
     }
     
     func getArtist(){

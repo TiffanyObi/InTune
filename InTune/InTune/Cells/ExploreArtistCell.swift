@@ -21,6 +21,9 @@ class ExploreArtistCell: UITableViewCell {
         image.contentMode = .scaleAspectFill
         image.clipsToBounds = true
         image.layer.cornerRadius = 20
+        image.layer.shadowOpacity = 0.25
+        image.layer.shadowRadius = 5
+        image.layer.shadowOffset = CGSize(width: 8, height: 4)
         image.image = UIImage(systemName: "person.crop.square")
         return image
     }()
