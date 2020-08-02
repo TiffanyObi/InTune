@@ -125,7 +125,6 @@ class LikedArtistsViewController: UIViewController {
         for fav in favs {
             let artist = Artist(name: fav.favArtistName, email: "", artistId: fav.favArtistID, tags: fav.favArtistTag, city: fav.favArtistLocation, isAnArtist: true, createdDate: Timestamp(), photoURL: fav.favPhotoURL, bioText: "", preferences: [""], isReported: false)
             artists.insert(artist, at: artists.endIndex)
-            print("THESE ARE THE ARTISTS FOR CHAT\(artists) AND THE COUNT IS \(artists.count)")
         }
     }
     

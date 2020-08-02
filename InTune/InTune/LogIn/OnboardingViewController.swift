@@ -124,12 +124,12 @@ class OnboardingViewController: UIViewController {
     @objc private func nextButtonPressed(){
         
         guard !displayName.isEmpty else {
-            showAlert(title: "Missing Feilds", message: " Please create a unique user name")
+            showAlert(title: "Missing Fields", message: " Please create a unique user name")
             return
         }
         
         guard !userLocation.isEmpty else {
-            showAlert(title: "Missing Feilds", message: "Please tell us where you're located")
+            showAlert(title: "Missing Fields", message: "Please tell us where you're located")
             return
         }
         

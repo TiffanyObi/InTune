@@ -30,7 +30,7 @@ class UserExperienceView: UIView {
     }()
     private (set) lazy var artistButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Aspiring Artist", for: .normal)
+        button.setTitle("Artist", for: .normal)
         button.backgroundColor = .black
         button.tag = 0
         return button
@@ -38,7 +38,7 @@ class UserExperienceView: UIView {
     
     private (set) lazy var enthusiastButton: UIButton = {
         let button = UIButton()
-        button.setTitle("A Supportive Enthusiast", for: .normal)
+        button.setTitle("Enthusiast", for: .normal)
         button.backgroundColor = .black
         button.tag = 1
         return button

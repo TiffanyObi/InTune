@@ -16,3 +16,13 @@ extension Date {
         return dateFormatter.string(from: self)
     }
 }
+
+extension String {
+func stringToDate(for string: String) -> Date {
+    let dateFormatter = DateFormatter()
+    dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+    dateFormatter.dateFormat = "MMM d, h:mm a"
+    let date = dateFormatter.date(from:string)!
+    return date
+}
+}

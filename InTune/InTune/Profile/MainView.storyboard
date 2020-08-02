@@ -336,13 +336,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="video.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="dAC-V6-Dv7" customClass="DesignableImageView" customModule="InTune" customModuleProvider="target">
-                                <rect key="frame" x="40" y="247" width="334" height="285"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="video.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="dAC-V6-Dv7" customClass="DesignableImageView" customModule="InTune" customModuleProvider="target">
+                                <rect key="frame" x="41.5" y="247" width="331" height="251.5"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" red="0.52265780019999997" green="0.87158946699999995" blue="0.86406644870000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="286" id="aPa-fB-TA4"/>
-                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <real key="value" value="10"/>
@@ -350,7 +347,7 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g0g-3i-ucc" customClass="DesignableButton" customModule="InTune" customModuleProvider="target">
-                                <rect key="frame" x="147" y="612.5" width="120" height="44"/>
+                                <rect key="frame" x="147" y="539" width="120" height="44"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="imB-wT-y8g"/>
@@ -399,7 +396,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please choose a video that is 30 seconds or less." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bn8-X8-0EW">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please choose a video that is 30 seconds or less." textAlignment="center" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bn8-X8-0EW">
                                 <rect key="frame" x="20" y="104.5" width="374" height="18"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                 <nil key="textColor"/>
@@ -415,15 +412,15 @@
                             <constraint firstItem="Pku-Je-f9j" firstAttribute="trailing" secondItem="bn8-X8-0EW" secondAttribute="trailing" constant="20" id="75e-L4-asg"/>
                             <constraint firstItem="dAC-V6-Dv7" firstAttribute="top" secondItem="uYI-qP-saV" secondAttribute="bottom" constant="40" id="BXm-h1-sO4"/>
                             <constraint firstItem="uYI-qP-saV" firstAttribute="top" secondItem="bn8-X8-0EW" secondAttribute="bottom" constant="40" id="Hj4-4O-qUT"/>
-                            <constraint firstItem="dAC-V6-Dv7" firstAttribute="leading" secondItem="Pku-Je-f9j" secondAttribute="leading" constant="40" id="MH8-tQ-hiX"/>
                             <constraint firstItem="Pku-Je-f9j" firstAttribute="trailing" secondItem="gu4-d4-ard" secondAttribute="trailing" constant="20" id="OXz-Aq-2hC"/>
-                            <constraint firstItem="g0g-3i-ucc" firstAttribute="top" secondItem="dAC-V6-Dv7" secondAttribute="bottom" constant="80" id="OlX-PL-Y4O"/>
+                            <constraint firstItem="g0g-3i-ucc" firstAttribute="top" secondItem="dAC-V6-Dv7" secondAttribute="bottom" constant="40" id="OlX-PL-Y4O"/>
                             <constraint firstItem="g0g-3i-ucc" firstAttribute="centerX" secondItem="40B-Fd-4bx" secondAttribute="centerX" id="Q0S-Hy-AmZ"/>
                             <constraint firstItem="uYI-qP-saV" firstAttribute="centerX" secondItem="40B-Fd-4bx" secondAttribute="centerX" id="WUG-gE-Og2"/>
-                            <constraint firstItem="Pku-Je-f9j" firstAttribute="trailing" secondItem="dAC-V6-Dv7" secondAttribute="trailing" constant="40" id="XjH-1h-yBV"/>
+                            <constraint firstItem="dAC-V6-Dv7" firstAttribute="height" secondItem="40B-Fd-4bx" secondAttribute="height" multiplier="0.3" id="aIY-H5-LJc"/>
                             <constraint firstItem="bn8-X8-0EW" firstAttribute="leading" secondItem="Pku-Je-f9j" secondAttribute="leading" constant="20" id="dB2-Qu-6Sb"/>
                             <constraint firstItem="gu4-d4-ard" firstAttribute="leading" secondItem="Pku-Je-f9j" secondAttribute="leading" constant="20" id="g2U-mR-eJ1"/>
                             <constraint firstItem="bn8-X8-0EW" firstAttribute="centerX" secondItem="40B-Fd-4bx" secondAttribute="centerX" id="nBy-52-xFY"/>
+                            <constraint firstItem="dAC-V6-Dv7" firstAttribute="width" secondItem="40B-Fd-4bx" secondAttribute="width" multiplier="0.8" id="xtM-5c-zI5"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Pku-Je-f9j"/>
                     </view>
@@ -500,6 +497,6 @@
         <image name="person.crop.square" catalog="system" width="128" height="114"/>
         <image name="star" catalog="system" width="128" height="116"/>
         <image name="video.badge.plus.fill" catalog="system" width="128" height="80"/>
-        <image name="video.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="video.circle" catalog="system" width="128" height="121"/>
     </resources>
 </document>

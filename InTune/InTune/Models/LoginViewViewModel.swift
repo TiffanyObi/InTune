@@ -16,10 +16,10 @@ struct LoginViewViewModel {
     private var database = DatabaseService()
     public var userExperienceView = UserExperienceView()
     var loginButtonTitle: String {
-        return "LOGIN"
+        return "Log In"
     }
     var signUpButtonTitle:String {
-        return "SIGN UP"
+        return "Sign Up"
     }
     
     var newAccountMessage:String{
@@ -35,9 +35,7 @@ struct LoginViewViewModel {
     var missingFieldsMessage:String {
         return "Please fill all missing fields"
     }
-    var setErrorLabelToEmpty:String{
-        return ""
-    }
+    
     func loginFlow(email:String,password:String,loginVC:LoginViewController) {
         
         if loginVC.accountState == .existingUser {
@@ -46,10 +44,7 @@ struct LoginViewViewModel {
                            case .failure(let error):
                                print(error)
                                DispatchQueue.main.async {
-                                loginVC.errorMessageLabel.isHidden = false
-                                loginVC.errorMessageLabel.text = "Incorrect Login: \(error.localizedDescription)"
-                                loginVC.errorMessageLabel.textColor = .white
-                                
+                                loginVC.showAlert(title: "Error", message: "\(error.localizedDescription) ")
                                }
         
                            case .success:
@@ -67,9 +62,7 @@ struct LoginViewViewModel {
                             case .failure(let error):
                                 print(error)
                                 DispatchQueue.main.async {
-                                    loginVC.errorMessageLabel.isHidden = false
-                                   loginVC.errorMessageLabel.text = "Error: \(error.localizedDescription)"
-                                    loginVC.errorMessageLabel.textColor = .white
+                                    loginVC.showAlert(title: "Error", message: "\(error.localizedDescription)")
                                 }
                             case .success(let authDataResult):
                                 print(authDataResult.user.email ?? "user email")

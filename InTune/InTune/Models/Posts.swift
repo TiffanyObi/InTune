@@ -61,6 +61,7 @@ extension GigsPost {
 //        self.imageURL = dictionary["imageURL"] as? String ?? "no imageURL"
         self.price = dictionary["price"] as? Int ?? 0
         self.eventDate = dictionary["eventDate"] as? String ?? "no event date"
+        //turn into Date object
         self.createdDate = dictionary["createdDate"] as? Timestamp ?? Timestamp()
         self.location = dictionary["location"] as? String ?? "no location"
     }

@@ -23,6 +23,7 @@ class DatabaseService {
     static let threadCollection = "thread"
     static let artVideos = "videos"
     static let reportCollection = "reported"
+    static let chatsCollection = "chats"
     
     private let db = Firestore.firestore()
   static let shared = DatabaseService()
@@ -73,6 +74,25 @@ class DatabaseService {
                 completion(.success(messages))
             }
         }
+    }
+    
+    public func deleteThreadFromArtist(artist: Artist, completion: @escaping (Result<Bool, Error>) -> ()) {
+        
+        guard let user = Auth.auth().currentUser else { return }
+        
+        db.collection(DatabaseService.artistsCollection).document(user.uid).collection(DatabaseService.threadCollection).document(artist.artistId).delete { (error) in
+            
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(true))
+            }
+        }
+    }
+    
+    public func deleteThreadFromChats() {
+        
+        
     }
     
     //update function for user experience ( isAnArtist == true )
