@@ -15,7 +15,7 @@ struct ProfileViewViewModel {
     private var database = DatabaseService()
     
     func fetchArtist(profileVC:ProfileViewController,userID:String){
-        
+        //add completion handler on this
         database.fetchArtist(userID: userID){ [weak profileVC](result) in
             switch result {
             case.failure(let error):
@@ -23,8 +23,13 @@ struct ProfileViewViewModel {
             case.success(let artist1):
                 DispatchQueue.main.async {
                     profileVC?.singleArtist = artist1
+                    profileVC?.isAnArtist = artist1.isAnArtist
                     profileVC?.nameLabel.text = artist1.name
-                    profileVC?.locationLabel.text = "Email: \(artist1.email)"
+                    if profileVC?.state == .prof {
+                        profileVC?.locationLabel.text = "Email: \(artist1.email)"
+                    } else {
+                        profileVC?.locationLabel.text = "Location: \(artist1.city)"
+                    }
                     if let photoString = artist1.photoURL{
                         let url  = URL(string: photoString)
                         profileVC?.profImage.kf.setImage(with: url)
@@ -34,7 +39,14 @@ struct ProfileViewViewModel {
                     } else {
                         profileVC?.bioLabel.text = "This user does not have a bio yet"
                     }
+                    if artist1.isAnArtist {
+                    profileVC?.navigationItem.title = "Artist"
                     self.getVideos(artist: artist1, profileVC: profileVC!)
+                    } else {
+                    profileVC?.navigationItem.title = "Enthusiast"
+                    profileVC?.navigationItem.rightBarButtonItem = nil
+                    self.getGigPosts(profileVC: profileVC!)
+                    }
                 }
             }
         }
@@ -51,6 +63,18 @@ struct ProfileViewViewModel {
             }
         }
     
+    func getGigPosts(profileVC:ProfileViewController) {
+        database.getGigs { (result) in
+            
+            switch result {
+            case .failure(let error):
+                print(error)
+            case .success(let posts):
+                profileVC.gigs = posts
+            }
+        }
+    }
+    
     private func setUpAddVideoButton(profileVC:ProfileViewController,videosCount:Int){
            if videosCount == 4 || videosCount > 4  {
             profileVC.postVidButton.isEnabled = false
@@ -66,6 +90,7 @@ struct ProfileViewViewModel {
         button.layer.shadowOpacity = 0.8
     }
     
+    //not using this
     func loadUI(profileVC:ProfileViewController, user:User, singleArtist:Artist){
         profileVC.getVideos(artist: singleArtist)
         profileVC.profImage.contentMode = .scaleAspectFill
@@ -88,7 +113,6 @@ struct ProfileViewViewModel {
         profileVC.navigationItem.leftBarButtonItem = .none
         profileVC.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "flag.fill"), style: .plain, target: profileVC, action: #selector(profileVC.reportArtist(_:)))
         profileVC.navigationItem.rightBarButtonItem?.tintColor = .systemRed
-        
         profileVC.getVideos(artist: artist)
         //        setUpEmptyViewFromExp()
         profileVC.isArtistInFav(artist: artist)
@@ -111,7 +135,7 @@ struct ProfileViewViewModel {
     }
     
     func setUpEmptyViewFromExp(profileVC:ProfileViewController){
-        guard let artist = profileVC.expArtist else { print("no expArtist")
+        guard let artist = profileVC.expArtist else {
             return
         }
         if artist.isReported {
@@ -171,7 +195,11 @@ struct ProfileViewViewModel {
         if artist.isReported {
             return 0
         } else {
-            return profileVC.videos.count
+            if artist.isAnArtist {
+                return profileVC.videos.count
+            } else {
+                return profileVC.gigs.count
+            }
         }
     }
     

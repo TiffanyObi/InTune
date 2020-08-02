@@ -25,7 +25,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet public var tagsCollection: UICollectionView!
     @IBOutlet public var postsCollectionView: UICollectionView!
     @IBOutlet public var locationLabel: UILabel!
-    @IBOutlet private var addMediaButton: UIBarButtonItem!
+    @IBOutlet var addMediaButton: UIBarButtonItem!
     @IBOutlet var likeArtistButton: UIButton!
     @IBOutlet var chatButton: UIButton!
     @IBOutlet var postVidButton: UIBarButtonItem!
@@ -46,7 +46,11 @@ class ProfileViewController: UIViewController {
             tagsCollection.reloadData()
         }
     }
+    
+    var postsListener: ListenerRegistration?
+    
     let profileViewModel = ProfileViewViewModel()
+    let experienceView = ExperienceCell()
     var expArtist: Artist?
     
     var isArtistFavorite = false {
@@ -61,6 +65,18 @@ class ProfileViewController: UIViewController {
     
     var state: Segue = .prof
     
+    var isAnArtist: Bool? {
+        didSet {
+            postsCollectionView.reloadData()
+        }
+    }
+    
+    var gigs = [GigsPost]() {
+        didSet{
+            postsCollectionView.reloadData()
+        }
+    }
+    
     var videos = [Video](){
         didSet{
             postsCollectionView.reloadData()
@@ -74,15 +90,12 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         getArtist()
+        setUpCollectionViews()
+        infoView.layer.shadowOpacity = 0.25
+        infoView.layer.shadowRadius = 5
+        infoView.layer.shadowOffset = CGSize(width: 0, height: 4)
+        chatButton.shadowLayer(chatButton)
         self.navigationController?.navigationBar.tintColor = .black
-        infoView.borderColor = #colorLiteral(red: 0.3867273331, green: 0.8825651407, blue: 0.8684034944, alpha: 1)
-        tagsCollection.delegate = self
-        tagsCollection.dataSource = self
-        tagsCollection.register(UINib(nibName: "TagCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "tagCell")
-        postsCollectionView.delegate = self
-        postsCollectionView.dataSource = self
-        postsCollectionView.layer.cornerRadius = 14
-        postsCollectionView.register(UINib(nibName: "PostCell", bundle: nil), forCellWithReuseIdentifier: "postCell")
         profileViewModel.setUpLikeButton(profileVC: self, button: likeArtistButton)
     }
     
@@ -92,6 +105,18 @@ class ProfileViewController: UIViewController {
         } else {
             loadExpUI()
         }
+        postsCollectionView.reloadData()
+    }
+    
+    private func setUpCollectionViews() {
+        tagsCollection.register(UINib(nibName: "TagCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "tagCell")
+        postsCollectionView.register(UINib(nibName: "PostCell", bundle: nil), forCellWithReuseIdentifier: "postCell")
+        postsCollectionView.register(UINib(nibName: "ExperienceCell", bundle: nil), forCellWithReuseIdentifier: "expCell")
+        tagsCollection.delegate = self
+        tagsCollection.dataSource = self
+        postsCollectionView.delegate = self
+        postsCollectionView.dataSource = self
+        postsCollectionView.layer.cornerRadius = 14
     }
     
     private func loadUI() {
@@ -99,28 +124,8 @@ class ProfileViewController: UIViewController {
             return
         }
         profileViewModel.fetchArtist(profileVC: self, userID: user.uid)
-        
-        guard let singleArtist = singleArtist else {
-            return
-        }
-        profImage.contentMode = .scaleAspectFill
-        if user.photoURL == nil  {
-            profImage.image = UIImage(systemName: "person.fill")
-        } else {
-            profImage.kf.setImage(with: user.photoURL)
-        }
-        if singleArtist.bioText == nil {
-            bioLabel.text = "Under Construction"
-        } else {
-            bioLabel.text = singleArtist.bioText
-        }
-        locationLabel.text = user.email
         likeArtistButton.isHidden = true
         chatButton.isHidden = true
-        
-        
-        profileViewModel.loadUI(profileVC: self, user: user, singleArtist: singleArtist)
-        
     }
     
     func loadExpUI() {
@@ -133,7 +138,6 @@ class ProfileViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        
         setProfileViewState()
     }
     
@@ -151,6 +155,10 @@ class ProfileViewController: UIViewController {
     func getVideos(artist:Artist){
         profileViewModel.getVideos(artist: artist, profileVC: self)
         
+    }
+    
+    func getGigs(artist: Artist){
+        profileViewModel.getGigPosts(profileVC: self)
     }
     
     func setUpEmptyViewForUser(){
@@ -195,9 +203,9 @@ class ProfileViewController: UIViewController {
     
     func deleteStorage() {
         guard let video = vid else {
-        print("no vid found")
-        return }
-
+            print("no vid found")
+            return }
+        
         storageService.deleteVideo(vid: video) { (result) in
             switch result {
             case .failure(let error):
@@ -211,11 +219,6 @@ class ProfileViewController: UIViewController {
                 }
             }
         }
-    }
-    
-    @IBAction func postVideoButtonPressed(_ sender: UIBarButtonItem) {
-        
-        
     }
     
     @IBAction func settingsButtonPressed(_ sender: UIBarButtonItem) {
@@ -286,27 +289,38 @@ extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDel
             }
             return cell
         }
+        
         if collectionView == postsCollectionView {
             
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "postCell", for: indexPath) as? PostCell else {
-                fatalError("could not conform to TagCell")
+                fatalError("could not conform to postCell")
             }
             
-            if state == .prof {
-                cell.addGestureRecognizer(longPress)
+            switch state {
+            case .explore:
                 let video = videos[indexPath.row]
                 vid = video
                 if let urlString = video.videoUrl {
                     cell.configureCell(vidURL: urlString)
                 }
-            } else if state == .explore {
-                let video = videos[indexPath.row]
-                vid = video
-                if let urlString = video.videoUrl {
-                    cell.configureCell(vidURL: urlString)
+            case .prof:
+                if isAnArtist ?? false {
+                    cell.addGestureRecognizer(longPress)
+                    let video = videos[indexPath.row]
+                    vid = video
+                    if let urlString = video.videoUrl {
+                        cell.configureCell(vidURL: urlString)
+                    }
+                } else {
+                    guard let expCell = collectionView.dequeueReusableCell(withReuseIdentifier: "expCell", for: indexPath) as? ExperienceCell else {
+                        fatalError("could not conform to expCell")
+                    }
+                    let post = gigs[indexPath.row]
+                    expCell.configureCell(for: post)
+                    
+                    return expCell
                 }
             }
-            
             return cell
         }
         return UICollectionViewCell()
@@ -322,31 +336,47 @@ extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDel
         }
         
         if collectionView == postsCollectionView {
-            
+            if isAnArtist ?? false {
             let maxSize: CGSize = UIScreen.main.bounds.size
             let itemWidth: CGFloat = maxSize.width * 0.415
             let itemHeight: CGFloat = maxSize.height * 0.20
             return CGSize(width: itemWidth, height: itemHeight)
+            } else {
+                let maxSize: CGSize = UIScreen.main.bounds.size
+                let itemWidth: CGFloat = maxSize.width * 0.8
+                let itemHeight: CGFloat = maxSize.height * 0.2
+                return CGSize(width: itemWidth, height: itemHeight)
+            }
         }
         return CGSize(width: 0.5, height: 0.5)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 25, left: 5, bottom: 25, right: 5)
+        return UIEdgeInsets(top: 16, left: 8, bottom: 16, right: 8)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // get video selected at n index
         if collectionView == postsCollectionView{
-            let video = videos[indexPath.row]
-            // create av player vc
-            let playController = AVPlayerViewController()
-            guard let urlStr = video.videoUrl else { return }
-            let player = AVPlayer(url: URL(string: urlStr)!)
-            //present av vc
-            playController.player = player
-            present(playController, animated: true) {
-                player.play()
+            if isAnArtist ?? true {
+                let video = videos[indexPath.row]
+                // create av player vc
+                let playController = AVPlayerViewController()
+                guard let urlStr = video.videoUrl else { return }
+                let player = AVPlayer(url: URL(string: urlStr)!)
+                //present av vc
+                playController.player = player
+                present(playController, animated: true) {
+                    player.play()
+                }
+            } else {
+                let storyBoard = UIStoryboard(name: "GigsView", bundle:  nil)
+                guard let detailVC = storyBoard.instantiateViewController(identifier: "GigsDetailViewController") as? GigsDetailViewController else {
+                    fatalError("could not load gigsDetail")
+                }
+                let gig = gigs[indexPath.row]
+                detailVC.gigPost = gig
+                navigationController?.pushViewController(detailVC, animated: true)
             }
         }
     }

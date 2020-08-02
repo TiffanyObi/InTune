@@ -27,7 +27,7 @@ class ExploreViewController: UIViewController {
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         
         
-//        collectionView?.register(FeaturedArtistsCell.self, forCellWithReuseIdentifier: FeaturedArtistsCell.identifier)
+        //        collectionView?.register(FeaturedArtistsCell.self, forCellWithReuseIdentifier: FeaturedArtistsCell.identifier)
         collectionView?.showsHorizontalScrollIndicator = false
         collectionView?.delegate = self
         collectionView?.dataSource = self
@@ -43,11 +43,6 @@ class ExploreViewController: UIViewController {
         super.viewDidLayoutSubviews()
         collectionView?.frame = CGRect(x: 0, y: 685, width: view.frame.size.width, height: 150).integral
     }
-
-
-    
-    
-
     
     let db = DatabaseService()
     var listener: ListenerRegistration?
@@ -66,12 +61,12 @@ class ExploreViewController: UIViewController {
     var featuredArtists = [Artist](){
         didSet{
             DispatchQueue.main.async {
-
+                
                 self.collectionView?.reloadData()
-
+                
                 self.featuredArtistCollectionView.reloadData()
                 print(self.featuredArtists.count)
-
+                
             }
         }
     }
@@ -148,7 +143,7 @@ class ExploreViewController: UIViewController {
                 self?.showAlert(title: "Error", message: "\(error.localizedDescription)")
                 
             case.success(let artists1):
-                self?.artists = artists1
+                self?.artists = artists1.filter { $0.isAnArtist == true}
                 self?.featuredArtists = (self?.helperFuncForFeaturedArtist(artists1: artists1))!
             }
         }
@@ -174,7 +169,7 @@ class ExploreViewController: UIViewController {
         fetchArtists()
         
         guard let currentUser1 = currentUser else { return }
-       
+        
         db.updateUserPreferences(currentUser1.tags) {[weak self] (result) in
             switch result {
             case .failure(let error):
@@ -190,11 +185,11 @@ class ExploreViewController: UIViewController {
     
     func helperFuncForFeaturedArtist(artists1:[Artist]) -> [Artist]{
         var featureSet = Set<Artist>()
-       
+        
         while featureSet.count < 5 {
             guard let randomArtist = artists1.randomElement() else {return [Artist]()}
             featureSet.insert(randomArtist)
-           
+            
         }
         
         return Array(featureSet)
@@ -211,11 +206,13 @@ extension ExploreViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "exploreCell", for: indexPath) as? ExploreArtistCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "exploreCell", for: indexPath) as? ExploreArtistCell, let user = Auth.auth().currentUser else {
             fatalError("could not conform to ExploreArtistCell")
         }
-        
         let artist = artists[indexPath.row]
+        if user.uid == artist.artistId {
+            artists.remove(at: indexPath.row)
+        }
         cell.configureCell(artist: artist)
         return cell
     }
@@ -235,6 +232,12 @@ extension ExploreViewController: UITableViewDataSource, UITableViewDelegate {
 }
 
 extension ExploreViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if collectionView == featuredArtistCollectionView {
+            cell.colorShadow(for: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1))
+        }
+    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
@@ -266,33 +269,37 @@ extension ExploreViewController: UICollectionViewDelegateFlowLayout, UICollectio
             }
             
             let artistPhotoURL = featuredArtists[indexPath.row]
+//            let radius = artistCell.layer.frame.width / 2
+//            artistCell.layer.cornerRadius = radius
+            artistCell.layer.cornerRadius = 14
             artistCell.configureCell(artistPhotoURL: artistPhotoURL.photoURL)
             
             return artistCell
         }
         
         
-//        return UICollectionViewCell()
+        //        return UICollectionViewCell()
     }
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-     
-       if collectionView == tagsCollectionView {
-                let maxSize: CGSize = UIScreen.main.bounds.size
-                let itemWidth: CGFloat = maxSize.width * 0.20
-                let itemHeight: CGFloat = maxSize.height * 0.30
-                return CGSize(width: itemWidth, height: itemHeight)
-             
-       } else {
-        let maxSize: CGSize = UIScreen.main.bounds.size
-        let itemWidth: CGFloat = maxSize.width * 0.30
-        let itemHeight: CGFloat = maxSize.height * 0.14
-        return CGSize(width: itemWidth, height: itemHeight)
         
-}
-        
-}
+        if collectionView == tagsCollectionView {
+            let maxSize: CGSize = UIScreen.main.bounds.size
+            let itemWidth: CGFloat = maxSize.width * 0.20
+            let itemHeight: CGFloat = maxSize.height * 0.18
+            return CGSize(width: itemWidth, height: itemHeight)
+            
+        } else {
+            let maxSize: CGSize = UIScreen.main.bounds.size
+            let itemWidth: CGFloat = maxSize.width * 0.24
+            let itemHeight: CGFloat = maxSize.height * 0.11
+            return CGSize(width: itemWidth, height: itemHeight)
+            
+        }
+    }
+    
+    
     
 }
 

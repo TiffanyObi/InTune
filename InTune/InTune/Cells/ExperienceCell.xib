@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CustomPostView" customModule="InTune" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="expCell" id="moA-Te-xyb" customClass="ExperienceCell" customModule="InTune" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="247" height="220"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="b8N-Aa-0xG">
+                <rect key="frame" x="0.0" y="0.0" width="247" height="220"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="newPost" translatesAutoresizingMaskIntoConstraints="NO" id="1Nn-2n-CxC">
+                        <rect key="frame" x="8" y="8" width="231" height="110"/>
+                    </imageView>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="wUL-5h-JST">
+                        <rect key="frame" x="8" y="126" width="231" height="86"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R9c-EO-zaP">
+                                <rect key="frame" x="0.0" y="0.0" width="231" height="28.5"/>
+                                <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cm2-Ti-QEZ">
+                                <rect key="frame" x="0.0" y="28.5" width="231" height="29"/>
+                                <fontDescription key="fontDescription" name="Thonburi" family="Thonburi" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FCj-rE-vqc">
+                                <rect key="frame" x="0.0" y="57.5" width="231" height="28.5"/>
+                                <fontDescription key="fontDescription" name="Thonburi" family="Thonburi" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstItem="1Nn-2n-CxC" firstAttribute="leading" secondItem="b8N-Aa-0xG" secondAttribute="leading" constant="8" id="1ta-hr-6Cj"/>
+                    <constraint firstItem="1Nn-2n-CxC" firstAttribute="height" secondItem="b8N-Aa-0xG" secondAttribute="height" multiplier="0.5" id="4AY-ed-pMv"/>
+                    <constraint firstItem="wUL-5h-JST" firstAttribute="top" secondItem="1Nn-2n-CxC" secondAttribute="bottom" constant="8" id="HuV-sK-Zbd"/>
+                    <constraint firstItem="wUL-5h-JST" firstAttribute="leading" secondItem="b8N-Aa-0xG" secondAttribute="leading" constant="8" id="IBB-cJ-d3e"/>
+                    <constraint firstAttribute="trailing" secondItem="wUL-5h-JST" secondAttribute="trailing" constant="8" id="iqx-e3-usa"/>
+                    <constraint firstAttribute="trailing" secondItem="1Nn-2n-CxC" secondAttribute="trailing" constant="8" id="pHe-2C-BOl"/>
+                    <constraint firstAttribute="bottom" secondItem="wUL-5h-JST" secondAttribute="bottom" constant="8" id="pZh-EQ-5G9"/>
+                    <constraint firstItem="1Nn-2n-CxC" firstAttribute="top" secondItem="b8N-Aa-0xG" secondAttribute="top" constant="8" id="vdh-MP-io5"/>
+                </constraints>
+            </collectionViewCellContentView>
+            <size key="customSize" width="247" height="220"/>
+            <connections>
+                <outlet property="gigDate" destination="cm2-Ti-QEZ" id="Pv1-tW-R1w"/>
+                <outlet property="gigImage" destination="1Nn-2n-CxC" id="pXY-9O-eQn"/>
+                <outlet property="gigLocation" destination="FCj-rE-vqc" id="Wya-RE-eqN"/>
+                <outlet property="gigTitle" destination="R9c-EO-zaP" id="HrM-TZ-A08"/>
+            </connections>
+            <point key="canvasLocation" x="274.63768115942031" y="389.73214285714283"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="newPost" width="1000" height="1080"/>
+    </resources>
+</document>

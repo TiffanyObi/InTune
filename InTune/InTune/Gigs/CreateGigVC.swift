@@ -14,7 +14,7 @@ class CreateGigVC: UITableViewController {
     
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var priceTextField: UITextField!
-    @IBOutlet weak var descriptionTextField: UITextField!
+    @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var locationPicker: UIPickerView!
 
@@ -27,21 +27,20 @@ class CreateGigVC: UITableViewController {
      let states = ["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Carolina","North Dakota","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]
     
     var location: String!
-    
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        descriptionTextView.layer.cornerRadius = 14
         updateCurrentArtist()
         titleTextField.delegate = self
         priceTextField.delegate = self
-        descriptionTextField.delegate = self
+        descriptionTextView.delegate = self
         datePicker.minimumDate = Date()
         locationPicker.delegate = self
         locationPicker.dataSource = self
         location = states.first
-
-        
+        //add tap dismiss to tableview
+        //add title count limit
     }
     
     func updateCurrentArtist() {
@@ -56,19 +55,9 @@ class CreateGigVC: UITableViewController {
         }
     }
     
-    
     @IBAction func datePickerUsed(_ sender: UIDatePicker) {
         date = sender.date
-        print(date!)
-        
     }
-    
-    
-    
-    
-    
-    
-    
     
     @IBAction func cancel(_ sender: UIBarButtonItem) {
         print("cancel button pressed")
@@ -82,7 +71,7 @@ class CreateGigVC: UITableViewController {
             let price = priceTextField.text,
             !price.isEmpty,
             let date = date,
-            let description = descriptionTextField.text,
+            let description = descriptionTextView.text,
             !description.isEmpty,
             let location = location,
             !location.isEmpty,
@@ -141,4 +130,20 @@ extension CreateGigVC: UIPickerViewDelegate, UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         location = states[row]
     }
+}
+
+extension CreateGigVC: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        textView.text = ""
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        textView.text = "Type event description here"
+    }
+    
+    func textViewShouldReturn(_ textView: UITextField) -> Bool {
+        textView.resignFirstResponder()
+        return true
+    }
+    
 }

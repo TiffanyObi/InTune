@@ -82,10 +82,6 @@ class StorageService {
         guard let user = Auth.auth().currentUser else {
          return
         }
-//        let docRef = Firestore.firestore().collection("artists")
-//        .document(user.uid)
-//        .collection("videos")
-//        .document()
         let storageRef = FirebaseStorage.Storage.storage().reference()
         let videoRef = storageRef.child("Videos/\(user.uid)/\(vid.postId)")
         
