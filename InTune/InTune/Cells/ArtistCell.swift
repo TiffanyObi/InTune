@@ -31,7 +31,7 @@ class ArtistCell: UICollectionViewCell {
         db.getLikedArtistGigPosts(likedArtist: artist) {[weak self] (result) in
             switch result {
             case .failure:
-                self?.postStatusLabel.text = "No recent posts"
+                self?.postStatusLabel.text = "Failed to load posts"
                 
             case .success(let posts):
                 if let post = posts.first {

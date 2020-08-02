@@ -17,17 +17,22 @@ class CreateGigVC: UITableViewController {
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var locationPicker: UIPickerView!
-
-     let databaseService = DatabaseService()
+    
+    let databaseService = DatabaseService()
     
     var currentUser: Artist?
     
     var date: Date?
     
-     let states = ["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Carolina","North Dakota","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]
+    let states = ["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Carolina","North Dakota","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]
     
     var location: String!
-
+    private lazy var tapGesture: UITapGestureRecognizer = {
+        let gesture = UITapGestureRecognizer()
+        gesture.addTarget(self, action: #selector(resignTextfeilds))
+        return gesture
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         descriptionTextView.layer.cornerRadius = 14
@@ -39,8 +44,14 @@ class CreateGigVC: UITableViewController {
         locationPicker.delegate = self
         locationPicker.dataSource = self
         location = states.first
+        view.addGestureRecognizer(tapGesture)
         //add tap dismiss to tableview
         //add title count limit
+    }
+    @objc private func resignTextfeilds(){
+        titleTextField.resignFirstResponder()
+        priceTextField.resignFirstResponder()
+        descriptionTextView.resignFirstResponder()
     }
     
     func updateCurrentArtist() {
@@ -79,15 +90,15 @@ class CreateGigVC: UITableViewController {
                 showAlert(title: "Missing Fields", message: "Please review that all fields are complete")
                 return
         }
-        
-        databaseService.createGig(artist: artist, title: title, description: description, price: Int(price) ?? 0, eventDate: date.string(with: "MMM d, h:mm a"), createdDate: Timestamp(), location: location) { (result) in
+        let gigId = UUID().uuidString
+        databaseService.createGig(artist: artist, title: title, description: description, price: Int(price) ?? 0, eventDate: date.string(with: "MMM d, h:mm a"), createdDate: Timestamp(), location: location, gigId: gigId) { (result) in
             switch result {
             case .failure(let error):
                 DispatchQueue.main.async {
                     self.showAlert(title: "Posting Error", message: "Could not post gig \(error.localizedDescription)")
                 }
             case .success:
-                self.databaseService.createGigPost(artist: artist, title: title, description: description, price: Int(price) ?? 0, eventDate: date.string(with: "MMM d, h:mm a"), createdDate: Timestamp(), location: location) { (result) in
+                self.databaseService.createGigPost(artist: artist, title: title, description: description, price: Int(price) ?? 0, eventDate: date.string(with: "MMM d, h:mm a"), createdDate: Timestamp(), location: location, gigId: gigId) { (result) in
                     switch result {
                     case .failure(let error):
                         DispatchQueue.main.async {
@@ -104,7 +115,7 @@ class CreateGigVC: UITableViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-
+    
 }
 
 extension CreateGigVC: UITextFieldDelegate {
@@ -136,10 +147,7 @@ extension CreateGigVC: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         textView.text = ""
     }
-    
-    func textViewDidEndEditing(_ textView: UITextView) {
-        textView.text = "Type event description here"
-    }
+   
     
     func textViewShouldReturn(_ textView: UITextField) -> Bool {
         textView.resignFirstResponder()
