@@ -295,7 +295,6 @@
 		3E43F47A247E90D800CC0584 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				3E43F474247E909A00CC0584 /* ShowAlert.swift */,
 				3E43F476247E90B700CC0584 /* DateFormatter.swift */,
 				3E43F478247E90CA00CC0584 /* Navigation.swift */,
 				80C375B424819DE600152996 /* Designable.swift */,
@@ -306,6 +305,7 @@
 		3E43F47D247E97C300CC0584 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				3E43F474247E909A00CC0584 /* ShowAlert.swift */,
 				3E43F47E247E97FF00CC0584 /* Artist.swift */,
 				3E43F482247E983300CC0584 /* FavoriteArtist.swift */,
 				3E7C53D4248AC614001974DB /* TagsInfoModels.swift */,
