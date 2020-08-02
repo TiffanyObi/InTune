@@ -61,6 +61,7 @@ class LikedArtistsViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
+   
         guard let user = Auth.auth().currentUser else { return }
         listener = Firestore.firestore().collection(DatabaseService.artistsCollection).document(user.uid).collection(DatabaseService.favCollection).addSnapshotListener({ [weak self](snapshot, error) in
             if let error = error {
@@ -70,16 +71,18 @@ class LikedArtistsViewController: UIViewController {
                 }
             } else if let snapshot = snapshot {
                 let favs = snapshot.documents.map { FavoritedArtist($0.data()) }
-                self?.addArtists(favs: favs)
-                self?.favs = favs
                 
+                self?.favs = favs
+                self?.addArtists(favs: favs)
             }
         })
+        
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(true)
         listener?.remove()
+        artists = [Artist]()
     }
     
     
@@ -122,6 +125,7 @@ class LikedArtistsViewController: UIViewController {
         for fav in favs {
             let artist = Artist(name: fav.favArtistName, email: "", artistId: fav.favArtistID, tags: fav.favArtistTag, city: fav.favArtistLocation, isAnArtist: true, createdDate: Timestamp(), photoURL: fav.favPhotoURL, bioText: "", preferences: [""], isReported: false)
             artists.insert(artist, at: artists.endIndex)
+          
         }
     }
     
