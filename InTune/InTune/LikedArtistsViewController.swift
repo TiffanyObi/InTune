@@ -28,6 +28,12 @@ class LikedArtistsViewController: UIViewController {
     
     var currentArtist: Artist?
     
+    var artists = [Artist]() {
+        didSet {
+            self.likedArtistView.likedArtistCollectionView.reloadData()
+        }
+    }
+    
     var searchQuery = "" {
         didSet {
             favs = favs.filter { $0.favArtistName.lowercased().contains(searchQuery.lowercased())}
@@ -64,8 +70,9 @@ class LikedArtistsViewController: UIViewController {
                 }
             } else if let snapshot = snapshot {
                 let favs = snapshot.documents.map { FavoritedArtist($0.data()) }
-                
+                self?.addArtists(favs: favs)
                 self?.favs = favs
+                
             }
         })
     }
@@ -111,6 +118,14 @@ class LikedArtistsViewController: UIViewController {
     }
     
     
+    private func addArtists(favs: [FavoritedArtist]) {
+        for fav in favs {
+            let artist = Artist(name: fav.favArtistName, email: "", artistId: fav.favArtistID, tags: fav.favArtistTag, city: fav.favArtistLocation, isAnArtist: true, createdDate: Timestamp(), photoURL: fav.favPhotoURL, bioText: "", preferences: [""], isReported: false)
+            artists.insert(artist, at: artists.endIndex)
+        }
+    }
+    
+    
     private func setUpEmptyView() {
         if favs.count == 0 {
             let emptyView = EmptyView(message: "You have no liked artists")
@@ -147,6 +162,19 @@ extension LikedArtistsViewController: UICollectionViewDataSource {
 }
 
 extension LikedArtistsViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let chatVC = ChatViewController()
+        let fav = favs[indexPath.row]
+        let artist = artists[indexPath.row]
+        print(fav)
+        print(artist)
+        if artist.artistId == fav.favArtistID {
+            chatVC.artist = artist
+            print(artist)
+        }
+        navigationController?.pushViewController(chatVC, animated: true)
+    }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         cell.colorShadow(for: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1))

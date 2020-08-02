@@ -75,7 +75,8 @@ class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate,
     }
     
     func addToThread() {
-        databaseService.createThread(artist: artist!) { (result) in
+        guard let artist = artist else { return }
+        databaseService.createThread(artist: artist) { (result) in
             switch result {
             case .failure(let error):
                 print(error.localizedDescription)
@@ -86,7 +87,8 @@ class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate,
     }
     
     func addToThread2() {
-        databaseService.createThread2(sender: artist!, artist: currentUser!) { (result) in
+        guard let artist = artist else { return }
+        databaseService.createThread2(sender: artist, artist: currentUser!) { (result) in
             switch result {
             case .failure(let error):
                 print(error.localizedDescription)
@@ -238,7 +240,6 @@ class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate,
        
        func numberOfSections(in messagesCollectionView: MessagesCollectionView) -> Int {
            if messages.count == 0 {
-                      print("No messages to display")
                       return 0
                   } else {
                       return messages.count
