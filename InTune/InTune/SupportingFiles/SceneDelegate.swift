@@ -22,12 +22,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.windowScene = windowScene
+        //get current artist using db function
         
         UITabBar.appearance().tintColor = #colorLiteral(red: 0.3429883122, green: 0.02074946091, blue: 0.7374325991, alpha: 1)
         if let _ = Auth.auth().currentUser {
-            
+            //if artist.isAnArtist == nil {
+            //show.OnboardingVew.story
+            // instantiate  OnboardVC but we have to be mindful of the different views
             UIViewController.showViewController(storyboardName: "MainView", viewControllerID: "MainViewTabBarController")
         } else {
+            
             UIViewController.showViewController(storyboardName: "LoginView", viewControllerID: "LoginViewController")
 
         }

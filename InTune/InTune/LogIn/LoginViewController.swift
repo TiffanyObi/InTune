@@ -23,7 +23,6 @@ class LoginViewController: UIViewController {
     @IBOutlet private var loginButton: UIButton!
     @IBOutlet private var loginStateLabel: UILabel!
     @IBOutlet private var loginStateButton: UIButton!
-    @IBOutlet public var errorMessageLabel: UILabel!
   
     private lazy var tapGesture: UITapGestureRecognizer = {
         let gesture = UITapGestureRecognizer()
@@ -38,27 +37,22 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loginButton.shadowLayer(loginButton)
+        loginStateButton.shadowLayer(loginStateButton)
         pulsatingAnimation()
         setUpTextfieldDelegates()
-         clearErrorLabel()
         view.addGestureRecognizer(tapGesture)
- 
     }
     
     private func setUpTextfieldDelegates(){
         emailTextfield.delegate = self
+        emailTextfield.textFieldShadow()
         passwordTextfield.delegate = self
+        passwordTextfield.textFieldShadow()
     }
    @objc private func resignTextfeilds(){
-        clearErrorLabel()
         emailTextfield.resignFirstResponder()
         passwordTextfield.resignFirstResponder()
-    }
-    private func clearErrorLabel(){
-        
-        errorMessageLabel.text =  "                 "
-        errorMessageLabel.isHidden = true
-
     }
     
     @IBAction func loginButtonPressed(_ sender: UIButton) {
@@ -90,7 +84,7 @@ class LoginViewController: UIViewController {
     private func pulsatingAnimation() {
            UIView.animate(withDuration: 2.0, delay: 0.0, options: [], animations: {
                // animation block here
-               
+            self.appLogoImageView.alpha = 1
                self.appLogoImageView.transform = CGAffineTransform(scaleX: 2.0, y: 2.0)
                
            }) { (done) in

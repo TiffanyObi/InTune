@@ -57,7 +57,7 @@ class GigViewController: UIViewController {
                       }
                   } else if let snapshot = snapshot {
                       let gig = snapshot.documents.map { GigsPost($0.data()) }
-                      self.gigs = gig
+                    self.gigs = gig.sorted { $0.eventDate < $1.eventDate }
                   }
               })
     }
