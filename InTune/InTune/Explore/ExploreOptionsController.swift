@@ -10,12 +10,13 @@ import UIKit
 
 protocol UpdateUsertPref:AnyObject {
     func didUpdatePreferences(_ tags: [String], _ exploreVC:ExploreOptionsController)
+    func didSearchArtist(_ searchText: String, _ exploreVC:ExploreOptionsController)
 }
 
 class ExploreOptionsController: UIViewController {
     
     @IBOutlet weak var instrumentsCollectionView: UICollectionView!
-    
+    @IBOutlet var exploreSearchBar: UISearchBar!
     @IBOutlet weak var genresCollectionView: UICollectionView!
     
     var instruments = [TagCollectionViewCellModel]()
@@ -34,6 +35,16 @@ class ExploreOptionsController: UIViewController {
         
         setUpCollectionViews()
         loadCollectionViews()
+        setUpSearchBar()
+    }
+    
+    private func setUpSearchBar() {
+        exploreSearchBar.showsSearchResultsButton = false
+        exploreSearchBar.layer.cornerRadius = 20
+        exploreSearchBar.layer.masksToBounds = true
+        exploreSearchBar.delegate = self
+        exploreSearchBar.searchTextField.backgroundColor = .white
+        exploreSearchBar.showsCancelButton = false
     }
     
     func setUpCollectionViews(){
@@ -76,6 +87,33 @@ class ExploreOptionsController: UIViewController {
     
 }
 
+extension ExploreOptionsController: UISearchBarDelegate {
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = true
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        guard let searchText = searchBar.text else { return }
+        
+        if searchText.isEmpty {
+            DispatchQueue.main.async {
+                self.showAlert(title: "Missing Fields", message: "Please check the search bar")
+            }
+        } else {
+        prefDelegate?.didSearchArtist(searchText, self)
+        dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = ""
+        searchBar.resignFirstResponder()
+        searchBar.showsCancelButton = false
+    }
+}
+
 extension ExploreOptionsController: UICollectionViewDelegateFlowLayout,UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == instrumentsCollectionView {
@@ -93,7 +131,7 @@ extension ExploreOptionsController: UICollectionViewDelegateFlowLayout,UICollect
         guard let tagCell = collectionView.dequeueReusableCell(withReuseIdentifier: "tagCell", for: indexPath) as? TagCollectionViewCell else {
             return UICollectionViewCell()
         }
-
+        
         if collectionView == instrumentsCollectionView {
             let instrument = instruments[indexPath.row]
             tagCell.tagTitle.backgroundColor = .black
@@ -122,9 +160,9 @@ extension ExploreOptionsController: UICollectionViewDelegateFlowLayout,UICollect
                 self?.genres[indexPath.row].isSelected = true
                 self?.selectedTags.insert(genre.name)
             }
-             tagCell.tagTitle.textColor = .white
-             
-             tagCell.configureWithModel(genre)
+            tagCell.tagTitle.textColor = .white
+            
+            tagCell.configureWithModel(genre)
         }
         
         return tagCell
