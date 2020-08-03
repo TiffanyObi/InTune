@@ -135,7 +135,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ah1-k4-emZ">
-                                <rect key="frame" x="20" y="153.5" width="374" height="240"/>
+                                <rect key="frame" x="20" y="169.5" width="374" height="202"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="XR5-pz-dl8">
                                     <size key="itemSize" width="94" height="35"/>
@@ -146,19 +146,13 @@
                                 <cells/>
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Instruments" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uzy-fc-SpC">
-                                <rect key="frame" x="20" y="100" width="153" height="33.5"/>
+                                <rect key="frame" x="20" y="116" width="153" height="33.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="28"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genres" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cy9-Uo-gez">
-                                <rect key="frame" x="20" y="409.5" width="91.5" height="33.5"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="28"/>
-                                <color key="textColor" red="0.31240576289999999" green="0.058394156019999997" blue="0.70837960030000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="b4g-MS-Df0">
-                                <rect key="frame" x="20" y="463" width="374" height="240"/>
+                                <rect key="frame" x="20" y="441" width="374" height="202"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="lzh-Yw-GUX">
                                     <size key="itemSize" width="94" height="35"/>
@@ -168,14 +162,14 @@
                                 </collectionViewFlowLayout>
                                 <cells/>
                             </collectionView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start Exploring By Making Selections" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hdw-Cq-F06">
-                                <rect key="frame" x="20" y="40" width="374" height="24"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Explore by names or tags" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hdw-Cq-F06">
+                                <rect key="frame" x="20" y="20" width="374" height="24"/>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gkA-Xx-SUE" customClass="DesignableButton" customModule="InTune" customModuleProvider="target">
-                                <rect key="frame" x="167" y="713" width="80" height="44"/>
+                                <rect key="frame" x="167" y="653" width="80" height="44"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="bax-Lj-vF6"/>
@@ -194,30 +188,44 @@
                                     <action selector="saveButtonPressed:" destination="sbL-JO-zxD" eventType="touchUpInside" id="v1q-vS-DA0"/>
                                 </connections>
                             </button>
+                            <searchBar contentMode="redraw" placeholder="Enter artist name" translatesAutoresizingMaskIntoConstraints="NO" id="Ubu-Jo-35s">
+                                <rect key="frame" x="8" y="52" width="398" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genres" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cy9-Uo-gez">
+                                <rect key="frame" x="20" y="387.5" width="91.5" height="33.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="28"/>
+                                <color key="textColor" red="0.31240576289999999" green="0.058394156019999997" blue="0.70837960030000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Cy9-Uo-gez" firstAttribute="leading" secondItem="Tmx-DZ-p4G" secondAttribute="leading" constant="20" id="2ps-yx-Re8"/>
+                            <constraint firstItem="uzy-fc-SpC" firstAttribute="top" secondItem="Ubu-Jo-35s" secondAttribute="bottom" constant="8" id="39l-CQ-fas"/>
                             <constraint firstItem="b4g-MS-Df0" firstAttribute="leading" secondItem="Tmx-DZ-p4G" secondAttribute="leading" constant="20" id="3hM-mv-Php"/>
-                            <constraint firstItem="hdw-Cq-F06" firstAttribute="top" secondItem="Tmx-DZ-p4G" secondAttribute="top" constant="40" id="7W8-8c-x7s"/>
                             <constraint firstItem="ah1-k4-emZ" firstAttribute="top" secondItem="uzy-fc-SpC" secondAttribute="bottom" constant="20" id="9bB-Hw-MFE"/>
-                            <constraint firstItem="b4g-MS-Df0" firstAttribute="height" secondItem="3Cl-mk-UTW" secondAttribute="height" multiplier="0.285036" id="Dyf-IA-qFH"/>
+                            <constraint firstItem="Ubu-Jo-35s" firstAttribute="top" secondItem="hdw-Cq-F06" secondAttribute="bottom" constant="8" id="ASL-GE-TqY"/>
+                            <constraint firstItem="b4g-MS-Df0" firstAttribute="height" secondItem="3Cl-mk-UTW" secondAttribute="height" multiplier="0.24" id="Dyf-IA-qFH"/>
                             <constraint firstItem="ah1-k4-emZ" firstAttribute="leading" secondItem="Tmx-DZ-p4G" secondAttribute="leading" constant="20" id="E9O-4n-ird"/>
                             <constraint firstItem="b4g-MS-Df0" firstAttribute="top" secondItem="Cy9-Uo-gez" secondAttribute="bottom" constant="20" id="RTI-hm-Ah9"/>
                             <constraint firstItem="uzy-fc-SpC" firstAttribute="leading" secondItem="Tmx-DZ-p4G" secondAttribute="leading" constant="20" id="T4c-Ov-T1N"/>
                             <constraint firstItem="gkA-Xx-SUE" firstAttribute="top" secondItem="b4g-MS-Df0" secondAttribute="bottom" constant="10" id="TgQ-eR-2pG"/>
-                            <constraint firstItem="ah1-k4-emZ" firstAttribute="height" secondItem="3Cl-mk-UTW" secondAttribute="height" multiplier="0.285036" id="V8t-8T-WDi"/>
+                            <constraint firstItem="ah1-k4-emZ" firstAttribute="height" secondItem="3Cl-mk-UTW" secondAttribute="height" multiplier="0.24" id="V8t-8T-WDi"/>
+                            <constraint firstItem="Ubu-Jo-35s" firstAttribute="leading" secondItem="Tmx-DZ-p4G" secondAttribute="leading" constant="8" id="VsV-iN-Oz2"/>
                             <constraint firstItem="Cy9-Uo-gez" firstAttribute="top" secondItem="ah1-k4-emZ" secondAttribute="bottom" constant="16" id="a2P-MQ-9ez"/>
                             <constraint firstItem="Tmx-DZ-p4G" firstAttribute="trailing" secondItem="ah1-k4-emZ" secondAttribute="trailing" constant="20" id="eCz-gn-s0c"/>
                             <constraint firstItem="gkA-Xx-SUE" firstAttribute="centerX" secondItem="3Cl-mk-UTW" secondAttribute="centerX" id="eDo-xa-dbp"/>
                             <constraint firstItem="Tmx-DZ-p4G" firstAttribute="trailing" secondItem="b4g-MS-Df0" secondAttribute="trailing" constant="20" id="h1g-ss-HKu"/>
-                            <constraint firstItem="uzy-fc-SpC" firstAttribute="top" secondItem="Tmx-DZ-p4G" secondAttribute="top" constant="100" id="kn2-th-ccB"/>
+                            <constraint firstItem="hdw-Cq-F06" firstAttribute="top" secondItem="Tmx-DZ-p4G" secondAttribute="top" constant="20" id="ioW-yT-slp"/>
+                            <constraint firstItem="Tmx-DZ-p4G" firstAttribute="trailing" secondItem="Ubu-Jo-35s" secondAttribute="trailing" constant="8" id="o3A-RC-Jt2"/>
                             <constraint firstItem="Tmx-DZ-p4G" firstAttribute="trailing" secondItem="hdw-Cq-F06" secondAttribute="trailing" constant="20" id="uwm-dT-vOf"/>
                             <constraint firstItem="hdw-Cq-F06" firstAttribute="leading" secondItem="Tmx-DZ-p4G" secondAttribute="leading" constant="20" id="wj1-fQ-AfI"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Tmx-DZ-p4G"/>
                     </view>
                     <connections>
+                        <outlet property="exploreSearchBar" destination="Ubu-Jo-35s" id="whK-Lx-nfi"/>
                         <outlet property="genresCollectionView" destination="b4g-MS-Df0" id="7Db-2r-psw"/>
                         <outlet property="instrumentsCollectionView" destination="ah1-k4-emZ" id="yx1-A8-2Fg"/>
                     </connections>

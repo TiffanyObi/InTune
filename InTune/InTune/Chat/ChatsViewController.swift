@@ -152,7 +152,7 @@ extension ChatsViewController: UITableViewDataSource, UITableViewDelegate {
         if editingStyle == .delete {
             let user = users[indexPath.row]
             databaseService.deleteThreadFromArtist(artist: user) { [weak self] (result) in
-                
+
                 switch result {
                 case .failure(let error):
                     DispatchQueue.main.async {

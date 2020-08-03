@@ -34,6 +34,8 @@ class LikedArtistsViewController: UIViewController {
         }
     }
     
+    var copyArtists = [Artist]()
+    
     var searchQuery = "" {
         didSet {
             favs = favs.filter { $0.favArtistName.lowercased().contains(searchQuery.lowercased())}
@@ -82,6 +84,7 @@ class LikedArtistsViewController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(true)
         listener?.remove()
+        copyArtists = [Artist]()
         artists = [Artist]()
     }
     
@@ -124,8 +127,9 @@ class LikedArtistsViewController: UIViewController {
     private func addArtists(favs: [FavoritedArtist]) {
         for fav in favs {
             let artist = Artist(name: fav.favArtistName, email: "", artistId: fav.favArtistID, tags: fav.favArtistTag, city: fav.favArtistLocation, isAnArtist: true, createdDate: Timestamp(), photoURL: fav.favPhotoURL, bioText: "", preferences: [""], isReported: false)
-            artists.insert(artist, at: artists.endIndex)
+            copyArtists.insert(artist, at: copyArtists.endIndex)
         }
+        artists.append(contentsOf: copyArtists)
     }
     
     
@@ -170,8 +174,6 @@ extension LikedArtistsViewController: UICollectionViewDelegateFlowLayout {
         let chatVC = ChatViewController()
         let fav = favs[indexPath.row]
         let artist = artists[indexPath.row]
-        print(fav)
-        print(artist)
         if artist.artistId == fav.favArtistID {
             chatVC.artist = artist
             print(artist)
