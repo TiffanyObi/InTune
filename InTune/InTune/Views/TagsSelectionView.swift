@@ -49,7 +49,7 @@ class TagsSelectionView: UIView {
         let button = UIButton()
         button.setTitle("Done", for: .normal)
         button.layer.cornerRadius = 10
-        button.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        button.backgroundColor = #colorLiteral(red: 0.3236978054, green: 0.1063579395, blue: 0.574860394, alpha: 1)
         button.titleLabel?.textColor = .white
         return button
     }()
