@@ -142,6 +142,8 @@ class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate,
                           self.createNewChat()
                       }
                       else if queryCount >= 1 {
+                        self.addToThread()
+                        self.addToThread2()
                           //Chat(s) found for currentUser
                           for doc in chatQuerySnap!.documents {
                               
