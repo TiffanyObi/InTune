@@ -169,10 +169,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gkA-Xx-SUE" customClass="DesignableButton" customModule="InTune" customModuleProvider="target">
-                                <rect key="frame" x="167" y="653" width="80" height="44"/>
+                                <rect key="frame" x="157" y="675" width="100" height="44"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="bax-Lj-vF6"/>
+                                    <constraint firstAttribute="width" constant="100" id="bax-Lj-vF6"/>
                                     <constraint firstAttribute="height" constant="44" id="oMv-U1-htm"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
@@ -210,7 +210,7 @@
                             <constraint firstItem="ah1-k4-emZ" firstAttribute="leading" secondItem="Tmx-DZ-p4G" secondAttribute="leading" constant="20" id="E9O-4n-ird"/>
                             <constraint firstItem="b4g-MS-Df0" firstAttribute="top" secondItem="Cy9-Uo-gez" secondAttribute="bottom" constant="20" id="RTI-hm-Ah9"/>
                             <constraint firstItem="uzy-fc-SpC" firstAttribute="leading" secondItem="Tmx-DZ-p4G" secondAttribute="leading" constant="20" id="T4c-Ov-T1N"/>
-                            <constraint firstItem="gkA-Xx-SUE" firstAttribute="top" secondItem="b4g-MS-Df0" secondAttribute="bottom" constant="10" id="TgQ-eR-2pG"/>
+                            <constraint firstItem="gkA-Xx-SUE" firstAttribute="top" secondItem="b4g-MS-Df0" secondAttribute="bottom" constant="32" id="TgQ-eR-2pG"/>
                             <constraint firstItem="ah1-k4-emZ" firstAttribute="height" secondItem="3Cl-mk-UTW" secondAttribute="height" multiplier="0.24" id="V8t-8T-WDi"/>
                             <constraint firstItem="Ubu-Jo-35s" firstAttribute="leading" secondItem="Tmx-DZ-p4G" secondAttribute="leading" constant="8" id="VsV-iN-Oz2"/>
                             <constraint firstItem="Cy9-Uo-gez" firstAttribute="top" secondItem="ah1-k4-emZ" secondAttribute="bottom" constant="16" id="a2P-MQ-9ez"/>

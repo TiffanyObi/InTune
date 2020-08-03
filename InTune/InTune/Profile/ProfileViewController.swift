@@ -74,6 +74,8 @@ class ProfileViewController: UIViewController {
     var gigs = [GigsPost]() {
         didSet{
             postsCollectionView.reloadData()
+            setUpEmptyViewForUser()
+            setUpEmptyViewFromExp()
         }
     }
     
