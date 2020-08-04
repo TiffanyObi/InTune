@@ -23,6 +23,7 @@ class DisplayNameAndLocationView: UIView {
     public lazy var displayNameTextfield: UITextField = {
         let textfield = UITextField()
         textfield.textFieldShadow()
+        textfield.backgroundColor = .systemGray5
         textfield.borderStyle = .roundedRect
         textfield.placeholder = "Enter display name"
         textfield.layer.cornerRadius = 10
