@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3E2D9E0B2499939100DCF551 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2D9E0A2499939100DCF551 /* Video.swift */; };
+		3E3071B924D84CB900C4ADF6 /* DonateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3071B824D84CB900C4ADF6 /* DonateViewController.swift */; };
 		3E37999A248963EB00DC0487 /* ArtistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E379999248963EB00DC0487 /* ArtistCell.swift */; };
 		3E43F438247D7B8600CC0584 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F437247D7B8600CC0584 /* AppDelegate.swift */; };
 		3E43F43A247D7B8600CC0584 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F439247D7B8600CC0584 /* SceneDelegate.swift */; };
@@ -90,6 +91,7 @@
 		34EDB9880DFEB9AE9BDB152F /* Pods_InTuneTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InTuneTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		360258238F4D075A6CA65630 /* Pods-InTuneTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InTuneTests.release.xcconfig"; path = "Target Support Files/Pods-InTuneTests/Pods-InTuneTests.release.xcconfig"; sourceTree = "<group>"; };
 		3E2D9E0A2499939100DCF551 /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
+		3E3071B824D84CB900C4ADF6 /* DonateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonateViewController.swift; sourceTree = "<group>"; };
 		3E379999248963EB00DC0487 /* ArtistCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistCell.swift; sourceTree = "<group>"; };
 		3E43F434247D7B8600CC0584 /* InTune.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InTune.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E43F437247D7B8600CC0584 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -364,6 +366,7 @@
 			children = (
 				3E43F46D247E8EA200CC0584 /* MainView.storyboard */,
 				3E43F45E247E846400CC0584 /* ProfileViewController.swift */,
+				3E3071B824D84CB900C4ADF6 /* DonateViewController.swift */,
 				3E43F460247E849700CC0584 /* EditProfController.swift */,
 				3E43F492247E9B3F00CC0584 /* VideoPostViewController.swift */,
 			);
@@ -581,6 +584,7 @@
 				BEDF3FCF248534A600D22E2D /* Message.swift in Sources */,
 				3E43F493247E9B3F00CC0584 /* VideoPostViewController.swift in Sources */,
 				BEDF3FCB248533D400D22E2D /* ChatsViewController.swift in Sources */,
+				3E3071B924D84CB900C4ADF6 /* DonateViewController.swift in Sources */,
 				80C375B724819E3F00152996 /* TagCollectionViewCell.swift in Sources */,
 				3E43F483247E983300CC0584 /* FavoriteArtist.swift in Sources */,
 				80135C80248027630038A0CC /* PostCell.swift in Sources */,
