@@ -87,8 +87,8 @@ class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate,
     }
     
     func addToThread2() {
-        guard let artist = artist else { return }
-        databaseService.createThread2(sender: artist, artist: currentUser!) { (result) in
+        guard let artist = artist,let current = currentUser else { return }
+        databaseService.createThread2(sender: artist, artist: current) { (result) in
             switch result {
             case .failure(let error):
                 print(error.localizedDescription)

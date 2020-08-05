@@ -44,7 +44,7 @@ struct ProfileViewViewModel {
                     self.getVideos(artist: artist1, profileVC: profileVC!)
                     } else {
                     profileVC?.navigationItem.title = "Enthusiast"
-                    profileVC?.navigationItem.rightBarButtonItem = nil
+                        profileVC?.addMediaButton.image = nil
                     self.getGigPosts(profileVC: profileVC!)
                     }
                 }
