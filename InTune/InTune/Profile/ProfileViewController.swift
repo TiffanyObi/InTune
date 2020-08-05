@@ -31,6 +31,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet var postVidButton: UIBarButtonItem!
     @IBOutlet var settingsButton: UIBarButtonItem!
     @IBOutlet var infoView: DesignableView!
+    @IBOutlet var donateButton: UIBarButtonItem!
     
     private lazy var longPress: UILongPressGestureRecognizer = {
         let press = UILongPressGestureRecognizer()
