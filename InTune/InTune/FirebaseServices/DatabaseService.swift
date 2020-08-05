@@ -480,25 +480,30 @@ class DatabaseService {
         }
     }
     
-    public func createContributor(contributor: Contributor, completion: @escaping (Result <Bool, Error>)-> ()) {
-        
+    public func createContributor(name: String, email: String, amountDonated: Double?, completion: @escaping (Result <Bool, Error>)-> ()) {
+        db.collection(DatabaseService.contributorsCollection).document().setData(["name" : name, "email": email, "amountDonated": amountDonated]) { (error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(true))
+            }
+        }
     }
     
-    public func fetchContributors() {
-        
+    public func fetchContribution(completion: @escaping (Result <Contributor, Error>)->()) {
+        db.collection(DatabaseService.contributorsCollection).document().getDocument { (snapshot, error) in
+            if let error = error {
+                completion(.failure(error))
+            } else if let snapshot = snapshot {
+                guard let data  = snapshot.data() else { return }
+                let contributors = Contributor(data)
+                completion(.success(contributors))
+            }
+        }
     }
+    
+    
     
 }
 
 
-
-//public func createArtist(authDataResult: AuthDataResult, completion: @escaping (Result<Bool,Error>) -> ()){
-//   guard let email = authDataResult.user.email else {return}
-//   db.collection(DatabaseService.artistsCollection).document(authDataResult.user.uid).setData(["email": email, "artistId": authDataResult.user.uid, "createdDate": Timestamp(),"isReported":false]){ (error) in
-//     if let error = error {
-//       completion(.failure(error))
-//     } else {
-//       completion(.success(true))
-//     }
-//   }
-// }
