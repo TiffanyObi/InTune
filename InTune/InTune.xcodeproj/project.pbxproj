@@ -68,6 +68,9 @@
 		80E3D260248EC649002F3FA7 /* PostCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E3D25F248EC649002F3FA7 /* PostCollectionViewDelegate.swift */; };
 		BE3DB16A24C21EBE0023E9DC /* CreateGigVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3DB16924C21EBE0023E9DC /* CreateGigVC.swift */; };
 		BE463F3124C51C85001A3A3B /* FeaturedArtistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE463F3024C51C85001A3A3B /* FeaturedArtistCell.swift */; };
+		BEA2AF4424DAFBBE001EA2BB /* Contributor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA2AF4324DAFBBE001EA2BB /* Contributor.swift */; };
+		BEA2AF4624DB0060001EA2BB /* CreateContributionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA2AF4524DB0060001EA2BB /* CreateContributionViewController.swift */; };
+		BEA2AF4824DB0081001EA2BB /* ShowContributorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA2AF4724DB0081001EA2BB /* ShowContributorsViewController.swift */; };
 		BEDF3FC9248533B000D22E2D /* MessageView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEDF3FC8248533B000D22E2D /* MessageView.storyboard */; };
 		BEDF3FCB248533D400D22E2D /* ChatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDF3FCA248533D400D22E2D /* ChatsViewController.swift */; };
 		BEDF3FCD2485349A00D22E2D /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDF3FCC2485349A00D22E2D /* Chat.swift */; };
@@ -159,6 +162,9 @@
 		9BE6182879AA5607E95E84A9 /* Pods-InTuneTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InTuneTests.debug.xcconfig"; path = "Target Support Files/Pods-InTuneTests/Pods-InTuneTests.debug.xcconfig"; sourceTree = "<group>"; };
 		BE3DB16924C21EBE0023E9DC /* CreateGigVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGigVC.swift; sourceTree = "<group>"; };
 		BE463F3024C51C85001A3A3B /* FeaturedArtistCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedArtistCell.swift; sourceTree = "<group>"; };
+		BEA2AF4324DAFBBE001EA2BB /* Contributor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contributor.swift; sourceTree = "<group>"; };
+		BEA2AF4524DB0060001EA2BB /* CreateContributionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateContributionViewController.swift; sourceTree = "<group>"; };
+		BEA2AF4724DB0081001EA2BB /* ShowContributorsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowContributorsViewController.swift; sourceTree = "<group>"; };
 		BEDF3FC8248533B000D22E2D /* MessageView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MessageView.storyboard; sourceTree = "<group>"; };
 		BEDF3FCA248533D400D22E2D /* ChatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsViewController.swift; sourceTree = "<group>"; };
 		BEDF3FCC2485349A00D22E2D /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
@@ -308,6 +314,7 @@
 				3E43F474247E909A00CC0584 /* ShowAlert.swift */,
 				3E43F47E247E97FF00CC0584 /* Artist.swift */,
 				3E43F482247E983300CC0584 /* FavoriteArtist.swift */,
+				BEA2AF4324DAFBBE001EA2BB /* Contributor.swift */,
 				3E7C53D4248AC614001974DB /* TagsInfoModels.swift */,
 				3E75433E2490711300383D02 /* StatesForPickerView.swift */,
 				3E43F48A247E9A7C00CC0584 /* Posts.swift */,
@@ -369,6 +376,8 @@
 				3E3071B824D84CB900C4ADF6 /* DonateViewController.swift */,
 				3E43F460247E849700CC0584 /* EditProfController.swift */,
 				3E43F492247E9B3F00CC0584 /* VideoPostViewController.swift */,
+				BEA2AF4524DB0060001EA2BB /* CreateContributionViewController.swift */,
+				BEA2AF4724DB0081001EA2BB /* ShowContributorsViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -587,6 +596,7 @@
 				3E3071B924D84CB900C4ADF6 /* DonateViewController.swift in Sources */,
 				80C375B724819E3F00152996 /* TagCollectionViewCell.swift in Sources */,
 				3E43F483247E983300CC0584 /* FavoriteArtist.swift in Sources */,
+				BEA2AF4424DAFBBE001EA2BB /* Contributor.swift in Sources */,
 				80135C80248027630038A0CC /* PostCell.swift in Sources */,
 				3E43F466247E857900CC0584 /* EmptyView.swift in Sources */,
 				3E43F463247E84DA00CC0584 /* MainViewTabBarController.swift in Sources */,
@@ -600,6 +610,7 @@
 				3E75433D24900C1300383D02 /* DisplayNameAndLocationView.swift in Sources */,
 				3E43F491247E9B2400CC0584 /* LikedArtistsViewController.swift in Sources */,
 				3E43F438247D7B8600CC0584 /* AppDelegate.swift in Sources */,
+				BEA2AF4624DB0060001EA2BB /* CreateContributionViewController.swift in Sources */,
 				80900C632492C80C0080C816 /* GigsDetailViewController.swift in Sources */,
 				3E43F472247E8FAE00CC0584 /* OnboardingViewController.swift in Sources */,
 				800D899A248843F500C3FB67 /* ChatsCell.swift in Sources */,
@@ -611,6 +622,7 @@
 				3E43F468247E8DD100CC0584 /* AuthentificationService.swift in Sources */,
 				3E43F485247E985700CC0584 /* LoginViewViewModel.swift in Sources */,
 				80C935EA24C774A800D1C66F /* ExperienceCell.swift in Sources */,
+				BEA2AF4824DB0081001EA2BB /* ShowContributorsViewController.swift in Sources */,
 				BE3DB16A24C21EBE0023E9DC /* CreateGigVC.swift in Sources */,
 				3E6D8FFB24A27E77001AF7A7 /* ProfileViewViewModel.swift in Sources */,
 				3E43F477247E90B700CC0584 /* DateFormatter.swift in Sources */,

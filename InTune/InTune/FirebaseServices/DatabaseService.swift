@@ -24,6 +24,7 @@ class DatabaseService {
     static let artVideos = "videos"
     static let reportCollection = "reported"
     static let chatsCollection = "chats"
+    static let contributorsCollection = "contributors"
     
     private let db = Firestore.firestore()
   static let shared = DatabaseService()
@@ -90,10 +91,6 @@ class DatabaseService {
         }
     }
     
-    public func deleteThreadFromChats() {
-        
-        
-    }
     
     //update function for user experience ( isAnArtist == true )
     public func updateUserExperience(isAnArtist:Bool, completion: @escaping (Result<Bool,Error>) -> ()){
@@ -341,7 +338,7 @@ class DatabaseService {
         }
     }
     
-    public func getGigs(completion: @escaping (Result<[GigsPost], Error>) -> ()){
+    public func getGigs(completion: @escaping (Result<[GigsPost], Error>) -> ()) {
         
         guard let user = Auth.auth().currentUser else { return }
         
@@ -483,5 +480,25 @@ class DatabaseService {
         }
     }
     
+    public func createContributor(contributor: Contributor, completion: @escaping (Result <Bool, Error>)-> ()) {
+        
+    }
+    
+    public func fetchContributors() {
+        
+    }
+    
 }
 
+
+
+//public func createArtist(authDataResult: AuthDataResult, completion: @escaping (Result<Bool,Error>) -> ()){
+//   guard let email = authDataResult.user.email else {return}
+//   db.collection(DatabaseService.artistsCollection).document(authDataResult.user.uid).setData(["email": email, "artistId": authDataResult.user.uid, "createdDate": Timestamp(),"isReported":false]){ (error) in
+//     if let error = error {
+//       completion(.failure(error))
+//     } else {
+//       completion(.success(true))
+//     }
+//   }
+// }
