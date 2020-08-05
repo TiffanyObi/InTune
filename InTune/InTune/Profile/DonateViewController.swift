@@ -6,6 +6,10 @@
 //  Copyright © 2020 Tiffany Obi. All rights reserved.
 //
 
+protocol DisplayDonationShowAlert: AnyObject {
+    func didDisplayShowAlert(donateViewController:DonateViewController)
+}
+
 import UIKit
 import SafariServices
 class DonateViewController: UIViewController {
@@ -44,7 +48,7 @@ class DonateViewController: UIViewController {
     }()
     
     var infoIsShowing = false
-   
+    weak var showAlertDelegate: DisplayDonationShowAlert?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,6 +59,12 @@ class DonateViewController: UIViewController {
         cashappImageView.isUserInteractionEnabled = true
         
         
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(true)
+    
+        showAlertDelegate?.didDisplayShowAlert(donateViewController: self)
     }
     
     @objc private func updateViewWithInfo(view: UIView){

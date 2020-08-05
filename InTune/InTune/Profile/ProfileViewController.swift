@@ -101,6 +101,12 @@ class ProfileViewController: UIViewController {
         profileViewModel.setUpLikeButton(profileVC: self, button: likeArtistButton)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let donateVC = segue.destination as? DonateViewController else {return}
+        
+        donateVC.showAlertDelegate = self
+    }
+    
     private func setProfileViewState(){
         if state == .prof {
             loadUI()
@@ -142,6 +148,7 @@ class ProfileViewController: UIViewController {
         super.viewWillAppear(true)
         setProfileViewState()
     }
+   
     
     func getArtist(){
         if state == .prof {
@@ -384,4 +391,25 @@ extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDel
     }
 }
 
-
+extension ProfileViewController: DisplayDonationShowAlert {
+    func didDisplayShowAlert(donateViewController: DonateViewController) {
+        
+        let title = "Did you donate?"
+        let message = "If so, Please take a min to fill out our form so we can add you to our \"Shout Out's \" page."
+        
+     let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let yesAction = UIAlertAction(title: "Sure Did‼️", style: .default) { (_) in
+            print("this is where we present the newVC modally")
+        }
+        
+        let noAction = UIAlertAction(title: "Next time ❤️", style: .cancel, handler: nil)
+        
+        
+        alertController.addAction(yesAction)
+        alertController.addAction(noAction)
+        present(alertController, animated: true)
+    }
+    
+    
+}
