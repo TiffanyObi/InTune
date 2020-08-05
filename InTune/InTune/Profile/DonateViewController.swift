@@ -25,7 +25,7 @@ class DonateViewController: UIViewController {
         let label = UILabel()
         label.text  = "Please Send Donations To \n \" Tiffany Obi \" \n 347 - 415 - 9280 "
         label.textColor = .white
-        label.font = UIFont(name: "Didot", size: 35.0)
+        label.font = UIFont(name: "Didot", size: 30.0)
         label.textAlignment = .center
         label.numberOfLines = 0
         return label
@@ -111,10 +111,10 @@ class DonateViewController: UIViewController {
             self.infoLabel.translatesAutoresizingMaskIntoConstraints = false
                          
                          NSLayoutConstraint.activate([
-                            self.infoLabel.topAnchor.constraint(equalTo: self.zelleView.topAnchor, constant: 20),
-                            self.infoLabel.leadingAnchor.constraint(equalTo: self.zelleView.leadingAnchor, constant: 20),
-                            self.infoLabel.trailingAnchor.constraint(equalTo: self.zelleView.trailingAnchor, constant: -20),
-                            self.infoLabel.bottomAnchor.constraint(equalTo: self.zelleView.bottomAnchor, constant: -20)
+                            self.infoLabel.topAnchor.constraint(equalTo: self.zelleView.topAnchor, constant: 0),
+                            self.infoLabel.leadingAnchor.constraint(equalTo: self.zelleView.leadingAnchor, constant: 0),
+                            self.infoLabel.trailingAnchor.constraint(equalTo: self.zelleView.trailingAnchor, constant: 0),
+                            self.infoLabel.bottomAnchor.constraint(equalTo: self.zelleView.bottomAnchor, constant: 0)
                          ])
                      }, completion: nil)
       }

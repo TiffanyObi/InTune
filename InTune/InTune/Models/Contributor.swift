@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Contributor {
+struct Contributor:Hashable {
     let name: String
     let email: String
     let amountDonated: Double?
