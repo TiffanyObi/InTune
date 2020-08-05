@@ -20,18 +20,31 @@ class CreateContributionViewController: UIViewController {
     var show = true
     var db = DatabaseService()
     
+    private lazy var tapGesture: UITapGestureRecognizer = {
+        let gesture = UITapGestureRecognizer()
+        gesture.addTarget(self, action: #selector(resignTextfields))
+        return gesture
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         yesButton.shadowLayer(yesButton)
         yesButton.layer.borderWidth = 2
         setUpTextFields()
+        view.addGestureRecognizer(tapGesture)
     }
     
     private func setUpTextFields() {
         nameTextField.delegate = self
         emailTextField.delegate = self
         donationTextField.delegate = self
+    }
+    
+    @objc private func resignTextfields() {
+        nameTextField.resignFirstResponder()
+        emailTextField.resignFirstResponder()
+        donationTextField.resignFirstResponder()
     }
     
     private func createContributor() {
