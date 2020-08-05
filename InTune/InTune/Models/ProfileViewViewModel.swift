@@ -44,7 +44,7 @@ struct ProfileViewViewModel {
                     self.getVideos(artist: artist1, profileVC: profileVC!)
                     } else {
                     profileVC?.navigationItem.title = "Enthusiast"
-                    profileVC?.navigationItem.rightBarButtonItem = nil
+                        profileVC?.addMediaButton.image = nil
                     self.getGigPosts(profileVC: profileVC!)
                     }
                 }
@@ -123,14 +123,21 @@ struct ProfileViewViewModel {
     
     func setUpEmptyViewForUser(profileVC:ProfileViewController){
         guard let singleArtist = profileVC.singleArtist else {return}
-        if singleArtist.isReported {
-            let emptyView = EmptyView(message: "Your account has been reported !")
-            profileVC.postsCollectionView.backgroundView = emptyView
-            
-        } else if profileVC.videos.count == 0 {
-            profileVC.postsCollectionView.backgroundView = EmptyView(message: "Add New Videos !")
+        if singleArtist.isAnArtist {
+            if singleArtist.isReported {
+                let emptyView = EmptyView(message: "Your account has been reported !")
+                profileVC.postsCollectionView.backgroundView = emptyView
+            } else if profileVC.videos.count == 0 {
+                profileVC.postsCollectionView.backgroundView = EmptyView(message: "Add new videos!")
+            } else {
+                profileVC.postsCollectionView.backgroundView = nil
+            }
         } else {
-            profileVC.postsCollectionView.backgroundView = nil
+            if profileVC.gigs.count == 0 {
+                 profileVC.postsCollectionView.backgroundView = EmptyView(message: "Add new gigs!")
+            } else {
+                 profileVC.postsCollectionView.backgroundView = nil
+            }
         }
     }
     

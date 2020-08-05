@@ -31,14 +31,14 @@ class ArtistCell: UICollectionViewCell {
         db.getLikedArtistGigPosts(likedArtist: artist) {[weak self] (result) in
             switch result {
             case .failure:
-                self?.postStatusLabel.text = "No recent posts"
+                self?.postStatusLabel.text = "Failed to load posts"
                 
             case .success(let posts):
                 if let post = posts.first {
                     
                     if post.artistId == artist.favArtistID{
                         self?.statusButton.setImage(UIImage(systemName: "circle.fill"), for: .normal)
-                        self?.postStatusLabel.text = "New Post: \(post.title)\""
+                        self?.postStatusLabel.text = "New Post: \(post.title)"
                     }
                 } else {
                     self?.postStatusLabel.text = "No recent posts"

@@ -31,6 +31,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet var postVidButton: UIBarButtonItem!
     @IBOutlet var settingsButton: UIBarButtonItem!
     @IBOutlet var infoView: DesignableView!
+    @IBOutlet var donateButton: UIBarButtonItem!
     
     private lazy var longPress: UILongPressGestureRecognizer = {
         let press = UILongPressGestureRecognizer()
@@ -74,6 +75,8 @@ class ProfileViewController: UIViewController {
     var gigs = [GigsPost]() {
         didSet{
             postsCollectionView.reloadData()
+            setUpEmptyViewForUser()
+            setUpEmptyViewFromExp()
         }
     }
     
@@ -97,6 +100,12 @@ class ProfileViewController: UIViewController {
         chatButton.shadowLayer(chatButton)
         self.navigationController?.navigationBar.tintColor = .black
         profileViewModel.setUpLikeButton(profileVC: self, button: likeArtistButton)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let donateVC = segue.destination as? DonateViewController else {return}
+        
+        donateVC.showAlertDelegate = self
     }
     
     private func setProfileViewState(){
@@ -140,6 +149,7 @@ class ProfileViewController: UIViewController {
         super.viewWillAppear(true)
         setProfileViewState()
     }
+    
     
     func getArtist(){
         if state == .prof {
@@ -337,10 +347,10 @@ extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDel
         
         if collectionView == postsCollectionView {
             if isAnArtist ?? false {
-            let maxSize: CGSize = UIScreen.main.bounds.size
-            let itemWidth: CGFloat = maxSize.width * 0.415
-            let itemHeight: CGFloat = maxSize.height * 0.20
-            return CGSize(width: itemWidth, height: itemHeight)
+                let maxSize: CGSize = UIScreen.main.bounds.size
+                let itemWidth: CGFloat = maxSize.width * 0.415
+                let itemHeight: CGFloat = maxSize.height * 0.20
+                return CGSize(width: itemWidth, height: itemHeight)
             } else {
                 let maxSize: CGSize = UIScreen.main.bounds.size
                 let itemWidth: CGFloat = maxSize.width * 0.8
@@ -382,4 +392,31 @@ extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDel
     }
 }
 
-
+extension ProfileViewController: DisplayDonationShowAlert {
+    func didDisplayShowAlert(donateViewController: DonateViewController) {
+        
+        let title = "Did you donate?"
+        let message = "If so, Please take a min to fill out our form so we can add you to our \"Shout Out's \" page."
+        
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let yesAction = UIAlertAction(title: "Sure Did‼️", style: .default) { (_) in
+            
+            let storyBoard = UIStoryboard(name: "Contributers", bundle:  nil)
+            guard let createContributionVC = storyBoard.instantiateViewController(identifier: "CreateContributionViewController") as? CreateContributionViewController else {
+                fatalError("could not load CreateContributionViewController")
+            }
+            self.navigationController?.present(createContributionVC, animated: true, completion: nil)
+        }
+        
+        
+        let noAction = UIAlertAction(title: "Next time❤️", style: .cancel, handler: nil)
+        
+        
+        alertController.addAction(yesAction)
+        alertController.addAction(noAction)
+        present(alertController, animated: true)
+    }
+    
+    
+}

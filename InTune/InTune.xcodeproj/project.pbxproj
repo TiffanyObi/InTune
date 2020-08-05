@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3E2D9E0B2499939100DCF551 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2D9E0A2499939100DCF551 /* Video.swift */; };
+		3E3071B924D84CB900C4ADF6 /* DonateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3071B824D84CB900C4ADF6 /* DonateViewController.swift */; };
 		3E37999A248963EB00DC0487 /* ArtistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E379999248963EB00DC0487 /* ArtistCell.swift */; };
 		3E43F438247D7B8600CC0584 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F437247D7B8600CC0584 /* AppDelegate.swift */; };
 		3E43F43A247D7B8600CC0584 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F439247D7B8600CC0584 /* SceneDelegate.swift */; };
@@ -66,8 +67,11 @@
 		80C935EA24C774A800D1C66F /* ExperienceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C935E924C774A800D1C66F /* ExperienceCell.swift */; };
 		80E3D260248EC649002F3FA7 /* PostCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E3D25F248EC649002F3FA7 /* PostCollectionViewDelegate.swift */; };
 		BE3DB16A24C21EBE0023E9DC /* CreateGigVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3DB16924C21EBE0023E9DC /* CreateGigVC.swift */; };
-		BE4572202492DF2E0020D12C /* CreateGigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE45721F2492DF2E0020D12C /* CreateGigViewController.swift */; };
 		BE463F3124C51C85001A3A3B /* FeaturedArtistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE463F3024C51C85001A3A3B /* FeaturedArtistCell.swift */; };
+		BEA2AF4424DAFBBE001EA2BB /* Contributor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA2AF4324DAFBBE001EA2BB /* Contributor.swift */; };
+		BEA2AF4624DB0060001EA2BB /* CreateContributionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA2AF4524DB0060001EA2BB /* CreateContributionViewController.swift */; };
+		BEA2AF4824DB0081001EA2BB /* ShowContributorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA2AF4724DB0081001EA2BB /* ShowContributorsViewController.swift */; };
+		BEA2AF4A24DB0509001EA2BB /* Contributers.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEA2AF4924DB0509001EA2BB /* Contributers.storyboard */; };
 		BEDF3FC9248533B000D22E2D /* MessageView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEDF3FC8248533B000D22E2D /* MessageView.storyboard */; };
 		BEDF3FCB248533D400D22E2D /* ChatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDF3FCA248533D400D22E2D /* ChatsViewController.swift */; };
 		BEDF3FCD2485349A00D22E2D /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDF3FCC2485349A00D22E2D /* Chat.swift */; };
@@ -91,6 +95,7 @@
 		34EDB9880DFEB9AE9BDB152F /* Pods_InTuneTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InTuneTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		360258238F4D075A6CA65630 /* Pods-InTuneTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InTuneTests.release.xcconfig"; path = "Target Support Files/Pods-InTuneTests/Pods-InTuneTests.release.xcconfig"; sourceTree = "<group>"; };
 		3E2D9E0A2499939100DCF551 /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
+		3E3071B824D84CB900C4ADF6 /* DonateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonateViewController.swift; sourceTree = "<group>"; };
 		3E379999248963EB00DC0487 /* ArtistCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistCell.swift; sourceTree = "<group>"; };
 		3E43F434247D7B8600CC0584 /* InTune.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InTune.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E43F437247D7B8600CC0584 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -157,8 +162,11 @@
 		80E3D25F248EC649002F3FA7 /* PostCollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCollectionViewDelegate.swift; sourceTree = "<group>"; };
 		9BE6182879AA5607E95E84A9 /* Pods-InTuneTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InTuneTests.debug.xcconfig"; path = "Target Support Files/Pods-InTuneTests/Pods-InTuneTests.debug.xcconfig"; sourceTree = "<group>"; };
 		BE3DB16924C21EBE0023E9DC /* CreateGigVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGigVC.swift; sourceTree = "<group>"; };
-		BE45721F2492DF2E0020D12C /* CreateGigViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGigViewController.swift; sourceTree = "<group>"; };
 		BE463F3024C51C85001A3A3B /* FeaturedArtistCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedArtistCell.swift; sourceTree = "<group>"; };
+		BEA2AF4324DAFBBE001EA2BB /* Contributor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contributor.swift; sourceTree = "<group>"; };
+		BEA2AF4524DB0060001EA2BB /* CreateContributionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateContributionViewController.swift; sourceTree = "<group>"; };
+		BEA2AF4724DB0081001EA2BB /* ShowContributorsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowContributorsViewController.swift; sourceTree = "<group>"; };
+		BEA2AF4924DB0509001EA2BB /* Contributers.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Contributers.storyboard; sourceTree = "<group>"; };
 		BEDF3FC8248533B000D22E2D /* MessageView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MessageView.storyboard; sourceTree = "<group>"; };
 		BEDF3FCA248533D400D22E2D /* ChatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsViewController.swift; sourceTree = "<group>"; };
 		BEDF3FCC2485349A00D22E2D /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
@@ -295,10 +303,10 @@
 		3E43F47A247E90D800CC0584 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				3E43F474247E909A00CC0584 /* ShowAlert.swift */,
 				3E43F476247E90B700CC0584 /* DateFormatter.swift */,
 				3E43F478247E90CA00CC0584 /* Navigation.swift */,
 				80C375B424819DE600152996 /* Designable.swift */,
+				3E43F474247E909A00CC0584 /* ShowAlert.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -308,6 +316,7 @@
 			children = (
 				3E43F47E247E97FF00CC0584 /* Artist.swift */,
 				3E43F482247E983300CC0584 /* FavoriteArtist.swift */,
+				BEA2AF4324DAFBBE001EA2BB /* Contributor.swift */,
 				3E7C53D4248AC614001974DB /* TagsInfoModels.swift */,
 				3E75433E2490711300383D02 /* StatesForPickerView.swift */,
 				3E43F48A247E9A7C00CC0584 /* Posts.swift */,
@@ -365,9 +374,13 @@
 			isa = PBXGroup;
 			children = (
 				3E43F46D247E8EA200CC0584 /* MainView.storyboard */,
+				BEA2AF4924DB0509001EA2BB /* Contributers.storyboard */,
 				3E43F45E247E846400CC0584 /* ProfileViewController.swift */,
+				3E3071B824D84CB900C4ADF6 /* DonateViewController.swift */,
 				3E43F460247E849700CC0584 /* EditProfController.swift */,
 				3E43F492247E9B3F00CC0584 /* VideoPostViewController.swift */,
+				BEA2AF4524DB0060001EA2BB /* CreateContributionViewController.swift */,
+				BEA2AF4724DB0081001EA2BB /* ShowContributorsViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -376,10 +389,9 @@
 			isa = PBXGroup;
 			children = (
 				80900C5C2492C6650080C816 /* GigsView.storyboard */,
+				3E6568C024A4310300A8DB11 /* GigsPostsController.swift */,
 				3E43F45C247E844B00CC0584 /* GigViewController.swift */,
 				80900C622492C80C0080C816 /* GigsDetailViewController.swift */,
-				BE45721F2492DF2E0020D12C /* CreateGigViewController.swift */,
-				3E6568C024A4310300A8DB11 /* GigsPostsController.swift */,
 				BE3DB16924C21EBE0023E9DC /* CreateGigVC.swift */,
 			);
 			path = Gigs;
@@ -482,6 +494,7 @@
 			files = (
 				3E43F444247D7B8D00CC0584 /* LaunchScreen.storyboard in Resources */,
 				3E6D8FFD24A2B12D001AF7A7 /* GoogleService-Info.plist in Resources */,
+				BEA2AF4A24DB0509001EA2BB /* Contributers.storyboard in Resources */,
 				80900C5F2492C7880080C816 /* GigCell.xib in Resources */,
 				3E907EB82491A87700BFA1A3 /* TagCollectionViewCell.xib in Resources */,
 				800D8998248843C300C3FB67 /* ChatsCell.xib in Resources */,
@@ -584,8 +597,10 @@
 				BEDF3FCF248534A600D22E2D /* Message.swift in Sources */,
 				3E43F493247E9B3F00CC0584 /* VideoPostViewController.swift in Sources */,
 				BEDF3FCB248533D400D22E2D /* ChatsViewController.swift in Sources */,
+				3E3071B924D84CB900C4ADF6 /* DonateViewController.swift in Sources */,
 				80C375B724819E3F00152996 /* TagCollectionViewCell.swift in Sources */,
 				3E43F483247E983300CC0584 /* FavoriteArtist.swift in Sources */,
+				BEA2AF4424DAFBBE001EA2BB /* Contributor.swift in Sources */,
 				80135C80248027630038A0CC /* PostCell.swift in Sources */,
 				3E43F466247E857900CC0584 /* EmptyView.swift in Sources */,
 				3E43F463247E84DA00CC0584 /* MainViewTabBarController.swift in Sources */,
@@ -599,6 +614,7 @@
 				3E75433D24900C1300383D02 /* DisplayNameAndLocationView.swift in Sources */,
 				3E43F491247E9B2400CC0584 /* LikedArtistsViewController.swift in Sources */,
 				3E43F438247D7B8600CC0584 /* AppDelegate.swift in Sources */,
+				BEA2AF4624DB0060001EA2BB /* CreateContributionViewController.swift in Sources */,
 				80900C632492C80C0080C816 /* GigsDetailViewController.swift in Sources */,
 				3E43F472247E8FAE00CC0584 /* OnboardingViewController.swift in Sources */,
 				800D899A248843F500C3FB67 /* ChatsCell.swift in Sources */,
@@ -610,6 +626,7 @@
 				3E43F468247E8DD100CC0584 /* AuthentificationService.swift in Sources */,
 				3E43F485247E985700CC0584 /* LoginViewViewModel.swift in Sources */,
 				80C935EA24C774A800D1C66F /* ExperienceCell.swift in Sources */,
+				BEA2AF4824DB0081001EA2BB /* ShowContributorsViewController.swift in Sources */,
 				BE3DB16A24C21EBE0023E9DC /* CreateGigVC.swift in Sources */,
 				3E6D8FFB24A27E77001AF7A7 /* ProfileViewViewModel.swift in Sources */,
 				3E43F477247E90B700CC0584 /* DateFormatter.swift in Sources */,
@@ -623,7 +640,6 @@
 				3E43F45D247E844B00CC0584 /* GigViewController.swift in Sources */,
 				3E43F47F247E97FF00CC0584 /* Artist.swift in Sources */,
 				3E754304248FD0C600383D02 /* UserExperienceView.swift in Sources */,
-				BE4572202492DF2E0020D12C /* CreateGigViewController.swift in Sources */,
 				3E43F46A247E8DE800CC0584 /* DatabaseService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

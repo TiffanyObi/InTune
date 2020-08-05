@@ -147,6 +147,25 @@ extension ChatsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 140
     }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let user = users[indexPath.row]
+            databaseService.deleteThreadFromArtist(artist: user) { [weak self] (result) in
+
+                switch result {
+                case .failure(let error):
+                    DispatchQueue.main.async {
+                        self?.showAlert(title: "Error", message: "\(error.localizedDescription)")
+                    }
+                case .success:
+                    DispatchQueue.main.async {
+                        self?.showAlert(title: "Success", message: "Deleted thread")
+                    }
+                }
+            }
+        }
+    }
 }
 
 extension ChatsViewController: MessageThreadDelegate {

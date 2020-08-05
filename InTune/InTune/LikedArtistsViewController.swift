@@ -28,6 +28,14 @@ class LikedArtistsViewController: UIViewController {
     
     var currentArtist: Artist?
     
+    var artists = [Artist]() {
+        didSet {
+            self.likedArtistView.likedArtistCollectionView.reloadData()
+        }
+    }
+    
+    var copyArtists = [Artist]()
+    
     var searchQuery = "" {
         didSet {
             favs = favs.filter { $0.favArtistName.lowercased().contains(searchQuery.lowercased())}
@@ -55,6 +63,7 @@ class LikedArtistsViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
+   
         guard let user = Auth.auth().currentUser else { return }
         listener = Firestore.firestore().collection(DatabaseService.artistsCollection).document(user.uid).collection(DatabaseService.favCollection).addSnapshotListener({ [weak self](snapshot, error) in
             if let error = error {
@@ -66,13 +75,17 @@ class LikedArtistsViewController: UIViewController {
                 let favs = snapshot.documents.map { FavoritedArtist($0.data()) }
                 
                 self?.favs = favs
+                self?.addArtists(favs: favs)
             }
         })
+        
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(true)
         listener?.remove()
+        copyArtists = [Artist]()
+        artists = [Artist]()
     }
     
     
@@ -108,6 +121,15 @@ class LikedArtistsViewController: UIViewController {
                 self.favs = artists
             }
         }
+    }
+    
+    
+    private func addArtists(favs: [FavoritedArtist]) {
+        for fav in favs {
+            let artist = Artist(name: fav.favArtistName, email: "", artistId: fav.favArtistID, tags: fav.favArtistTag, city: fav.favArtistLocation, isAnArtist: true, createdDate: Timestamp(), photoURL: fav.favPhotoURL, bioText: "", preferences: [""], isReported: false)
+            copyArtists.insert(artist, at: copyArtists.endIndex)
+        }
+        artists.append(contentsOf: copyArtists)
     }
     
     
@@ -147,6 +169,17 @@ extension LikedArtistsViewController: UICollectionViewDataSource {
 }
 
 extension LikedArtistsViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let chatVC = ChatViewController()
+        let fav = favs[indexPath.row]
+        let artist = artists[indexPath.row]
+        if artist.artistId == fav.favArtistID {
+            chatVC.artist = artist
+            print(artist)
+        }
+        navigationController?.pushViewController(chatVC, animated: true)
+    }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         cell.colorShadow(for: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1))

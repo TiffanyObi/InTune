@@ -149,6 +149,15 @@ class ExploreViewController: UIViewController {
         }
     }
     
+    func filterArtist(name: String) {
+        artists = artists.filter { $0.name.lowercased().contains(name.lowercased()) }
+        if artists.count == 0 {
+            DispatchQueue.main.async {
+                self.showAlert(title: "Loading error", message: "Could not find artist named: \(name) ")
+            }
+        }
+    }
+    
     func getCurrentUserPref(){
         guard let user = Auth.auth().currentUser else {return}
         
@@ -304,6 +313,10 @@ extension ExploreViewController: UICollectionViewDelegateFlowLayout, UICollectio
 }
 
 extension ExploreViewController: UpdateUsertPref {
+    func didSearchArtist(_ searchText: String, _ exploreVC: ExploreOptionsController) {
+        filterArtist(name: searchText)
+    }
+    
     func didUpdatePreferences(_ tags: [String], _ exploreVC: ExploreOptionsController) {
         getCurrentUserPref()
         tagsCollectionView.reloadData()

@@ -57,7 +57,7 @@ class GigViewController: UIViewController {
                       }
                   } else if let snapshot = snapshot {
                       let gig = snapshot.documents.map { GigsPost($0.data()) }
-                      self.gigs = gig
+                    self.gigs = gig.sorted { $0.eventDate < $1.eventDate }
                   }
               })
     }
@@ -139,6 +139,7 @@ extension GigViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
+         guard let id = Auth.auth().currentUser?.uid else { return }
             if editingStyle == .delete {
                 let gig = gigs[indexPath.row]
                 db.deleteGig(gig: gig) { [weak self] (result) in
@@ -150,7 +151,15 @@ extension GigViewController: UITableViewDelegate {
                         }
                     case .success:
                         DispatchQueue.main.async {
-                            self?.showAlert(title: "Deleted", message: "\(gig.title) was deleted")
+                            
+                            self?.db.deleteGigPost(artistId: id, gig: gig, completion: { (result) in
+                                switch result {
+                                case .failure(let error):
+                                 self?.showAlert(title: "Deletion Error", message: "\(error.localizedDescription)")
+                                case.success:
+                                       self?.showAlert(title: "Deleted", message: "\(gig.title) was deleted")
+                                }
+                            })
                         }
                         
                     }

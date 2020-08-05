@@ -22,7 +22,10 @@ class DisplayNameAndLocationView: UIView {
     
     public lazy var displayNameTextfield: UITextField = {
         let textfield = UITextField()
-        textfield.placeholder = "Enter Display Name"
+        textfield.textFieldShadow()
+        textfield.backgroundColor = .systemGray5
+        textfield.borderStyle = .roundedRect
+        textfield.placeholder = "Enter display name"
         textfield.layer.cornerRadius = 10
         return textfield
     }()
@@ -43,7 +46,7 @@ class DisplayNameAndLocationView: UIView {
     
     public lazy var nextButton: UIButton = {
         let button = UIButton()
-        button.setTitle("N E X T", for: .normal)
+        button.setTitle("Continue", for: .normal)
         button.backgroundColor = .purple
         button.tintColor = .white
         return button
@@ -129,9 +132,9 @@ class DisplayNameAndLocationView: UIView {
         
         NSLayoutConstraint.activate([
             nextButton.topAnchor.constraint(equalTo: locationPickerView.bottomAnchor, constant: 16),
-            nextButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 100),
-            nextButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -100),
-            nextButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.10)
+            nextButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+            nextButton.heightAnchor.constraint(equalTo: locationPickerView.heightAnchor, multiplier: 0.2),
+            nextButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.3)
         ])
     }
     
