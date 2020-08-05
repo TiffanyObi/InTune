@@ -481,7 +481,7 @@ class DatabaseService {
     }
     
     public func createContributor(name: String, email: String, amountDonated: Double?, completion: @escaping (Result <Bool, Error>)-> ()) {
-        db.collection(DatabaseService.contributorsCollection).document().setData(["name" : name, "email": email, "amountDonated": amountDonated]) { (error) in
+        db.collection(DatabaseService.contributorsCollection).document().setData(["name" : name, "email": email, "amountDonated": amountDonated ?? 0.00]) { (error) in
             if let error = error {
                 completion(.failure(error))
             } else {
@@ -490,13 +490,12 @@ class DatabaseService {
         }
     }
     
-    public func fetchContribution(completion: @escaping (Result <Contributor, Error>)->()) {
-        db.collection(DatabaseService.contributorsCollection).document().getDocument { (snapshot, error) in
+    public func fetchContribution(completion: @escaping (Result <[Contributor], Error>)->()) {
+        db.collection(DatabaseService.contributorsCollection).getDocuments { (snapshot, error) in
             if let error = error {
                 completion(.failure(error))
             } else if let snapshot = snapshot {
-                guard let data  = snapshot.data() else { return }
-                let contributors = Contributor(data)
+                let contributors = snapshot.documents.map {Contributor($0.data())}
                 completion(.success(contributors))
             }
         }

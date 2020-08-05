@@ -247,12 +247,22 @@ struct ProfileViewViewModel {
                    let editProfVC = storyboard.instantiateViewController(withIdentifier: "EditProfController")
                    profileVC.navigationController?.show(editProfVC, sender: nil)
                }
+        
+        let shoutOutAction = UIAlertAction(title: "Special Shout Outs 🔊", style: .default) { (alertAction) in
+            
+            let storyboard = UIStoryboard(name: "MainView", bundle: nil)
+            let shoutOutPage = storyboard.instantiateViewController(identifier: "ShowContributorsViewController")
+            profileVC.navigationController?.present(shoutOutPage, animated: true, completion: nil)
+        }
+        
+        
                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
                alertController.addAction(signOutAction)
                alertController.addAction(editProfAction)
+                alertController.addAction(shoutOutAction)
                alertController.addAction(cancelAction)
         profileVC.present(alertController, animated: true)
-               print(Auth.auth().currentUser?.email ?? "not current user because youre not logged in or signed up")
+              
 }
 }
 
