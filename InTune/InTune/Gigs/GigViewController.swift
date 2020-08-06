@@ -14,6 +14,8 @@ class GigViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet var searchBar: UISearchBar!
+    @IBOutlet weak var favoritedGigs: UIBarButtonItem!
+    @IBOutlet weak var addGigButton: UIBarButtonItem!
     
     var listener: ListenerRegistration?
     
@@ -40,6 +42,8 @@ class GigViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.tintColor = .black
+        favoritedGigs.tintColor = .label
+        addGigButton.tintColor = .label
         tableView.separatorColor = .clear
         setUpSearchBar()
         tableView.dataSource = self
@@ -68,7 +72,7 @@ class GigViewController: UIViewController {
                     } else {
                         DispatchQueue.main.async {
                         self.tableView.backgroundView = nil
-                              self.tableView.backgroundColor = .white
+                              self.tableView.backgroundColor = .systemGray6
                         }
 
                     }
@@ -86,8 +90,8 @@ class GigViewController: UIViewController {
         searchBar.layer.cornerRadius = 20
         searchBar.layer.masksToBounds = true
         searchBar.delegate = self
-        searchBar.searchTextField.backgroundColor = .white
-//        searchBar.searchBarShadow(for: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1))
+        searchBar.searchTextField.backgroundColor = .systemGroupedBackground
+        searchBar.searchTextField.textColor = .label
         searchBar.showsCancelButton = false
     }
     
@@ -120,6 +124,7 @@ extension GigViewController: UITableViewDataSource {
             fatalError("could not get cell")
         }
         let gig = gigs[indexPath.row]
+        cell.backgroundColor = .systemGray6
         cell.configureGig(for: gig)
         return cell
     }

@@ -393,7 +393,9 @@
                                                 <rect key="frame" x="306" y="8" width="60" height="37.5"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" image="message.fill" catalog="system"/>
+                                                <state key="normal" image="message.fill" catalog="system">
+                                                    <color key="titleColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                </state>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                         <real key="value" value="10"/>
@@ -413,7 +415,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" systemColor="systemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="qoH-Q9-dkD" firstAttribute="centerY" secondItem="WzN-fK-OSW" secondAttribute="centerY" id="Ep0-eo-9mB"/>
                                             <constraint firstItem="NFh-zL-gVQ" firstAttribute="width" secondItem="WzN-fK-OSW" secondAttribute="width" multiplier="0.16" id="Giz-BU-5Co"/>
@@ -482,19 +484,20 @@
                     </view>
                     <navigationItem key="navigationItem" id="t1I-qF-QgC">
                         <barButtonItem key="leftBarButtonItem" image="gear" catalog="system" id="kJB-kb-vaT">
-                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                             <connections>
                                 <action selector="settingsButtonPressed:" destination="jg0-Mi-I9y" id="edC-kR-hrc"/>
                             </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
                             <barButtonItem image="video.badge.plus.fill" catalog="system" id="TqD-UE-TOD">
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <connections>
                                     <segue destination="FSs-2j-PIi" kind="presentation" id="APS-FZ-Mn7"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem image="dollarsign.circle" catalog="system" style="plain" id="9qc-NB-Y5M">
+                                <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <connections>
                                     <segue destination="NfK-m9-UJD" kind="presentation" id="mq6-Mg-BtK"/>
                                 </connections>

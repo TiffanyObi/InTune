@@ -11,6 +11,8 @@ import FirebaseAuth
 import FirebaseFirestore
 
 class ExploreViewController: UIViewController {
+    @IBOutlet weak var resetButton: UIBarButtonItem!
+    @IBOutlet weak var updatePreferenceButton: UIBarButtonItem!
     
     @IBOutlet private var tagsCollectionView: UICollectionView!
     @IBOutlet private var artistTableView: UITableView!
@@ -90,6 +92,9 @@ class ExploreViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        resetButton.tintColor = .label
+        updatePreferenceButton.tintColor = .label
+        
         self.artistTableView.separatorColor = .clear
         fetchArtists()
         getCurrentUserPref()
@@ -235,6 +240,7 @@ extension ExploreViewController: UITableViewDataSource, UITableViewDelegate {
         profVC.expArtist = artist
         profVC.state = .explore
         profVC.navigationItem.title = nil
+        profVC.navigationItem.backBarButtonItem?.tintColor = .label
         navigationController?.pushViewController(profVC, animated: true)
     }
     

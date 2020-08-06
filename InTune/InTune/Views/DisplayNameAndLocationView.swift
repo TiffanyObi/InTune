@@ -15,7 +15,8 @@ class DisplayNameAndLocationView: UIView {
         label.numberOfLines = 0
         label.text = "Please create your unique username"
         label.font = UIFont(name: "Thonburi", size: 28.0)
-        label.backgroundColor = .white
+        label.backgroundColor = .systemGroupedBackground
+        label.textColor = .label
         label.textAlignment = .center
         return label
     }()
@@ -23,8 +24,9 @@ class DisplayNameAndLocationView: UIView {
     public lazy var displayNameTextfield: UITextField = {
         let textfield = UITextField()
         textfield.textFieldShadow()
-        textfield.backgroundColor = .systemGray5
+        textfield.backgroundColor = .systemGray6
         textfield.borderStyle = .roundedRect
+        textfield.textColor = .label
         textfield.placeholder = "Enter display name"
         textfield.layer.cornerRadius = 10
         return textfield
@@ -34,13 +36,14 @@ class DisplayNameAndLocationView: UIView {
         let label = UILabel()
         label.text = "Where are you located?"
          label.font = UIFont(name: "Thonburi", size: 28.0)
-        label.backgroundColor = .white
+        label.backgroundColor = .systemGray6
+        label.textColor = .label
         label.textAlignment = .center
         return label
     }()
     public lazy var locationPickerView: UIPickerView = {
         let pickerView = UIPickerView()
-        pickerView.backgroundColor = .white
+        pickerView.backgroundColor = .systemGray6
         return pickerView
     }()
     

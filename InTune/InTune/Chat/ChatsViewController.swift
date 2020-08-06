@@ -68,6 +68,7 @@ class ChatsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Chats"
+        navigationItem.backBarButtonItem?.tintColor = .label
         view.backgroundColor = #colorLiteral(red: 0.3867273331, green: 0.8825651407, blue: 0.8684034944, alpha: 1)
         tableView.dataSource = self
         tableView.delegate = self

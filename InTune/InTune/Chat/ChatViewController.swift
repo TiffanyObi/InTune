@@ -48,6 +48,7 @@ class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate,
         self.title = artist?.name
 
             navigationItem.largeTitleDisplayMode = .never
+            navigationItem.backBarButtonItem?.tintColor = .label
             maintainPositionOnKeyboardFrameChanged = true
             messageInputBar.inputTextView.tintColor = .primary
             messageInputBar.sendButton.setTitleColor(.primary, for: .normal)
