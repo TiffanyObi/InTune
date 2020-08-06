@@ -16,6 +16,7 @@ class GigsPostsController: UIViewController {
     
     @IBOutlet weak var postsTableView: UITableView!
     
+    
     private var gigs = [FavGig](){
         didSet{
             gigsTableView.reloadData()

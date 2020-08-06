@@ -49,8 +49,9 @@ class LikedArtistsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = .systemGroupedBackground
         self.navigationController?.navigationBar.tintColor = .black
+        
         getArtist()
         loadFavArtists()
         likedArtistView.likedArtistSearchBar.delegate = self
@@ -58,7 +59,7 @@ class LikedArtistsViewController: UIViewController {
         likedArtistView.likedArtistCollectionView.register(UINib(nibName: "ArtistCell", bundle: nil), forCellWithReuseIdentifier: "artistCell")
         navigationItem.title = "Liked Artists"
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "ellipses.bubble.fill"), style: .plain, target: self, action: #selector(showMessages))
-        navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        navigationItem.rightBarButtonItem?.tintColor = .label
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -161,6 +162,7 @@ extension LikedArtistsViewController: UICollectionViewDataSource {
             fatalError("Could not downcast to ArtistCell")
         }
         let favArtist = favs[indexPath.row]
+        artistCell.contentView.backgroundColor = .systemGray6
         artistCell.configureFavArtistCell(favArtist: favArtist)
         
         return artistCell
@@ -198,6 +200,7 @@ extension LikedArtistsViewController: UISearchBarDelegate {
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchBar.showsCancelButton = true
+        
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {

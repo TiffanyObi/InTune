@@ -392,8 +392,8 @@
 			isa = PBXGroup;
 			children = (
 				80900C5C2492C6650080C816 /* GigsView.storyboard */,
-				3E6568C024A4310300A8DB11 /* GigsPostsController.swift */,
 				3E43F45C247E844B00CC0584 /* GigViewController.swift */,
+				3E6568C024A4310300A8DB11 /* GigsPostsController.swift */,
 				80900C622492C80C0080C816 /* GigsDetailViewController.swift */,
 				BE3DB16924C21EBE0023E9DC /* CreateGigVC.swift */,
 			);

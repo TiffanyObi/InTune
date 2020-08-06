@@ -16,6 +16,7 @@ class UserExperienceView: UIView {
         label.text = "Welcome"
         label.numberOfLines = 0
         label.textAlignment = .center
+        label.textColor = .label
         return label
     }()
     
@@ -26,12 +27,13 @@ class UserExperienceView: UIView {
         label.text = "Choose an option that best fits you"
         label.numberOfLines = 0
         label.textAlignment = .center
+        label.textColor = .label
         return label
     }()
     private (set) lazy var artistButton: UIButton = {
         let button = UIButton()
         button.setTitle("Artist", for: .normal)
-        button.setTitleColor(.black, for: .normal)
+        button.setTitleColor(.label, for: .normal)
         button.tag = 0
         return button
     }()
@@ -39,7 +41,7 @@ class UserExperienceView: UIView {
     private (set) lazy var enthusiastButton: UIButton = {
         let button = UIButton()
         button.setTitle("Enthusiast", for: .normal)
-        button.setTitleColor(.black, for: .normal)
+        button.setTitleColor(.label, for: .normal)
         button.tag = 1
         return button
     }()

@@ -44,6 +44,8 @@ class GigCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
+        contentView.backgroundColor = .systemGray6
+        containerView.backgroundColor = .systemGray6
         containerView.viewShadow()
         containerView.layer.cornerRadius = 10
     }

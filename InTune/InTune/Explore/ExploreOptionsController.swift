@@ -43,7 +43,8 @@ class ExploreOptionsController: UIViewController {
         exploreSearchBar.layer.cornerRadius = 20
         exploreSearchBar.layer.masksToBounds = true
         exploreSearchBar.delegate = self
-        exploreSearchBar.searchTextField.backgroundColor = .white
+        exploreSearchBar.searchTextField.backgroundColor = .systemGroupedBackground
+        exploreSearchBar.searchTextField.textColor = .label
         exploreSearchBar.showsCancelButton = false
     }
     
