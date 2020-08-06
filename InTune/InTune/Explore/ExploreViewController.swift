@@ -233,8 +233,8 @@ extension ExploreViewController: UITableViewDataSource, UITableViewDelegate {
         }
         let artist = artists[indexPath.row]
         profVC.expArtist = artist
-        
         profVC.state = .explore
+        profVC.navigationItem.title = nil
         navigationController?.pushViewController(profVC, animated: true)
     }
     
