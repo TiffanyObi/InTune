@@ -34,7 +34,7 @@ extension Artist {
     self.createdDate = dictionary["createdDate"] as? Timestamp ?? Timestamp(date: Date())
     self.email = dictionary["email"] as? String ?? "no email"
     self.photoURL = dictionary["photoURL"] as? String ?? "no URL"
-    self.bioText = dictionary["bioText"] as? String ?? "no bioText"
+    self.bioText = dictionary["bioText"] as? String ?? ""
     self.preferences = dictionary["preferences"] as? [String] ?? [""]
     self.isReported = dictionary["isReported"] as? Bool ?? false
 //    self.videos = dictionary["videos"] as? [String] ?? ["no video urls"]
