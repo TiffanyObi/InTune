@@ -37,6 +37,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        appLogoImageView.layer.cornerRadius = (appLogoImageView.bounds.width/2)
         loginButton.shadowLayer(loginButton)
         loginStateButton.shadowLayer(loginStateButton)
         pulsatingAnimation()

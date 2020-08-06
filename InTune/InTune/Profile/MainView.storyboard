@@ -494,7 +494,7 @@
                                     <segue destination="FSs-2j-PIi" kind="presentation" id="APS-FZ-Mn7"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem title="Item" image="dollarsign.circle" catalog="system" style="plain" id="9qc-NB-Y5M">
+                            <barButtonItem image="dollarsign.circle" catalog="system" style="plain" id="9qc-NB-Y5M">
                                 <connections>
                                     <segue destination="NfK-m9-UJD" kind="presentation" id="mq6-Mg-BtK"/>
                                 </connections>
