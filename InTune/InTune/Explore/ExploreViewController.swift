@@ -251,7 +251,7 @@ extension ExploreViewController: UICollectionViewDelegateFlowLayout, UICollectio
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         if collectionView == tagsCollectionView {
-            return currentUser?.preferences?.count ?? 2
+            return currentUser?.preferences?.count ?? 0
         }
         if collectionView == featuredArtistCollectionView {
             return featuredArtists.count
