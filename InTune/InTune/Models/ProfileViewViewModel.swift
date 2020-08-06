@@ -33,6 +33,8 @@ struct ProfileViewViewModel {
                     if let photoString = artist1.photoURL{
                         let url  = URL(string: photoString)
                         profileVC?.profImage.kf.setImage(with: url)
+                    } else {
+                        profileVC?.profImage.image = UIImage(systemName: "person.fill")
                     }
                     if let bioText = artist1.bioText {
                         profileVC?.bioLabel.text = bioText
