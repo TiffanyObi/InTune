@@ -58,6 +58,20 @@ class GigViewController: UIViewController {
                   } else if let snapshot = snapshot {
                       let gig = snapshot.documents.map { GigsPost($0.data()) }
                     self.gigs = gig.sorted { $0.eventDate < $1.eventDate }
+                    
+                    if self.gigs.count == 0 {
+                        
+                        DispatchQueue.main.async {
+                            self.tableView.backgroundColor = .systemGray5
+                        self.tableView.backgroundView = EmptyView(message: "Add a new gig !")
+                        }
+                    } else {
+                        DispatchQueue.main.async {
+                        self.tableView.backgroundView = nil
+                              self.tableView.backgroundColor = .white
+                        }
+
+                    }
                   }
               })
     }

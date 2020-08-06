@@ -28,9 +28,9 @@ class ShowContributorsViewController: UIViewController {
             let contributorCell = tableView.dequeueReusableCell(withIdentifier: "contributorCell", for: indexPath)
             
             contributorCell.textLabel?.text = contributor.name
-            contributorCell.textLabel?.font = UIFont(name: "Didot", size: 25.0)
+            contributorCell.textLabel?.font = UIFont(name: "Thonburi", size: 20.0)
             contributorCell.detailTextLabel?.text = "Donation: $ \(contributor.amountDonated ?? 0.00)"
-            contributorCell.detailTextLabel?.font = UIFont(name: "Didot", size: 18.0)
+            contributorCell.detailTextLabel?.font = UIFont(name: "Thonburi", size: 18.0)
             return contributorCell
         })
         
