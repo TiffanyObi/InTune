@@ -172,7 +172,6 @@ extension ChatsViewController: UITableViewDataSource, UITableViewDelegate {
 extension ChatsViewController: MessageThreadDelegate {
     func getLastMessage(_ vc: ChatViewController, _ messages: [Message]) {
         self.messages = messages
-        print(messages)
     }
     
     

@@ -28,6 +28,12 @@ class EditProfController: UIViewController {
         return pickerController
     }()
     
+    private lazy var tapGesture: UITapGestureRecognizer = {
+        let gesture = UITapGestureRecognizer()
+        gesture.addTarget(self, action: #selector(resignTextFieldAndView(gesture:)))
+        return gesture
+    }()
+    
     public var selectedImage: UIImage? {
         didSet{
             editImageView.image = selectedImage
@@ -49,6 +55,7 @@ class EditProfController: UIViewController {
         updateUI()
         usernameTextField.delegate = self
         bioTextView.delegate = self
+        view.addGestureRecognizer(tapGesture)
         getArtist()
     }
     
@@ -70,6 +77,11 @@ class EditProfController: UIViewController {
         }
     }
     
+    @objc func resignTextFieldAndView(gesture: UITapGestureRecognizer) {
+        usernameTextField.resignFirstResponder()
+        bioTextView.resignFirstResponder()
+    }
+    
     @IBAction func changeProfImagePressed(_ sender: UIButton) {
         //photo library
         imagePickerController.sourceType = .photoLibrary
@@ -77,17 +89,17 @@ class EditProfController: UIViewController {
     }
     
     func updateUI() {
-        guard let user = Auth.auth().currentUser else {
+        guard let artist = artist,let photoURL = artist.photoURL,let url = URL(string: photoURL) else {
             return
         }
         
-        if user.photoURL == nil  {
+        if artist.photoURL == nil  {
             editImageView.image = UIImage(systemName: "person.crop.square")
         } else {
-            editImageView.kf.setImage(with: user.photoURL)
+            editImageView.kf.setImage(with: url)
         }
         
-        userName = "\(user.displayName ?? "")"
+        userName = "\(artist.name)"
         
     }
     

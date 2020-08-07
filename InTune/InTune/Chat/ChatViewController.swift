@@ -167,7 +167,7 @@ class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate,
 
                                               let msg = Message(dictionary: message.data())
                                               self.messages.append(msg!)
-                                              print("Data: \(msg?.content ?? "No message found")")
+//                                              print("Data: \(msg?.content ?? "No message found")")
                                           }
                                       self.messagesCollectionView.reloadData()
                                       self.messagesCollectionView.scrollToBottom(animated: true)
