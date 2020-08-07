@@ -52,7 +52,6 @@ class EditProfController: UIViewController {
         super.viewDidLoad()
         usernameTextField.textFieldShadow()
         bioTextView.layer.cornerRadius = 14
-        updateUI()
         usernameTextField.delegate = self
         bioTextView.delegate = self
         view.addGestureRecognizer(tapGesture)
@@ -70,9 +69,9 @@ class EditProfController: UIViewController {
                 
             case.success(let artist1):
                 self?.artist = artist1
+                self?.updateUI(artist1)
                 self?.usernameTextField.text = artist1.name
                 self?.bioTextView.text = artist1.bioText ?? "Enter Bio Here"
-                
             }
         }
     }
@@ -88,8 +87,8 @@ class EditProfController: UIViewController {
         present(imagePickerController, animated: true)
     }
     
-    func updateUI() {
-        guard let artist = artist,let photoURL = artist.photoURL,let url = URL(string: photoURL) else {
+    func updateUI(_ artist: Artist) {
+        guard let photoURL = artist.photoURL,let url = URL(string: photoURL) else {
             return
         }
         
@@ -116,16 +115,6 @@ class EditProfController: UIViewController {
         
         guard let user = Auth.auth().currentUser else {
             return
-        }
-        
-        db.updateDisplayName(name: userName) { [weak self] (result) in
-            
-            switch result {
-            case .failure(let error):
-                self?.showAlert(title: "Error updating name", message: "\(error.localizedDescription)")
-            case .success:
-                print(true)
-            }
         }
         
         storageService.uploadPhoto(userId: user.uid, itemId: "123", image: resizedImage){ [weak self] (result) in
@@ -196,6 +185,16 @@ extension EditProfController: UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        guard let text = textField.text, !text.isEmpty else { return  false }
+        db.updateDisplayName(name: text) { [weak self] (result) in
+            
+            switch result {
+            case .failure(let error):
+                self?.showAlert(title: "Error updating name", message: "\(error.localizedDescription)")
+            case .success:
+                print(true)
+            }
+        }
         textField.resignFirstResponder()
         return true
     }
