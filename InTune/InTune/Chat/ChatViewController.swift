@@ -48,6 +48,7 @@ class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate,
         self.title = artist?.name
 
             navigationItem.largeTitleDisplayMode = .never
+            navigationItem.backBarButtonItem?.tintColor = .label
             maintainPositionOnKeyboardFrameChanged = true
             messageInputBar.inputTextView.tintColor = .primary
             messageInputBar.sendButton.setTitleColor(.primary, for: .normal)
@@ -166,7 +167,7 @@ class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate,
 
                                               let msg = Message(dictionary: message.data())
                                               self.messages.append(msg!)
-                                              print("Data: \(msg?.content ?? "No message found")")
+//                                              print("Data: \(msg?.content ?? "No message found")")
                                           }
                                       self.messagesCollectionView.reloadData()
                                       self.messagesCollectionView.scrollToBottom(animated: true)

@@ -76,6 +76,7 @@ class GigsDetailViewController: UIViewController {
         super.viewDidLoad()
         navigationItem.title = "Details"
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "bookmark"), style: .plain, target: self, action: #selector(favoriteButtonPressed(_:)))
+        navigationItem.rightBarButtonItem?.tintColor = .label
         descriptionText.layer.cornerRadius = 14
         messageButton.shadowLayer(messageButton)
         getCurrentUser()

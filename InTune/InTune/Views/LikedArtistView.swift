@@ -15,7 +15,8 @@ class LikedArtistView: UIView {
         search.placeholder = "Search an artist by name"
         search.layer.cornerRadius = 20
         search.layer.masksToBounds = true
-        search.searchTextField.backgroundColor = .white
+        search.searchTextField.backgroundColor = .systemGroupedBackground
+        search.searchTextField.textColor = .label
         return search
     }()
     
@@ -23,7 +24,8 @@ class LikedArtistView: UIView {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         let cv = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
-        cv.backgroundColor = .white
+        cv.backgroundColor = .systemGray6
+        cv.layer.cornerRadius = 20
         return cv
     }()
     

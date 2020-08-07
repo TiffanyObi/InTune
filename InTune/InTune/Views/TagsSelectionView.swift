@@ -15,7 +15,8 @@ class TagsSelectionView: UIView {
         label.numberOfLines = 0
         label.text = "Which instruments do you play?"
         label.font = UIFont(name: "Thonburi", size: 26.0)
-        label.backgroundColor = .white
+        label.backgroundColor = .systemGroupedBackground
+        label.textColor = .label
         label.textAlignment = .center
         return label
     }()
@@ -32,7 +33,8 @@ class TagsSelectionView: UIView {
         label.numberOfLines = 0
         label.text = "Which genres do you favor?"
         label.font = UIFont(name: "Thonburi", size: 26.0)
-        label.backgroundColor = .white
+        label.backgroundColor = .systemGroupedBackground
+        label.textColor = .label
         label.textAlignment = .center
         return label
     }()

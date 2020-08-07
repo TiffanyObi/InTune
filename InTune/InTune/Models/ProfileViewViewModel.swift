@@ -39,10 +39,13 @@ struct ProfileViewViewModel {
                     } else {
                         profileVC?.bioLabel.text = "This user does not have a bio yet"
                     }
-                    if artist1.isAnArtist {
+                    
+                        if artist1.isAnArtist {
+                             if profileVC?.state == .prof {
                     profileVC?.navigationItem.title = "Artist"
+                            }
                     self.getVideos(artist: artist1, profileVC: profileVC!)
-                    } else {
+                        } else {
                     profileVC?.navigationItem.title = "Enthusiast"
                         profileVC?.addMediaButton.image = nil
                     self.getGigPosts(profileVC: profileVC!)
@@ -108,10 +111,12 @@ struct ProfileViewViewModel {
         if let url = artist.photoURL, let imageURL = URL(string: url){
             profileVC.profImage.kf.setImage(with: imageURL)
         }
+       
         profileVC.likeArtistButton.isHidden = false
         profileVC.chatButton.isHidden = false
         profileVC.navigationItem.leftBarButtonItem = .none
         profileVC.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "flag.fill"), style: .plain, target: profileVC, action: #selector(profileVC.reportArtist(_:)))
+        profileVC.donateButton.image = nil
         profileVC.navigationItem.rightBarButtonItem?.tintColor = .systemRed
         profileVC.getVideos(artist: artist)
         //        setUpEmptyViewFromExp()
@@ -247,12 +252,22 @@ struct ProfileViewViewModel {
                    let editProfVC = storyboard.instantiateViewController(withIdentifier: "EditProfController")
                    profileVC.navigationController?.show(editProfVC, sender: nil)
                }
+        
+        let shoutOutAction = UIAlertAction(title: "Special Shout Outs 🔊", style: .default) { (alertAction) in
+            
+            let storyboard = UIStoryboard(name: "MainView", bundle: nil)
+            let shoutOutPage = storyboard.instantiateViewController(identifier: "ShowContributorsViewController")
+            profileVC.navigationController?.present(shoutOutPage, animated: true, completion: nil)
+        }
+        
+        
                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
                alertController.addAction(signOutAction)
                alertController.addAction(editProfAction)
+                alertController.addAction(shoutOutAction)
                alertController.addAction(cancelAction)
         profileVC.present(alertController, animated: true)
-               print(Auth.auth().currentUser?.email ?? "not current user because youre not logged in or signed up")
+              
 }
 }
 

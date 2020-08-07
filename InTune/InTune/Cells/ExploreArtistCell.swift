@@ -60,7 +60,7 @@ class ExploreArtistCell: UITableViewCell {
     
     private func containerViewConstraints() {
         addSubview(containerView)
-        containerView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        containerView.backgroundColor = .systemGray6
         containerView.layer.cornerRadius = 10
         containerView.viewShadow()
         containerView.translatesAutoresizingMaskIntoConstraints = false

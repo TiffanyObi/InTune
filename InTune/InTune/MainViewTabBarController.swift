@@ -16,12 +16,14 @@ class MainViewTabBarController: UITabBarController {
             return ExploreViewController()
         }
         vc.tabBarItem = UITabBarItem(title: "Explore", image: UIImage(systemName: "globe"), tag: 0)
+           vc.navigationItem.backBarButtonItem?.tintColor = .label
         return vc
     }()
     
     lazy var likedArtistsVC:LikedArtistsViewController = {
         let vc = LikedArtistsViewController()
         vc.tabBarItem = UITabBarItem(title: "Liked Artists", image: UIImage(systemName: "bookmark.fill"), tag: 1)
+         vc.navigationItem.backBarButtonItem?.tintColor = .label
         return vc
     }()
     
@@ -29,6 +31,7 @@ class MainViewTabBarController: UITabBarController {
         let storyboard = UIStoryboard(name: "GigsView", bundle: nil)
         guard let viewController =  storyboard.instantiateViewController(identifier: "GigViewController") as? GigViewController else { return GigViewController()}
         viewController.tabBarItem = UITabBarItem(title: "Gigs", image: UIImage(systemName: "hand.thumbsup.fill"), tag: 2)
+        viewController.navigationItem.backBarButtonItem?.tintColor = .label
         return viewController
     }()
     
@@ -37,6 +40,7 @@ class MainViewTabBarController: UITabBarController {
         let storyboard = UIStoryboard(name: "MainView", bundle: nil)
         guard let viewController =  storyboard.instantiateViewController(identifier: "ProfileViewController") as? ProfileViewController else { return ProfileViewController()}
         viewController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.fill"), tag: 3)
+          viewController.navigationItem.backBarButtonItem?.tintColor = .label
         return viewController
         
     }()

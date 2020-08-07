@@ -28,6 +28,12 @@ class EditProfController: UIViewController {
         return pickerController
     }()
     
+    private lazy var tapGesture: UITapGestureRecognizer = {
+        let gesture = UITapGestureRecognizer()
+        gesture.addTarget(self, action: #selector(resignTextFieldAndView(gesture:)))
+        return gesture
+    }()
+    
     public var selectedImage: UIImage? {
         didSet{
             editImageView.image = selectedImage
@@ -46,9 +52,9 @@ class EditProfController: UIViewController {
         super.viewDidLoad()
         usernameTextField.textFieldShadow()
         bioTextView.layer.cornerRadius = 14
-        updateUI()
         usernameTextField.delegate = self
         bioTextView.delegate = self
+        view.addGestureRecognizer(tapGesture)
         getArtist()
     }
     
@@ -63,11 +69,16 @@ class EditProfController: UIViewController {
                 
             case.success(let artist1):
                 self?.artist = artist1
+                self?.updateUI(artist1)
                 self?.usernameTextField.text = artist1.name
                 self?.bioTextView.text = artist1.bioText ?? "Enter Bio Here"
-                
             }
         }
+    }
+    
+    @objc func resignTextFieldAndView(gesture: UITapGestureRecognizer) {
+        usernameTextField.resignFirstResponder()
+        bioTextView.resignFirstResponder()
     }
     
     @IBAction func changeProfImagePressed(_ sender: UIButton) {
@@ -76,18 +87,18 @@ class EditProfController: UIViewController {
         present(imagePickerController, animated: true)
     }
     
-    func updateUI() {
-        guard let user = Auth.auth().currentUser else {
+    func updateUI(_ artist: Artist) {
+        guard let photoURL = artist.photoURL,let url = URL(string: photoURL) else {
             return
         }
         
-        if user.photoURL == nil  {
+        if artist.photoURL == nil  {
             editImageView.image = UIImage(systemName: "person.crop.square")
         } else {
-            editImageView.kf.setImage(with: user.photoURL)
+            editImageView.kf.setImage(with: url)
         }
         
-        userName = "\(user.displayName ?? "")"
+        userName = "\(artist.name)"
         
     }
     
@@ -104,16 +115,6 @@ class EditProfController: UIViewController {
         
         guard let user = Auth.auth().currentUser else {
             return
-        }
-        
-        db.updateDisplayName(name: userName) { [weak self] (result) in
-            
-            switch result {
-            case .failure(let error):
-                self?.showAlert(title: "Error updating name", message: "\(error.localizedDescription)")
-            case .success:
-                print(true)
-            }
         }
         
         storageService.uploadPhoto(userId: user.uid, itemId: "123", image: resizedImage){ [weak self] (result) in
@@ -184,6 +185,16 @@ extension EditProfController: UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        guard let text = textField.text, !text.isEmpty else { return  false }
+        db.updateDisplayName(name: text) { [weak self] (result) in
+            
+            switch result {
+            case .failure(let error):
+                self?.showAlert(title: "Error updating name", message: "\(error.localizedDescription)")
+            case .success:
+                print(true)
+            }
+        }
         textField.resignFirstResponder()
         return true
     }
