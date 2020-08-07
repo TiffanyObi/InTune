@@ -148,7 +148,8 @@ class ExploreViewController: UIViewController {
                 self?.showAlert(title: "Error", message: "\(error.localizedDescription)")
                 
             case.success(let artists1):
-                self?.artists = artists1.filter { $0.isAnArtist == true}
+                guard let user = Auth.auth().currentUser else { return }
+                self?.artists = artists1.filter { $0.isAnArtist == true && $0.artistId != user.uid}
                 self?.featuredArtists = (self?.helperFuncForFeaturedArtist(artists1: artists1))!
             }
         }
@@ -220,13 +221,10 @@ extension ExploreViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "exploreCell", for: indexPath) as? ExploreArtistCell, let user = Auth.auth().currentUser else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "exploreCell", for: indexPath) as? ExploreArtistCell else {
             fatalError("could not conform to ExploreArtistCell")
         }
         let artist = artists[indexPath.row]
-        if user.uid == artist.artistId {
-            artists.remove(at: indexPath.row)
-        }
         cell.configureCell(artist: artist)
         return cell
     }
@@ -284,16 +282,12 @@ extension ExploreViewController: UICollectionViewDelegateFlowLayout, UICollectio
             }
             
             let artistPhotoURL = featuredArtists[indexPath.row]
-//            let radius = artistCell.layer.frame.width / 2
-//            artistCell.layer.cornerRadius = radius
             artistCell.layer.cornerRadius = 14
             artistCell.configureCell(artistPhotoURL: artistPhotoURL.photoURL)
             
             return artistCell
         }
         
-        
-        //        return UICollectionViewCell()
     }
     
     
@@ -334,9 +328,10 @@ extension ExploreViewController: UpdateUsertPref {
                 print(error)
                 
             case .success(let filteredArtist):
+                guard let user = Auth.auth().currentUser else { return }
                 for pref in self.currentUser?.preferences ?? ["none"] {
                     
-                    self.artists = filteredArtist.filter{ $0.tags.contains(pref) }
+                    self.artists = filteredArtist.filter{ $0.artistId != user.uid && $0.tags.contains(pref) }
                 }
             }
         }
