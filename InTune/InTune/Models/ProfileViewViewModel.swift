@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import FirebaseAuth
 import Kingfisher
+import MessageUI
 
 struct ProfileViewViewModel {
     private var database = DatabaseService()
@@ -40,31 +41,31 @@ struct ProfileViewViewModel {
                         profileVC?.bioLabel.text = "This user does not have a bio yet"
                     }
                     
-                        if artist1.isAnArtist {
-                             if profileVC?.state == .prof {
-                    profileVC?.navigationItem.title = "Artist"
-                            }
-                    self.getVideos(artist: artist1, profileVC: profileVC!)
-                        } else {
-                    profileVC?.navigationItem.title = "Enthusiast"
+                    if artist1.isAnArtist {
+                        if profileVC?.state == .prof {
+                            profileVC?.navigationItem.title = "Artist"
+                        }
+                        self.getVideos(artist: artist1, profileVC: profileVC!)
+                    } else {
+                        profileVC?.navigationItem.title = "Enthusiast"
                         profileVC?.addMediaButton.image = nil
-                    self.getGigPosts(profileVC: profileVC!)
+                        self.getGigPosts(profileVC: profileVC!)
                     }
                 }
             }
         }
     }
-        func getVideos(artist:Artist,profileVC:ProfileViewController){
-            database.getVideo(artist: artist) {[weak profileVC] (result) in
-              switch result {
-              case .failure(let error):
+    func getVideos(artist:Artist,profileVC:ProfileViewController){
+        database.getVideo(artist: artist) {[weak profileVC] (result) in
+            switch result {
+            case .failure(let error):
                 print(error)
-              case .success(let videos):
+            case .success(let videos):
                 profileVC?.videos = videos
                 self.setUpAddVideoButton(profileVC: profileVC!, videosCount: videos.count)
-              }
             }
         }
+    }
     
     func getGigPosts(profileVC:ProfileViewController) {
         database.getGigs { (result) in
@@ -79,12 +80,12 @@ struct ProfileViewViewModel {
     }
     
     private func setUpAddVideoButton(profileVC:ProfileViewController,videosCount:Int){
-           if videosCount == 4 || videosCount > 4  {
+        if videosCount == 4 || videosCount > 4  {
             profileVC.postVidButton.isEnabled = false
-           } else {
-               profileVC.postVidButton.isEnabled = true
-           }
-       }
+        } else {
+            profileVC.postVidButton.isEnabled = true
+        }
+    }
     func setUpLikeButton(profileVC:ProfileViewController, button: UIButton) {
         
         button.layer.shadowColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
@@ -111,12 +112,12 @@ struct ProfileViewViewModel {
         if let url = artist.photoURL, let imageURL = URL(string: url){
             profileVC.profImage.kf.setImage(with: imageURL)
         }
-       
+        
         profileVC.likeArtistButton.isHidden = false
         profileVC.chatButton.isHidden = false
         profileVC.navigationItem.leftBarButtonItem = .none
         profileVC.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "flag.fill"), style: .plain, target: profileVC, action: #selector(profileVC.reportArtist(_:)))
-        profileVC.donateButton.image = nil
+        //        profileVC.donateButton.image = nil
         profileVC.navigationItem.rightBarButtonItem?.tintColor = .systemRed
         profileVC.getVideos(artist: artist)
         //        setUpEmptyViewFromExp()
@@ -139,9 +140,9 @@ struct ProfileViewViewModel {
             }
         } else {
             if profileVC.gigs.count == 0 {
-                 profileVC.postsCollectionView.backgroundView = EmptyView(message: "Add new gigs!")
+                profileVC.postsCollectionView.backgroundView = EmptyView(message: "Add new gigs!")
             } else {
-                 profileVC.postsCollectionView.backgroundView = nil
+                profileVC.postsCollectionView.backgroundView = nil
             }
         }
     }
@@ -164,21 +165,21 @@ struct ProfileViewViewModel {
     }
     
     func isArtistInFav(artist:Artist, profileVC:ProfileViewController){
-    database.isArtistInFav(for: artist) {[weak profileVC] (result) in
-        switch result {
-        case .failure(let error):
-            print("try again: \(error.localizedDescription)")
-        case .success(let status):
-            if status {
-                profileVC?.isArtistFavorite = true
-            } else {
-                
-                profileVC?.isArtistFavorite = false
+        database.isArtistInFav(for: artist) {[weak profileVC] (result) in
+            switch result {
+            case .failure(let error):
+                print("try again: \(error.localizedDescription)")
+            case .success(let status):
+                if status {
+                    profileVC?.isArtistFavorite = true
+                } else {
+                    
+                    profileVC?.isArtistFavorite = false
+                }
             }
         }
     }
-}
-   
+    
     func deleteFavArtist(profileVC:ProfileViewController, expArtist:Artist, sender:UIButton){
         database.deleteFavArtist(for: expArtist) { [weak profileVC] (result) in
             switch result {
@@ -188,8 +189,8 @@ struct ProfileViewViewModel {
                 sender.setImage(UIImage(systemName: "star"), for: .normal)
                 profileVC?.isArtistFavorite = false
             }
+        }
     }
-}
     func createFavArtist(profileVC:ProfileViewController,expArtist:Artist,sender:UIButton){
         database.createFavArtist(artist: expArtist) { [weak profileVC] (result) in
             switch result {
@@ -199,8 +200,8 @@ struct ProfileViewViewModel {
                 sender.setImage(UIImage(systemName: "star.fill"), for: .normal)
                 profileVC?.isArtistFavorite = true
             }
+        }
     }
-}
     
     func checkReportStatus(profileVC:ProfileViewController,artist:Artist?) -> Int{
         guard let artist = artist else {return 0}
@@ -216,16 +217,16 @@ struct ProfileViewViewModel {
     }
     
     func setUpReportArtist(profileVC:ProfileViewController,expArtist:Artist?){
-       
-    guard let artist = expArtist else {
+        
+        guard let artist = expArtist else {
             profileVC.navigationItem.rightBarButtonItem?.isEnabled = false
             return
         }
-         let actionSheet = UIAlertController(title: "Report", message: "Are you sure you want to report this user?", preferredStyle: .actionSheet)
+        let actionSheet = UIAlertController(title: "Report", message: "Are you sure you want to report this user?", preferredStyle: .actionSheet)
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         let reportAction = UIAlertAction(title: "Report User", style: .destructive) { [weak profileVC](alertAction) in
-
-        
+            
+            
             self.database.reportArtist(for: artist) { (result) in
                 switch result {
                 case .failure(let error):
@@ -236,39 +237,63 @@ struct ProfileViewViewModel {
             }
         }
         actionSheet.addAction(reportAction)
-                actionSheet.addAction(cancelAction)
+        actionSheet.addAction(cancelAction)
         profileVC.present(actionSheet, animated: true)
     }
     func setUpSettingsButton(profileVC:ProfileViewController,sender:UIBarButtonItem){
         
-         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-               let signOutAction = UIAlertAction(title: "Sign Out", style: .destructive) { (alertAction) in
-                   
-                   profileVC.signOutAction(title: "Sign Out", message: "Are you sure you want to sign out?")
-               }
-               let editProfAction = UIAlertAction(title: "Edit Profile", style: .default) { (alertAction) in
-                   //display edit vc
-                   let storyboard = UIStoryboard(name: "MainView", bundle: nil)
-                   let editProfVC = storyboard.instantiateViewController(withIdentifier: "EditProfController")
-                   profileVC.navigationController?.show(editProfVC, sender: nil)
-               }
-        
-        let shoutOutAction = UIAlertAction(title: "Special Shout Outs 🔊", style: .default) { (alertAction) in
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let signOutAction = UIAlertAction(title: "Sign Out", style: .destructive) { (alertAction) in
             
+            profileVC.signOutAction(title: "Sign Out", message: "Are you sure you want to sign out?")
+        }
+        let editProfAction = UIAlertAction(title: "Edit Profile", style: .default) { (alertAction) in
+            //display edit vc
             let storyboard = UIStoryboard(name: "MainView", bundle: nil)
-            let shoutOutPage = storyboard.instantiateViewController(identifier: "ShowContributorsViewController")
-            profileVC.navigationController?.present(shoutOutPage, animated: true, completion: nil)
+            let editProfVC = storyboard.instantiateViewController(withIdentifier: "EditProfController")
+            profileVC.navigationController?.show(editProfVC, sender: nil)
         }
         
+        //        let shoutOutAction = UIAlertAction(title: "Special Shout Outs 🔊", style: .default) { (alertAction) in
+        //
+        //            let storyboard = UIStoryboard(name: "MainView", bundle: nil)
+        //            let shoutOutPage = storyboard.instantiateViewController(identifier: "ShowContributorsViewController")
+        //            profileVC.navigationController?.present(shoutOutPage, animated: true, completion: nil)
+        //        }
+        let contactAction = UIAlertAction(title: "Contact Us", style: .default) { (alertAction) in
+            DispatchQueue.main.async {
+                self.showMailComposer(profileVC)
+            }
+        }
         
-               let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
-               alertController.addAction(signOutAction)
-               alertController.addAction(editProfAction)
-                alertController.addAction(shoutOutAction)
-               alertController.addAction(cancelAction)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        alertController.addAction(signOutAction)
+        alertController.addAction(editProfAction)
+        //                alertController.addAction(shoutOutAction)
+        alertController.addAction(contactAction)
+        alertController.addAction(cancelAction)
         profileVC.present(alertController, animated: true)
-              
-}
+        
+    }
+    
+    private func showMailComposer(_ profVC: ProfileViewController) {
+        
+        guard MFMailComposeViewController.canSendMail() else {
+            //show alert
+            DispatchQueue.main.async {
+                profVC.showAlert(title: "Device Error", message: "Your device cannot send e-mails")
+            }
+            return }
+        
+        let composer = MFMailComposeViewController()
+        composer.mailComposeDelegate = profVC
+        composer.setToRecipients(["intuneapp2020@gmail.com"])
+        composer.setSubject("Support")
+        composer.setMessageBody("", isHTML: false)
+        profVC.present(composer, animated: true)
+    }
+    
+    
 }
 
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1le-8U-xG4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1le-8U-xG4">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -137,23 +137,23 @@
             <objects>
                 <viewController id="NfK-m9-UJD" customClass="DonateViewController" customModule="InTune" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CpO-Pb-7cH">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="thankyou" translatesAutoresizingMaskIntoConstraints="NO" id="04h-q0-FQN">
-                                <rect key="frame" x="0.0" y="40" width="414" height="802"/>
+                                <rect key="frame" x="0.0" y="84" width="414" height="812"/>
                             </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ttU-Z6-gHn">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                                 <subviews>
                                     <view alpha="0.90000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GrK-TI-5PU" userLabel="ContentView">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="852"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Ms-Gl-R20" userLabel="ZelleView">
-                                                <rect key="frame" x="50" y="186.5" width="314" height="220"/>
+                                                <rect key="frame" x="50" y="186.5" width="314" height="222.5"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="zelle" translatesAutoresizingMaskIntoConstraints="NO" id="G3t-Uc-YzK">
-                                                        <rect key="frame" x="8" y="8" width="298" height="204"/>
+                                                        <rect key="frame" x="8" y="8" width="298" height="206.5"/>
                                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </imageView>
                                                 </subviews>
@@ -166,10 +166,10 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RbE-g7-j8X" userLabel="CashappView">
-                                                <rect key="frame" x="50" y="562.5" width="314" height="186.5"/>
+                                                <rect key="frame" x="50" y="570.5" width="314" height="188.5"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cashapp" translatesAutoresizingMaskIntoConstraints="NO" id="uhp-Zb-AKz">
-                                                        <rect key="frame" x="8" y="8" width="298" height="170.5"/>
+                                                        <rect key="frame" x="8" y="8" width="298" height="172.5"/>
                                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </imageView>
                                                 </subviews>
@@ -189,7 +189,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thank you for your support! Rememeber... Stay in touch , Stay InTune !" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nv4-iJ-fjX">
-                                                <rect key="frame" x="2" y="779" width="410" height="43"/>
+                                                <rect key="frame" x="2" y="789" width="410" height="43"/>
                                                 <color key="backgroundColor" systemColor="tertiarySystemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="18"/>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -489,26 +489,17 @@
                                 <action selector="settingsButtonPressed:" destination="jg0-Mi-I9y" id="edC-kR-hrc"/>
                             </connections>
                         </barButtonItem>
-                        <rightBarButtonItems>
-                            <barButtonItem image="video.badge.plus.fill" catalog="system" id="TqD-UE-TOD">
-                                <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <connections>
-                                    <segue destination="FSs-2j-PIi" kind="presentation" id="APS-FZ-Mn7"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem image="dollarsign.circle" catalog="system" id="9qc-NB-Y5M">
-                                <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <connections>
-                                    <segue destination="NfK-m9-UJD" kind="presentation" id="mq6-Mg-BtK"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" image="video.badge.plus.fill" catalog="system" id="TqD-UE-TOD">
+                            <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <connections>
+                                <segue destination="FSs-2j-PIi" kind="presentation" id="APS-FZ-Mn7"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="addMediaButton" destination="TqD-UE-TOD" id="f5d-1L-6pt"/>
                         <outlet property="bioLabel" destination="DHD-Jc-nYt" id="VVl-JE-pqB"/>
                         <outlet property="chatButton" destination="NFh-zL-gVQ" id="CmE-xM-hbc"/>
-                        <outlet property="donateButton" destination="9qc-NB-Y5M" id="Ihd-od-qxU"/>
                         <outlet property="infoView" destination="WzN-fK-OSW" id="wZ0-c8-oiI"/>
                         <outlet property="likeArtistButton" destination="9rV-Bc-jbx" id="E0e-dh-RzK"/>
                         <outlet property="locationLabel" destination="qoH-Q9-dkD" id="Jki-fJ-Hd5"/>
@@ -706,7 +697,6 @@
     <resources>
         <image name="cashapp" width="1100" height="550"/>
         <image name="circle" catalog="system" width="128" height="121"/>
-        <image name="dollarsign.circle" catalog="system" width="128" height="121"/>
         <image name="gear" catalog="system" width="128" height="119"/>
         <image name="message.fill" catalog="system" width="128" height="113"/>
         <image name="person.circle.fill" catalog="system" width="128" height="121"/>
