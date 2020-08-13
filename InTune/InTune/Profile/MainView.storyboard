@@ -146,7 +146,7 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ttU-Z6-gHn">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                                 <subviews>
-                                    <view alpha="0.90000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GrK-TI-5PU" userLabel="ContentView">
+                                    <view alpha="0.94999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GrK-TI-5PU" userLabel="ContentView">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RbE-g7-j8X" userLabel="CashappView">
@@ -169,18 +169,16 @@
                                                 <rect key="frame" x="8" y="75" width="398" height="167.5"/>
                                                 <string key="text">We want to make this app work even more effciently. The goal is to connect as many artists and enthusiasts as possible! Any donation is appreciated and will be used to not only maintain but enlarge this platform as we grow together! </string>
                                                 <fontDescription key="fontDescription" type="system" weight="black" pointSize="20"/>
-                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thank you for your support! Rememeber... Stay in touch , Stay InTune !" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nv4-iJ-fjX">
                                                 <rect key="frame" x="8" y="589.5" width="398" height="43"/>
-                                                <color key="backgroundColor" systemColor="tertiarySystemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="18"/>
-                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="tertiarySystemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" systemColor="systemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="RbE-g7-j8X" firstAttribute="centerX" secondItem="GrK-TI-5PU" secondAttribute="centerX" id="2c6-4G-d4p"/>
                                             <constraint firstItem="Nv4-iJ-fjX" firstAttribute="top" secondItem="RbE-g7-j8X" secondAttribute="bottom" constant="75" id="3Qu-Hy-1Xi"/>
