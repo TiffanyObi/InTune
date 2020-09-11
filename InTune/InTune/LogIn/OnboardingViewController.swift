@@ -152,11 +152,11 @@ class OnboardingViewController: UIViewController {
         
         @objc private func doneButtonPressed(){
             
-            guard !selectedInstruments.isEmpty,!selectedGenres.isEmpty else {
-                showAlert(title: "Missing Selections", message: "What instruments or genres are you interested in ?")
-                return
-                
-            }
+//            guard !selectedInstruments.isEmpty,!selectedGenres.isEmpty else {
+//                showAlert(title: "Missing Selections", message: "What instruments or genres are you interested in ?")
+//                return
+//                
+//            }
             
             let instruments1 = Array(selectedInstruments)
             let genres1 = Array(selectedGenres)

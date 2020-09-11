@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fmX-MP-kUY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fmX-MP-kUY">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -68,18 +68,28 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="110" height="101"/>
                                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VGc-bx-ofY">
+                                                    <rect key="frame" x="0.0" y="80.5" width="42" height="20.5"/>
+                                                    <color key="backgroundColor" systemColor="systemGray3Color" red="0.78039215689999997" green="0.78039215689999997" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="mro-20-vJ3" firstAttribute="leading" secondItem="PqB-b0-G0M" secondAttribute="leading" id="4q6-tl-ivl"/>
+                                                <constraint firstItem="VGc-bx-ofY" firstAttribute="leading" secondItem="PqB-b0-G0M" secondAttribute="leading" id="DxX-px-2Eo"/>
                                                 <constraint firstAttribute="bottom" secondItem="mro-20-vJ3" secondAttribute="bottom" id="IBd-Yf-hP2"/>
                                                 <constraint firstAttribute="trailing" secondItem="mro-20-vJ3" secondAttribute="trailing" id="OTg-Bn-FRb"/>
                                                 <constraint firstItem="mro-20-vJ3" firstAttribute="top" secondItem="PqB-b0-G0M" secondAttribute="top" id="nMd-Ws-rAp"/>
+                                                <constraint firstAttribute="bottom" secondItem="VGc-bx-ofY" secondAttribute="bottom" id="ymh-KM-86b"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <size key="customSize" width="110" height="101"/>
                                         <connections>
                                             <outlet property="artistImageView" destination="mro-20-vJ3" id="qJV-Kz-RCI"/>
+                                            <outlet property="artistNameLabel" destination="VGc-bx-ofY" id="lUU-Kb-OKB"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -255,7 +265,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="arrow.2.circlepath" catalog="system" width="64" height="50"/>
-        <image name="magnifyingglass.circle.fill" catalog="system" width="64" height="60"/>
+        <image name="arrow.2.circlepath" catalog="system" width="128" height="101"/>
+        <image name="magnifyingglass.circle.fill" catalog="system" width="128" height="121"/>
     </resources>
 </document>

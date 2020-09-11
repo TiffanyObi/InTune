@@ -36,9 +36,9 @@ struct ProfileViewViewModel {
                         profileVC?.profImage.kf.setImage(with: url)
                     }
                     if let bioText = artist1.bioText {
-                        profileVC?.bioLabel.text = bioText
+                        profileVC?.bioTextView.text = bioText
                     } else {
-                        profileVC?.bioLabel.text = "This user does not have a bio yet"
+                        profileVC?.bioTextView.text = "This user does not have a bio yet"
                     }
                     
                     if artist1.isAnArtist {
@@ -114,6 +114,7 @@ struct ProfileViewViewModel {
         }
         
         profileVC.likeArtistButton.isHidden = false
+        profileVC.donateButton.isEnabled = false
         profileVC.chatButton.isHidden = false
         profileVC.navigationItem.leftBarButtonItem = .none
         profileVC.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "flag.fill"), style: .plain, target: profileVC, action: #selector(profileVC.reportArtist(_:)))
