@@ -54,6 +54,7 @@ class ExploreViewController: UIViewController {
             DispatchQueue.main.async {
                 self.artistTableView.reloadData()
             }
+            featuredArtists = helperFuncForFeaturedArtist(artists1: artists)
         }
     }
     
@@ -150,13 +151,12 @@ class ExploreViewController: UIViewController {
             case.success(let artists1):
                 guard let user = Auth.auth().currentUser else { return }
                 self?.artists = artists1.filter { $0.isAnArtist == true && $0.artistId != user.uid}
-                self?.featuredArtists = (self?.helperFuncForFeaturedArtist(artists1: artists1))!
             }
         }
     }
     
     func filterArtist(name: String) {
-        artists = artists.filter { $0.name.lowercased().contains(name.lowercased()) }
+        artists = artists.filter { $0.isAnArtist == true && $0.name.lowercased().contains(name.lowercased()) }
         if artists.count == 0 {
             DispatchQueue.main.async {
                 self.showAlert(title: "Loading error", message: "Could not find artist named: \(name) ")
