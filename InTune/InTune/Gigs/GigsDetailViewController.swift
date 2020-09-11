@@ -78,6 +78,7 @@ class GigsDetailViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "bookmark"), style: .plain, target: self, action: #selector(favoriteButtonPressed(_:)))
         navigationItem.rightBarButtonItem?.tintColor = .label
         descriptionText.layer.cornerRadius = 14
+        descriptionText.isUserInteractionEnabled = true
         messageButton.shadowLayer(messageButton)
         getCurrentUser()
         getArtist()

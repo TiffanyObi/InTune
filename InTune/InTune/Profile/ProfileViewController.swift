@@ -22,7 +22,7 @@ class ProfileViewController: UIViewController {
     
     @IBOutlet var profImage: UIImageView!
     @IBOutlet public var nameLabel: UILabel!
-    @IBOutlet public var bioLabel: UILabel!
+    @IBOutlet weak var bioTextView: UITextView!
     @IBOutlet public var tagsCollection: UICollectionView!
     @IBOutlet public var postsCollectionView: UICollectionView!
     @IBOutlet public var locationLabel: UILabel!
@@ -100,6 +100,7 @@ class ProfileViewController: UIViewController {
         chatButton.shadowLayer(chatButton)
         self.navigationController?.navigationBar.tintColor = .black
         profileViewModel.setUpLikeButton(profileVC: self, button: likeArtistButton)
+        bioTextView.isUserInteractionEnabled = true
     }
     
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -270,9 +271,9 @@ extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDel
         
         if collectionView == tagsCollection {
             if state == .prof {
-                return singleArtist?.tags.count ?? 3
+                return singleArtist?.tags.count ?? 1
             } else {
-                return expArtist?.tags.count ?? 2
+                return expArtist?.tags.count ?? 1
             }
         }
         if collectionView == postsCollectionView {
@@ -292,10 +293,10 @@ extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDel
             }
             if state == .prof {
                 let tag = singleArtist?.tags[indexPath.row]
-                cell.configureCell(tag ?? "no tags")
+                cell.configureCell(tag ?? "I'm an Enthusiast")
             } else if state == .explore {
                 let tag = expArtist?.tags[indexPath.row]
-                cell.configureCell(tag ?? "no tags")
+                cell.configureCell(tag ?? "Here to Support")
             }
             return cell
         }

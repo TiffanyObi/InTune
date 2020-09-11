@@ -13,13 +13,18 @@ class FeaturedArtistCell: UICollectionViewCell {
 
     @IBOutlet weak var artistImageView: UIImageView!
     
+    @IBOutlet weak var artistNameLabel: UILabel!
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         artistImageView.tintColor = .systemGray5
     }
     
     
-    public func configureCell(artistPhotoURL: String?) {
+    public func configureCell(artistPhotoURL: String?, artistName:String) {
+        
+        artistNameLabel.text = artistName
+        
           if let photoURL = artistPhotoURL, let url = URL(string: photoURL){
                           artistImageView.kf.setImage(with: url)
             

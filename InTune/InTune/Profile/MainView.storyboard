@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1le-8U-xG4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1le-8U-xG4">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -308,12 +308,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bio" textAlignment="natural" lineBreakMode="clip" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DHD-Jc-nYt">
-                                <rect key="frame" x="154" y="168" width="240" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="GfT-ZA-9Gg">
                                 <rect key="frame" x="20" y="356" width="374" height="437"/>
                                 <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -433,6 +427,13 @@
                                     <action selector="favArtistButtonPressed:" destination="jg0-Mi-I9y" eventType="touchUpInside" id="Eyp-hO-Wci"/>
                                 </connections>
                             </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Aw-nV-maQ">
+                                <rect key="frame" x="146" y="160" width="248" height="66"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -441,18 +442,19 @@
                             <constraint firstItem="r5Z-zo-cvx" firstAttribute="top" secondItem="6sk-M6-T0Y" secondAttribute="bottom" constant="16" id="AYc-XO-v8i"/>
                             <constraint firstItem="9rV-Bc-jbx" firstAttribute="top" secondItem="pnv-Hz-RZu" secondAttribute="top" constant="20" id="B4U-o1-0N1"/>
                             <constraint firstItem="a45-Tm-yAT" firstAttribute="top" secondItem="pnv-Hz-RZu" secondAttribute="top" constant="24" id="DJL-Wi-cVZ"/>
+                            <constraint firstItem="2Aw-nV-maQ" firstAttribute="top" secondItem="9rV-Bc-jbx" secondAttribute="bottom" constant="8" id="Dk2-gl-MFN"/>
                             <constraint firstItem="pnv-Hz-RZu" firstAttribute="trailing" secondItem="GfT-ZA-9Gg" secondAttribute="trailing" constant="20" id="IwK-Yx-cos"/>
+                            <constraint firstItem="pnv-Hz-RZu" firstAttribute="trailing" secondItem="2Aw-nV-maQ" secondAttribute="trailing" constant="20" id="JpH-jj-PJ7"/>
                             <constraint firstItem="r5Z-zo-cvx" firstAttribute="leading" secondItem="pnv-Hz-RZu" secondAttribute="leading" constant="20" id="L2R-up-SYt"/>
                             <constraint firstItem="WzN-fK-OSW" firstAttribute="height" secondItem="pQl-Y6-5NF" secondAttribute="height" multiplier="0.06" id="M1T-5Z-hxp"/>
                             <constraint firstItem="6sk-M6-T0Y" firstAttribute="leading" secondItem="pnv-Hz-RZu" secondAttribute="leading" constant="20" id="PDc-b6-vL4"/>
                             <constraint firstItem="pnv-Hz-RZu" firstAttribute="trailing" secondItem="r5Z-zo-cvx" secondAttribute="trailing" constant="20" id="Xfc-qM-45I"/>
+                            <constraint firstItem="2Aw-nV-maQ" firstAttribute="leading" secondItem="6sk-M6-T0Y" secondAttribute="trailing" constant="8" id="Xj9-ff-0fJ"/>
                             <constraint firstItem="pnv-Hz-RZu" firstAttribute="trailing" secondItem="9rV-Bc-jbx" secondAttribute="trailing" constant="20" id="Y4h-0H-4bW"/>
                             <constraint firstItem="GfT-ZA-9Gg" firstAttribute="top" secondItem="r5Z-zo-cvx" secondAttribute="bottom" constant="8" id="Y8X-gW-YbV"/>
-                            <constraint firstItem="DHD-Jc-nYt" firstAttribute="leading" secondItem="6sk-M6-T0Y" secondAttribute="trailing" constant="16" id="bOt-p3-6nd"/>
-                            <constraint firstItem="DHD-Jc-nYt" firstAttribute="top" secondItem="a45-Tm-yAT" secondAttribute="bottom" constant="20" id="bct-dt-8YF"/>
                             <constraint firstItem="GfT-ZA-9Gg" firstAttribute="leading" secondItem="pnv-Hz-RZu" secondAttribute="leading" constant="20" id="e3M-7R-FWs"/>
                             <constraint firstItem="9rV-Bc-jbx" firstAttribute="centerY" secondItem="a45-Tm-yAT" secondAttribute="centerY" id="gsk-gU-eTO"/>
-                            <constraint firstItem="pnv-Hz-RZu" firstAttribute="trailing" secondItem="DHD-Jc-nYt" secondAttribute="trailing" constant="20" id="kzh-uT-Gfd"/>
+                            <constraint firstItem="r5Z-zo-cvx" firstAttribute="top" secondItem="2Aw-nV-maQ" secondAttribute="bottom" constant="16" id="n2o-ol-yXX"/>
                             <constraint firstItem="6sk-M6-T0Y" firstAttribute="top" secondItem="pnv-Hz-RZu" secondAttribute="top" constant="20" id="tgR-1W-oXW"/>
                             <constraint firstItem="6sk-M6-T0Y" firstAttribute="width" secondItem="6sk-M6-T0Y" secondAttribute="height" multiplier="1:1" id="wqo-Dk-kTY"/>
                             <constraint firstItem="pnv-Hz-RZu" firstAttribute="bottom" secondItem="GfT-ZA-9Gg" secondAttribute="bottom" constant="20" id="y8n-cL-uIq"/>
@@ -483,7 +485,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="addMediaButton" destination="TqD-UE-TOD" id="f5d-1L-6pt"/>
-                        <outlet property="bioLabel" destination="DHD-Jc-nYt" id="VVl-JE-pqB"/>
+                        <outlet property="bioTextView" destination="2Aw-nV-maQ" id="J6C-IB-1q7"/>
                         <outlet property="chatButton" destination="NFh-zL-gVQ" id="CmE-xM-hbc"/>
                         <outlet property="infoView" destination="WzN-fK-OSW" id="wZ0-c8-oiI"/>
                         <outlet property="likeArtistButton" destination="9rV-Bc-jbx" id="E0e-dh-RzK"/>
@@ -681,15 +683,15 @@
     </scenes>
     <resources>
         <image name="cashapp" width="1100" height="550"/>
-        <image name="circle" catalog="system" width="64" height="60"/>
-        <image name="dollarsign.circle" catalog="system" width="64" height="60"/>
-        <image name="gear" catalog="system" width="64" height="58"/>
-        <image name="message.fill" catalog="system" width="64" height="56"/>
-        <image name="person.circle.fill" catalog="system" width="64" height="60"/>
-        <image name="person.crop.square" catalog="system" width="64" height="56"/>
-        <image name="star" catalog="system" width="64" height="58"/>
+        <image name="circle" catalog="system" width="128" height="121"/>
+        <image name="dollarsign.circle" catalog="system" width="128" height="121"/>
+        <image name="gear" catalog="system" width="128" height="119"/>
+        <image name="message.fill" catalog="system" width="128" height="113"/>
+        <image name="person.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="person.crop.square" catalog="system" width="128" height="114"/>
+        <image name="star" catalog="system" width="128" height="116"/>
         <image name="thankyou" width="400" height="565"/>
-        <image name="video.badge.plus.fill" catalog="system" width="64" height="40"/>
-        <image name="video.circle" catalog="system" width="64" height="60"/>
+        <image name="video.badge.plus.fill" catalog="system" width="128" height="80"/>
+        <image name="video.circle" catalog="system" width="128" height="121"/>
     </resources>
 </document>
