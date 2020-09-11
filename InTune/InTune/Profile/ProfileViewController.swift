@@ -33,6 +33,8 @@ class ProfileViewController: UIViewController {
     @IBOutlet var settingsButton: UIBarButtonItem!
     @IBOutlet var infoView: DesignableView!
     
+    @IBOutlet weak var donateButton: UIBarButtonItem!
+    
     private lazy var longPress: UILongPressGestureRecognizer = {
         let press = UILongPressGestureRecognizer()
         press.addTarget(self, action: #selector(deletePost(_:)))

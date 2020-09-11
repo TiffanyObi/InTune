@@ -114,6 +114,7 @@ struct ProfileViewViewModel {
         }
         
         profileVC.likeArtistButton.isHidden = false
+        profileVC.donateButton.isEnabled = false
         profileVC.chatButton.isHidden = false
         profileVC.navigationItem.leftBarButtonItem = .none
         profileVC.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "flag.fill"), style: .plain, target: profileVC, action: #selector(profileVC.reportArtist(_:)))

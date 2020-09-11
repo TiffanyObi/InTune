@@ -487,6 +487,7 @@
                         <outlet property="addMediaButton" destination="TqD-UE-TOD" id="f5d-1L-6pt"/>
                         <outlet property="bioTextView" destination="2Aw-nV-maQ" id="J6C-IB-1q7"/>
                         <outlet property="chatButton" destination="NFh-zL-gVQ" id="CmE-xM-hbc"/>
+                        <outlet property="donateButton" destination="hGj-Eh-nOW" id="wNK-UJ-9kf"/>
                         <outlet property="infoView" destination="WzN-fK-OSW" id="wZ0-c8-oiI"/>
                         <outlet property="likeArtistButton" destination="9rV-Bc-jbx" id="E0e-dh-RzK"/>
                         <outlet property="locationLabel" destination="qoH-Q9-dkD" id="Jki-fJ-Hd5"/>
