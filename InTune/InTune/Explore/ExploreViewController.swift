@@ -28,7 +28,6 @@ class ExploreViewController: UIViewController {
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         
-        
         //        collectionView?.register(FeaturedArtistsCell.self, forCellWithReuseIdentifier: FeaturedArtistsCell.identifier)
         collectionView?.showsHorizontalScrollIndicator = false
         collectionView?.delegate = self
@@ -56,19 +55,21 @@ class ExploreViewController: UIViewController {
             }
         }
     }
-    
+    var allUsers = [Artist](){
+        didSet {
+            DispatchQueue.main.async {
+                self.artistTableView.reloadData()
+            }
+        }
+    }
     
     var currentUser: Artist?
     
     var featuredArtists = [Artist](){
         didSet{
             DispatchQueue.main.async {
-                
                 self.collectionView?.reloadData()
-                
                 self.featuredArtistCollectionView.reloadData()
-                print(self.featuredArtists.count)
-                
             }
         }
     }
@@ -94,7 +95,7 @@ class ExploreViewController: UIViewController {
         super.viewDidLoad()
         resetButton.tintColor = .label
         updatePreferenceButton.tintColor = .label
-        
+        setUpFeaturedArtists()
         self.artistTableView.separatorColor = .clear
         fetchArtists()
         getCurrentUserPref()
@@ -149,14 +150,27 @@ class ExploreViewController: UIViewController {
                 
             case.success(let artists1):
                 guard let user = Auth.auth().currentUser else { return }
+                self?.allUsers = artists1
                 self?.artists = artists1.filter { $0.isAnArtist == true && $0.artistId != user.uid}
-                self?.featuredArtists = (self?.helperFuncForFeaturedArtist(artists1: artists1))!
+            }
+        }
+    }
+    
+    func setUpFeaturedArtists(){
+        db.getArtists { [weak self] (result) in
+            switch result {
+            case .failure(let error):
+                self?.showAlert(title: "Error", message: "\(error.localizedDescription)")
+
+            case.success(let artists1):
+                self?.featuredArtists = self!.helperFuncForFeaturedArtist(artists1: artists1)
+
             }
         }
     }
     
     func filterArtist(name: String) {
-        artists = artists.filter { $0.name.lowercased().contains(name.lowercased()) }
+        artists = allUsers.filter {$0.name.lowercased().contains(name.lowercased()) }
         if artists.count == 0 {
             DispatchQueue.main.async {
                 self.showAlert(title: "Loading error", message: "Could not find artist named: \(name) ")
@@ -203,11 +217,11 @@ class ExploreViewController: UIViewController {
         
         while featureSet.count < 5 {
             guard let randomArtist = artists1.randomElement() else {return [Artist]()}
+            if randomArtist.isAnArtist == true {
             featureSet.insert(randomArtist)
-            
+            }
         }
-        
-        return Array(featureSet)
+           return Array(featureSet)
     }
 }
 
@@ -235,13 +249,17 @@ extension ExploreViewController: UITableViewDataSource, UITableViewDelegate {
             fatalError("could not load ProfileViewController")
         }
         let artist = artists[indexPath.row]
+        
+        if artist.isAnArtist == true {
         profVC.expArtist = artist
         profVC.state = .explore
         profVC.navigationItem.title = nil
         profVC.navigationItem.backBarButtonItem?.tintColor = .label
         navigationController?.pushViewController(profVC, animated: true)
+        } else {
+          showAlert(title: "Hey!", message: "This user is just here to support the amazing talent that is on the app! Try searching for a fellow artist! Or checkout Gigs to see if they've posted an opportunity for you!")
+        }
     }
-    
 }
 
 extension ExploreViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
@@ -281,9 +299,9 @@ extension ExploreViewController: UICollectionViewDelegateFlowLayout, UICollectio
                 fatalError("could not downcast to TagCollectionViewCell")
             }
             
-            let artistPhotoURL = featuredArtists[indexPath.row]
+            let featuredArtist = featuredArtists[indexPath.row]
             artistCell.layer.cornerRadius = 14
-            artistCell.configureCell(artistPhotoURL: artistPhotoURL.photoURL)
+            artistCell.configureCell(artistPhotoURL: featuredArtist.photoURL, artistName: featuredArtist.name)
             
             return artistCell
         }

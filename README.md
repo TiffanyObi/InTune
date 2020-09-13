@@ -2,6 +2,9 @@
 
 Winning 6-week Capstone Project: Won the 'Best In Class App' award, awarded by staff from the Capital One team. 
 
+### Availabe now in the App Store
+https://apps.apple.com/us/app/id1518621310
+
 ## About
 
 InTune is an app where artists can show off their skills and make a living. InTune connects artists and enthusiasts, creating a virtual community and a networking system.
