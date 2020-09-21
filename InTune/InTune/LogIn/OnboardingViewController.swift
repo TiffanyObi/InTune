@@ -37,6 +37,8 @@ class OnboardingViewController: UIViewController {
         return gesture
     }()
     
+    var isAnArtist = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view = userExperienece
@@ -101,6 +103,7 @@ class OnboardingViewController: UIViewController {
             case .failure(let error):
                 self?.showAlert(title: "Error", message: "\(error.localizedDescription)")
             case .success:
+                self?.isAnArtist = true
                 self?.navigateToDisplayNameAndCityView()
             }
         }
@@ -112,179 +115,186 @@ class OnboardingViewController: UIViewController {
             case .failure(let error):
                 self?.showAlert(title: "Error", message: "\(error.localizedDescription)")
             case .success:
-                
+                self?.isAnArtist = false
                 self?.navigateToDisplayNameAndCityView()
             }
             
         }
     }
+    
+    private func navigateToDisplayNameAndCityView(){
+        view = displayNameAndLocation
+        view.backgroundColor = .systemBackground
+    }
+    @objc private func nextButtonPressed(){
         
-        private func navigateToDisplayNameAndCityView(){
-            view = displayNameAndLocation
-            view.backgroundColor = .systemBackground
+        guard !displayName.isEmpty else {
+            showAlert(title: "Missing Fields", message: " Please create a unique user name")
+            return
         }
-        @objc private func nextButtonPressed(){
-            
-            guard !displayName.isEmpty else {
-                showAlert(title: "Missing Fields", message: " Please create a unique user name")
+        
+        guard !userLocation.isEmpty else {
+            showAlert(title: "Missing Fields", message: "Please tell us where you're located")
+            return
+        }
+        
+        database.updateUserDisplayNameAndLocation(userName: displayName, location: userLocation) { [weak self](result) in
+            switch result {
+            case.failure(let error):
+                self?.showAlert(title: "Error", message: "\(error.localizedDescription)")
+            case.success:
+                print(true)
+                self?.navigateToTagsSelectionView()
+            }
+        }
+    }
+    private func navigateToTagsSelectionView(){
+        view = tagsSelectionView
+        view.backgroundColor = .systemGroupedBackground
+    }
+    
+    @objc private func doneButtonPressed(){
+        
+        //if an artist, guard the instrument and genre
+        if isAnArtist {
+            guard !selectedInstruments.isEmpty, !selectedGenres.isEmpty else {
+                showAlert(title: "Missing Selections", message: "Please select the instruments or genres you're interested in")
                 return
             }
-            
-            guard !userLocation.isEmpty else {
-                showAlert(title: "Missing Fields", message: "Please tell us where you're located")
+        } else {
+            guard !selectedGenres.isEmpty else {
+                showAlert(title: "Missing Selections", message: "Please select the genre you're interested in")
                 return
             }
-            
-            database.updateUserDisplayNameAndLocation(userName: displayName, location: userLocation) { [weak self](result) in
-                switch result {
-                case.failure(let error):
-                    self?.showAlert(title: "Error", message: "\(error.localizedDescription)")
-                case.success:
-                    print(true)
-                    self?.navigateToTagsSelectionView()
-                }
-            }
-        }
-        private func navigateToTagsSelectionView(){
-            view = tagsSelectionView
-            view.backgroundColor = .systemGroupedBackground
         }
         
-        @objc private func doneButtonPressed(){
-            
-//            guard !selectedInstruments.isEmpty,!selectedGenres.isEmpty else {
-//                showAlert(title: "Missing Selections", message: "What instruments or genres are you interested in ?")
-//                return
-//                
-//            }
-            
-            let instruments1 = Array(selectedInstruments)
-            let genres1 = Array(selectedGenres)
-            
-            database.updateUserTags(instruments: instruments1, genres: genres1) { [weak self](result) in
-                switch result {
-                case.failure(let error):
-                    self?.showAlert(title: "Error", message: "\(error.localizedDescription)")
-                case.success:
-                    self?.navigateToProfileView()
-                }
-            }
-        }
+        let instruments1 = Array(selectedInstruments)
+        let genres1 = Array(selectedGenres)
         
-        func navigateToProfileView(){
-            UIViewController.showViewController(storyboardName: "MainView", viewControllerID: "MainViewTabBarController")
+        database.updateUserTags(instruments: instruments1, genres: genres1) { [weak self](result) in
+            switch result {
+            case.failure(let error):
+                self?.showAlert(title: "Error", message: "\(error.localizedDescription)")
+            case.success:
+                self?.navigateToProfileView()
+            }
         }
     }
     
-    extension OnboardingViewController: UITextFieldDelegate {
-        func textFieldDidChangeSelection(_ textField: UITextField) {
-            guard !(textField.text?.isEmpty ?? true) else {
-                
-                return}
-            displayName = textField.text ?? "no display name"
-        }
-        
-        func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-            textField.resignFirstResponder()
+    func navigateToProfileView(){
+        UIViewController.showViewController(storyboardName: "MainView", viewControllerID: "MainViewTabBarController")
+    }
+}
+
+extension OnboardingViewController: UITextFieldDelegate {
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        guard !(textField.text?.isEmpty ?? true) else {
             
-            return true
-        }
+            return}
+        displayName = textField.text ?? "no display name"
     }
     
-    extension OnboardingViewController: UIPickerViewDataSource, UIPickerViewDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
         
-        func numberOfComponents(in pickerView: UIPickerView) -> Int {
-            return 1
-        }
-        func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-            
-            return states.count
-        }
-        func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-            
-            return states[row]
-        }
-        func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-            userLocation = states[row]
-        }
+        return true
+    }
+}
+
+extension OnboardingViewController: UIPickerViewDataSource, UIPickerViewDelegate {
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         
+        return states.count
+    }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        
+        return states[row]
+    }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        userLocation = states[row]
     }
     
-    extension OnboardingViewController: UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
-        func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-            
-            if collectionView == tagsSelectionView.instrumentsCollectionView {
-                return instruments.count
-            }
-            
-            if collectionView == tagsSelectionView.genresCollectionView{
-                return genres.count
-            }
-            
-            return 2
+}
+
+extension OnboardingViewController: UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        if collectionView == tagsSelectionView.instrumentsCollectionView {
+            return instruments.count
         }
         
-        func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-            
-            guard let tagCell = collectionView.dequeueReusableCell(withReuseIdentifier: "tagCell", for: indexPath) as? TagCollectionViewCell else {
-                return UICollectionViewCell()
+        if collectionView == tagsSelectionView.genresCollectionView{
+            return genres.count
+        }
+        
+        return 2
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        guard let tagCell = collectionView.dequeueReusableCell(withReuseIdentifier: "tagCell", for: indexPath) as? TagCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        
+        if collectionView == tagsSelectionView.instrumentsCollectionView {
+            let instrument = instruments[indexPath.row]
+            tagCell.tagTitle.backgroundColor = .black
+            tagCell.layer.borderWidth = 4
+            tagCell.layer.borderColor = #colorLiteral(red: 0.3867273331, green: 0.8825651407, blue: 0.8684034944, alpha: 1)
+            tagCell.isButtonPressed = { [weak self] in
+                self?.instruments[indexPath.row].isSelected = true
+                self?.selectedInstruments.insert(instrument.name)
             }
-            
-            if collectionView == tagsSelectionView.instrumentsCollectionView {
-                let instrument = instruments[indexPath.row]
-                tagCell.tagTitle.backgroundColor = .black
-                tagCell.layer.borderWidth = 4
-                tagCell.layer.borderColor = #colorLiteral(red: 0.3867273331, green: 0.8825651407, blue: 0.8684034944, alpha: 1)
-                tagCell.isButtonPressed = { [weak self] in
-                    self?.instruments[indexPath.row].isSelected = true
-                    self?.selectedInstruments.insert(instrument.name)
-                }
-                tagCell.tagTitle.textColor = .white
-                tagCell.configureWithModel(instrument)
-                
-                return tagCell
-                
-            }
-            if collectionView == tagsSelectionView.genresCollectionView{
-                let genre = genres[indexPath.row]
-                tagCell.tagTitle.backgroundColor = .black
-                tagCell.layer.borderWidth = 4
-                tagCell.layer.borderColor = #colorLiteral(red: 0.3867273331, green: 0.8825651407, blue: 0.8684034944, alpha: 1)
-                
-                tagCell.isButtonPressed = { [weak self] in
-                    self?.genres[indexPath.row].isSelected = true
-                    self?.selectedGenres.insert(genre.name)
-                }
-                tagCell.tagTitle.textColor = .white
-                
-                tagCell.configureWithModel(genre)
-                
-            }
+            tagCell.tagTitle.textColor = .white
+            tagCell.configureWithModel(instrument)
             
             return tagCell
+            
+        }
+        if collectionView == tagsSelectionView.genresCollectionView{
+            let genre = genres[indexPath.row]
+            tagCell.tagTitle.backgroundColor = .black
+            tagCell.layer.borderWidth = 4
+            tagCell.layer.borderColor = #colorLiteral(red: 0.3867273331, green: 0.8825651407, blue: 0.8684034944, alpha: 1)
+            
+            tagCell.isButtonPressed = { [weak self] in
+                self?.genres[indexPath.row].isSelected = true
+                self?.selectedGenres.insert(genre.name)
+            }
+            tagCell.tagTitle.textColor = .white
+            
+            tagCell.configureWithModel(genre)
+            
         }
         
-        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-            let maxSize: CGSize = UIScreen.main.bounds.size
-            let itemWidth: CGFloat = maxSize.width * 0.25
-            let itemHeight: CGFloat = maxSize.height * 0.10
-            return CGSize(width: itemWidth, height: itemHeight)
-        }
-        
+        return tagCell
     }
     
-    extension OnboardingViewController: TagsCVDelegate {
-        func updateUserPreferences(_ cell: TagCollectionViewCell, instrument: String, genre: String) {
-            if !instrument.isEmpty {
-                selectedInstruments.insert(instrument)
-            }
-            
-            if !genre.isEmpty {
-                selectedGenres.insert(genre)
-            }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let maxSize: CGSize = UIScreen.main.bounds.size
+        let itemWidth: CGFloat = maxSize.width * 0.25
+        let itemHeight: CGFloat = maxSize.height * 0.10
+        return CGSize(width: itemWidth, height: itemHeight)
+    }
+    
+}
+
+extension OnboardingViewController: TagsCVDelegate {
+    func updateUserPreferences(_ cell: TagCollectionViewCell, instrument: String, genre: String) {
+        if !instrument.isEmpty {
+            selectedInstruments.insert(instrument)
         }
         
-        
-        
+        if !genre.isEmpty {
+            selectedGenres.insert(genre)
+        }
+    }
+    
+    
+    
 }
 

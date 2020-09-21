@@ -295,10 +295,10 @@ extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDel
             }
             if state == .prof {
                 let tag = singleArtist?.tags[indexPath.row]
-                cell.configureCell(tag ?? "I'm an Enthusiast")
+                cell.configureCell(tag ?? "no tags")
             } else if state == .explore {
                 let tag = expArtist?.tags[indexPath.row]
-                cell.configureCell(tag ?? "Here to Support")
+                cell.configureCell(tag ?? "no tags")
             }
             return cell
         }
