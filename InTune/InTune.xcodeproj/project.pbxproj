@@ -40,7 +40,6 @@
 		3E43F493247E9B3F00CC0584 /* VideoPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E43F492247E9B3F00CC0584 /* VideoPostViewController.swift */; };
 		3E6568C124A4310300A8DB11 /* GigsPostsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6568C024A4310300A8DB11 /* GigsPostsController.swift */; };
 		3E6D8FFB24A27E77001AF7A7 /* ProfileViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6D8FFA24A27E77001AF7A7 /* ProfileViewViewModel.swift */; };
-		3E6D8FFD24A2B12D001AF7A7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E6D8FFC24A2B12D001AF7A7 /* GoogleService-Info.plist */; };
 		3E754304248FD0C600383D02 /* UserExperienceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E754303248FD0C600383D02 /* UserExperienceView.swift */; };
 		3E75433B2490027500383D02 /* OnboardingView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E75433A2490027500383D02 /* OnboardingView.storyboard */; };
 		3E75433D24900C1300383D02 /* DisplayNameAndLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E75433C24900C1300383D02 /* DisplayNameAndLocationView.swift */; };
@@ -78,6 +77,7 @@
 		BEDF3FCD2485349A00D22E2D /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDF3FCC2485349A00D22E2D /* Chat.swift */; };
 		BEDF3FCF248534A600D22E2D /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDF3FCE248534A600D22E2D /* Message.swift */; };
 		BEDF3FD12485354B00D22E2D /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDF3FD02485354B00D22E2D /* ChatViewController.swift */; };
+		E8E48F6126BC691000CD8E85 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E8E48F6026BC690F00CD8E85 /* GoogleService-Info.plist */; };
 		F0587CCABB857784317015A3 /* Pods_InTune.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7569B63AC8D4A59DD4C294EF /* Pods_InTune.framework */; };
 		F39A5A5FC5ABFD46741A3AEB /* Pods_InTuneTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34EDB9880DFEB9AE9BDB152F /* Pods_InTuneTests.framework */; };
 /* End PBXBuildFile section */
@@ -132,7 +132,6 @@
 		3E43F492247E9B3F00CC0584 /* VideoPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPostViewController.swift; sourceTree = "<group>"; };
 		3E6568C024A4310300A8DB11 /* GigsPostsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigsPostsController.swift; sourceTree = "<group>"; };
 		3E6D8FFA24A27E77001AF7A7 /* ProfileViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewViewModel.swift; sourceTree = "<group>"; };
-		3E6D8FFC24A2B12D001AF7A7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3E754303248FD0C600383D02 /* UserExperienceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserExperienceView.swift; sourceTree = "<group>"; };
 		3E75433A2490027500383D02 /* OnboardingView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OnboardingView.storyboard; sourceTree = "<group>"; };
 		3E75433C24900C1300383D02 /* DisplayNameAndLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayNameAndLocationView.swift; sourceTree = "<group>"; };
@@ -174,6 +173,7 @@
 		BEDF3FCC2485349A00D22E2D /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		BEDF3FCE248534A600D22E2D /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		BEDF3FD02485354B00D22E2D /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		E8E48F6026BC690F00CD8E85 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -244,7 +244,7 @@
 				804588B424BCBFA1007166C7 /* Profile */,
 				3E43F459247E83A600CC0584 /* SupportingFiles */,
 				3E43F445247D7B8D00CC0584 /* Info.plist */,
-				3E6D8FFC24A2B12D001AF7A7 /* GoogleService-Info.plist */,
+				E8E48F6026BC690F00CD8E85 /* GoogleService-Info.plist */,
 			);
 			path = InTune;
 			sourceTree = "<group>";
@@ -496,7 +496,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E43F444247D7B8D00CC0584 /* LaunchScreen.storyboard in Resources */,
-				3E6D8FFD24A2B12D001AF7A7 /* GoogleService-Info.plist in Resources */,
 				BEA2AF4A24DB0509001EA2BB /* Contributers.storyboard in Resources */,
 				80900C5F2492C7880080C816 /* GigCell.xib in Resources */,
 				3E907EB82491A87700BFA1A3 /* TagCollectionViewCell.xib in Resources */,
@@ -507,6 +506,7 @@
 				80A264F024C5EF7C00DA6662 /* ExperienceCell.xib in Resources */,
 				BEDF3FC9248533B000D22E2D /* MessageView.storyboard in Resources */,
 				3E43F46E247E8EA200CC0584 /* MainView.storyboard in Resources */,
+				E8E48F6126BC691000CD8E85 /* GoogleService-Info.plist in Resources */,
 				80900C5D2492C6650080C816 /* GigsView.storyboard in Resources */,
 				3E43F441247D7B8D00CC0584 /* Assets.xcassets in Resources */,
 				80142DAF248AB85F002C928C /* ExploreView.storyboard in Resources */,

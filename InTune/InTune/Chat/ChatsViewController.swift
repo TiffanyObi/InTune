@@ -49,6 +49,8 @@ class ChatsViewController: UIViewController {
                 }
             } else if let snapshot = snapshot {
                 var artist = snapshot.documents.map { Artist($0.data()) }
+                
+                
                 for (index, id) in artist.enumerated() {
                     if id.artistId == Auth.auth().currentUser?.uid {
                         artist.remove(at: index)

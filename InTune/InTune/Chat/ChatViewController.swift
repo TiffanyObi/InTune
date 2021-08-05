@@ -138,7 +138,7 @@ class ChatViewController: MessagesViewController, InputBarAccessoryViewDelegate,
                           return
                       }
                       
-                      if queryCount == 0 {
+                    if queryCount == 0 && self.messages.count != 0{
                           //If documents count is zero that means there is no chat available and we need to create a new instance
                           self.createNewChat()
                       }
